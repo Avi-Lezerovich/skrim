@@ -3,13 +3,15 @@ import Base from "../layouts/Base.astro";
 import BlocChart from "../components/charts/BlocChart.astro";
 import Num from "../components/data/Num.astro";
 import { average, fmtDate, latestParties, parties, pollsterName } from "../lib/data";
-import { THRESHOLD_SEATS, trendsPayload } from "../lib/selectors";
+import { THRESHOLD_SEATS, sparkPoints, trendsPayload } from "../lib/selectors";
 
 const payload = trendsPayload();
 const first = payload.days[0];
 const last = payload.days.at(-1)!;
 const latest = (id: string) => latestParties.values[id];
 const pollsterOpts = Object.entries(payload.pollsterNames).sort((a, b) => a[1].localeCompare(b[1], "he"));
+const SPARK_H = 32;
+const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixed(1);
 ---
 
 <Base title="מגמות" description="ממוצע הסקרים לפי גוש ולפי מפלגה לאורך זמן, עם כל סקר כנקודה">
@@ -26,7 +28,7 @@ const pollsterOpts = Object.entries(payload.pollsterNames).sort((a, b) => a[1].l
   <section class="trends-parties" aria-labelledby="parties-h">
     <h2 id="parties-h">מפלגות</h2>
     <p class="page-note">
-      כל המפלגות על אותו סולם (0–{payload.ymax} מנדטים) ועל אותו ציר זמן. הקו המקווקו הוא אחוז החסימה ({THRESHOLD_SEATS} מנדטים).
+      כל המפלגות על אותו סולם (0–{payload.ymax} מנדטים) ועל אותו ציר זמן. הקו המקווקו הוא אחוז החסימה ({THRESHOLD_SEATS} מנדטים). הקישו על נקודה כדי לראות את הסקר שמאחוריה.
     </p>
 
     <form class="control-bar" id="trend-controls" aria-label="הגדרות גרפי המפלגות">
@@ -45,38 +47,44 @@ const pollsterOpts = Object.entries(payload.pollsterNames).sort((a, b) => a[1].l
       <p class="control-msg" id="pollster-msg" aria-live="polite"></p>
     </form>
 
-    <p class="chart-readout grid-readout" id="grid-readout" aria-live="polite">
-      הצביעו על נקודה או הקישו עליה כדי לראות את הסקר.
-    </p>
-
+    {/* Phones: one row per party with a sparkline on the shared scale; a tap opens the full
+        chart. From 768px every row is open and the list is a grid of small multiples. */}
     <div class="party-grid">
       {
         payload.charts.map((c) => {
           const v = latest(c.id);
           return (
-            <article class="card party-card" id={`party-${c.id}`}>
-              <h3 class="party-card-head">
+            <details class="card party-card" id={`party-${c.id}`} data-id={c.id}>
+              <summary class="party-card-head">
                 <span class="party-cell">
                   <i class="swatch" style={`background: ${parties[c.id]?.color ?? "transparent"}`} />
-                  {c.name}
+                  <span class="party-card-name">{c.name}</span>
                 </span>
-                {v && (
+                <svg class="party-spark" viewBox={`0 0 100 ${SPARK_H}`} preserveAspectRatio="none" aria-hidden="true">
+                  <line x1="0" x2="100" y1={thresholdY} y2={thresholdY} />
+                  {!c.sparse && <polyline points={sparkPoints(c.s, payload.ymax, SPARK_H)} />}
+                </svg>
+                {v ? (
                   <span class="party-card-num">
                     <Num value={v.mean} />
                     <span class="muted">
+                      <span class="sr-only">פיזור בין הסוקרים </span>
                       <Num kind="range" lo={Math.max(0, v.mean - v.sd)} hi={v.mean + v.sd} />
                     </span>
                   </span>
+                ) : (
+                  <span class="party-card-num muted small">אין ממוצע</span>
                 )}
-              </h3>
+              </summary>
               <div
                 class="chart chart-box party-chart"
                 data-party={c.id}
                 role="img"
                 aria-label={`ממוצע המנדטים של ${c.name} לאורך זמן${v ? `; ב-${fmtDate(last)}: ${Math.round(v.mean)}` : ""}`}
               />
+              <p class="party-readout" aria-live="polite"></p>
               {c.sparse && <p class="small muted">פחות מ-5 סקרים: מוצגות הנקודות בלבד, בלי קו ממוצע.</p>}
-            </article>
+            </details>
           );
         })
       }
@@ -128,7 +136,7 @@ const pollsterOpts = Object.entries(payload.pollsterNames).sort((a, b) => a[1].l
   import { day } from "../charts/theme";
 
   type Payload = {
-    polls: { k: string; d: string; p: string }[];
+    polls: { k: string; d: string; p: string; u: string }[];
     days: string[];
     charts: { id: string; name: string; s: ([number, number] | null)[]; dots: [number, number][]; sparse: boolean }[];
     ymax: number;
@@ -139,7 +147,6 @@ const pollsterOpts = Object.entries(payload.pollsterNames).sort((a, b) => a[1].l
   const form = document.getElementById("trend-controls") as HTMLFormElement;
   const select = form.elements.namedItem("pollster") as HTMLSelectElement;
   const msg = document.getElementById("pollster-msg")!;
-  const readout = document.getElementById("grid-readout")!;
   const DAY = 86_400_000;
   const dateFmt = new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "numeric", year: "numeric", timeZone: "UTC" });
 
@@ -149,7 +156,7 @@ const pollsterOpts = Object.entries(payload.pollsterNames).sort((a, b) => a[1].l
     name: c.name,
     sparse: c.sparse,
     series: c.s.flatMap((v, i) => (v ? [{ x: day(payload.days[i]), mean: v[0], sd: v[1] }] : [])),
-    dots: c.dots.map(([i, seats]) => ({ x: polls[i].x, seats, pollster: polls[i].p, key: polls[i].k })),
+    dots: c.dots.map(([i, seats]) => ({ x: polls[i].x, seats, pollster: polls[i].p, key: polls[i].k, url: polls[i].u })),
   }));
   const names = new Map(charts.map((c) => [c.id, c.name]));
   const end = day(payload.days.at(-1)!);
@@ -167,13 +174,16 @@ const pollsterOpts = Object.entries(payload.pollsterNames).sort((a, b) => a[1].l
     return { ymax: payload.ymax, threshold: payload.threshold, domain: [from, end], highlight: select.value || null };
   }
 
+  /** The tapped poll, under its own chart: pollster, date, seats, its page and its PDF. */
   function show(party: string, p: PartyDot) {
+    const readout = document.querySelector(`#party-${party} .party-readout`)!;
     const who = payload.pollsterNames[p.pollster] ?? p.pollster;
     readout.innerHTML = "";
     const strong = document.createElement("strong");
-    strong.textContent = names.get(party) ?? party;
-    const link = Object.assign(document.createElement("a"), { href: `/polls/${p.key}`, textContent: "לדף הסקר" });
-    readout.append(strong, ` · ${who} · ${dateFmt.format(p.x)} · ${p.seats} מנדטים · `, link);
+    strong.textContent = `${p.seats} מנדטים`;
+    const page = Object.assign(document.createElement("a"), { href: `/polls/${p.key}`, textContent: "לדף הסקר" });
+    const pdf = Object.assign(document.createElement("a"), { href: p.url, textContent: "PDF ↗" });
+    readout.append(strong, ` · ${who} · ${dateFmt.format(p.x)} · `, page, " · ", pdf);
   }
 
   function update() {
@@ -192,30 +202,46 @@ const pollsterOpts = Object.entries(payload.pollsterNames).sort((a, b) => a[1].l
     history.replaceState(null, "", `${location.pathname}${qs ? `?${qs}` : ""}${location.hash}`);
   }
 
-  // Plot loads once the grid nears the viewport; every chart redraws when the controls change.
-  const redraws: (() => void)[] = [];
+  // Plot loads once the grid nears the viewport. A chart is drawn when its row is open: on
+  // phones when tapped (or named in the URL hash), from 768px always. Drawn charts redraw when
+  // the controls change.
+  const redraws = new Map<string, () => void>();
   const grid = document.querySelector(".party-grid")!;
-  let started = false;
-  async function startCharts() {
-    if (started) return;
-    started = true;
+  const cards = [...document.querySelectorAll<HTMLDetailsElement>(".party-card")];
+  let plot: Promise<typeof import("../charts/party")> | null = null;
+  async function draw(card: HTMLDetailsElement) {
+    const id = card.dataset.id!;
+    if (redraws.has(id) || !card.open) return;
     try {
-      const { partyChart } = await import("../charts/party");
-      for (const c of charts) {
-        const el = document.querySelector<HTMLElement>(`[data-party="${c.id}"]`)!;
-        redraws.push(mount(el, (w, h) => partyChart(c, view(), w, h, (p) => p && show(c.id, p))));
-      }
+      const { partyChart } = await (plot ??= import("../charts/party"));
+      const c = charts.find((x) => x.id === id)!;
+      const el = card.querySelector<HTMLElement>(".party-chart")!;
+      redraws.set(id, mount(el, (w, h) => partyChart(c, view(), w, h, (p) => p && show(c.id, p))));
     } catch (err) {
       console.error(err);
       for (const el of document.querySelectorAll<HTMLElement>(".party-chart")) el.hidden = true;
-      readout.textContent = "הגרפים לא נטענו — הנתונים בטבלה למטה.";
       (document.querySelector(".trends-parties details.table-view") as HTMLDetailsElement).open = true;
     }
   }
+  const wide = matchMedia("(min-width: 768px)");
+  const openFor = () => {
+    const target = location.hash.startsWith("#party-") ? document.querySelector<HTMLDetailsElement>(location.hash) : null;
+    for (const card of cards) if (wide.matches || card === target) card.open = true;
+  };
+  openFor();
+  wide.addEventListener("change", openFor);
+  addEventListener("hashchange", openFor);
+  for (const card of cards) {
+    card.addEventListener("toggle", () => started && draw(card));
+    // From 768px the rows are a grid of charts that stay open.
+    card.querySelector("summary")!.addEventListener("click", (e) => wide.matches && e.preventDefault());
+  }
+  let started = false;
   new IntersectionObserver((entries, io) => {
     if (entries.some((e) => e.isIntersecting)) {
       io.disconnect();
-      startCharts();
+      started = true;
+      cards.forEach(draw);
     }
   }, { rootMargin: "400px 0px" }).observe(grid);
 

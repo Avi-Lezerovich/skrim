@@ -36,11 +36,12 @@ export async function settle(page: Page) {
     await bloc.scrollIntoViewIfNeeded();
     await expect(page.locator("#bloc-chart svg[role=img]")).toBeVisible();
   }
+  // trends: every open row draws its chart (all rows from 768px; tapped rows on phones)
   const grid = page.locator(".party-grid");
   if (await grid.count()) {
     await grid.scrollIntoViewIfNeeded();
-    const n = await page.locator(".party-chart").count();
-    await expect(page.locator(".party-chart svg")).toHaveCount(n);
+    const n = await page.locator(".party-card[open] .party-chart").count();
+    await expect(page.locator(".party-card[open] .party-chart svg")).toHaveCount(n);
   }
   await page.evaluate(() => window.scrollTo(0, 0));
 }

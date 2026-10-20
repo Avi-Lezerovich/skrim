@@ -3,7 +3,7 @@
 import * as Plot from "@observablehq/plot";
 import { chrome, fmtDay, hidden } from "./theme";
 
-export type PartyDot = { x: Date; seats: number; pollster: string; key: string };
+export type PartyDot = { x: Date; seats: number; pollster: string; key: string; url: string };
 
 export type PartyData = {
   id: string;
