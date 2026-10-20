@@ -1,0 +1,37 @@
+---
+// G3 — seats per party: bar from the start edge, whisker for the spread between pollsters,
+// dashed tick at the threshold. HTML, not SVG: the list is its own text alternative.
+import Num from "../data/Num.astro";
+import { THRESHOLD_SEATS, type PartyRow } from "../../lib/selectors";
+
+interface Props {
+  rows: PartyRow[];
+  /** Scale maximum in seats; defaults to the largest upper spread. */
+  max?: number;
+  threshold?: number;
+}
+const { rows, threshold = THRESHOLD_SEATS } = Astro.props;
+const max = Astro.props.max ?? Math.max(...rows.map((r) => r.hi)) * 1.04;
+const pct = (v: number) => `${Math.max(0, Math.min(100, (100 * v) / max)).toFixed(2)}%`;
+---
+
+<ol class="seat-bars" style={`--threshold: ${pct(threshold)}`}>
+  {
+    rows.map((r) => (
+      <li class="seat-bar">
+        <a class="seat-bar-name" href={`/trends#party-${r.id}`} title={r.name}>
+          <i class="swatch" style={`background: ${r.color}`} />
+          <span>{r.name}</span>
+        </a>
+        <span class="seat-bar-track" aria-hidden="true">
+          <span class="seat-bar-fill" style={`width: ${pct(r.mean)}`} />
+          <span class="seat-bar-range" style={`inset-inline-start: ${pct(r.lo)}; width: calc(${pct(r.hi)} - ${pct(r.lo)})`} />
+        </span>
+        <span class="seat-bar-val">
+          <strong><Num value={r.mean} /></strong>
+          <span class="muted"><Num kind="range" lo={r.lo} hi={r.hi} /></span>
+        </span>
+      </li>
+    ))
+  }
+</ol>

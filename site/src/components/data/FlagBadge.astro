@@ -1,0 +1,19 @@
+---
+// Compact flag marker for rows and cards. "review" means only "awaiting manual review / not
+// in the average" — never a judgement of the poll.
+interface Props {
+  level: "info" | "warn" | "review";
+  count?: number;
+}
+const { level, count = 0 } = Astro.props;
+const text = level === "review" ? "ממתין לבדיקה" : count === 1 ? "דגל סטטיסטי אחד" : `${count} דגלים סטטיסטיים`;
+---
+
+{
+  (level === "review" || count > 0) && (
+    <span class:list={["badge", `badge-${level}`]}>
+      {level !== "review" && <span aria-hidden="true">ⓘ </span>}
+      {text}
+    </span>
+  )
+}

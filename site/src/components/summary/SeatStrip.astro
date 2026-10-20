@@ -1,0 +1,39 @@
+---
+// G2 — the 120 seats in one strip, with the majority line in the middle. The strip itself is
+// decorative; the list under it carries the same numbers as text.
+import Num from "../data/Num.astro";
+import type { StripSegment } from "../../lib/selectors";
+
+interface Props {
+  segments: StripSegment[];
+  majority?: number;
+  total?: number;
+}
+const { segments, majority = 61, total = 120 } = Astro.props;
+const pct = (v: number) => `${((100 * v) / total).toFixed(3)}%`;
+---
+
+<figure class="seat-strip">
+  <figcaption class="strip-head">{total} המנדטים לפי הממוצע · הקו באמצע: {majority} מנדטים הם רוב</figcaption>
+  <div class="strip-scale" aria-hidden="true"><span>{majority}</span></div>
+  <div class="strip" aria-hidden="true">
+    {
+      segments.map((s) => (
+        <span class="strip-seg" style={`width: ${pct(s.seats)}; background: var(--bloc-${s.bloc})`}>
+          {s.seats / total >= 0.12 && <span class="strip-num">{Math.round(s.seats)}</span>}
+        </span>
+      ))
+    }
+    <span class="strip-line"></span>
+  </div>
+  <ul class="strip-legend">
+    {
+      segments.map((s) => (
+        <li>
+          <i class="swatch" style={`background: var(--bloc-${s.bloc})`} />
+          {s.name} <strong><Num value={s.seats} /></strong>
+        </li>
+      ))
+    }
+  </ul>
+</figure>
