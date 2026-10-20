@@ -77,8 +77,8 @@ main:focus { outline: none; }
 .site-header { border-bottom: var(--border); background: var(--surface); }
 .site-header > .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: var(--s-2) var(--s-5); padding-block: var(--s-3); }
 .brand { display: inline-flex; align-items: center; gap: var(--s-2); color: var(--ink); text-decoration: none; }
-.brand-mark { color: var(--ink); flex: none; }
-.brand-name { font-weight: var(--w-num); font-size: var(--text-md); }
+.logo { display: inline-flex; flex: none; color: var(--ink); }
+.logo svg { display: block; }
 .brand-sub { color: var(--muted); font-size: var(--text-sm); }
 .nav { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4); }
 .nav a, .nav-dialog a { color: var(--ink-2); text-decoration: none; }

@@ -4,6 +4,8 @@
 interface Props {
   current: string;
 }
+import Logo from "./Logo.astro";
+
 const { current } = Astro.props;
 const nav = [
   ["/", "ממוצע"],
@@ -19,11 +21,7 @@ const isCurrent = (href: string) =>
 <header class="site-header">
   <div class="wrap">
     <a class="brand" href="/">
-      <svg class="brand-mark" viewBox="0 0 32 32" width="24" height="24" aria-hidden="true">
-        <rect width="32" height="32" rx="6" fill="currentColor" />
-        <path d="M7 22l6-7 5 4 7-9" fill="none" stroke="var(--surface)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-      <span class="brand-name" lang="en">pollygraph</span>
+      <Logo />
       <span class="brand-sub">סקרי הבחירות לכנסת ה-26</span>
     </a>
     <nav class="nav" aria-label="ניווט ראשי">
@@ -53,7 +51,7 @@ const isCurrent = (href: string) =>
   </div>
   <dialog class="nav-dialog" id="nav-dialog" aria-label="תפריט">
     <div class="nav-dialog-head">
-      <span class="brand-name" lang="en">pollygraph</span>
+      <Logo height={22} />
       <button class="icon-btn" type="button" data-close>
         <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
           <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />

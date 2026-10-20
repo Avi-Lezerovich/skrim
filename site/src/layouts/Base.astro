@@ -31,7 +31,12 @@ const draft = new Date() < EMBARGO_END;
     <title>{title === "pollygraph" ? title : `${title} · pollygraph`}</title>
     <meta name="description" content={description} />
     {draft && <meta name="robots" content="noindex, nofollow" />}
+    <link rel="icon" href="/favicon.ico" sizes="48x48" />
     <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/manifest.webmanifest" />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#1a1a19" media="(prefers-color-scheme: dark)" />
     <link rel="preload" href={hebrew400} as="font" type="font/woff2" crossorigin />
     <script is:inline>
       // Apply a saved theme before first paint; the header switch writes it.
