@@ -1,5 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
+import Num from "../components/data/Num.astro";
 import { BLOC_NAMES, houseEffects, okPolls, pollsterName, polls, sponsorName } from "../lib/data";
 
 const ids = [...new Set(polls.map((p) => p.pollster).filter(Boolean))] as string[];
@@ -28,7 +29,6 @@ const stats = ids
 const chartRows = stats
   .filter((s) => s.he)
   .map((s) => ({ name: s.name, effect: s.he!.effect, lo: s.he!.ci_low, hi: s.he!.ci_high, n: s.he!.n_polls }));
-const sign = (v: number) => (v > 0 ? `+${v.toFixed(1)}` : v.toFixed(1));
 ---
 
 <Base title="סוקרים" description="השוואת סוקרים: אפקט בית, מזמינים, גודל מדגם ושיעור היענות">
@@ -40,10 +40,10 @@ const sign = (v: number) => (v > 0 ? `+${v.toFixed(1)}` : v.toFixed(1));
 
   <h2>אפקט בית על {BLOC_NAMES.coalition}</h2>
   <div class="card">
-    <div class="chart" id="he-chart" role="img" aria-label="אפקט בית של כל סוקר על גוש נתניהו, עם רווח בטחון של 95%"></div>
+    <div class="chart" id="he-chart" role="img" aria-label={`אפקט בית של כל סוקר על ${BLOC_NAMES.coalition}, עם רווח בטחון של 95%`}></div>
     <div class="axis-captions small muted" dir="ltr">
-      <span dir="rtl">פחות מנדטים לגוש נתניהו משאר הסוקרים ←</span>
-      <span dir="rtl">→ יותר מנדטים לגוש נתניהו</span>
+      <span dir="rtl">פחות מנדטים ל{BLOC_NAMES.coalition} משאר הסוקרים ←</span>
+      <span dir="rtl">→ יותר מנדטים ל{BLOC_NAMES.coalition}</span>
     </div>
     <p class="small muted">נקודה = הפרש ממוצע במנדטים; קו = רווח בטחון של 95%. סוקרים עם פחות משני סקרים בממוצע לא מוצגים.</p>
   </div>
@@ -69,7 +69,16 @@ const sign = (v: number) => (v > 0 ? `+${v.toFixed(1)}` : v.toFixed(1));
               <td style="white-space: normal; min-width: 12rem">{s.sponsors}</td>
               <td class="num">{s.respondents ? Math.round(s.respondents).toLocaleString("he-IL") : "—"}</td>
               <td class="num">{s.rr ? `${s.rr.toFixed(1)}%` : "—"}</td>
-              <td class="num">{s.he ? `${sign(s.he.effect)} (${sign(s.he.ci_low)} עד ${sign(s.he.ci_high)})` : "—"}</td>
+              <td class="num">
+                {s.he ? (
+                  <>
+                    <Num kind="signed" value={s.he.effect} /> (<Num kind="signed" value={s.he.ci_low} /> עד{" "}
+                    <Num kind="signed" value={s.he.ci_high} />)
+                  </>
+                ) : (
+                  <Num value={null} missing="מעט מדי סקרים בממוצע" />
+                )}
+              </td>
             </tr>
           ))
         }

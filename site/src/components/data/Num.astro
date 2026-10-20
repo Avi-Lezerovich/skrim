@@ -1,0 +1,25 @@
+---
+// A bidi-isolated number. Missing values render as "—" with the reason in a tooltip.
+import { MISSING, fmtNum, type NumKind } from "../../lib/format";
+
+interface Props {
+  value?: number | null;
+  kind?: NumKind;
+  lo?: number | null;
+  hi?: number | null;
+  digits?: number;
+  /** Why the value is missing, e.g. "לא דווח" or "לא אותר בחילוץ". */
+  missing?: string;
+  class?: string;
+}
+const { value = null, kind = "seats", lo, hi, digits, missing = "לא דווח", class: cls } = Astro.props;
+const text = fmtNum(value, kind, { lo, hi, digits });
+---
+
+{
+  text == null ? (
+    <span class:list={["num-missing", cls]} title={missing}>{MISSING}</span>
+  ) : (
+    <bdi class:list={["num", cls]}>{text}</bdi>
+  )
+}

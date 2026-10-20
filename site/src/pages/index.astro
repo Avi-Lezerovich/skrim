@@ -2,6 +2,7 @@
 import Base from "../layouts/Base.astro";
 import BlocChart from "../components/BlocChart.astro";
 import PollList from "../components/PollList.astro";
+import Num from "../components/data/Num.astro";
 import {
   BLOC_NAMES,
   average,
@@ -42,9 +43,9 @@ const recent = okPolls.slice(0, 8);
             <i class="swatch" style={`background: var(--bloc-${t.k})`} />
             {t.name}
           </div>
-          <div class="value">{Math.round(t.mean)}</div>
+          <div class="value"><Num value={t.mean} /></div>
           <div class="range">
-            פיזור בין הסוקרים: {Math.round(t.mean - t.sd)}–{Math.round(t.mean + t.sd)}
+            פיזור בין הסוקרים: <Num kind="range" lo={t.mean - t.sd} hi={t.mean + t.sd} />
           </div>
         </div>
       ))

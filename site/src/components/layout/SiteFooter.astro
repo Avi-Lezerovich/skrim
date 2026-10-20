@@ -1,0 +1,24 @@
+---
+import { fmtDate, meta } from "../../lib/data";
+import Num from "../data/Num.astro";
+
+const repo = "https://github.com/Avi-Lezerovich/pollygraph-il";
+---
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p>
+      המקור: <a href={meta.source}>מאגר סקרי הבחירות של ועדת הבחירות המרכזית</a>. כל מספר מקושר לדיווח
+      המקורי. הנתונים חולצו אוטומטית ועלולים לכלול טעויות.
+    </p>
+    <p>
+      <Num value={meta.polls_total} kind="int" /> סקרים במאגר, <Num value={meta.polls_ok} kind="int" /> בממוצע.
+      עודכן {fmtDate(meta.generated_at.slice(0, 10))}.
+    </p>
+    <ul class="footer-links">
+      <li><a href="/methodology">מתודולוגיה</a></li>
+      <li><a href={repo}>קוד פתוח</a></li>
+      <li><a href={`${repo}/issues`}>דיווח על טעות</a></li>
+    </ul>
+  </div>
+</footer>

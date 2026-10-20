@@ -1,0 +1,171 @@
+/* Design tokens — FRONTEND_PLAN.md §3. Contrast values are computed against --page (WCAG 2.1).
+   Older names that charts.ts and the pages still read (--grid, --accent, --warn…) are kept as
+   aliases at the bottom until those call sites move to the new names. */
+
+/* Arial metrics stretched to IBM Plex Sans Hebrew, so the swap from fallback to web font
+   barely moves the layout. Measured in Chromium on a mixed Hebrew/Latin/digit line: Plex is
+   3.7% wider; its ascent 1.025 and descent 0.275 are divided by size-adjust, which scales them. */
+@font-face {
+  font-family: "Pollygraph Fallback";
+  src: local("Arial"), local("ArialMT");
+  size-adjust: 103.7%;
+  ascent-override: 99%;
+  descent-override: 26.5%;
+  line-gap-override: 0%;
+}
+
+:root {
+  color-scheme: light;
+
+  /* color — light */
+  --page: #fafaf8;
+  --surface: #ffffff;
+  --surface-2: #f1f0ec;
+  --ink: #111111; /* 18.1 */
+  --ink-2: #45433f; /* 9.4 */
+  --muted: #5f5d58; /* 6.3; 5.8 on surface-2 */
+  --rule: #e4e2dc; /* decorative */
+  --axis: #8f8d86; /* 3.2 — axis lines, the 61 line (1.4.11) */
+  --link: #1a56a8; /* 6.8 */
+  --focus: #1a56a8;
+  --flag-info: #5f5d58;
+  --flag-warn: #9a5b00; /* 5.2 */
+  --flag-review: #b3261e; /* only "awaiting review / not in the average" */
+  --bloc-coalition: #6a3d9a; /* purple, 7.3 */
+  --bloc-opposition: #7d6608; /* mustard, 5.3 */
+  --bloc-arab: #b8336a; /* raspberry, 5.4 */
+  --bloc-other: #5f5d58;
+
+  /* chart marks */
+  --band-opacity: 0.16;
+  --dot-opacity: 0.35;
+  --dot-on-opacity: 0.95;
+  --line-width: 2.25;
+
+  /* typography */
+  --font-sans: "IBM Plex Sans Hebrew", "Pollygraph Fallback", "Segoe UI", Arial, sans-serif;
+  --font-mono: ui-monospace, "Cascadia Mono", Consolas, monospace;
+  --text-xs: 13px;
+  --lh-xs: 16px;
+  --text-sm: 15px;
+  --lh-sm: 20px;
+  --text-base: 17px;
+  --lh-base: 28px;
+  --text-md: 20px;
+  --lh-md: 28px;
+  --text-lg: 22px;
+  --lh-lg: 32px;
+  --text-xl: 28px;
+  --lh-xl: 40px;
+  --text-num: 44px;
+  --w-body: 400;
+  --w-label: 600;
+  --w-num: 700;
+
+  /* spacing — 4px grid */
+  --s-1: 4px;
+  --s-2: 8px;
+  --s-3: 12px;
+  --s-4: 16px;
+  --s-5: 24px;
+  --s-6: 32px;
+  --s-7: 48px;
+  --s-8: 64px;
+  --s-9: 96px;
+
+  /* layout; breakpoints 480 / 768 / 1024 / 1280 */
+  --content-max: 1200px;
+  --prose-max: 68ch;
+  --gutter: 16px;
+
+  /* radius, elevation */
+  --r-1: 4px;
+  --r-2: 8px;
+  --r-pill: 999px;
+  --border: 1px solid var(--rule);
+  --shadow-pop: 0 1px 2px rgb(0 0 0 / 0.06), 0 6px 16px rgb(0 0 0 / 0.1);
+
+  /* motion */
+  --dur-1: 120ms;
+  --dur-2: 200ms;
+  --ease: cubic-bezier(0.2, 0, 0, 1);
+}
+
+@media (min-width: 768px) {
+  :root { --gutter: 24px; }
+}
+@media (min-width: 1024px) {
+  :root {
+    --text-base: 18px;
+    --text-lg: 26px;
+    --text-xl: 36px;
+    --text-num: 56px;
+  }
+}
+@media (min-width: 1280px) {
+  :root { --gutter: 32px; }
+}
+
+/* color — dark: follows the system unless the reader picked a theme */
+@media (prefers-color-scheme: dark) {
+  :root:where(:not([data-theme="light"])) {
+    color-scheme: dark;
+    --page: #111110;
+    --surface: #1a1a19;
+    --surface-2: #242422;
+    --ink: #efeee9; /* 16.3 */
+    --ink-2: #c9c7bf; /* 11.2 */
+    --muted: #a3a199; /* 7.3; 6.0 on surface-2 */
+    --rule: #2e2e2b;
+    --axis: #6b6a64; /* 3.5 */
+    --link: #8ab8ff; /* 9.3 */
+    --focus: #8ab8ff;
+    --flag-info: #a3a199;
+    --flag-warn: #e0a24a;
+    --flag-review: #f2867c;
+    --bloc-coalition: #a48de6;
+    --bloc-opposition: #c8a640;
+    --bloc-arab: #e787b3;
+    --bloc-other: #a3a199;
+    --shadow-pop: 0 0 0 1px var(--axis);
+  }
+}
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --page: #111110;
+  --surface: #1a1a19;
+  --surface-2: #242422;
+  --ink: #efeee9;
+  --ink-2: #c9c7bf;
+  --muted: #a3a199;
+  --rule: #2e2e2b;
+  --axis: #6b6a64;
+  --link: #8ab8ff;
+  --focus: #8ab8ff;
+  --flag-info: #a3a199;
+  --flag-warn: #e0a24a;
+  --flag-review: #f2867c;
+  --bloc-coalition: #a48de6;
+  --bloc-opposition: #c8a640;
+  --bloc-arab: #e787b3;
+  --bloc-other: #a3a199;
+  --shadow-pop: 0 0 0 1px var(--axis);
+}
+
+/* aliases for names that predate this file */
+:root {
+  --grid: var(--rule);
+  --accent: var(--link);
+  --accent-soft: color-mix(in srgb, var(--link) 18%, var(--surface));
+  --warn: var(--flag-warn);
+  --critical: var(--flag-review);
+  --info: var(--flag-info);
+  --radius: var(--r-2);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: 0ms !important;
+    animation: none !important;
+  }
+}
