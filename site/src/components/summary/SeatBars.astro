@@ -1,6 +1,7 @@
 ---
-// G3 — seats per party: bar from the start edge, whisker for the spread between pollsters,
-// dashed tick at the threshold. HTML, not SVG: the list is its own text alternative.
+// G3 — seats per party, one row each: name (with the spread under it), a light bar from the
+// start edge to the average, a dark whisker for the spread, the dashed threshold, and the
+// seats. HTML, not SVG: the list is its own text alternative.
 import Num from "../data/Num.astro";
 import { THRESHOLD_SEATS, type PartyRow } from "../../lib/selectors";
 
@@ -19,18 +20,18 @@ const pct = (v: number) => `${Math.max(0, Math.min(100, (100 * v) / max)).toFixe
   {
     rows.map((r) => (
       <li class="seat-bar">
-        <a class="seat-bar-name" href={`/trends#party-${r.id}`} title={r.name}>
-          <i class="swatch" style={`background: ${r.color}`} />
-          <span>{r.name}</span>
+        <a class="seat-bar-name" href={`/trends#party-${r.id}`}>
+          <span class="seat-bar-label">
+            <i class="swatch" style={`background: ${r.color}`} />
+            <span>{r.name}</span>
+          </span>
+          <span class="seat-bar-range-text"><span class="sr-only">פיזור בין הסוקרים </span><Num kind="range" lo={r.lo} hi={r.hi} /></span>
         </a>
         <span class="seat-bar-track" aria-hidden="true">
           <span class="seat-bar-fill" style={`width: ${pct(r.mean)}`} />
           <span class="seat-bar-range" style={`inset-inline-start: ${pct(r.lo)}; width: calc(${pct(r.hi)} - ${pct(r.lo)})`} />
         </span>
-        <span class="seat-bar-val">
-          <strong><Num value={r.mean} /></strong>
-          <span class="muted"><Num kind="range" lo={r.lo} hi={r.hi} /></span>
-        </span>
+        <strong class="seat-bar-val"><Num value={r.mean} /></strong>
       </li>
     ))
   }

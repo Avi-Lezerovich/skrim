@@ -1,28 +1,30 @@
 ---
-// One bloc: whole seats, the spread between pollsters, and a 30-day sparkline. The
-// sparkline uses the same seats-per-pixel in every tile (±10 seats around the latest value),
-// so a flat bloc never looks volatile next to a moving one.
+// One bloc: whole seats, the spread between pollsters, and a 30-day sparkline. Three tiles sit
+// in one row at every width, so the headline answer is in the first screen. The sparkline uses
+// the same seats-per-pixel in every tile (±10 seats around the latest value), so a flat bloc
+// never looks volatile next to a moving one.
 import Num from "../data/Num.astro";
 import type { BlocTileData } from "../../lib/selectors";
 
 interface Props {
   tile: BlocTileData;
+  short: string;
 }
-const { tile } = Astro.props;
+const { tile, short } = Astro.props;
 const H = 24;
 const lo = tile.mean - 10;
 const y = (v: number) => (H - ((Math.min(Math.max(v, lo), lo + 20) - lo) / 20) * H).toFixed(1);
 const points = tile.spark.map((v, i) => `${((i / Math.max(1, tile.spark.length - 1)) * 100).toFixed(1)},${y(v)}`).join(" ");
 ---
 
-<article class="bloc-tile card">
-  <h3 class="tile-label"><i class="swatch" style={`background: var(--bloc-${tile.bloc})`}></i>{tile.name}</h3>
+<article class="bloc-tile card" style={`--tile-color: var(--bloc-${tile.bloc})`}>
+  <h3 class="tile-label">
+    <span class="tile-name-short" aria-hidden="true">{short}</span>
+    <span class="tile-name">{tile.name}</span>
+  </h3>
   <p class="tile-num"><Num value={tile.mean} /><span class="sr-only"> מנדטים</span></p>
-  <p class="tile-range">פיזור בין הסוקרים <Num kind="range" lo={tile.lo} hi={tile.hi} /></p>
-  <div class="tile-spark">
-    <svg viewBox={`0 0 100 ${H}`} preserveAspectRatio="none" aria-hidden="true">
-      <polyline points={points} style={`stroke: var(--bloc-${tile.bloc})`} />
-    </svg>
-    <span>30 הימים האחרונים</span>
-  </div>
+  <p class="tile-range"><span class="sr-only">פיזור בין הסוקרים </span><Num kind="range" lo={tile.lo} hi={tile.hi} /></p>
+  <svg class="tile-spark" viewBox={`0 0 100 ${H}`} preserveAspectRatio="none" aria-hidden="true">
+    <polyline points={points} />
+  </svg>
 </article>

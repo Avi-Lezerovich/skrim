@@ -1,0 +1,78 @@
+---
+// Polls as a compact table that fits a phone without sideways scrolling: the poll (pollster;
+// date, sponsor, n) in the row header, then the three bloc totals in fixed columns so
+// they line up down the list. Rows carry the data-* fields the /polls filter reads.
+import FlagBadge from "../data/FlagBadge.astro";
+import Num from "../data/Num.astro";
+import { BLOC_NAMES, fmtDate, pollsterName, sponsorName, type Poll } from "../../lib/data";
+
+interface Props {
+  polls: Poll[];
+  caption: string;
+  id?: string;
+}
+const { polls, caption, id } = Astro.props;
+const blocs = ["coalition", "opposition", "arab"] as const;
+const head = { coalition: "קואל׳", opposition: "אופ׳", arab: "ערב׳" };
+/** "18.10": every poll is from the same campaign, so the year only costs width. */
+const dayMonth = (iso: string | null) => (iso ? `${+iso.slice(8, 10)}.${+iso.slice(5, 7)}` : "—");
+---
+
+<table class="polls-compact" id={id}>
+  <caption class="sr-only">{caption}</caption>
+  <thead>
+    <tr>
+      <th scope="col">סקר</th>
+      {
+        blocs.map((b) => (
+          <th scope="col" class="num">
+            <i class="swatch" style={`background: var(--bloc-${b})`} />
+            <abbr title={BLOC_NAMES[b]}>{head[b]}</abbr>
+          </th>
+        ))
+      }
+    </tr>
+  </thead>
+  <tbody>
+    {
+      polls.map((p) => {
+        const review = p.status !== "ok";
+        const notes = p.flags.filter((f) => f.level !== "error");
+        const pollster = pollsterName(p.pollster, p.pollster_raw);
+        return (
+          <tr
+            class:list={{ "is-review": review }}
+            data-key={p.key}
+            data-pollster={p.pollster ?? ""}
+            data-sponsor={p.sponsor ?? ""}
+            data-date={p.field_date ?? ""}
+            data-transfer={p.transfer_date ?? ""}
+            data-n={p.meta.respondents ?? ""}
+            data-status={review ? "review" : "ok"}
+          >
+            <th scope="row">
+              <a href={`/polls/${p.key}`}>
+                <span class="pc-title">{pollster}</span>
+                <span class="pc-meta">
+                  <time datetime={p.field_date ?? undefined} title={fmtDate(p.field_date)}>{dayMonth(p.field_date)}</time> · {sponsorName(p.sponsor, p.sponsor_raw)}
+                  {p.meta.respondents != null && (
+                    <>
+                      {" · "}
+                      <bdi>n=<Num value={p.meta.respondents} kind="int" /></bdi>
+                    </>
+                  )}
+                </span>
+              </a>
+              {review ? <FlagBadge level="review" /> : notes.length > 0 && <FlagBadge level={notes.some((f) => f.level === "warn") ? "warn" : "info"} count={notes.length} />}
+            </th>
+            {blocs.map((b) => (
+              <td class="num">
+                <Num value={p.blocs?.[b]} missing={review ? "לא בממוצע — ממתין לבדיקה" : "לא דווח"} />
+              </td>
+            ))}
+          </tr>
+        );
+      })
+    }
+  </tbody>
+</table>
