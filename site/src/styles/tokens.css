@@ -4,13 +4,14 @@
 
 /* Arial metrics stretched to IBM Plex Sans Hebrew, so the swap from fallback to web font
    barely moves the layout. Measured in Chromium on a mixed Hebrew/Latin/digit line: Plex is
-   3.7% wider; its ascent 1.025 and descent 0.275 are divided by size-adjust, which scales them. */
+   4.2% wider (4.9% on Hebrew alone); its ascent 1.025 and descent 0.275 are divided by
+   size-adjust, which scales them. */
 @font-face {
   font-family: "Pollygraph Fallback";
   src: local("Arial"), local("ArialMT");
-  size-adjust: 103.7%;
-  ascent-override: 99%;
-  descent-override: 26.5%;
+  size-adjust: 104.2%;
+  ascent-override: 98.4%;
+  descent-override: 26.4%;
   line-gap-override: 0%;
 }
 
