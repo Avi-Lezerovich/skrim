@@ -43,6 +43,8 @@ jobs:
         working-directory: site
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # the methodology page builds its change log from git history
       - uses: actions/setup-node@v4
         with:
           node-version: 22
