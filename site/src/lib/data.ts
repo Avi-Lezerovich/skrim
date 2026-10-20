@@ -232,13 +232,6 @@ export function flagText(p: Poll, f: Flag) {
 
 // ---- chart payloads (serialised into the page, rendered client-side) ----
 
-const band = (d: AvgPoint, key: string) => ({
-  date: d.date,
-  mean: d.values[key].mean,
-  sd: d.values[key].sd,
-  n: d.n_polls,
-});
-
 const r2 = (v: number) => Math.round(v * 100) / 100;
 
 /** One-sentence reading of the latest bloc average, written at build time (G1 summary). */
@@ -281,18 +274,3 @@ export function blocChartData(): BlocData {
       .map((p) => ({ date: p.field_date!, s: shown.map((b) => p.blocs![b] ?? null) })),
   };
 }
-
-export function partyChartData(id: string) {
-  return {
-    name: partyName(id),
-    series: average.parties.filter((d) => d.values[id]).map((d) => band(d, id)),
-    dots: okPolls
-      .filter((p) => p.field_date && id in p.seats)
-      .map((p) => ({ date: p.field_date!, seats: p.seats[id], pollster: p.pollster ?? "", key: p.key })),
-  };
-}
-
-export const seriesDomain: [string, string] = [
-  average.parties[0].date,
-  average.parties.at(-1)!.date,
-];

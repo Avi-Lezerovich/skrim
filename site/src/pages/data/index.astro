@@ -1,0 +1,102 @@
+---
+import Base from "../../layouts/Base.astro";
+import DownloadLinks from "../../components/data/DownloadLinks.astro";
+import { fmtDate, meta, polls } from "../../lib/data";
+import { answerCount, answersCsv, averageJson, dataVersion, pollsCsv } from "../../lib/exports";
+
+const REPO = "https://github.com/Avi-Lezerovich/pollygraph-il";
+const bytes = (s: string) => Buffer.byteLength(s, "utf8");
+const files = [
+  {
+    href: "/data/polls.csv",
+    name: "knesset26-polls.csv",
+    desc: "שורה לכל סקר: סוקר, מזמין, תאריכים, מתודולוגיה, גושים, דגלים וקישור ל-PDF.",
+    rows: polls.length,
+    bytes: bytes(pollsCsv()),
+  },
+  {
+    href: "/data/answers.csv",
+    name: "knesset26-answers.csv",
+    desc: "שורה לכל מפלגה בכל סקר, עם שם הרשימה כפי שהודפס בדיווח ומספר העמוד ב-PDF.",
+    rows: answerCount(),
+    bytes: bytes(answersCsv()),
+  },
+  {
+    href: "/data/average.json",
+    name: "knesset26-average.json",
+    desc: "הממוצע היומי לפי מפלגה ולפי גוש, עם הפיזור בין הסוקרים ומספר הסוקרים בחלון.",
+    bytes: bytes(averageJson()),
+  },
+  {
+    href: `${REPO}/blob/main/data/raw/manifest.csv`,
+    name: "manifest.csv",
+    desc: "רשימת כל קובצי ה-PDF שנאספו מהוועדה, עם SHA-256 ומועד ההורדה (ב-GitHub).",
+    external: true,
+  },
+];
+---
+
+<Base title="נתונים והורדה" description="הורדת כל נתוני הסקרים, רישיון, מי עומד מאחורי האתר ודיווח על טעויות">
+  <header class="page-head">
+    <h1>נתונים והורדה</h1>
+    <p class="page-meta">
+      עודכן {fmtDate(meta.generated_at.slice(0, 10))} · גרסת נתונים <code dir="ltr">{dataVersion()}</code>
+    </p>
+    <p class="page-note">
+      כל המספרים באתר זמינים להורדה, לבדיקה ולשימוש חוזר. כל שורה מקושרת לדיווח המקורי בוועדת הבחירות.
+    </p>
+  </header>
+
+  <div class="data-layout">
+    <div class="data-main">
+      <section class="card" aria-labelledby="dl-h">
+        <h2 id="dl-h">הורדות</h2>
+        <DownloadLinks files={files} />
+        <p class="small muted">
+          קובצי ה-CSV שמורים ב-UTF-8 עם BOM, כך שהעברית נפתחת נכון ב-Excel. מזהי המפלגות, הסוקרים והמזמינים זהים
+          בכל הקבצים.
+        </p>
+      </section>
+
+      <section class="card" aria-labelledby="license-h">
+        <h2 id="license-h">רישיון</h2>
+        <p class="todo">להשלמה לפני העלייה: רישיון הנתונים והקוד. במאגר עדיין אין קובץ LICENSE.</p>
+        <p class="small muted">
+          הדיווחים עצמם מתפרסמים באתר ועדת הבחירות המרכזית; הוועדה מעמידה אותם לעיון כפי שנשלחו, ללא אחריות על
+          תוכנם.
+        </p>
+      </section>
+
+      <section class="card" aria-labelledby="fixes-h">
+        <h2 id="fixes-h">יומן תיקונים</h2>
+        <p>עדיין לא פורסמו תיקונים. כל שינוי בנתונים נשמר בהיסטוריית ה-git של המאגר.</p>
+        <p><a href={`${REPO}/commits/main/data`}>היסטוריית השינויים בנתונים ב-GitHub</a></p>
+      </section>
+    </div>
+
+    <aside class="data-aside" aria-label="אודות">
+      <section class="card" aria-labelledby="about-h">
+        <h2 id="about-h">מי אנחנו</h2>
+        <p class="todo">להשלמה לפני העלייה: מי מפעיל את האתר, ואמירה מפורשת על אי-תלות במפלגות, בסוקרים ובכלי תקשורת.</p>
+      </section>
+      <section class="card" aria-labelledby="funding-h">
+        <h2 id="funding-h">מימון</h2>
+        <p class="todo">להשלמה לפני העלייה: מקורות המימון, או שאין מימון.</p>
+      </section>
+      <section class="card" aria-labelledby="code-h">
+        <h2 id="code-h">קוד פתוח</h2>
+        <p>
+          הקוד של איסוף הנתונים, החילוץ, החישובים והאתר פתוח ב-<a href={REPO}>GitHub</a>. כל נוסחה מתועדת
+          ב<a href="/methodology">מתודולוגיה</a>.
+        </p>
+      </section>
+      <section class="card" aria-labelledby="report-h">
+        <h2 id="report-h">דיווח על טעות</h2>
+        <p>
+          מצאתם מספר שלא תואם לדיווח המקורי? <a href={`${REPO}/issues/new`}>פתחו דיווח ב-GitHub</a>, או השתמשו
+          בקישור שבתחתית כל דף סקר.
+        </p>
+      </section>
+    </aside>
+  </div>
+</Base>

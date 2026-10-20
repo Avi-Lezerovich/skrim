@@ -8,6 +8,8 @@ import {
   okPolls,
   partyName,
   parties,
+  pollsterName,
+  trendParties,
   type Bloc,
   type Poll,
 } from "./data";
@@ -58,6 +60,39 @@ export function stripSegments(): StripSegment[] {
   return order
     .filter((b) => latestBlocs.values[b])
     .map((b) => ({ bloc: b, name: BLOC_NAMES[b], seats: latestBlocs.values[b].mean }));
+}
+
+/** Parties with fewer polls than this get dots only, no average line (FRONTEND_PLAN §2.2). */
+export const MIN_POLLS_FOR_LINE = 5;
+
+/**
+ * Compact payload for the trends grid (G4): polls are listed once and referenced by index,
+ * and each party's series is [mean, sd] per average day (null when absent).
+ */
+export function trendsPayload() {
+  const r2 = (v: number) => Math.round(v * 100) / 100;
+  const list = okPolls.filter((p) => p.field_date);
+  const days = average.parties.map((d) => d.date);
+  const charts = trendParties.map((id) => {
+    const dots = list.flatMap((p, i) => (id in p.seats ? [[i, p.seats[id]] as [number, number]] : []));
+    return {
+      id,
+      name: partyName(id),
+      s: average.parties.map((d) => (d.values[id] ? ([r2(d.values[id].mean), r2(d.values[id].sd)] as [number, number]) : null)),
+      dots,
+      sparse: dots.length < MIN_POLLS_FOR_LINE,
+    };
+  });
+  const ymax = Math.ceil(Math.max(THRESHOLD_SEATS, ...charts.flatMap((c) => c.dots.map((d) => d[1]))) / 5) * 5;
+  const pollsterIds = [...new Set(list.map((p) => p.pollster).filter(Boolean))] as string[];
+  return {
+    polls: list.map((p) => ({ k: p.key, d: p.field_date!, p: p.pollster ?? "" })),
+    days,
+    charts,
+    ymax,
+    threshold: THRESHOLD_SEATS,
+    pollsterNames: Object.fromEntries(pollsterIds.map((id) => [id, pollsterName(id)])),
+  };
 }
 
 export type PartyRow = {

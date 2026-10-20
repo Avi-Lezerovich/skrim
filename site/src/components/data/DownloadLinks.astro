@@ -1,0 +1,40 @@
+---
+// Downloadable files with what each contains, its size and row count.
+import Num from "./Num.astro";
+
+export type DownloadFile = {
+  href: string;
+  name: string;
+  desc: string;
+  bytes?: number;
+  rows?: number;
+  /** Hosted elsewhere (opens rather than downloads). */
+  external?: boolean;
+};
+interface Props {
+  files: DownloadFile[];
+}
+const { files } = Astro.props;
+const kb = (b: number) => Math.max(1, Math.round(b / 1024));
+---
+
+<ul class="download-list">
+  {
+    files.map((f) => (
+      <li>
+        <a href={f.href} download={f.external ? undefined : f.name}>
+          <span aria-hidden="true">{f.external ? "↗" : "⤓"} </span>
+          <bdi>{f.name}</bdi>
+        </a>
+        <span class="download-desc">{f.desc}</span>
+        {(f.rows != null || f.bytes != null) && (
+          <span class="download-meta muted">
+            {f.rows != null && <><Num value={f.rows} kind="int" /> שורות</>}
+            {f.rows != null && f.bytes != null && " · "}
+            {f.bytes != null && <bdi dir="ltr">{kb(f.bytes).toLocaleString("he-IL")} KB</bdi>}
+          </span>
+        )}
+      </li>
+    ))
+  }
+</ul>
