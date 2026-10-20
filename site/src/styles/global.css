@@ -81,25 +81,6 @@ details[open] > summary::before { transform: rotate(-90deg); }
   .grid-2 { grid-template-columns: repeat(2, 1fr); }
 }
 
-/* draft banner: one line on phones, the full legal text from 768px */
-.draft-banner {
-  background: var(--surface-2);
-  border-bottom: var(--border);
-  font-size: var(--text-sm);
-  line-height: var(--lh-sm);
-  color: var(--ink-2);
-}
-.draft-banner p { margin: 0; }
-.draft-short summary { font-size: var(--text-xs); white-space: nowrap; }
-.draft-more { margin-inline-start: auto; color: var(--link); text-decoration: underline; text-underline-offset: 0.18em; }
-.draft-short[open] .draft-more { display: none; }
-.draft-short p { padding-bottom: var(--s-2); }
-.draft-full { display: none; }
-@media (min-width: 768px) {
-  .draft-short { display: none; }
-  .draft-full { display: block; padding-block: var(--s-2); }
-}
-
 /* header: sticky, 48px; the nav is a bottom tab bar on phones and joins the header row from 768px */
 .site-header {
   position: sticky; top: 0; z-index: 20;
@@ -611,7 +592,6 @@ dl.meta dd { margin: 0; }
 .download-list a { font-weight: var(--w-label); display: flex; align-items: center; min-height: 44px; }
 .download-desc { font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--ink-2); }
 .download-meta { font-size: var(--text-xs); line-height: var(--lh-xs); }
-.todo { border: 1px dashed var(--flag-warn); border-radius: var(--r-1); padding: var(--s-2) var(--s-3); color: var(--ink-2); }
 .prose code { background: var(--surface-2); padding: 0 4px; border-radius: var(--r-1); }
 /* G5 house effect: name and value over a full-width track on phones, one row from 768px.
    The track is a numeric axis, so it runs left to right (negative left). */

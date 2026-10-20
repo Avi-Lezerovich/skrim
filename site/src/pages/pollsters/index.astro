@@ -1,4 +1,5 @@
 ---
+import { u } from "../../lib/url";
 import Base from "../../layouts/Base.astro";
 import HouseEffect from "../../components/charts/HouseEffect.astro";
 import Num from "../../components/data/Num.astro";
@@ -51,7 +52,7 @@ const few = stats.filter((s) => !s.he).map((s) => s.name);
     {
       stats.map((s) => (
         <li class="card pollster-card">
-          <h3><a href={`/polls?pollster=${s.id}`}>{s.name}</a></h3>
+          <h3><a href={u(`/polls?pollster=${s.id}`)}>{s.name}</a></h3>
           <dl class="meta">
             <dt>סקרים</dt>
             <dd><Num value={s.n} kind="int" /> (<Num value={s.ok} kind="int" /> בממוצע)</dd>
@@ -90,7 +91,7 @@ const few = stats.filter((s) => !s.he).map((s) => s.name);
         {
           stats.map((s) => (
             <tr>
-              <th scope="row"><a href={`/polls?pollster=${s.id}`}>{s.name}</a></th>
+              <th scope="row"><a href={u(`/polls?pollster=${s.id}`)}>{s.name}</a></th>
               <td class="num">{s.n}</td>
               <td class="num">{s.ok}</td>
               <td class="wrap-cell">{s.sponsors}</td>

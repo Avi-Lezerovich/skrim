@@ -1,4 +1,5 @@
 ---
+import { u } from "../lib/url";
 import Base from "../layouts/Base.astro";
 ---
 
@@ -8,8 +9,8 @@ import Base from "../layouts/Base.astro";
     <p class="lead">ייתכן שהקישור שגוי, או שהדף הועבר.</p>
   </header>
   <ul class="link-list">
-    <li><a href="/">ממוצע הסקרים</a></li>
-    <li><a href="/polls">כל הסקרים</a></li>
-    <li><a href="/methodology">מתודולוגיה</a></li>
+    <li><a href={u("/")}>ממוצע הסקרים</a></li>
+    <li><a href={u("/polls")}>כל הסקרים</a></li>
+    <li><a href={u("/methodology")}>מתודולוגיה</a></li>
   </ul>
 </Base>

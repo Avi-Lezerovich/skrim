@@ -9,7 +9,7 @@ Project: pollygraph (pollygraph-il; working name in the spec: סקרנות) — 
 - Hebrew text is UTF-8 everywhere. On Windows set `PYTHONUTF8=1` when running scripts.
 - Keep `label_raw` (the party name as printed) next to any normalized `party_id`.
 - Flags, not accusations: anomaly checks are shown as "statistical flags" with an innocent explanation beside them. No verbal commentary on parties.
-- Do not publish poll analysis to the public site before polls close on 27.10.2026 (publication ban, §16ה).
+- Publication: the original rule was not to publish poll analysis before polls close on 27.10.2026 (§16ה). On 20.10.2026 the owner decided to publish the site now (GitHub Pages, https://avi-lezerovich.github.io/skrim/) and to keep it up through the pre-election blackout; that legal risk is the owner's call. Do not change what is published around the blackout without asking.
 - Be polite to gov.il: 1–2 s between requests, identifying User-Agent, retry with backoff.
 
 ## Layout

@@ -5,15 +5,13 @@
 //   npm run og                     per-page images → public/og/ (gitignored) + index.json
 //   npm run og -- --default-only   the timeless brand image → public/og-default.png (committed)
 //
-// Publication ban (§16ה): until EMBARGO_END every image is brand-only, with no poll numbers.
-// The first build after polls close draws the data. OG_DRAFT=0|1 overrides this for a local
-// preview; never deploy an OG_DRAFT=0 build before the ban ends.
-// SITE_URL sets the domain printed in the footer (same variable as astro.config.mjs).
+// The cards carry the same numbers as the pages (published 20.10.2026 by the owner's
+// decision; see CLAUDE.md). SITE_URL and BASE_PATH (as in astro.config.mjs) set the address
+// printed in the footer.
 // CHROMIUM_PATH points at a browser other than the one `npx playwright install` fetched.
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { chromium } from "@playwright/test";
 import { COLORS, LOCKUP, lockupPaths } from "../src/lib/brand.mjs";
-import { EMBARGO_END } from "../src/lib/embargo.mjs";
 
 const root = new URL("../", import.meta.url);
 const json = (name) => JSON.parse(readFileSync(new URL(`src/data/${name}`, root), "utf8"));
@@ -24,8 +22,7 @@ const sponsors = json("sponsors.json");
 const meta = json("meta.json");
 
 const defaultOnly = process.argv.includes("--default-only");
-const draft = process.env.OG_DRAFT ? process.env.OG_DRAFT !== "0" : new Date() < EMBARGO_END;
-const host = new URL(process.env.SITE_URL || "https://pollygraph-il.pages.dev").host;
+const host = `${new URL(process.env.SITE_URL || "https://avi-lezerovich.github.io").host}${(process.env.BASE_PATH ?? "/skrim").replace(/\/$/, "")}`;
 const W = 1200, H = 630;
 const MAX_BYTES = 300 * 1024; // WhatsApp may drop larger images
 const C = { ...COLORS.light, ink2: "#45433f", muted: "#5f5d58", rule: "#e4e2dc", axis: "#8f8d86" };
@@ -132,16 +129,6 @@ const add = (slug, alt, html) => pages.push({ slug, alt, html });
 const homeTitle = "ממוצע סקרי הבחירות לכנסת ה-26";
 if (defaultOnly) {
   add("default", "הלוגו של skrim והכותרת: מאגר פתוח של סקרי הבחירות לכנסת ה-26", card({ title: "מאגר פתוח של סקרי הבחירות לכנסת ה-26", sub: "כל סקר שהוגש לוועדת הבחירות, מקושר לדיווח המקורי" }));
-} else if (draft) {
-  // Brand-only cards: titles and the logo, no poll numbers.
-  add("home", `הלוגו של skrim והכותרת: ${homeTitle}`, card({ title: homeTitle, sub: "הסקרים שהוגשו לוועדת הבחירות, עם הפיזור בין הסוקרים" }));
-  add("trends", "הלוגו של skrim והכותרת: מגמות בסקרי הבחירות", card({ title: "מגמות בסקרי הבחירות", sub: "הממוצע לפי גוש ולפי מפלגה, וכל סקר כנקודה" }));
-  add("polls", "הלוגו של skrim והכותרת: כל סקרי הבחירות לכנסת ה-26", card({ title: "כל סקרי הבחירות לכנסת ה-26", sub: `${meta.polls_total} סקרים שהוגשו לוועדת הבחירות, עם קישור לכל דיווח` }));
-  add("pollsters", "הלוגו של skrim והכותרת: השוואת סוקרים", card({ title: "השוואת סוקרים", sub: "מי עורך את הסקרים, עבור מי, ובמה הם שונים זה מזה" }));
-  for (const p of polls) {
-    const who = esc(pollsterName(p.pollster, p.pollster_raw));
-    add(`poll-${p.key}`, `הלוגו של skrim והכותרת: סקר ${who} מ-${dmy(p.field_date)}`, card({ title: `<bdi>${who}</bdi>`, sub: `סקר מ-${dmy(p.field_date)} עבור <bdi>${esc(sponsorName(p.sponsor, p.sponsor_raw))}</bdi>, כפי שהוגש לוועדת הבחירות` }));
-  }
 } else {
   const dateNote = `ממוצע ${last.n_polls} סוקרים, ${dmy(last.date)}`;
   add("home", `ממוצע הסקרים ב-${dmy(last.date)}: ${Object.keys(BLOC).map((b) => `${BLOC_SHORT[b]} ${Math.round(lastVals[b])}`).join(", ")} מנדטים, עם גרף הגושים ב-60 הימים האחרונים`,
@@ -192,6 +179,6 @@ for (const p of pages) {
   index[p.slug] = { file: defaultOnly ? `/og-default.${ext}` : `/og/${p.slug}.${ext}`, alt: p.alt.replace(/<[^>]+>/g, ""), bytes: buf.length };
 }
 await browser.close();
-if (!defaultOnly) writeFileSync(new URL("index.json", outDir), JSON.stringify({ draft, generated: new Date().toISOString(), images: index }, null, 1) + "\n");
+if (!defaultOnly) writeFileSync(new URL("index.json", outDir), JSON.stringify({ generated: new Date().toISOString(), images: index }, null, 1) + "\n");
 const sizes = Object.values(index).map((i) => i.bytes);
-console.log(`${pages.length} image(s), ${defaultOnly || draft ? "brand-only" : "with data"}; largest ${Math.max(...sizes)} bytes`);
+console.log(`${pages.length} image(s), ${defaultOnly ? "brand-only" : "with data"}; largest ${Math.max(...sizes)} bytes`);

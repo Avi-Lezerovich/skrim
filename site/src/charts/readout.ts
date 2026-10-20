@@ -1,6 +1,7 @@
 // Value readout for the bloc chart. Used at build time (the latest day is in the HTML, so the
 // line has its height before JS runs) and in the browser as the reader moves along the chart.
 import { fmtNum } from "../lib/format";
+import { u } from "../lib/url";
 
 /** One day of the bloc average: [mean, sd] per bloc, and the number of pollsters in the window. */
 export type BlocDay = { date: string; n: number; v: Record<string, [number, number]> };
@@ -43,7 +44,7 @@ export function blocReadout(d: BlocDay, data: Pick<BlocData, "blocs" | "tiny" | 
   return (
     `<span class="ro-head"><strong class="ro-date"><bdi>${dateFmt.format(new Date(d.date))}</bdi></strong>` +
     ` <span class="muted">· ${pollsters} בחלון</span>` +
-    ` <a class="ro-src" href="/polls?from=${from}&amp;to=${d.date}&amp;status=ok">הסקרים ←</a></span>` +
+    ` <a class="ro-src" href="${u(`/polls?from=${from}&amp;to=${d.date}&amp;status=ok`)}">הסקרים ←</a></span>` +
     `<span class="ro-items">${items.join("")}</span>`
   );
 }

@@ -10,12 +10,11 @@ import hebrew600 from "@fontsource/ibm-plex-sans-hebrew/files/ibm-plex-sans-hebr
 import latin400 from "@fontsource/ibm-plex-sans-hebrew/files/ibm-plex-sans-hebrew-latin-400-normal.woff2?url";
 import "../styles/tokens.css";
 import "../styles/global.css";
-import DraftBanner from "../components/layout/DraftBanner.astro";
 import SiteHeader from "../components/layout/SiteHeader.astro";
 import SiteFooter from "../components/layout/SiteFooter.astro";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
-import { EMBARGO_END } from "../lib/data";
+import { u, unbase } from "../lib/url";
 
 interface Props {
   title: string;
@@ -23,8 +22,7 @@ interface Props {
 }
 const { title, description = "מאגר פתוח של סקרי הבחירות לכנסת ה-26, מקושר לדיווחים לוועדת הבחירות" } =
   Astro.props;
-const path = Astro.url.pathname.replace(/\/$/, "") || "/";
-const draft = new Date() < EMBARGO_END;
+const path = unbase(Astro.url.pathname).replace(/\/$/, "") || "/";
 
 // Share preview (Open Graph / Twitter). Per-page images come from `npm run og` (public/og/,
 // listed in index.json); pages without one, or builds without it, use the committed default.
@@ -39,7 +37,7 @@ const og = ogIndex.images[slug] ?? {
 };
 const site = Astro.site!;
 const canonical = new URL(Astro.url.pathname, site).href;
-const ogImage = new URL(og.file, site).href;
+const ogImage = new URL(u(og.file), site).href;
 // og:title carries the page name only; og:site_name carries "skrim".
 const ogTitle = title.startsWith("skrim") ? "ממוצע סקרי הבחירות לכנסת ה-26" : title;
 ---
@@ -68,11 +66,10 @@ const ogTitle = title.startsWith("skrim") ? "ממוצע סקרי הבחירות 
     <meta name="twitter:description" content={description} />
     <meta name="twitter:image" content={ogImage} />
     <meta name="twitter:image:alt" content={og.alt} />
-    {draft && <meta name="robots" content="noindex, nofollow" />}
-    <link rel="icon" href="/favicon.ico" sizes="48x48" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="manifest" href="/manifest.webmanifest" />
+    <link rel="icon" href={u("/favicon.ico")} sizes="48x48" />
+    <link rel="icon" href={u("/favicon.svg")} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={u("/apple-touch-icon.png")} />
+    <link rel="manifest" href={u("/manifest.webmanifest")} />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1a1a19" media="(prefers-color-scheme: dark)" />
     {/* body text, its digits (Latin file) and headings: the faces in the first screen, so the
@@ -89,7 +86,6 @@ const ogTitle = title.startsWith("skrim") ? "ממוצע סקרי הבחירות 
   </head>
   <body>
     <a class="skip-link" href="#main">דלג לתוכן</a>
-    <DraftBanner />
     <SiteHeader current={path} />
     <main id="main" class="wrap" tabindex="-1">
       <slot />

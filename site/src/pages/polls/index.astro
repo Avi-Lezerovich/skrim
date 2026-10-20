@@ -1,4 +1,5 @@
 ---
+import { u } from "../../lib/url";
 import Base from "../../layouts/Base.astro";
 import FlagBadge from "../../components/data/FlagBadge.astro";
 import Num from "../../components/data/Num.astro";
@@ -95,9 +96,9 @@ const sortOptions = [
   <div class="list-bar">
     <p class="downloads">
       <span>הורדה:</span>
-      <a href="/data/polls.csv" download="knesset26-polls.csv">כל הסקרים (CSV)</a>
+      <a href={u("/data/polls.csv")} download="knesset26-polls.csv">כל הסקרים (CSV)</a>
       <button type="button" class="link-btn" id="csv-filtered">הסינון הנוכחי (CSV)</button>
-      <a href="/data/answers.csv" download="knesset26-answers.csv">מפלגה × סקר (CSV)</a>
+      <a href={u("/data/answers.csv")} download="knesset26-answers.csv">מפלגה × סקר (CSV)</a>
     </p>
   </div>
 
@@ -137,7 +138,7 @@ const sortOptions = [
                 data-status={isReview ? "review" : "ok"}
               >
                 <td data-v={p.field_date ?? ""}>
-                  <a href={`/polls/${p.key}`}>{fmtDate(p.field_date)}</a>
+                  <a href={u(`/polls/${p.key}`)}>{fmtDate(p.field_date)}</a>
                   {isReview && <FlagBadge level="review" />}
                 </td>
                 <td data-v={pollster}>{pollster}</td>
@@ -180,6 +181,8 @@ const sortOptions = [
 </Base>
 
 <script>
+  import { u } from "../../lib/url";
+
   const form = document.getElementById("poll-filters") as HTMLFormElement;
   const table = document.getElementById("polls-table") as HTMLTableElement;
   const tbody = table.tBodies[0];
@@ -340,7 +343,7 @@ const sortOptions = [
 
   // Download the rows currently shown, in the current order, from the full static CSV.
   document.getElementById("csv-filtered")!.addEventListener("click", async () => {
-    const text = await (await fetch("/data/polls.csv")).text();
+    const text = await (await fetch(u("/data/polls.csv"))).text();
     const [head, ...lines] = text.replace(/^﻿/, "").split("\r\n").filter(Boolean);
     const byKey = new Map(lines.map((l) => [l.slice(0, l.indexOf(",")), l]));
     const keys = rows.filter((r) => !r.hidden).map((r) => r.dataset.key!);

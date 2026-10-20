@@ -4,6 +4,7 @@
 // on the page, no layout shift, and the rows are their own text alternative. The numeric
 // axis runs left to right (negative left) whatever the page direction (FRONTEND_PLAN §5.3);
 // names sit at the start edge.
+import { u } from "../../lib/url";
 import Num from "../data/Num.astro";
 
 export type EffectRow = { id: string; name: string; effect: number; lo: number; hi: number; n: number };
@@ -39,7 +40,7 @@ const signed = (v: number) => (v > 0 ? `+${v}` : v < 0 ? `−${Math.abs(v)}` : "
     {
       sorted.map((r) => (
         <li class="he-row">
-          <a class="he-name" href={`/polls?pollster=${r.id}`}>
+          <a class="he-name" href={u(`/polls?pollster=${r.id}`)}>
             {r.name}
             <span class="he-n">{r.n} סקרים</span>
           </a>

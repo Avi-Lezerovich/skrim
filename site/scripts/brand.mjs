@@ -1,6 +1,7 @@
 // Brand assets from src/lib/brand.mjs: SVG sources in public/brand/, the favicons, the
 // apple-touch and PWA icons, and the web manifest. Rasters are drawn by Playwright's Chromium
-// (already a devDependency). Run after changing the logo: `npm run brand`.
+// (already a devDependency). Run after changing the logo: `npm run brand`. Manifest URLs are
+// relative to the manifest, so they hold under a base path (GitHub Pages: /skrim/).
 // CHROMIUM_PATH points at a browser other than the one `npx playwright install` fetched.
 import { mkdirSync, writeFileSync } from "node:fs";
 import { chromium } from "@playwright/test";
@@ -86,16 +87,16 @@ out(
       description: "מאגר פתוח של סקרי הבחירות לכנסת ה-26, מקושר לדיווחים לוועדת הבחירות המרכזית",
       lang: "he",
       dir: "rtl",
-      start_url: "/",
-      scope: "/",
+      start_url: "./",
+      scope: "./",
       display: "standalone",
       background_color: L.page,
       theme_color: L.surface,
       icons: [
-        { src: "/icon-192.png", sizes: "192x192", type: "image/png" },
-        { src: "/icon-512.png", sizes: "512x512", type: "image/png" },
-        { src: "/icon-maskable-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
-        { src: "/favicon.svg", sizes: "any", type: "image/svg+xml" },
+        { src: "icon-192.png", sizes: "192x192", type: "image/png" },
+        { src: "icon-512.png", sizes: "512x512", type: "image/png" },
+        { src: "icon-maskable-512.png", sizes: "512x512", type: "image/png", purpose: "maskable" },
+        { src: "favicon.svg", sizes: "any", type: "image/svg+xml" },
       ],
     },
     null,

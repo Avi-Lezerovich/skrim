@@ -1,4 +1,5 @@
 ---
+import { u } from "../lib/url";
 import Base from "../layouts/Base.astro";
 import BlocChart from "../components/charts/BlocChart.astro";
 import BlocTile from "../components/summary/BlocTile.astro";
@@ -32,7 +33,7 @@ const recent = polls.slice(0, 5);
     <details class="page-note window-note">
       <summary>הממוצע משקלל את הסקר האחרון של כל סוקר בחלון</summary>
       <p>
-        הסוקרים בחלון: {inWindow}. <a href="/methodology#ממוצע-הסקרים">איך מחושב הממוצע</a>
+        הסוקרים בחלון: {inWindow}. <a href={u("/methodology#ממוצע-הסקרים")}>איך מחושב הממוצע</a>
       </p>
     </details>
   </header>
@@ -60,7 +61,7 @@ const recent = polls.slice(0, 5);
             <ul>
               {around.map((r) => (
                 <li>
-                  <a href={`/trends#party-${r.id}`}>
+                  <a href={u(`/trends#party-${r.id}`)}>
                     <i class="swatch" style={`background: ${r.color}`} />
                     {r.name}
                   </a>{" "}
@@ -84,11 +85,11 @@ const recent = polls.slice(0, 5);
     <div class="card card-flush">
       <PollsCompact polls={recent} caption="חמשת הסקרים האחרונים לפי תאריך ביצוע, עם סך המנדטים לכל גוש" />
     </div>
-    <p class="more-link"><a href="/polls">כל {polls.length} הסקרים ←</a></p>
+    <p class="more-link"><a href={u("/polls")}>כל {polls.length} הסקרים ←</a></p>
   </section>
 
   <p class="trust-line">
-    כל מספר מקושר לדיווח המקורי בוועדת הבחירות · <a href="/methodology">מתודולוגיה</a> ·
-    <a href="/data">הורדת הנתונים</a>
+    כל מספר מקושר לדיווח המקורי בוועדת הבחירות · <a href={u("/methodology")}>מתודולוגיה</a> ·
+    <a href={u("/data")}>הורדת הנתונים</a>
   </p>
 </Base>

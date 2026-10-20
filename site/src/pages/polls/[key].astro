@@ -1,4 +1,5 @@
 ---
+import { REPO, u } from "../../lib/url";
 import Base from "../../layouts/Base.astro";
 import PollVsAverage from "../../components/charts/PollVsAverage.astro";
 import DisclosureList from "../../components/data/DisclosureList.astro";
@@ -33,7 +34,7 @@ const rows = poll.rows.slice().sort((a, b) => (b.seats ?? -1) - (a.seats ?? -1) 
 const seatSum = rows.reduce((s, r) => s + (r.seats ?? 0), 0);
 const order = { error: 0, warn: 1, info: 2 } as const;
 const flags = poll.flags.slice().sort((a, b) => order[a.level] - order[b.level]);
-const issue = `https://github.com/Avi-Lezerovich/pollygraph-il/issues/new?title=${encodeURIComponent(
+const issue = `${REPO}/issues/new?title=${encodeURIComponent(
   `טעות בסקר ${poll.key}`,
 )}&body=${encodeURIComponent(`דף הסקר: /polls/${poll.key}\nמקור: ${poll.source_url}\n\nמה שגוי:`)}`;
 const pageUrl = (page: number) => `${poll.source_url}#page=${page}`;
@@ -42,7 +43,7 @@ const pageUrl = (page: number) => `${poll.source_url}#page=${page}`;
 <Base title={title} description={`סקר ${pollster} עבור ${sponsor}, ${fmtDate(poll.field_date)}, עם קישור לדיווח המקורי בוועדת הבחירות`}>
   <nav class="breadcrumb" aria-label="פירורי לחם">
     <ol>
-      <li><a href="/polls">כל הסקרים</a></li>
+      <li><a href={u("/polls")}>כל הסקרים</a></li>
       <li aria-current="page">{title}</li>
     </ol>
   </nav>
@@ -86,7 +87,7 @@ const pageUrl = (page: number) => `${poll.source_url}#page=${page}`;
             <p class="muted">כל הבקרות האוטומטיות עברו.</p>
           )
         }
-        <p class="small"><a href="/methodology#חילוץ-ובקרה">אילו בקרות רצות על כל סקר</a></p>
+        <p class="small"><a href={u("/methodology#חילוץ-ובקרה")}>אילו בקרות רצות על כל סקר</a></p>
       </section>
     </div>
 

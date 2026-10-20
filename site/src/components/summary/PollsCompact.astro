@@ -2,6 +2,7 @@
 // Polls as a compact table that fits a phone without sideways scrolling: the poll (pollster;
 // date, sponsor, n) in the row header, then the three bloc totals in fixed columns so
 // they line up down the list. Rows carry the data-* fields the /polls filter reads.
+import { u } from "../../lib/url";
 import FlagBadge from "../data/FlagBadge.astro";
 import Num from "../data/Num.astro";
 import { BLOC_NAMES, fmtDate, pollsterName, sponsorName, type Poll } from "../../lib/data";
@@ -51,7 +52,7 @@ const dayMonth = (iso: string | null) => (iso ? `${+iso.slice(8, 10)}.${+iso.sli
             data-status={review ? "review" : "ok"}
           >
             <th scope="row">
-              <a href={`/polls/${p.key}`}>
+              <a href={u(`/polls/${p.key}`)}>
                 <span class="pc-title">{pollster}</span>
                 <span class="pc-meta">
                   <time datetime={p.field_date ?? undefined} title={fmtDate(p.field_date)}>{dayMonth(p.field_date)}</time> · {sponsorName(p.sponsor, p.sponsor_raw)}

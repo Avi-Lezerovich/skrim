@@ -31,16 +31,18 @@ function wrapTables() {
 }
 
 /**
- * The production origin, used for canonical and Open Graph URLs (share previews need absolute
- * image URLs). Set SITE_URL in the deploy environment, e.g. SITE_URL=https://skrim.co.il.
- * PLACEHOLDER until a domain exists: the current Pages project URL.
+ * Where the site is served, for canonical and Open Graph URLs (share previews need absolute
+ * image URLs) and for internal links. Defaults: the root of the GitHub Pages origin, which is
+ * what CI and the tests use. The live site, https://avi-lezerovich.github.io/skrim/, is built
+ * with BASE_PATH=/skrim (npm run build:pages). A custom domain later: SITE_URL=https://…,
+ * BASE_PATH unset.
  */
-const PLACEHOLDER_SITE = "https://pollygraph-il.pages.dev";
-const site = process.env.SITE_URL || PLACEHOLDER_SITE;
-if (site === PLACEHOLDER_SITE) console.warn(`[skrim] SITE_URL is not set; share previews use the placeholder ${site}`);
+const site = process.env.SITE_URL || "https://avi-lezerovich.github.io";
+const base = process.env.BASE_PATH || "/";
 
 export default defineConfig({
   site,
+  base,
   markdown: { rehypePlugins: [wrapTables] },
   // methodology.md lives at the repo root, one level up
   vite: { server: { fs: { allow: [".."] } } },

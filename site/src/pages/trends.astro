@@ -1,4 +1,5 @@
 ---
+import { u } from "../lib/url";
 import Base from "../layouts/Base.astro";
 import BlocChart from "../components/charts/BlocChart.astro";
 import Num from "../components/data/Num.astro";
@@ -124,14 +125,15 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
     </details>
     <p class="downloads">
       <span>הורדה:</span>
-      <a href="/data/answers.csv" download="knesset26-answers.csv">כל הסקרים לפי מפלגה (CSV)</a>
-      <a href="/data/average.json" download="knesset26-average.json">הממוצע היומי (JSON)</a>
+      <a href={u("/data/answers.csv")} download="knesset26-answers.csv">כל הסקרים לפי מפלגה (CSV)</a>
+      <a href={u("/data/average.json")} download="knesset26-average.json">הממוצע היומי (JSON)</a>
     </p>
   </section>
 </Base>
 
 <script>
   import { mount } from "../charts/mount";
+  import { u } from "../lib/url";
   import type { PartyData, PartyDot, PartyView } from "../charts/party";
   import { day } from "../charts/theme";
 
@@ -181,7 +183,7 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
     readout.innerHTML = "";
     const strong = document.createElement("strong");
     strong.textContent = `${p.seats} מנדטים`;
-    const page = Object.assign(document.createElement("a"), { href: `/polls/${p.key}`, textContent: "לדף הסקר" });
+    const page = Object.assign(document.createElement("a"), { href: u(`/polls/${p.key}`), textContent: "לדף הסקר" });
     const pdf = Object.assign(document.createElement("a"), { href: p.url, textContent: "PDF ↗" });
     readout.append(strong, ` · ${who} · ${dateFmt.format(p.x)} · `, page, " · ", pdf);
   }
