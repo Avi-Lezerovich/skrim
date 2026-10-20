@@ -1,0 +1,75 @@
+---
+import "../styles/global.css";
+import { EMBARGO_END, meta, fmtDate } from "../lib/data";
+
+interface Props {
+  title: string;
+  description?: string;
+}
+const { title, description = "מאגר פתוח של סקרי הבחירות לכנסת ה-26, מקושר לדיווחים לוועדת הבחירות" } =
+  Astro.props;
+const path = Astro.url.pathname.replace(/\/$/, "") || "/";
+const nav = [
+  ["/", "ממוצע"],
+  ["/trends", "מגמות"],
+  ["/polls", "כל הסקרים"],
+  ["/pollsters", "סוקרים"],
+  ["/methodology", "מתודולוגיה"],
+];
+const isCurrent = (href: string) =>
+  href === "/" ? path === "/" : path === href || path.startsWith(href + "/");
+const draft = new Date() < EMBARGO_END;
+---
+
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title === "pollygraph" ? title : `${title} · pollygraph`}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  </head>
+  <body>
+    {
+      draft && (
+        <div class="banner" role="note">
+          <div class="wrap">
+            גרסת פיתוח. אין לפרסם ניתוח סקרים לציבור לפני סגירת הקלפיות ב-27.10.2026 (סעיף 16ה לחוק
+            דרכי תעמולה).
+          </div>
+        </div>
+      )
+    }
+    <header class="site-header">
+      <div class="wrap">
+        <a class="brand" href="/">pollygraph<span>סקרי הבחירות לכנסת ה-26</span></a>
+        <nav class="nav" aria-label="ניווט ראשי">
+          {
+            nav.map(([href, label]) => (
+              <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>
+                {label}
+              </a>
+            ))
+          }
+        </nav>
+      </div>
+    </header>
+    <main class="wrap">
+      <slot />
+    </main>
+    <footer class="site-footer">
+      <div class="wrap">
+        <p>
+          המקור: <a href={meta.source}>מאגר סקרי הבחירות של ועדת הבחירות המרכזית</a>. כל מספר מקושר
+          לדיווח המקורי. הנתונים חולצו אוטומטית ועלולים לכלול טעויות —
+          <a href="https://github.com/Avi-Lezerovich/pollygraph-il/issues">דווחו לנו</a>.
+        </p>
+        <p>
+          {meta.polls_total} סקרים במאגר, {meta.polls_ok} בממוצע. עודכן {fmtDate(meta.generated_at.slice(0, 10))}.
+          <a href="https://github.com/Avi-Lezerovich/pollygraph-il">קוד פתוח</a>.
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>

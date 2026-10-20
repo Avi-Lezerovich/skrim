@@ -1,6 +1,6 @@
 # CLAUDE.md
 
-Project: סקרנות (pollygraph-il) — open database + static site of Knesset-26 election polls filed with the Central Elections Committee (CEC). The full spec is in `SPEC.md`; read it before changing the pipeline or site.
+Project: pollygraph (pollygraph-il; working name in the spec: סקרנות) — open database + static site of Knesset-26 election polls filed with the Central Elections Committee (CEC). The full spec is in `SPEC.md`; read it before changing the pipeline or site.
 
 ## Rules
 
@@ -28,6 +28,8 @@ site/                      Astro static site (Hebrew, RTL)
 ```bash
 uv sync                                   # install deps
 uv run python -m pollygraph.scrape        # fetch listing + new PDFs
+uv run python -m pollygraph.extract       # PDFs -> data/extracted/polls/*.json + review_queue.csv
+uv run python -m pollygraph.analyze       # -> data/polls.duckdb + site/src/data/*.json
 uv run pytest                             # tests
 cd site && npm install && npm run dev     # site dev server
 ```

@@ -1,0 +1,122 @@
+---
+import Base from "../../layouts/Base.astro";
+import {
+  BLOC_NAMES,
+  MODE_NAMES,
+  fmtDate,
+  fmtInt,
+  partyName,
+  pollsterName,
+  polls,
+  sponsorName,
+  trendParties,
+} from "../../lib/data";
+
+const cols = trendParties.slice(0, 14);
+const opts = (pairs: [string, string][]) =>
+  [...new Map(pairs).entries()].sort((a, b) => a[1].localeCompare(b[1], "he"));
+const pollsterOpts = opts(polls.map((p) => [p.pollster ?? "", pollsterName(p.pollster, p.pollster_raw)]));
+const sponsorOpts = opts(polls.map((p) => [p.sponsor ?? "", sponsorName(p.sponsor, p.sponsor_raw)]));
+const review = polls.filter((p) => p.status !== "ok").length;
+---
+
+<Base title="כל הסקרים" description="כל סקרי הבחירות לכנסת ה-26 שהוגשו לוועדת הבחירות, עם סינון וייצוא">
+  <h1>כל הסקרים</h1>
+  <p class="lead">
+    {polls.length} סקרים שהוגשו לוועדת הבחירות המרכזית. {review} מהם ממתינים לבדיקה ידנית ואינם נכללים בממוצע.
+    לחיצה על תאריך פותחת את דף הסקר עם הקישור לדיווח המקורי.
+  </p>
+
+  <div class="filters" role="search">
+    <label>סוקר
+      <select id="f-pollster"><option value="">הכל</option>{pollsterOpts.map(([v, l]) => <option value={v}>{l}</option>)}</select>
+    </label>
+    <label>מזמין
+      <select id="f-sponsor"><option value="">הכל</option>{sponsorOpts.map(([v, l]) => <option value={v}>{l}</option>)}</select>
+    </label>
+    <label>מתאריך <input type="date" id="f-from" /></label>
+    <label>עד תאריך <input type="date" id="f-to" /></label>
+    <button type="button" id="f-csv">ייצוא CSV</button>
+    <span class="small muted" id="f-count" aria-live="polite"></span>
+  </div>
+
+  <div class="table-wrap">
+    <table id="polls-table">
+      <thead>
+        <tr>
+          <th>תאריך ביצוע</th>
+          <th>סוקר</th>
+          <th>מזמין</th>
+          <th class="num">משיבים</th>
+          <th>שיטה</th>
+          <th class="num">{BLOC_NAMES.coalition}</th>
+          <th class="num">{BLOC_NAMES.opposition}</th>
+          <th class="num">{BLOC_NAMES.arab}</th>
+          {cols.map((id) => <th class="num">{partyName(id)}</th>)}
+        </tr>
+      </thead>
+      <tbody>
+        {
+          polls.map((p) => (
+            <tr data-pollster={p.pollster ?? ""} data-sponsor={p.sponsor ?? ""} data-date={p.field_date ?? ""} data-key={p.key}>
+              <td>
+                <a href={`/polls/${p.key}`}>{fmtDate(p.field_date)}</a>
+                {p.status !== "ok" && <span class="badge review">בבדיקה</span>}
+              </td>
+              <td>{pollsterName(p.pollster, p.pollster_raw)}</td>
+              <td>{sponsorName(p.sponsor, p.sponsor_raw)}</td>
+              <td class="num">{fmtInt(p.meta.respondents)}</td>
+              <td>{p.meta.mode ? MODE_NAMES[p.meta.mode] : "—"}</td>
+              <td class="num">{p.blocs?.coalition ?? "—"}</td>
+              <td class="num">{p.blocs?.opposition ?? "—"}</td>
+              <td class="num">{p.blocs?.arab ?? "—"}</td>
+              {cols.map((id) => <td class="num">{p.status === "ok" ? (p.seats[id] ?? "—") : "—"}</td>)}
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+</Base>
+
+<script>
+  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
+  const table = $("polls-table") as HTMLTableElement;
+  const rows = [...table.tBodies[0].rows];
+  const pollster = $<HTMLSelectElement>("f-pollster");
+  const sponsor = $<HTMLSelectElement>("f-sponsor");
+  const from = $<HTMLInputElement>("f-from");
+  const to = $<HTMLInputElement>("f-to");
+  const count = $("f-count");
+
+  function apply() {
+    let shown = 0;
+    for (const r of rows) {
+      const d = r.dataset;
+      const ok =
+        (!pollster.value || d.pollster === pollster.value) &&
+        (!sponsor.value || d.sponsor === sponsor.value) &&
+        (!from.value || (d.date ?? "") >= from.value) &&
+        (!to.value || (d.date ?? "") <= to.value);
+      r.hidden = !ok;
+      if (ok) shown++;
+    }
+    count.textContent = `${shown} סקרים`;
+  }
+  [pollster, sponsor, from, to].forEach((el) => el.addEventListener("input", apply));
+  apply();
+
+  $("f-csv").addEventListener("click", () => {
+    const esc = (s: string) => (/[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s);
+    const head = [...table.tHead!.rows[0].cells].map((c) => c.textContent!.trim());
+    const lines = [["key", "date", ...head.slice(1)].map(esc).join(",")];
+    for (const r of rows.filter((r) => !r.hidden)) {
+      const cells = [...r.cells].map((c) => c.textContent!.replace("בבדיקה", "").trim().replace(/^—$/, ""));
+      lines.push([r.dataset.key!, r.dataset.date!, ...cells.slice(1)].map(esc).join(","));
+    }
+    const blob = new Blob(["﻿" + lines.join("\n")], { type: "text/csv;charset=utf-8" });
+    const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: "knesset26-polls.csv" });
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+</script>
