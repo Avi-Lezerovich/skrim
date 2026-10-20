@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# Raw source files live outside git (backed up to R2); only the manifest is tracked
+data/raw/pdfs/
+*.duckdb
+*.duckdb.wal
+
+# Node / site
+node_modules/
+site/dist/
+site/.astro/
+
+# OS / editors
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.env
