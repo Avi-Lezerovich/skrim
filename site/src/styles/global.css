@@ -160,10 +160,38 @@ button:hover { background: var(--surface-2); }
 /* Charts are LTR (time runs left to right) but their labels are Hebrew: let each text
    line take its own base direction so "53 מנדטים" and "(11–14)" keep their order. */
 .chart svg text { unicode-bidi: plaintext; }
-.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font-size: var(--text-sm); color: var(--ink-2); margin-bottom: 8px; }
+.legend { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4); font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--ink-2); margin-bottom: var(--s-2); }
 .legend span { display: inline-flex; align-items: center; gap: 6px; }
-details.table-view { margin-top: 12px; }
-details.table-view summary { cursor: pointer; color: var(--ink-2); font-size: var(--text-sm); }
+.legend-key { color: var(--muted); }
+.lg { width: 18px; height: 10px; flex: none; }
+details.table-view { margin-top: var(--s-3); }
+details.table-view summary, details.method-note summary { cursor: pointer; color: var(--ink-2); font-size: var(--text-sm); line-height: var(--lh-sm); padding-block: var(--s-1); }
+details.table-view .table-wrap { margin-top: var(--s-2); }
+details.method-note { margin-bottom: var(--s-2); }
+details.method-note p { margin: var(--s-1) 0 var(--s-2); max-width: var(--prose-max); }
+
+/* chart frame */
+.chart-frame { margin: var(--s-6) 0 0; }
+.chart-frame figcaption { margin-bottom: var(--s-3); }
+.chart-title { margin: 0 0 var(--s-1); }
+.chart-summary { color: var(--ink-2); margin: 0; max-width: var(--prose-max); }
+.chart-readout {
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s-4);
+  margin: 0 0 var(--s-2); padding-block: var(--s-2); border-block: var(--border);
+  font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--ink-2);
+  /* room for the longest readout, so moving along the chart never shifts the page */
+  min-height: calc(4 * var(--lh-sm) + 2 * var(--s-2) + 2px);
+}
+@media (min-width: 768px) { .chart-readout { min-height: calc(2 * var(--lh-sm) + 2 * var(--s-2) + 2px); } }
+.chart-readout .ro-date { color: var(--ink); }
+.chart-readout .ro-item { display: inline-flex; align-items: center; gap: 6px; }
+.chart-readout strong { color: var(--ink); }
+.chart-box { height: var(--chart-h-sm); border-radius: var(--r-1); touch-action: pan-y; }
+@media (min-width: 768px) { .chart-box { height: var(--chart-h); } }
+.chart-box:not([data-ready]) { background: var(--surface-2); }
+.chart-box:focus-visible { outline-offset: 4px; }
+html:not(.js) .chart-box, html:not(.js) .chart-readout { display: none; }
+.chart-error { color: var(--ink-2); background: var(--surface-2); border-radius: var(--r-1); padding: var(--s-3) var(--s-4); margin: 0; }
 
 /* flags */
 .flag { border-inline-start: 3px solid var(--info); padding: 6px 12px; margin-bottom: 8px; background: var(--surface-2); border-radius: var(--r-1); }

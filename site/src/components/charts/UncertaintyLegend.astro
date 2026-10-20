@@ -1,0 +1,69 @@
+---
+// Key for line / band / dot charts. The band is the spread between pollsters — the legend
+// says so every time, because readers otherwise take it for a range of likely results.
+interface Props {
+  /** Series drawn in their own color, e.g. blocs. */
+  series?: { name: string; color: string }[];
+  /** Show the 61-seat majority line. */
+  majority?: boolean;
+  /** "expanded" adds what the band does not mean. */
+  variant?: "inline" | "expanded";
+}
+const { series = [], majority = false, variant = "inline" } = Astro.props;
+---
+
+{
+  series.length > 0 && (
+    <div class="legend">
+      {series.map((s) => (
+        <span>
+          <svg class="lg" viewBox="0 0 18 10" aria-hidden="true">
+            <line x1="1" y1="5" x2="17" y2="5" style={`stroke: ${s.color}; stroke-width: 2.5`} />
+          </svg>
+          {s.name}
+        </span>
+      ))}
+    </div>
+  )
+}
+<div class="legend legend-key">
+  <span>
+    <svg class="lg" viewBox="0 0 18 10" aria-hidden="true">
+      <line x1="1" y1="5" x2="17" y2="5" style="stroke: var(--ink-2); stroke-width: 2.25" />
+    </svg>
+    קו = ממוצע
+  </span>
+  <span>
+    <svg class="lg" viewBox="0 0 18 10" aria-hidden="true">
+      <rect x="1" y="1" width="16" height="8" style="fill: var(--ink-2); fill-opacity: 0.22" />
+    </svg>
+    רצועה = פיזור בין הסוקרים, לא טווח לתוצאה
+  </span>
+  <span>
+    <svg class="lg" viewBox="0 0 18 10" aria-hidden="true">
+      <circle cx="9" cy="5" r="3" style="fill: var(--ink-2); fill-opacity: 0.45" />
+    </svg>
+    נקודה = סקר
+  </span>
+  {
+    majority && (
+      <span>
+        <svg class="lg" viewBox="0 0 18 10" aria-hidden="true">
+          <line x1="1" y1="5" x2="17" y2="5" style="stroke: var(--axis); stroke-dasharray: 4 3" />
+        </svg>
+        61 = רוב
+      </span>
+    )
+  }
+</div>
+{
+  variant === "expanded" && (
+    <details class="method-note">
+      <summary>מה הרצועה לא אומרת</summary>
+      <p class="small">
+        הרצועה היא סטיית התקן המשוקללת בין הסוקרים שבחלון. היא מראה עד כמה הם חלוקים, לא באיזה טווח צפויה
+        התוצאה: כל הסוקרים יכולים לטעות יחד באותו כיוון. <a href="/methodology#ממוצע-הסקרים">איך מחושב הממוצע</a>
+      </p>
+    </details>
+  )
+}

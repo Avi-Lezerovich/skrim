@@ -6,6 +6,7 @@ import partiesJson from "../data/parties.json";
 import pollstersJson from "../data/pollsters.json";
 import sponsorsJson from "../data/sponsors.json";
 import metaJson from "../data/meta.json";
+import type { BlocData, BlocDay } from "../charts/readout";
 
 export type Flag = { code: string; level: "error" | "warn" | "info"; detail: string };
 export type Row = {
@@ -92,6 +93,13 @@ export const BLOC_NAMES: Record<Bloc, string> = {
   coalition: "מפלגות הקואליציה",
   opposition: "האופוזיציה",
   arab: "המפלגות הערביות",
+  other: "אחרות",
+};
+/** Short names for chart end labels. */
+export const BLOC_SHORT: Record<Bloc, string> = {
+  coalition: "קואליציה",
+  opposition: "אופוזיציה",
+  arab: "מפלגות ערביות",
   other: "אחרות",
 };
 
@@ -192,21 +200,46 @@ const band = (d: AvgPoint, key: string) => ({
   n: d.n_polls,
 });
 
-export function blocChartData() {
+const r2 = (v: number) => Math.round(v * 100) / 100;
+
+/** One-sentence reading of the latest bloc average, written at build time (G1 summary). */
+function blocSummary(last: BlocDay, shown: Bloc[]) {
+  const seats = (b: Bloc) => Math.round(last.v[b][0]);
+  const parts = shown.map((b) => `${BLOC_NAMES[b]} ${seats(b)}`).join(", ");
+  const [a, b] = [...shown].sort((x, y) => last.v[y][0] - last.v[x][0]);
+  const gap = Math.abs(seats(a) - seats(b));
+  const spread = Math.max(last.v[a][1], last.v[b][1]);
+  const gapText =
+    gap === 0
+      ? "לשני הגושים הגדולים אותו מספר מנדטים בממוצע."
+      : `הפער בין שני הגושים הגדולים (${gap}) ${gap < spread ? "קטן" : "גדול"} מהפיזור בין הסוקרים.`;
+  const majority = shown.find((x) => seats(x) >= 61);
+  const majorityText = majority
+    ? `גוש עם 61 מנדטים או יותר בממוצע: ${BLOC_NAMES[majority]}.`
+    : "אף גוש אינו מגיע ל-61 מנדטים בממוצע.";
+  return `בממוצע של ${fmtDate(last.date)}: ${parts} מנדטים. ${gapText} ${majorityText}`;
+}
+
+export function blocChartData(): BlocData {
   const shown: Bloc[] = ["coalition", "opposition", "arab"];
+  const days: BlocDay[] = average.blocs.map((d) => ({
+    date: d.date,
+    n: d.n_polls,
+    v: Object.fromEntries(
+      shown.filter((b) => d.values[b]).map((b) => [b, [r2(d.values[b].mean), r2(d.values[b].sd)]]),
+    ),
+  }));
   return {
+    label: "ממוצע המנדטים לפי גוש לאורך זמן",
+    summary: blocSummary(days.at(-1)!, shown),
+    blocs: shown,
     names: BLOC_NAMES,
-    series: Object.fromEntries(
-      shown.map((b) => [b, average.blocs.filter((d) => d.values[b]).map((d) => band(d, b))]),
-    ),
-    dots: Object.fromEntries(
-      shown.map((b) => [
-        b,
-        okPolls
-          .filter((p) => p.blocs && p.field_date)
-          .map((p) => ({ date: p.field_date!, seats: p.blocs![b], pollster: p.pollster ?? "", key: p.key })),
-      ]),
-    ),
+    short: BLOC_SHORT,
+    tiny: { ...BLOC_SHORT, arab: "ערביות" },
+    days,
+    dots: okPolls
+      .filter((p) => p.blocs && p.field_date)
+      .map((p) => ({ date: p.field_date!, s: shown.map((b) => p.blocs![b] ?? null) })),
   };
 }
 
