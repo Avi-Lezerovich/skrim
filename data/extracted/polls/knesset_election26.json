@@ -1,0 +1,42 @@
+{
+ "key": "knesset_election26",
+ "survey_id": "4049",
+ "version_no": 1,
+ "sha256": "6f6ca97913fd5359fef1df3a0cab81c83940ac8bd1df5710a55e5b34dd1e58be",
+ "source_url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election26/he/%D7%A1%D7%A7%D7%A8%20%D7%91%D7%97%D7%99%D7%A8%D7%95%D7%AA%20%D7%9E%D7%99%D7%95%D7%9D%205.8.2026.pdf",
+ "pollster_raw": "נקסט דאטה - שלמה פילבר",
+ "pollster_id": "next_data",
+ "sponsor_raw": "אתר סרוגים",
+ "sponsor_id": "srugim",
+ "field_date": "2026-07-27",
+ "transfer_date": "2026-08-05",
+ "published_date": "2026-08-19",
+ "pages": 9,
+ "scanned": false,
+ "method": "text-v1",
+ "meta": {
+  "respondents": 656,
+  "contacted": null,
+  "planned_n": null,
+  "response_rate": null,
+  "moe_reported": null,
+  "mode": null,
+  "weighted_declared": false,
+  "moe_computed": 3.83
+ },
+ "seats": [],
+ "seat_sum": 0,
+ "scenario_tables": 0,
+ "tables_found": 1,
+ "field_date_listed": "2026-07-27",
+ "field_date_pdf": null,
+ "field_date_source": "listing",
+ "qa_flags": [
+  {
+   "code": "no_seat_table",
+   "level": "error",
+   "detail": "no seat table extracted"
+  }
+ ],
+ "status": "needs_review"
+}

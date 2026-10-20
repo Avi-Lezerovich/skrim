@@ -1,0 +1,47 @@
+{
+ "key": "knesset_election96",
+ "survey_id": "4146",
+ "version_no": 1,
+ "sha256": "10e13882f6e4882013aabe8babde0938adbdf5a2a30eddbe598a7e387aa153e4",
+ "source_url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election96/he/Survey_4186.pdf",
+ "pollster_raw": "מכון די אר איי",
+ "pollster_id": "dri",
+ "sponsor_raw": "סקר עצמאי - ללא מזמין חיצוני",
+ "sponsor_id": "self",
+ "field_date": "2026-09-18",
+ "transfer_date": "2026-10-05",
+ "published_date": "2026-10-06",
+ "pages": 2,
+ "scanned": false,
+ "method": "text-v1",
+ "meta": {
+  "respondents": 505,
+  "contacted": 39148,
+  "planned_n": 500,
+  "response_rate": 1.29,
+  "moe_reported": 4.69,
+  "mode": "online",
+  "weighted_declared": false,
+  "moe_computed": 4.36
+ },
+ "seats": [],
+ "seat_sum": 0,
+ "scenario_tables": 0,
+ "tables_found": 0,
+ "field_date_listed": "2026-10-18",
+ "field_date_pdf": "2026-09-18",
+ "field_date_source": "pdf",
+ "qa_flags": [
+  {
+   "code": "no_seat_table",
+   "level": "error",
+   "detail": "no seat table extracted"
+  },
+  {
+   "code": "field_date_corrected",
+   "level": "info",
+   "detail": "CEC listing gives 2026-10-18, after the transfer date 2026-10-05; using 2026-09-18 from the pdf"
+  }
+ ],
+ "status": "needs_review"
+}

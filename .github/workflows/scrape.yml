@@ -1,0 +1,48 @@
+name: scrape
+
+# Stage 1b: poll the CEC listing twice a day until results are final (4.11.2026).
+on:
+  schedule:
+    - cron: "15 4,16 * * *" # 07:15 and 19:15 Israel time
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: scrape
+  cancel-in-progress: false
+
+jobs:
+  scrape:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      PYTHONUTF8: "1"
+      R2_BUCKET: ${{ secrets.R2_BUCKET }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - run: uv sync --frozen
+      - name: Fetch listing and new PDFs
+        run: uv run python -m pollygraph.scrape --trust-manifest
+
+      - name: Back up new PDFs to R2
+        if: env.R2_BUCKET != ''
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
+          AWS_DEFAULT_REGION: auto
+        run: >
+          aws s3 sync data/raw/pdfs "s3://$R2_BUCKET/pdfs"
+          --endpoint-url "https://${{ secrets.R2_ACCOUNT_ID }}.r2.cloudflarestorage.com"
+          --size-only
+
+      - name: Commit manifest and listing
+        run: |
+          git config user.name "pollygraph-bot"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/raw/manifest.csv data/raw/listing.json data/raw/listings
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -m "data: CEC listing $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push

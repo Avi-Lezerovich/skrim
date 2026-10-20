@@ -1,0 +1,163 @@
+{
+ "key": "knesset_election100",
+ "survey_id": "4192",
+ "version_no": 1,
+ "sha256": "ea111c27b82bb46109460d7c0a7a1ef8b650a26d398bc4a0c18dc357bd2f3b72",
+ "source_url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election100/he/Survey_4192.pdf",
+ "pollster_raw": "נקסט דאטה",
+ "pollster_id": "next_data",
+ "sponsor_raw": "ערוץ 14",
+ "sponsor_id": "ch14",
+ "field_date": "2026-10-07",
+ "transfer_date": "2026-10-08",
+ "published_date": "2026-10-08",
+ "pages": 6,
+ "scanned": false,
+ "method": "text-v1",
+ "meta": {
+  "respondents": 1079,
+  "contacted": 14983,
+  "planned_n": 1100,
+  "response_rate": 7.3,
+  "moe_reported": 3.0,
+  "mode": "online",
+  "weighted_declared": false,
+  "moe_computed": 2.98
+ },
+ "seats": [
+  {
+   "label_raw": "הליכוד בראשות בנימין נתניהו",
+   "party_id": "likud",
+   "seats": 31,
+   "pct": 24.0,
+   "page": 2
+  },
+  {
+   "label_raw": "ישר בראשות גדי איזנקו ט",
+   "party_id": "yashar",
+   "seats": 23,
+   "pct": 17.4,
+   "page": 2
+  },
+  {
+   "label_raw": "ש\"ס בראשות אריה דרע י",
+   "party_id": "shas",
+   "seats": 10,
+   "pct": 7.9,
+   "page": 2
+  },
+  {
+   "label_raw": "הדמוקרטים בראשות יאיר גולן",
+   "party_id": "democrats",
+   "seats": 9,
+   "pct": 6.7,
+   "page": 2
+  },
+  {
+   "label_raw": "עוצמה יהודית בראשות איתמר בן גבי ר",
+   "party_id": "otzma",
+   "seats": 8,
+   "pct": 6.1,
+   "page": 2
+  },
+  {
+   "label_raw": "יחד בראשות נפתלי בנט",
+   "party_id": "beyachad",
+   "seats": 8,
+   "pct": 6.2,
+   "page": 2
+  },
+  {
+   "label_raw": "יהדות התורה",
+   "party_id": "utj",
+   "seats": 8,
+   "pct": 6.3,
+   "page": 2
+  },
+  {
+   "label_raw": "חד\"ש-תע\" ל-בל\" ד",
+   "party_id": "hadash_taal_balad",
+   "seats": 7,
+   "pct": 5.3,
+   "page": 2
+  },
+  {
+   "label_raw": "הציונות הדתית בראשות בצלאל סמוטריץ' וזהות",
+   "party_id": "rzp",
+   "seats": 6,
+   "pct": 4.6,
+   "page": 2
+  },
+  {
+   "label_raw": "ישראל ביתנו בראשות אביגדור ליברמ ן",
+   "party_id": "yisrael_beytenu",
+   "seats": 5,
+   "pct": 3.9,
+   "page": 2
+  },
+  {
+   "label_raw": "רע\"מ בראשות מנסור עבא ס",
+   "party_id": "raam",
+   "seats": 5,
+   "pct": 4.0,
+   "page": 2
+  },
+  {
+   "label_raw": "לא החליט ו",
+   "party_id": "undecided",
+   "seats": null,
+   "pct": 0.9,
+   "page": 2
+  },
+  {
+   "label_raw": "עמך ישראל בראשות עופר וינטר",
+   "party_id": "amcha",
+   "seats": null,
+   "pct": 2.2,
+   "page": 2
+  },
+  {
+   "label_raw": "המילואימניקים והכלכלית בראשות הנדל וזליכ ה",
+   "party_id": "reservists",
+   "seats": null,
+   "pct": 1.8,
+   "page": 2
+  },
+  {
+   "label_raw": "כחול לבן בראשות בני גנץ",
+   "party_id": "blue_white",
+   "seats": null,
+   "pct": 1.3,
+   "page": 2
+  },
+  {
+   "label_raw": "נועם לישראל בראשות אבי מעו ז",
+   "party_id": "noam",
+   "seats": null,
+   "pct": 0.9,
+   "page": 2
+  },
+  {
+   "label_raw": "הציבור החרדי בראשות מוטי לייטנ ר",
+   "party_id": "haredi_public",
+   "seats": null,
+   "pct": 0.4,
+   "page": 2
+  },
+  {
+   "label_raw": "אח\"י – חוזרים לשורשי ם",
+   "party_id": "achi",
+   "seats": null,
+   "pct": 0.1,
+   "page": 2
+  }
+ ],
+ "seat_sum": 120,
+ "scenario_tables": 0,
+ "tables_found": 1,
+ "field_date_listed": "2026-10-07",
+ "field_date_pdf": "2026-10-07",
+ "field_date_source": "listing",
+ "qa_flags": [],
+ "status": "ok"
+}

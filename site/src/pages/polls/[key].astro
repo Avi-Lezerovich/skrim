@@ -1,0 +1,124 @@
+---
+import Base from "../../layouts/Base.astro";
+import {
+  BLOC_NAMES,
+  BLOCS,
+  FLAG_TEXT,
+  MODE_NAMES,
+  fmtDate,
+  fmtInt,
+  fmtPct,
+  partyName,
+  parties,
+  pollsterName,
+  polls,
+  sponsorName,
+  type Poll,
+} from "../../lib/data";
+
+export function getStaticPaths() {
+  return polls.map((poll) => ({ params: { key: poll.key }, props: { poll } }));
+}
+const { poll } = Astro.props as { poll: Poll };
+const m = poll.meta;
+const title = `${pollsterName(poll.pollster, poll.pollster_raw)} · ${fmtDate(poll.field_date)}`;
+const rows = poll.rows.slice().sort((a, b) => (b.seats ?? -1) - (a.seats ?? -1) || (b.pct ?? 0) - (a.pct ?? 0));
+const order = { error: 0, warn: 1, info: 2 } as const;
+const flags = poll.flags.slice().sort((a, b) => order[a.level] - order[b.level]);
+const issue = `https://github.com/Avi-Lezerovich/pollygraph-il/issues/new?title=${encodeURIComponent(
+  `טעות בסקר ${poll.key}`,
+)}&body=${encodeURIComponent(`דף הסקר: /polls/${poll.key}\nמקור: ${poll.source_url}\n\nמה שגוי:`)}`;
+const levelName = { error: "שגיאה", warn: "אזהרה", info: "לידיעה" };
+---
+
+<Base title={title} description={`סקר ${pollsterName(poll.pollster, poll.pollster_raw)} עבור ${sponsorName(poll.sponsor, poll.sponsor_raw)}, ${fmtDate(poll.field_date)}`}>
+  <p class="small"><a href="/polls">← כל הסקרים</a></p>
+  <h1>{title}</h1>
+  <p class="lead">
+    סקר של {poll.pollster_raw} עבור {poll.sponsor_raw}.
+    {poll.status !== "ok" && <span class="badge review">ממתין לבדיקה ידנית — לא נכלל בממוצע</span>}
+  </p>
+  <p><a href={poll.source_url}>הדיווח המקורי לוועדת הבחירות (PDF)</a> · מספר סקר בוועדה {poll.survey_id}</p>
+
+  <div class="grid grid-2">
+    <div class="card">
+      <h2 style="margin-top:0">פרטי הסקר</h2>
+      <dl class="meta">
+        <dt>תאריך ביצוע</dt><dd>{fmtDate(poll.field_date)}</dd>
+        <dt>הועבר לוועדה</dt><dd>{fmtDate(poll.transfer_date)}</dd>
+        <dt>פורסם באתר הוועדה</dt><dd>{fmtDate(poll.published_date)}</dd>
+        <dt>שיטה</dt><dd>{m.mode ? MODE_NAMES[m.mode] : "—"}</dd>
+        <dt>פניות</dt><dd class="num">{fmtInt(m.contacted)}</dd>
+        <dt>מדגם מתוכנן</dt><dd class="num">{fmtInt(m.planned_n)}</dd>
+        <dt>משיבים</dt><dd class="num">{fmtInt(m.respondents)}</dd>
+        <dt>שיעור היענות</dt><dd class="num">{fmtPct(m.response_rate)}</dd>
+        <dt>טעות דגימה מדווחת</dt><dd class="num">{m.moe_reported != null ? `±${m.moe_reported}%` : "—"}</dd>
+        <dt>טעות דגימה מחושבת</dt><dd class="num">{m.moe_computed != null ? `±${m.moe_computed}%` : "—"} <span class="small muted">(1.96·√(0.25/n), ללא שקלול)</span></dd>
+      </dl>
+    </div>
+    <div class="card">
+      <h2 style="margin-top:0">גושים</h2>
+      {
+        poll.blocs ? (
+          <dl class="meta">
+            {BLOCS.map((b) => (
+              <>
+                <dt>{BLOC_NAMES[b]}</dt>
+                <dd class="num">{poll.blocs![b]}</dd>
+              </>
+            ))}
+          </dl>
+        ) : (
+          <p class="muted">יוצגו אחרי בדיקה ידנית.</p>
+        )
+      }
+      {poll.scenario_tables > 0 && <p class="small muted">בדיווח יש עוד {poll.scenario_tables} תרחישים של 120 מנדטים, שאינם מוצגים כאן.</p>}
+    </div>
+  </div>
+
+  <h2>כוונת הצבעה</h2>
+  {
+    rows.length ? (
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>כפי שמופיע בדיווח</th><th>מפלגה</th><th class="num">מנדטים</th><th class="num">אחוז גולמי</th><th class="num">עמוד</th></tr>
+          </thead>
+          <tbody>
+            {rows.map((r) => (
+              <tr>
+                <td>{r.label_raw}</td>
+                <td>{r.party_id && parties[r.party_id] ? partyName(r.party_id) : "—"}</td>
+                <td class="num">{r.seats ?? "—"}</td>
+                <td class="num">{fmtPct(r.pct)}</td>
+                <td class="num">{r.page}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    ) : (
+      <p class="muted">לא חולצה טבלת מנדטים. ראו את הדיווח המקורי.</p>
+    )
+  }
+  <p class="small muted">
+    «אחוז גולמי» הוא העמודה הראשונה של אחוזים בטבלה, בדרך כלל לא משוקללת. חלק מהסוקרים מדווחים אחוזים לתת-מדגם
+    בלבד, ולכן אין להשוות אותם בין סוקרים.
+  </p>
+
+  <h2>בקרות</h2>
+  {flags.length === 0 && <p class="muted">כל הבקרות האוטומטיות עברו.</p>}
+  {
+    flags.map((f) => (
+      <div class={`flag ${f.level}`}>
+        <div class="t">{levelName[f.level]}: {FLAG_TEXT[f.code]?.title ?? f.code}</div>
+        <div class="small">{FLAG_TEXT[f.code]?.why}</div>
+        <div class="small muted ltr">{f.detail}</div>
+      </div>
+    ))
+  }
+
+  <p class="small muted">
+    חולץ אוטומטית ({poll.method}). <a href={issue}>דווחו על טעות בסקר הזה</a>.
+  </p>
+</Base>

@@ -1,0 +1,125 @@
+{
+ "key": "knesset_election62",
+ "survey_id": "4134",
+ "version_no": 1,
+ "sha256": "9a42672629d5689e87b084a4f7187546cc38f0885a2dfcacd59287c89e207253",
+ "source_url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election62/he/Survey_4134.pdf",
+ "pollster_raw": "מאגר מוחות",
+ "pollster_id": "maagar_mochot",
+ "sponsor_raw": "ערוץ 16",
+ "sponsor_id": "ch16",
+ "field_date": "2026-09-08",
+ "transfer_date": "2026-09-10",
+ "published_date": "2026-09-10",
+ "pages": 3,
+ "scanned": false,
+ "method": "text-v1",
+ "meta": {
+  "respondents": 551,
+  "contacted": null,
+  "planned_n": null,
+  "response_rate": 54.0,
+  "moe_reported": 4.2,
+  "mode": "mixed",
+  "weighted_declared": false,
+  "moe_computed": 4.17
+ },
+ "seats": [
+  {
+   "label_raw": "\"ישר!\" בראשות גדי איזנקו ט",
+   "party_id": "yashar",
+   "seats": 23,
+   "pct": 17.0,
+   "page": 3
+  },
+  {
+   "label_raw": "הליכוד בראשות בנימין נתניה ו",
+   "party_id": "likud",
+   "seats": 20,
+   "pct": 15.0,
+   "page": 3
+  },
+  {
+   "label_raw": "\"ביחד\" בראשות נפתלי בנ ט",
+   "party_id": "beyachad",
+   "seats": 16,
+   "pct": 11.0,
+   "page": 3
+  },
+  {
+   "label_raw": "עוצמה יהודית בראשות איתמר בן גבי ר",
+   "party_id": "otzma",
+   "seats": 9,
+   "pct": 6.0,
+   "page": 3
+  },
+  {
+   "label_raw": "ש\"ס בראשות אריה דרע י",
+   "party_id": "shas",
+   "seats": 9,
+   "pct": 7.0,
+   "page": 3
+  },
+  {
+   "label_raw": "הדמוקרטים בראשות יאיר גול ן",
+   "party_id": "democrats",
+   "seats": 9,
+   "pct": 7.0,
+   "page": 3
+  },
+  {
+   "label_raw": "יהדות התורה בראשות יעק ב אש ר",
+   "party_id": "utj",
+   "seats": 7,
+   "pct": 5.0,
+   "page": 3
+  },
+  {
+   "label_raw": "ישראל ביתנו בראשות אביגדור ליברמ ן",
+   "party_id": "yisrael_beytenu",
+   "seats": 7,
+   "pct": 5.0,
+   "page": 3
+  },
+  {
+   "label_raw": "הרשימה המשותפת בראשות פרופ' יוסף",
+   "party_id": "hadash_taal_balad",
+   "seats": 7,
+   "pct": 6.0,
+   "page": 3
+  },
+  {
+   "label_raw": "רע \" מ בראשות מנסור עבאס",
+   "party_id": "raam",
+   "seats": 5,
+   "pct": 4.0,
+   "page": 3
+  },
+  {
+   "label_raw": "כחול לבן בראשות בני גנ ץ",
+   "party_id": "blue_white",
+   "seats": 1,
+   "pct": 1.0,
+   "page": 3
+  }
+ ],
+ "seat_sum": 113,
+ "scenario_tables": 0,
+ "tables_found": 1,
+ "field_date_listed": "2026-09-08",
+ "field_date_pdf": null,
+ "field_date_source": "listing",
+ "qa_flags": [
+  {
+   "code": "seat_sum",
+   "level": "error",
+   "detail": "seats sum to 113, not 120"
+  },
+  {
+   "code": "seats_below_threshold",
+   "level": "info",
+   "detail": "seats given while raw % < 3.25: blue_white"
+  }
+ ],
+ "status": "needs_review"
+}

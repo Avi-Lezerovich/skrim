@@ -1,0 +1,92 @@
+---
+import Base from "../layouts/Base.astro";
+import BlocChart from "../components/BlocChart.astro";
+import PollList from "../components/PollList.astro";
+import {
+  BLOC_NAMES,
+  average,
+  fmtDate,
+  latestBlocs,
+  latestParties,
+  leadingParties,
+  okPolls,
+  partyName,
+  pollsterName,
+} from "../lib/data";
+
+const b = latestBlocs.values;
+const tiles = (["coalition", "opposition", "arab"] as const).map((k) => ({
+  k,
+  name: BLOC_NAMES[k],
+  mean: b[k]?.mean ?? 0,
+  sd: b[k]?.sd ?? 0,
+}));
+const max = Math.max(...leadingParties.map((p) => p.mean + p.sd)) * 1.05;
+const pct = (v: number) => `${Math.max(0, Math.min(100, (100 * v) / max))}%`;
+const inWindow = latestParties.pollsters.map((id) => pollsterName(id)).join(", ");
+const recent = okPolls.slice(0, 8);
+---
+
+<Base title="pollygraph" description="ממוצע סקרי הבחירות לכנסת ה-26, לפי הדיווחים לוועדת הבחירות המרכזית">
+  <h1>ממוצע הסקרים, {fmtDate(latestParties.date)}</h1>
+  <p class="lead">
+    {`${BLOC_NAMES.coalition} ${Math.round(b.coalition.mean)} מנדטים, ${BLOC_NAMES.opposition} ${Math.round(b.opposition.mean)} ו${BLOC_NAMES.arab} ${Math.round(b.arab.mean)}.`} הממוצע משקלל את הסקר
+    האחרון של כל סוקר מ-{average.window_days} הימים האחרונים ({latestParties.n_polls} סוקרים: {inWindow}).
+  </p>
+
+  <div class="grid grid-3">
+    {
+      tiles.map((t) => (
+        <div class="card tile">
+          <div class="label">
+            <i class="swatch" style={`background: var(--bloc-${t.k})`} />
+            {t.name}
+          </div>
+          <div class="value">{Math.round(t.mean)}</div>
+          <div class="range">
+            פיזור בין הסוקרים: {Math.round(t.mean - t.sd)}–{Math.round(t.mean + t.sd)}
+          </div>
+        </div>
+      ))
+    }
+  </div>
+
+  <h2>מנדטים לפי מפלגה</h2>
+  <div class="card">
+    <div class="bars" role="list">
+      {
+        leadingParties.map((p) => (
+          <div
+            class="bar-row"
+            role="listitem"
+            tabindex="0"
+            title={`${partyName(p.id)}: ${p.mean.toFixed(1)} מנדטים בממוצע; פיזור בין הסוקרים ${(p.mean - p.sd).toFixed(1)}–${(p.mean + p.sd).toFixed(1)}`}
+          >
+            <span class="name">{partyName(p.id)}</span>
+            <span class="bar-track" aria-hidden="true">
+              <span class="bar-fill" style={`width: ${pct(p.mean)}`} />
+              <span
+                class="bar-range"
+                style={`inset-inline-start: ${pct(Math.max(0, p.mean - p.sd))}; width: calc(${pct(p.mean + p.sd)} - ${pct(Math.max(0, p.mean - p.sd))})`}
+              />
+            </span>
+            <span class="val num">{Math.round(p.mean)}</span>
+          </div>
+        ))
+      }
+    </div>
+    <p class="small muted threshold-note">
+      העמודה היא הממוצע המשוקלל; הקו הדק מראה את הפיזור בין הסוקרים (סטיית תקן משוקללת). הפרש של מנדט או
+      שניים נמצא בדרך כלל בתוך הפיזור.
+    </p>
+  </div>
+
+  <h2>הגושים לאורך זמן</h2>
+  <div class="card">
+    <BlocChart />
+  </div>
+
+  <h2>הסקרים האחרונים</h2>
+  <PollList polls={recent} />
+  <p><a href="/polls">כל {okPolls.length} הסקרים ←</a></p>
+</Base>

@@ -1,0 +1,135 @@
+{
+ "key": "knesset_election18",
+ "survey_id": "4076",
+ "version_no": 1,
+ "sha256": "084d9af4abdb22f4b118542dd9bad3ffc1117eca4c3d5760147a3bc5a2ac311c",
+ "source_url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election18/he/%D7%A1%D7%A7%D7%A8%20%D7%91%D7%97%D7%99%D7%A8%D7%95%D7%AA%20%D7%9E%D7%99%D7%95%D7%9D%2016.8.2026.pdf",
+ "pollster_raw": "דיירקט פולס בע\"מ",
+ "pollster_id": "direct_polls",
+ "sponsor_raw": "חדשות המזרח התיכון 24 בע\"מ",
+ "sponsor_id": "i24",
+ "field_date": "2026-08-13",
+ "transfer_date": "2026-08-16",
+ "published_date": "2026-08-16",
+ "pages": 2,
+ "scanned": false,
+ "method": "text-v1",
+ "meta": {
+  "respondents": 512,
+  "contacted": 8200,
+  "planned_n": 500,
+  "response_rate": 6.2,
+  "moe_reported": 4.2,
+  "mode": "mixed",
+  "weighted_declared": false,
+  "moe_computed": 4.33
+ },
+ "seats": [
+  {
+   "label_raw": "הליכוד",
+   "party_id": "likud",
+   "seats": 30,
+   "pct": 22.9,
+   "page": 2
+  },
+  {
+   "label_raw": "ישר",
+   "party_id": "yashar",
+   "seats": 23,
+   "pct": 17.6,
+   "page": 2
+  },
+  {
+   "label_raw": "הדמוקרטים",
+   "party_id": "democrats",
+   "seats": 10,
+   "pct": 7.6,
+   "page": 2
+  },
+  {
+   "label_raw": "ישראל ביתנו",
+   "party_id": "yisrael_beytenu",
+   "seats": 9,
+   "pct": 6.9,
+   "page": 2
+  },
+  {
+   "label_raw": "יהדות התורה",
+   "party_id": "utj",
+   "seats": 9,
+   "pct": 6.8,
+   "page": 2
+  },
+  {
+   "label_raw": "ש\"ס",
+   "party_id": "shas",
+   "seats": 8,
+   "pct": 6.1,
+   "page": 2
+  },
+  {
+   "label_raw": "ביחד",
+   "party_id": "beyachad",
+   "seats": 8,
+   "pct": 6.0,
+   "page": 2
+  },
+  {
+   "label_raw": "עוצמה יהודית",
+   "party_id": "otzma",
+   "seats": 7,
+   "pct": 5.3,
+   "page": 2
+  },
+  {
+   "label_raw": "חד\"ש-תע\"ל",
+   "party_id": "hadash_taal_balad",
+   "seats": 6,
+   "pct": 4.6,
+   "page": 2
+  },
+  {
+   "label_raw": "רע\"ם",
+   "party_id": "raam",
+   "seats": 5,
+   "pct": 4.0,
+   "page": 2
+  },
+  {
+   "label_raw": "הציונות הדתית",
+   "party_id": "rzp",
+   "seats": 5,
+   "pct": 3.8,
+   "page": 2
+  },
+  {
+   "label_raw": "בית ציוני",
+   "party_id": "bayit_zioni",
+   "seats": null,
+   "pct": 2.0,
+   "page": 2
+  },
+  {
+   "label_raw": "האחדות",
+   "party_id": "achdut",
+   "seats": null,
+   "pct": 1.1,
+   "page": 2
+  },
+  {
+   "label_raw": "בל\"ד",
+   "party_id": "balad",
+   "seats": null,
+   "pct": 1.1,
+   "page": 2
+  }
+ ],
+ "seat_sum": 120,
+ "scenario_tables": 0,
+ "tables_found": 1,
+ "field_date_listed": "2026-08-13",
+ "field_date_pdf": null,
+ "field_date_source": "listing",
+ "qa_flags": [],
+ "status": "ok"
+}

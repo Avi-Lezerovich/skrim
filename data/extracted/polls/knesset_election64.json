@@ -1,0 +1,195 @@
+{
+ "key": "knesset_election64",
+ "survey_id": "4140",
+ "version_no": 1,
+ "sha256": "38142b634a273443cbb9faeebfc8ba6cdf1cb505357ad130ff96580f27f69b42",
+ "source_url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election64/he/Survey4140.pdf",
+ "pollster_raw": "שמואל רוזנר",
+ "pollster_id": "rosner",
+ "sponsor_raw": "ערוץ 13",
+ "sponsor_id": "ch13",
+ "field_date": "2026-09-09",
+ "transfer_date": "2026-09-14",
+ "published_date": "2026-09-14",
+ "pages": 1,
+ "scanned": false,
+ "method": "text-v1",
+ "meta": {
+  "respondents": 1119,
+  "contacted": 237,
+  "planned_n": 8834,
+  "response_rate": 24.57,
+  "moe_reported": 3.2,
+  "mode": "mixed",
+  "weighted_declared": true,
+  "moe_computed": 2.93
+ },
+ "seats": [
+  {
+   "label_raw": "כחול לבן",
+   "party_id": "blue_white",
+   "seats": 0,
+   "pct": 1.3,
+   "page": 1
+  },
+  {
+   "label_raw": "ליכוד",
+   "party_id": "likud",
+   "seats": 19,
+   "pct": 10.5,
+   "page": 1
+  },
+  {
+   "label_raw": "ש\"ס",
+   "party_id": "shas",
+   "seats": 7,
+   "pct": 5.0,
+   "page": 1
+  },
+  {
+   "label_raw": "הציונות הדתית + זהות",
+   "party_id": "rzp",
+   "seats": 6,
+   "pct": 5.2,
+   "page": 1
+  },
+  {
+   "label_raw": "יהדות התורה",
+   "party_id": "utj",
+   "seats": 8,
+   "pct": 5.8,
+   "page": 1
+  },
+  {
+   "label_raw": "ישראל ביתנו",
+   "party_id": "yisrael_beytenu",
+   "seats": 8,
+   "pct": 7.0,
+   "page": 1
+  },
+  {
+   "label_raw": "רע\"מ",
+   "party_id": "raam",
+   "seats": 6,
+   "pct": 0.0,
+   "page": 1
+  },
+  {
+   "label_raw": "הרשימה המשותפת",
+   "party_id": "hadash_taal_balad",
+   "seats": 8,
+   "pct": 0.0,
+   "page": 1
+  },
+  {
+   "label_raw": "עוצמה יהודית",
+   "party_id": "otzma",
+   "seats": 9,
+   "pct": 4.7,
+   "page": 1
+  },
+  {
+   "label_raw": "הדמוקרטים",
+   "party_id": "democrats",
+   "seats": 10,
+   "pct": 7.5,
+   "page": 1
+  },
+  {
+   "label_raw": "ביחד",
+   "party_id": "beyachad",
+   "seats": 13,
+   "pct": 11.5,
+   "page": 1
+  },
+  {
+   "label_raw": "ישר",
+   "party_id": "yashar",
+   "seats": 21,
+   "pct": 15.5,
+   "page": 1
+  },
+  {
+   "label_raw": "המילואימניקים והכלכלית",
+   "party_id": "reservists",
+   "seats": 0,
+   "pct": 3.5,
+   "page": 1
+  },
+  {
+   "label_raw": "עמך ישראל",
+   "party_id": "amcha",
+   "seats": 5,
+   "pct": 4.0,
+   "page": 1
+  },
+  {
+   "label_raw": "מפלגת הציבור החרדי",
+   "party_id": "haredi_public",
+   "seats": 0,
+   "pct": 0.8,
+   "page": 1
+  },
+  {
+   "label_raw": "מפלגת הקהל",
+   "party_id": "hakahal",
+   "seats": 0,
+   "pct": 0.0,
+   "page": 1
+  },
+  {
+   "label_raw": "נעם",
+   "party_id": "noam",
+   "seats": 0,
+   "pct": 0.0,
+   "page": 1
+  },
+  {
+   "label_raw": "צבע שחור",
+   "party_id": "tzeva_shahor",
+   "seats": 0,
+   "pct": 0.0,
+   "page": 1
+  },
+  {
+   "label_raw": "ישראל תחילה",
+   "party_id": "israel_first",
+   "seats": 0,
+   "pct": 0.0,
+   "page": 1
+  },
+  {
+   "label_raw": "מפלגה אחרת",
+   "party_id": "other",
+   "seats": null,
+   "pct": 0.3,
+   "page": 1
+  },
+  {
+   "label_raw": "עדיין לא החלטתי",
+   "party_id": "undecided",
+   "seats": null,
+   "pct": 12.3,
+   "page": 1
+  }
+ ],
+ "seat_sum": 120,
+ "scenario_tables": 0,
+ "tables_found": 1,
+ "field_date_listed": "2026-09-09",
+ "field_date_pdf": "2026-09-09",
+ "field_date_source": "listing",
+ "qa_flags": [
+  {
+   "code": "seats_below_threshold",
+   "level": "info",
+   "detail": "seats given while raw % < 3.25: raam, hadash_taal_balad"
+  },
+  {
+   "code": "respondents_gt_contacted",
+   "level": "warn",
+   "detail": "respondents 1119 > contacted 237"
+  }
+ ],
+ "status": "ok"
+}

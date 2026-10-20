@@ -1,0 +1,106 @@
+---
+import Base from "../layouts/Base.astro";
+import BlocChart from "../components/BlocChart.astro";
+import {
+  average,
+  okPolls,
+  partyChartData,
+  partyName,
+  pollsterName,
+  pollsters,
+  seriesDomain,
+  trendParties,
+} from "../lib/data";
+
+const charts = trendParties.map((id) => ({ id, ...partyChartData(id) }));
+const ymax = Math.ceil(Math.max(...charts.flatMap((c) => c.dots.map((d) => d.seats))) / 5) * 5;
+const activePollsters = [...new Set(okPolls.map((p) => p.pollster).filter(Boolean))] as string[];
+const pollsterNames = Object.fromEntries(activePollsters.map((id) => [id, pollsterName(id)]));
+const payload = { charts, ymax, domain: seriesDomain, pollsterNames };
+---
+
+<Base title="מגמות" description="ממוצע הסקרים לפי גוש ולפי מפלגה לאורך זמן">
+  <h1>מגמות</h1>
+  <p class="lead">
+    הקו הוא הממוצע המשוקלל של {average.window_days} הימים האחרונים בכל יום; הרצועה היא הפיזור בין הסוקרים,
+    והנקודות הן הסקרים עצמם. הרצועה איננה רווח בטחון: היא מראה עד כמה הסוקרים חלוקים ביניהם.
+  </p>
+
+  <h2>גושים</h2>
+  <div class="card"><BlocChart /></div>
+
+  <h2>מפלגות</h2>
+  <div class="filters">
+    <label>
+      הדגשת סוקר
+      <select id="pollster-filter">
+        <option value="">כל הסוקרים</option>
+        {
+          activePollsters
+            .sort((a, b) => pollsterName(a).localeCompare(pollsterName(b), "he"))
+            .map((id) => <option value={id}>{pollsters[id]?.name_he ?? id}</option>)
+        }
+      </select>
+    </label>
+    <span class="small muted">כל המפלגות על אותו סולם מנדטים (0–{ymax}).</span>
+  </div>
+  <div class="grid grid-3" id="party-grid">
+    {
+      charts.map((c) => (
+        <div class="card">
+          <h3>{c.name}</h3>
+          <div class="chart" data-party={c.id} role="img" aria-label={`ממוצע המנדטים של ${c.name} לאורך זמן`} />
+        </div>
+      ))
+    }
+  </div>
+  <script type="application/json" id="party-data" set:html={JSON.stringify(payload)} />
+
+  <details class="table-view">
+    <summary>הצג את הממוצע העדכני כטבלה</summary>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th>מפלגה</th><th class="num">ממוצע</th><th class="num">פיזור (±)</th></tr></thead>
+        <tbody>
+          {
+            charts.map((c) => {
+              const last = c.series.at(-1);
+              return (
+                <tr>
+                  <td>{partyName(c.id)}</td>
+                  <td class="num">{last ? last.mean.toFixed(1) : "—"}</td>
+                  <td class="num">{last ? last.sd.toFixed(1) : "—"}</td>
+                </tr>
+              );
+            })
+          }
+        </tbody>
+      </table>
+    </div>
+  </details>
+</Base>
+
+<script>
+  import { mount, partyChart } from "../scripts/charts";
+  const payload = JSON.parse(document.getElementById("party-data")!.textContent!);
+  const select = document.getElementById("pollster-filter") as HTMLSelectElement;
+  const redraws: (() => void)[] = [];
+  for (const c of payload.charts) {
+    const el = document.querySelector<HTMLElement>(`[data-party="${c.id}"]`)!;
+    redraws.push(
+      mount(el, (w) =>
+        partyChart(
+          {
+            ...c,
+            ymax: payload.ymax,
+            domain: payload.domain,
+            highlight: select.value || null,
+            pollsterNames: payload.pollsterNames,
+          },
+          w,
+        ),
+      ),
+    );
+  }
+  for (const ev of ["input", "change"]) select.addEventListener(ev, () => redraws.forEach((r) => r()));
+</script>

@@ -1,0 +1,158 @@
+{
+ "key": "knesset_election6",
+ "survey_id": "4048",
+ "version_no": 1,
+ "sha256": "14e30e543e8409484d62361f9d9f573651fd54d6fa0a50c24b83e6aaf7af9a3f",
+ "source_url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election6/he/4048-%D7%A1%D7%A7%D7%A8%20%D7%91%D7%97%D7%99%D7%A8%D7%95%D7%AA%20%D7%9E%D7%99%D7%95%D7%9D%205.8.2026.pdf",
+ "pollster_raw": "שמואל רוזנר",
+ "pollster_id": "rosner",
+ "sponsor_raw": "ערוץ 13",
+ "sponsor_id": "ch13",
+ "field_date": "2026-07-28",
+ "transfer_date": "2026-08-05",
+ "published_date": "2026-08-06",
+ "pages": 1,
+ "scanned": false,
+ "method": "text-v1",
+ "meta": {
+  "respondents": 956,
+  "contacted": 5051,
+  "planned_n": null,
+  "response_rate": 10.7,
+  "moe_reported": 3.5,
+  "mode": "mixed",
+  "weighted_declared": true,
+  "moe_computed": 3.17
+ },
+ "seats": [
+  {
+   "label_raw": "כחול לבן",
+   "party_id": "blue_white",
+   "seats": 0,
+   "pct": 1.4,
+   "page": 1
+  },
+  {
+   "label_raw": "ליכוד",
+   "party_id": "likud",
+   "seats": 23,
+   "pct": 10.7,
+   "page": 1
+  },
+  {
+   "label_raw": "ש\"ס",
+   "party_id": "shas",
+   "seats": 7,
+   "pct": 7.8,
+   "page": 1
+  },
+  {
+   "label_raw": "הציונות הדתית",
+   "party_id": "rzp",
+   "seats": 4,
+   "pct": 4.4,
+   "page": 1
+  },
+  {
+   "label_raw": "יהדות התורה",
+   "party_id": "utj",
+   "seats": 9,
+   "pct": 15.1,
+   "page": 1
+  },
+  {
+   "label_raw": "ישראל ביתנו",
+   "party_id": "yisrael_beytenu",
+   "seats": 10,
+   "pct": 6.0,
+   "page": 1
+  },
+  {
+   "label_raw": "רע\"מ",
+   "party_id": "raam",
+   "seats": 5,
+   "pct": 0.0,
+   "page": 1
+  },
+  {
+   "label_raw": "חד\"ש-תע\"ל",
+   "party_id": "hadash_taal_balad",
+   "seats": 4,
+   "pct": 0.0,
+   "page": 1
+  },
+  {
+   "label_raw": "בל\"ד",
+   "party_id": "balad",
+   "seats": 0,
+   "pct": 0.0,
+   "page": 1
+  },
+  {
+   "label_raw": "עוצמה יהודית",
+   "party_id": "otzma",
+   "seats": 8,
+   "pct": 4.8,
+   "page": 1
+  },
+  {
+   "label_raw": "הדמוקרטים",
+   "party_id": "democrats",
+   "seats": 9,
+   "pct": 5.4,
+   "page": 1
+  },
+  {
+   "label_raw": "ביחד",
+   "party_id": "beyachad",
+   "seats": null,
+   "pct": 7.0,
+   "page": 1
+  },
+  {
+   "label_raw": "ישר",
+   "party_id": "yashar",
+   "seats": 23,
+   "pct": 12.7,
+   "page": 1
+  },
+  {
+   "label_raw": "מפלגה אחרת",
+   "party_id": "other",
+   "seats": null,
+   "pct": 1.9,
+   "page": 1
+  },
+  {
+   "label_raw": "עדיין לא החלטתי",
+   "party_id": "undecided",
+   "seats": null,
+   "pct": 14.0,
+   "page": 1
+  }
+ ],
+ "seat_sum": 102,
+ "scenario_tables": 0,
+ "tables_found": 1,
+ "field_date_listed": "2026-07-28",
+ "field_date_pdf": "2026-07-28",
+ "field_date_source": "listing",
+ "qa_flags": [
+  {
+   "code": "seat_sum",
+   "level": "error",
+   "detail": "seats sum to 102, not 120"
+  },
+  {
+   "code": "seats_below_threshold",
+   "level": "info",
+   "detail": "seats given while raw % < 3.25: raam, hadash_taal_balad"
+  },
+  {
+   "code": "response_rate_mismatch",
+   "level": "info",
+   "detail": "reported 10.7% vs respondents/contacted 18.9%"
+  }
+ ],
+ "status": "needs_review"
+}

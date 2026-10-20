@@ -1,0 +1,120 @@
+{
+ "key": "knesset_election5",
+ "survey_id": "4047",
+ "version_no": 1,
+ "sha256": "db94f6db7f9cf7e9ac2a9ad8673d869ed00ac898fdab9b3f1ba25dd6af04cef1",
+ "source_url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election5/he/4047-%D7%A1%D7%A7%D7%A8%20%D7%91%D7%97%D7%99%D7%A8%D7%95%D7%AA%20%D7%9E%D7%99%D7%95%D7%9D%205.8.2026.pdf",
+ "pollster_raw": "מאגר מוחות",
+ "pollster_id": "maagar_mochot",
+ "sponsor_raw": "ערוץ 16",
+ "sponsor_id": "ch16",
+ "field_date": "2026-08-03",
+ "transfer_date": "2026-08-05",
+ "published_date": "2026-08-06",
+ "pages": 3,
+ "scanned": false,
+ "method": "text-v1",
+ "meta": {
+  "respondents": 547,
+  "contacted": null,
+  "planned_n": null,
+  "response_rate": 67.0,
+  "moe_reported": 4.2,
+  "mode": "mixed",
+  "weighted_declared": false,
+  "moe_computed": 4.19
+ },
+ "seats": [
+  {
+   "label_raw": "הליכוד בראשות בנימין נתניה ו",
+   "party_id": "likud",
+   "seats": 23,
+   "pct": 15.0,
+   "page": 3
+  },
+  {
+   "label_raw": "מפלגת \"ביח ד \", בראשות נפתלי בנ ט",
+   "party_id": "beyachad",
+   "seats": 18,
+   "pct": 10.0,
+   "page": 3
+  },
+  {
+   "label_raw": "מפלגת \"ישר!\" בראשות גדי איזנקו ט",
+   "party_id": "yashar",
+   "seats": 22,
+   "pct": 16.0,
+   "page": 3
+  },
+  {
+   "label_raw": "הציונות הדתית בראשות בצלאל סמוטריץ '",
+   "party_id": "rzp",
+   "seats": 4,
+   "pct": 3.0,
+   "page": 3
+  },
+  {
+   "label_raw": "עוצמה יהודית בראשות איתמר בן גבי ר",
+   "party_id": "otzma",
+   "seats": 9,
+   "pct": 7.0,
+   "page": 3
+  },
+  {
+   "label_raw": "ש\"ס בראשות אריה דרע י",
+   "party_id": "shas",
+   "seats": 10,
+   "pct": 6.0,
+   "page": 3
+  },
+  {
+   "label_raw": "יהדות התורה בראשות יצחק גולדקנופ ף",
+   "party_id": "utj",
+   "seats": 7,
+   "pct": 5.0,
+   "page": 3
+  },
+  {
+   "label_raw": "ישראל ביתנו בראשות אביגדור ליברמ ן",
+   "party_id": "yisrael_beytenu",
+   "seats": 8,
+   "pct": 6.0,
+   "page": 3
+  },
+  {
+   "label_raw": "הדמוקרטים בראשות יאיר גול ן",
+   "party_id": "democrats",
+   "seats": 10,
+   "pct": 8.0,
+   "page": 3
+  },
+  {
+   "label_raw": "חד ש -תע\"ל בראשות יוסף ג׳בארי ן ואחמד טיב י",
+   "party_id": "hadash_taal_balad",
+   "seats": 5,
+   "pct": 3.0,
+   "page": 3
+  },
+  {
+   "label_raw": "רע\"ם בראשות מנסור עבא ס",
+   "party_id": "raam",
+   "seats": 4,
+   "pct": 3.0,
+   "page": 3
+  }
+ ],
+ "seat_sum": 120,
+ "scenario_tables": 0,
+ "tables_found": 1,
+ "field_date_listed": "2026-08-03",
+ "field_date_pdf": "2026-08-03",
+ "field_date_source": "listing",
+ "qa_flags": [
+  {
+   "code": "seats_below_threshold",
+   "level": "info",
+   "detail": "seats given while raw % < 3.25: rzp, hadash_taal_balad, raam"
+  }
+ ],
+ "status": "ok"
+}
