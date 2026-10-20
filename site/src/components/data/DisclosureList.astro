@@ -1,0 +1,56 @@
+---
+// AAPOR-style disclosure: what the report states about how the poll was done. A missing value
+// is "not found by our extraction" — the PDF may still contain it, so we never say "not
+// reported" on the pollster's behalf.
+import { MODE_NAMES, fmtDate, fmtInt, type Poll } from "../../lib/data";
+
+interface Props {
+  poll: Poll;
+  /** Question wording, once the pipeline extracts it. */
+  question?: string | null;
+}
+const { poll: p, question = null } = Astro.props;
+const m = p.meta;
+const items: [string, string | null][] = [
+  ["מזמין", p.sponsor_raw || null],
+  ["עורך הסקר", p.pollster_raw || null],
+  ["מועד ביצוע", p.field_date ? fmtDate(p.field_date) : null],
+  ["אופן", m.mode ? MODE_NAMES[m.mode] : null],
+  ["פניות", m.contacted != null ? fmtInt(m.contacted) : null],
+  ["מדגם מתוכנן", m.planned_n != null ? fmtInt(m.planned_n) : null],
+  ["משיבים", m.respondents != null ? fmtInt(m.respondents) : null],
+  ["שיעור היענות", m.response_rate != null ? `${m.response_rate}%` : null],
+  ["טעות דגימה", m.moe_reported != null ? `±${m.moe_reported}%` : null],
+  ["שקלול", m.weighted_declared ? "הדיווח מציין שהנתונים משוקללים" : null],
+  ["נוסח השאלה", question],
+];
+const found = items.filter(([, v]) => v != null).length;
+---
+
+<div class="disclosure">
+  <p class="small muted">
+    {found} מתוך {items.length} פרטים אותרו בדיווח.
+    <span aria-hidden="true">✔</span> אותר · <span aria-hidden="true">◐</span> לא אותר בחילוץ האוטומטי (ייתכן שמופיע ב-PDF)
+  </p>
+  <dl class="disclosure-list">
+    {
+      items.map(([label, value]) => (
+        <div class:list={["disc-item", { "is-missing": value == null }]}>
+          <dt>
+            <span class="disc-icon" aria-hidden="true">{value == null ? "◐" : "✔"}</span>
+            {label}
+          </dt>
+          <dd>{value == null ? "לא אותר בחילוץ" : <bdi>{value}</bdi>}</dd>
+        </div>
+      ))
+    }
+  </dl>
+  {
+    m.moe_computed != null && (
+      <p class="small muted">
+        טעות דגימה מחושבת לפי מספר המשיבים, ללא שקלול: <bdi class="num">±{m.moe_computed}%</bdi> (
+        <bdi dir="ltr">1.96·√(0.25/n)</bdi>).
+      </p>
+    )
+  }
+</div>

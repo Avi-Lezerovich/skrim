@@ -1,0 +1,62 @@
+---
+// Link to the poll's report at the Central Elections Committee. "full" is the source chain on
+// the poll page; sha256 and version show once the pipeline exposes them in polls.json.
+import { fmtDate } from "../../lib/data";
+
+interface Props {
+  url: string;
+  surveyId?: string;
+  transferDate?: string | null;
+  publishedDate?: string | null;
+  sha256?: string | null;
+  version?: number | null;
+  /** Context for screen readers, e.g. "נקסט דאטה, 18.10.2026". */
+  context?: string;
+  compact?: boolean;
+}
+const { url, surveyId, transferDate, publishedDate, sha256, version, context, compact = false } = Astro.props;
+---
+
+{
+  compact ? (
+    <a href={url} class="pdf-link">
+      PDF{context && <span class="sr-only"> — {context}</span>}
+      <span aria-hidden="true"> ↗</span>
+    </a>
+  ) : (
+    <div class="source-chain">
+      <a href={url} class="source-pdf">
+        הדיווח המקורי בוועדת הבחירות (PDF)<span aria-hidden="true"> ↗</span>
+      </a>
+      <dl class="meta">
+        {surveyId && (
+          <>
+            <dt>מספר סקר בוועדה</dt>
+            <dd>
+              <bdi>{surveyId}</bdi>
+            </dd>
+          </>
+        )}
+        <dt>הועבר לוועדה</dt>
+        <dd>{fmtDate(transferDate ?? null)}</dd>
+        <dt>פורסם באתר הוועדה</dt>
+        <dd>{fmtDate(publishedDate ?? null)}</dd>
+        {version != null && (
+          <>
+            <dt>גרסה</dt>
+            <dd>{version}</dd>
+          </>
+        )}
+        {sha256 && (
+          <>
+            <dt>SHA-256</dt>
+            <dd>
+              <code dir="ltr" title={sha256}>{sha256.slice(0, 12)}…</code>
+            </dd>
+          </>
+        )}
+      </dl>
+      <p class="small muted">הוועדה מפרסמת את הדיווחים כפי שנשלחו, ללא אחריות על תוכנם.</p>
+    </div>
+  )
+}

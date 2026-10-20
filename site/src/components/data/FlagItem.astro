@@ -1,0 +1,32 @@
+---
+// One statistical flag in full: factual title, the innocent reading, what we did, and the
+// pipeline's technical note for anyone checking our work.
+import { flagText, type Flag, type Poll } from "../../lib/data";
+
+interface Props {
+  poll: Poll;
+  flag: Flag;
+}
+const { poll, flag } = Astro.props;
+const { title, why, did } = flagText(poll, flag);
+const level = flag.level === "error" ? "review" : flag.level;
+---
+
+<li class:list={["flag-item", `flag-${level}`]}>
+  <p class="flag-kind">{level === "review" ? "ממתין לבדיקה" : "דגל סטטיסטי"}</p>
+  <p class="flag-title">{title}</p>
+  {
+    why && (
+      <p>
+        <span class="flag-k">הסבר אפשרי:</span> {why}
+      </p>
+    )
+  }
+  <p>
+    <span class="flag-k">מה עשינו:</span> {did}
+  </p>
+  <details class="flag-detail">
+    <summary>פרט טכני</summary>
+    <code lang="en" dir="ltr">{flag.code}: {flag.detail}</code>
+  </details>
+</li>
