@@ -1,0 +1,4792 @@
+[
+  {
+    "page": "home",
+    "path": "/",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "home-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 3253,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 39,
+    "smallTargets": 7,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 299,
+        "h": 39,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "המילואימניקים",
+        "w": 116,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "עמך ישראל",
+        "w": 94,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 66,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הורדת הנתונים",
+        "w": 90,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 10,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "skrim · סקרי הבחירות לכנסת ה-26",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "trends-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 2859,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 41,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 255,
+        "h": 39,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים לפי מפלגה (CSV)",
+        "w": 179,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הממוצע היומי (JSON)",
+        "w": 135,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 10,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "polls-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 2700,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 47,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "כל הסקרים (CSV)",
+        "w": 109,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "הסינון הנוכחי (CSV)",
+        "w": 121,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מפלגה × סקר (CSV)",
+        "w": 126,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109/",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 5035,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 121,
+    "headerSticky": "sticky",
+    "targets": 42,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-review-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 2219,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 121,
+    "headerSticky": "sticky",
+    "targets": 18,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי",
+        "w": 97,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "pollsters-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 4523,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 34,
+    "smallTargets": 10,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "נקסט דאטה14 סקרים",
+        "w": 236,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שלמה פילבר4 סקרים",
+        "w": 236,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "דיירקט פולס11 סקרים",
+        "w": 246,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "טאטיקה מחקרים ומדיה12 סקרים",
+        "w": 246,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "קנטאר ישראל16 סקרים",
+        "w": 246,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר מוחות6 סקרים",
+        "w": 246,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שמואל רוזנר11 סקרים",
+        "w": 246,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מדגם יעוץ ומחקר10 סקרים",
+        "w": 246,
+        "h": 32,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "methodology-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 5239,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 28,
+    "smallTargets": 7,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מקור",
+        "w": 31,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איסוף",
+        "w": 36,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "גושים",
+        "w": 35,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "78b23ec",
+        "w": 65,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ההיסטוריה המלאה של המסמך ב-Git",
+        "w": 287,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 148,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "data-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 2049,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 20,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "היסטוריית השינויים בנתונים ב-G",
+        "w": 261,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "GitHub",
+        "w": 54,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 148,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 360,
+    "scheme": "light",
+    "status": 404,
+    "file": "404-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 800,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 15,
+    "smallTargets": 1,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "הדף לא נמצא · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "home-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 3253,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 39,
+    "smallTargets": 7,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 299,
+        "h": 39,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "המילואימניקים",
+        "w": 116,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "עמך ישראל",
+        "w": 94,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 66,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הורדת הנתונים",
+        "w": 90,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 10,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "skrim · סקרי הבחירות לכנסת ה-26",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "trends-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 2859,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 41,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 255,
+        "h": 39,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים לפי מפלגה (CSV)",
+        "w": 179,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הממוצע היומי (JSON)",
+        "w": 135,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 10,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "polls-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 2700,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 47,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "כל הסקרים (CSV)",
+        "w": 109,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "הסינון הנוכחי (CSV)",
+        "w": 121,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מפלגה × סקר (CSV)",
+        "w": 126,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109/",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 5035,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 121,
+    "headerSticky": "sticky",
+    "targets": 42,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-review-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 2219,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 121,
+    "headerSticky": "sticky",
+    "targets": 18,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי",
+        "w": 97,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "pollsters-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 4523,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 34,
+    "smallTargets": 10,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "נקסט דאטה14 סקרים",
+        "w": 236,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שלמה פילבר4 סקרים",
+        "w": 236,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "דיירקט פולס11 סקרים",
+        "w": 246,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "טאטיקה מחקרים ומדיה12 סקרים",
+        "w": 246,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "קנטאר ישראל16 סקרים",
+        "w": 246,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר מוחות6 סקרים",
+        "w": 246,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שמואל רוזנר11 סקרים",
+        "w": 246,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מדגם יעוץ ומחקר10 סקרים",
+        "w": 246,
+        "h": 32,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "methodology-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 5239,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 28,
+    "smallTargets": 7,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מקור",
+        "w": 31,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איסוף",
+        "w": 36,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "גושים",
+        "w": 35,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "78b23ec",
+        "w": 65,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ההיסטוריה המלאה של המסמך ב-Git",
+        "w": 287,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 148,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "data-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 2049,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 20,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "היסטוריית השינויים בנתונים ב-G",
+        "w": 261,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "GitHub",
+        "w": 54,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 148,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 360,
+    "scheme": "dark",
+    "status": 404,
+    "file": "404-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 800,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 15,
+    "smallTargets": 1,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "הדף לא נמצא · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "home-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 3213,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 39,
+    "smallTargets": 7,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "המילואימניקים",
+        "w": 116,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "עמך ישראל",
+        "w": 94,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 66,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הורדת הנתונים",
+        "w": 90,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 10,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "skrim · סקרי הבחירות לכנסת ה-26",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "trends-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 2819,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 41,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים לפי מפלגה (CSV)",
+        "w": 179,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הממוצע היומי (JSON)",
+        "w": 135,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 10,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "polls-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 2680,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 47,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "כל הסקרים (CSV)",
+        "w": 109,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "הסינון הנוכחי (CSV)",
+        "w": 121,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מפלגה × סקר (CSV)",
+        "w": 126,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109/",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 4919,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 121,
+    "headerSticky": "sticky",
+    "targets": 42,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-review-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 2151,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 121,
+    "headerSticky": "sticky",
+    "targets": 18,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי",
+        "w": 97,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "pollsters-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 4475,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 34,
+    "smallTargets": 10,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "נקסט דאטה14 סקרים",
+        "w": 266,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שלמה פילבר4 סקרים",
+        "w": 266,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "דיירקט פולס11 סקרים",
+        "w": 276,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "טאטיקה מחקרים ומדיה12 סקרים",
+        "w": 276,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "קנטאר ישראל16 סקרים",
+        "w": 276,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר מוחות6 סקרים",
+        "w": 276,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שמואל רוזנר11 סקרים",
+        "w": 276,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מדגם יעוץ ומחקר10 סקרים",
+        "w": 276,
+        "h": 32,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "methodology-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 4907,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 28,
+    "smallTargets": 7,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מקור",
+        "w": 31,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איסוף",
+        "w": 36,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "גושים",
+        "w": 35,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "78b23ec",
+        "w": 65,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ההיסטוריה המלאה של המסמך ב-Git",
+        "w": 287,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 148,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "data-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 2009,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 20,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "היסטוריית השינויים בנתונים ב-G",
+        "w": 261,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "GitHub",
+        "w": 54,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 390,
+    "scheme": "light",
+    "status": 404,
+    "file": "404-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 800,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 15,
+    "smallTargets": 1,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "הדף לא נמצא · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "home-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 3213,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 39,
+    "smallTargets": 7,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "המילואימניקים",
+        "w": 116,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "עמך ישראל",
+        "w": 94,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 66,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הורדת הנתונים",
+        "w": 90,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 10,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "skrim · סקרי הבחירות לכנסת ה-26",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "trends-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 2819,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 41,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים לפי מפלגה (CSV)",
+        "w": 179,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הממוצע היומי (JSON)",
+        "w": 135,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 10,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "polls-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 2680,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 47,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "כל הסקרים (CSV)",
+        "w": 109,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "הסינון הנוכחי (CSV)",
+        "w": 121,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מפלגה × סקר (CSV)",
+        "w": 126,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109/",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 4919,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 121,
+    "headerSticky": "sticky",
+    "targets": 42,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-review-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 2151,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 121,
+    "headerSticky": "sticky",
+    "targets": 18,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי",
+        "w": 97,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "pollsters-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 4475,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 34,
+    "smallTargets": 10,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "נקסט דאטה14 סקרים",
+        "w": 266,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שלמה פילבר4 סקרים",
+        "w": 266,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "דיירקט פולס11 סקרים",
+        "w": 276,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "טאטיקה מחקרים ומדיה12 סקרים",
+        "w": 276,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "קנטאר ישראל16 סקרים",
+        "w": 276,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר מוחות6 סקרים",
+        "w": 276,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שמואל רוזנר11 סקרים",
+        "w": 276,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מדגם יעוץ ומחקר10 סקרים",
+        "w": 276,
+        "h": 32,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "methodology-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 4907,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 28,
+    "smallTargets": 7,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מקור",
+        "w": 31,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איסוף",
+        "w": 36,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "גושים",
+        "w": 35,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "78b23ec",
+        "w": 65,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ההיסטוריה המלאה של המסמך ב-Git",
+        "w": 287,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 148,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "data-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 2009,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 20,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "היסטוריית השינויים בנתונים ב-G",
+        "w": 261,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "GitHub",
+        "w": 54,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 390,
+    "scheme": "dark",
+    "status": 404,
+    "file": "404-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 800,
+    "headerH": 49,
+    "bannerH": 0,
+    "h1Top": 65,
+    "headerSticky": "sticky",
+    "targets": 15,
+    "smallTargets": 1,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "הדף לא נמצא · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "home-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 2880,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 39,
+    "smallTargets": 7,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "המילואימניקים",
+        "w": 116,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "עמך ישראל",
+        "w": 94,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 66,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הורדת הנתונים",
+        "w": 90,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 25,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "skrim · סקרי הבחירות לכנסת ה-26",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "trends-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 3808,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 41,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים לפי מפלגה (CSV)",
+        "w": 179,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הממוצע היומי (JSON)",
+        "w": 135,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 145,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "polls-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1526,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 285,
+    "smallTargets": 266,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "כל הסקרים (CSV)",
+        "w": 109,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "הסינון הנוכחי (CSV)",
+        "w": 121,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מפלגה × סקר (CSV)",
+        "w": 126,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תאריך ביצוע",
+        "w": 96,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "סוקר",
+        "w": 47,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מזמין",
+        "w": 49,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "הועבר לוועדה",
+        "w": 102,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "משיבים",
+        "w": 63,
+        "h": 25,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109/",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 4018,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 145,
+    "headerSticky": "sticky",
+    "targets": 41,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-review-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1862,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 145,
+    "headerSticky": "sticky",
+    "targets": 18,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי",
+        "w": 97,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "pollsters-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1680,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 35,
+    "smallTargets": 23,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "נקסט דאטה14 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שלמה פילבר4 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "דיירקט פולס11 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "טאטיקה מחקרים ומדיה12 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "קנטאר ישראל16 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר מוחות6 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שמואל רוזנר11 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מדגם יעוץ ומחקר10 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "methodology-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 3353,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 28,
+    "smallTargets": 8,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מקור",
+        "w": 31,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איסוף",
+        "w": 36,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "גושים",
+        "w": 35,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות לכנסת ה-26",
+        "w": 232,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "78b23ec",
+        "w": 65,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ההיסטוריה המלאה של המסמך ב-Git",
+        "w": 287,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 148,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13.5,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "data-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1667,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 20,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "היסטוריית השינויים בנתונים ב-G",
+        "w": 261,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "GitHub",
+        "w": 54,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 148,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 768,
+    "scheme": "light",
+    "status": 404,
+    "file": "404-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1024,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 15,
+    "smallTargets": 1,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 15,
+    "under12": 0,
+    "overflowers": [],
+    "title": "הדף לא נמצא · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "home-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 2880,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 39,
+    "smallTargets": 7,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "המילואימניקים",
+        "w": 116,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "עמך ישראל",
+        "w": 94,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 66,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הורדת הנתונים",
+        "w": 90,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 25,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "skrim · סקרי הבחירות לכנסת ה-26",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "trends-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 3808,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 41,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים לפי מפלגה (CSV)",
+        "w": 179,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הממוצע היומי (JSON)",
+        "w": 135,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 145,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "polls-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1526,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 285,
+    "smallTargets": 266,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "כל הסקרים (CSV)",
+        "w": 109,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "הסינון הנוכחי (CSV)",
+        "w": 121,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מפלגה × סקר (CSV)",
+        "w": 126,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תאריך ביצוע",
+        "w": 96,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "סוקר",
+        "w": 47,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מזמין",
+        "w": 49,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "הועבר לוועדה",
+        "w": 102,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "משיבים",
+        "w": 63,
+        "h": 25,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109/",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 4018,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 145,
+    "headerSticky": "sticky",
+    "targets": 41,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-review-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1862,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 145,
+    "headerSticky": "sticky",
+    "targets": 18,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי",
+        "w": 97,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "pollsters-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1680,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 35,
+    "smallTargets": 23,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "נקסט דאטה14 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שלמה פילבר4 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "דיירקט פולס11 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "טאטיקה מחקרים ומדיה12 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "קנטאר ישראל16 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר מוחות6 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שמואל רוזנר11 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מדגם יעוץ ומחקר10 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "methodology-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 3353,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 28,
+    "smallTargets": 8,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מקור",
+        "w": 31,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איסוף",
+        "w": 36,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "גושים",
+        "w": 35,
+        "h": 44,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות לכנסת ה-26",
+        "w": 232,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "78b23ec",
+        "w": 65,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ההיסטוריה המלאה של המסמך ב-Git",
+        "w": 287,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 148,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13.5,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "data-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1667,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 20,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "היסטוריית השינויים בנתונים ב-G",
+        "w": 261,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "GitHub",
+        "w": 54,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 148,
+        "h": 22,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 768,
+    "scheme": "dark",
+    "status": 404,
+    "file": "404-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1024,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 15,
+    "smallTargets": 1,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 15,
+    "under12": 0,
+    "overflowers": [],
+    "title": "הדף לא נמצא · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": null
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "home-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 2168,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 39,
+    "smallTargets": 7,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "המילואימניקים",
+        "w": 122,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "עמך ישראל",
+        "w": 99,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 66,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הורדת הנתונים",
+        "w": 90,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 16,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "skrim · סקרי הבחירות לכנסת ה-26",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "trends-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 2660,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 41,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים לפי מפלגה (CSV)",
+        "w": 179,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הממוצע היומי (JSON)",
+        "w": 135,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 145,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "polls-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1403,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 285,
+    "smallTargets": 266,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "כל הסקרים (CSV)",
+        "w": 109,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "הסינון הנוכחי (CSV)",
+        "w": 121,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מפלגה × סקר (CSV)",
+        "w": 126,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תאריך ביצוע",
+        "w": 96,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "סוקר",
+        "w": 47,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מזמין",
+        "w": 49,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "הועבר לוועדה",
+        "w": 102,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "משיבים",
+        "w": 63,
+        "h": 25,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109/",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 2825,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 145,
+    "headerSticky": "sticky",
+    "targets": 41,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 305,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-review-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1796,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 145,
+    "headerSticky": "sticky",
+    "targets": 18,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 305,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי",
+        "w": 103,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "pollsters-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1680,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 35,
+    "smallTargets": 23,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "נקסט דאטה14 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שלמה פילבר4 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "דיירקט פולס11 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "טאטיקה מחקרים ומדיה12 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "קנטאר ישראל16 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר מוחות6 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שמואל רוזנר11 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מדגם יעוץ ומחקר10 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "methodology-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 3297,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 27,
+    "smallTargets": 15,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות לכנסת ה-26",
+        "w": 245,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "78b23ec",
+        "w": 65,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ההיסטוריה המלאה של המסמך ב-Git",
+        "w": 304,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 157,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מקור",
+        "w": 31,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "איסוף",
+        "w": 36,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "חילוץ ובקרה",
+        "w": 74,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע הסקרים",
+        "w": 94,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13.5,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "data-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1359,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 20,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "היסטוריית השינויים בנתונים ב-G",
+        "w": 276,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "GitHub",
+        "w": 57,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 157,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 1440,
+    "scheme": "light",
+    "status": 404,
+    "file": "404-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 900,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 15,
+    "smallTargets": 1,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 15,
+    "under12": 0,
+    "overflowers": [],
+    "title": "הדף לא נמצא · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "home-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 2168,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 39,
+    "smallTargets": 7,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "המילואימניקים",
+        "w": 122,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "עמך ישראל",
+        "w": 99,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 66,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הורדת הנתונים",
+        "w": 90,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 16,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "skrim · סקרי הבחירות לכנסת ה-26",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "trends-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 2660,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 41,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הסקרים ←",
+        "w": 68,
+        "h": 24,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים לפי מפלגה (CSV)",
+        "w": 179,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הממוצע היומי (JSON)",
+        "w": 135,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 145,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "polls-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1403,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 285,
+    "smallTargets": 266,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "כל הסקרים (CSV)",
+        "w": 109,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "הסינון הנוכחי (CSV)",
+        "w": 121,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מפלגה × סקר (CSV)",
+        "w": 126,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תאריך ביצוע",
+        "w": 96,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "סוקר",
+        "w": 47,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מזמין",
+        "w": 49,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "הועבר לוועדה",
+        "w": 102,
+        "h": 25,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "משיבים",
+        "w": 63,
+        "h": 25,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109/",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 2825,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 145,
+    "headerSticky": "sticky",
+    "targets": 41,
+    "smallTargets": 4,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 305,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-review-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1796,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 145,
+    "headerSticky": "sticky",
+    "targets": 18,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 305,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי",
+        "w": 103,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "pollsters-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1680,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 35,
+    "smallTargets": 23,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "נקסט דאטה14 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שלמה פילבר4 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "דיירקט פולס11 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "טאטיקה מחקרים ומדיה12 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "קנטאר ישראל16 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר מוחות6 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "שמואל רוזנר11 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מדגם יעוץ ומחקר10 סקרים",
+        "w": 224,
+        "h": 32,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "methodology-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 3297,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 27,
+    "smallTargets": 15,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות לכנסת ה-26",
+        "w": 245,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "78b23ec",
+        "w": 65,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ההיסטוריה המלאה של המסמך ב-Git",
+        "w": 304,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 157,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מקור",
+        "w": 31,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "איסוף",
+        "w": 36,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "חילוץ ובקרה",
+        "w": 74,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע הסקרים",
+        "w": 94,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13.5,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "data-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1359,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 20,
+    "smallTargets": 5,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "היסטוריית השינויים בנתונים ב-G",
+        "w": 276,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "GitHub",
+        "w": 57,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 157,
+        "h": 23,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 404,
+    "file": "404-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 900,
+    "headerH": 57,
+    "bannerH": 0,
+    "h1Top": 89,
+    "headerSticky": "sticky",
+    "targets": 15,
+    "smallTargets": 1,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 15,
+    "under12": 0,
+    "overflowers": [],
+    "title": "הדף לא נמצא · skrim",
+    "ogTags": 16,
+    "themeColor": true,
+    "manifest": true,
+    "axe": []
+  }
+]

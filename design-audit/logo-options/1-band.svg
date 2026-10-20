@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="470" viewBox="0 0 640 470">
+  <title>skrim logo direction 1-band: Band — the site's chart grammar in a tile</title>
+  <rect y="0" width="640" height="235" fill="#fafaf8"/><rect y="235" width="640" height="235" fill="#111110"/>
+  <g transform="translate(32 28) scale(1.6)"><g color="#111111"><svg width="36" height="36" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="7" fill="#1a56a8"/>
+      <path d="M4 21.5C10 20 13 15 19 14.2c3.6-.5 6.2-2.2 9-4.2v8c-2.8 2-5.4 3.5-9 4C13 22.8 10 26.6 4 28z" fill="#fafaf8" fill-opacity=".28"/>
+      <path d="M4 24.6C10 23.2 13 19 19 18.2c3.6-.5 6.2-2.2 9-4.2" fill="none" stroke="#fafaf8" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="9" cy="19" r="1.9" fill="#fafaf8"/><circle cx="15.5" cy="23.4" r="1.9" fill="#fafaf8"/><circle cx="23.5" cy="12.2" r="1.9" fill="#fafaf8"/></svg><g transform="translate(46 0)">
+  <g fill="none" stroke="currentColor" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13.4 15.2C12.4 13.1 10.4 12 7.9 12 4.6 12 2.6 13.8 2.6 16.3c0 5.9 11.2 3.9 11.2 10.4 0 3.2-2.7 5.3-6.1 5.3-3 0-5.1-1.2-6.2-3.3"/>
+    <path d="M21 2.4V32M31.6 12.4 21.6 22.6M25.2 19.4 32.4 32"/>
+    <path d="M39 12.4V32M39 19.6c0-4.6 2.9-7.4 7.6-7.4"/>
+    <path d="M53 12.4V32"/>
+    <path d="M60 12.4V32M60 19.4c0-4.6 2.5-7.2 6-7.2s5.6 2.6 5.6 7.2V32M71.6 19.4c0-4.6 2.5-7.2 6-7.2s5.6 2.6 5.6 7.2V32"/>
+  </g>
+  <circle cx="53" cy="4.2" r="2.7" fill="currentColor"/></g></g></g>
+  <g transform="translate(352 40) scale(1.0)"><g color="#111111"><svg width="36" height="36" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="7" fill="#111111"/>
+      <path d="M4 21.5C10 20 13 15 19 14.2c3.6-.5 6.2-2.2 9-4.2v8c-2.8 2-5.4 3.5-9 4C13 22.8 10 26.6 4 28z" fill="#fafaf8" fill-opacity=".28"/>
+      <path d="M4 24.6C10 23.2 13 19 19 18.2c3.6-.5 6.2-2.2 9-4.2" fill="none" stroke="#fafaf8" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="9" cy="19" r="1.9" fill="#fafaf8"/><circle cx="15.5" cy="23.4" r="1.9" fill="#fafaf8"/><circle cx="23.5" cy="12.2" r="1.9" fill="#fafaf8"/></svg><g transform="translate(46 0)">
+  <g fill="none" stroke="currentColor" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13.4 15.2C12.4 13.1 10.4 12 7.9 12 4.6 12 2.6 13.8 2.6 16.3c0 5.9 11.2 3.9 11.2 10.4 0 3.2-2.7 5.3-6.1 5.3-3 0-5.1-1.2-6.2-3.3"/>
+    <path d="M21 2.4V32M31.6 12.4 21.6 22.6M25.2 19.4 32.4 32"/>
+    <path d="M39 12.4V32M39 19.6c0-4.6 2.9-7.4 7.6-7.4"/>
+    <path d="M53 12.4V32"/>
+    <path d="M60 12.4V32M60 19.4c0-4.6 2.5-7.2 6-7.2s5.6 2.6 5.6 7.2V32M71.6 19.4c0-4.6 2.5-7.2 6-7.2s5.6 2.6 5.6 7.2V32"/>
+  </g>
+  <circle cx="53" cy="4.2" r="2.7" fill="currentColor"/></g></g></g><text x="352" y="96" font-family="system-ui, sans-serif" font-size="12" fill="#5f5d58">monochrome</text>
+  <g transform="translate(32 120)"><svg width="64" height="64" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="7" fill="#1a56a8"/>
+      <path d="M4 21.5C10 20 13 15 19 14.2c3.6-.5 6.2-2.2 9-4.2v8c-2.8 2-5.4 3.5-9 4C13 22.8 10 26.6 4 28z" fill="#fafaf8" fill-opacity=".28"/>
+      <path d="M4 24.6C10 23.2 13 19 19 18.2c3.6-.5 6.2-2.2 9-4.2" fill="none" stroke="#fafaf8" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="9" cy="19" r="1.9" fill="#fafaf8"/><circle cx="15.5" cy="23.4" r="1.9" fill="#fafaf8"/><circle cx="23.5" cy="12.2" r="1.9" fill="#fafaf8"/></svg></g><text x="32" y="202" font-family="system-ui, sans-serif" font-size="12" fill="#5f5d58">64px</text><g transform="translate(124 152)"><svg width="32" height="32" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="7" fill="#1a56a8"/>
+      <path d="M4 21.5C10 20 13 15 19 14.2c3.6-.5 6.2-2.2 9-4.2v8c-2.8 2-5.4 3.5-9 4C13 22.8 10 26.6 4 28z" fill="#fafaf8" fill-opacity=".28"/>
+      <path d="M4 24.6C10 23.2 13 19 19 18.2c3.6-.5 6.2-2.2 9-4.2" fill="none" stroke="#fafaf8" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="9" cy="19" r="1.9" fill="#fafaf8"/><circle cx="15.5" cy="23.4" r="1.9" fill="#fafaf8"/><circle cx="23.5" cy="12.2" r="1.9" fill="#fafaf8"/></svg></g><text x="124" y="202" font-family="system-ui, sans-serif" font-size="12" fill="#5f5d58">32px</text><g transform="translate(184 160)"><svg width="24" height="24" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="7" fill="#1a56a8"/>
+      <path d="M4 21.5C10 20 13 15 19 14.2c3.6-.5 6.2-2.2 9-4.2v8c-2.8 2-5.4 3.5-9 4C13 22.8 10 26.6 4 28z" fill="#fafaf8" fill-opacity=".28"/>
+      <path d="M4 24.6C10 23.2 13 19 19 18.2c3.6-.5 6.2-2.2 9-4.2" fill="none" stroke="#fafaf8" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="9" cy="19" r="1.9" fill="#fafaf8"/><circle cx="15.5" cy="23.4" r="1.9" fill="#fafaf8"/><circle cx="23.5" cy="12.2" r="1.9" fill="#fafaf8"/></svg></g><text x="184" y="202" font-family="system-ui, sans-serif" font-size="12" fill="#5f5d58">24px</text><g transform="translate(236 168)"><svg width="16" height="16" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="7" fill="#1a56a8"/>
+      <path d="M4 21.5C10 20 13 15 19 14.2c3.6-.5 6.2-2.2 9-4.2v8c-2.8 2-5.4 3.5-9 4C13 22.8 10 26.6 4 28z" fill="#fafaf8" fill-opacity=".28"/>
+      <path d="M4 24.6C10 23.2 13 19 19 18.2c3.6-.5 6.2-2.2 9-4.2" fill="none" stroke="#fafaf8" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="9" cy="19" r="1.9" fill="#fafaf8"/><circle cx="15.5" cy="23.4" r="1.9" fill="#fafaf8"/><circle cx="23.5" cy="12.2" r="1.9" fill="#fafaf8"/></svg></g><text x="236" y="202" font-family="system-ui, sans-serif" font-size="12" fill="#5f5d58">16px</text>
+  <g transform="translate(32 263) scale(1.6)"><g color="#efeee9"><svg width="36" height="36" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="7" fill="#8ab8ff"/>
+      <path d="M4 21.5C10 20 13 15 19 14.2c3.6-.5 6.2-2.2 9-4.2v8c-2.8 2-5.4 3.5-9 4C13 22.8 10 26.6 4 28z" fill="#111110" fill-opacity=".28"/>
+      <path d="M4 24.6C10 23.2 13 19 19 18.2c3.6-.5 6.2-2.2 9-4.2" fill="none" stroke="#111110" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="9" cy="19" r="1.9" fill="#111110"/><circle cx="15.5" cy="23.4" r="1.9" fill="#111110"/><circle cx="23.5" cy="12.2" r="1.9" fill="#111110"/></svg><g transform="translate(46 0)">
+  <g fill="none" stroke="currentColor" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13.4 15.2C12.4 13.1 10.4 12 7.9 12 4.6 12 2.6 13.8 2.6 16.3c0 5.9 11.2 3.9 11.2 10.4 0 3.2-2.7 5.3-6.1 5.3-3 0-5.1-1.2-6.2-3.3"/>
+    <path d="M21 2.4V32M31.6 12.4 21.6 22.6M25.2 19.4 32.4 32"/>
+    <path d="M39 12.4V32M39 19.6c0-4.6 2.9-7.4 7.6-7.4"/>
+    <path d="M53 12.4V32"/>
+    <path d="M60 12.4V32M60 19.4c0-4.6 2.5-7.2 6-7.2s5.6 2.6 5.6 7.2V32M71.6 19.4c0-4.6 2.5-7.2 6-7.2s5.6 2.6 5.6 7.2V32"/>
+  </g>
+  <circle cx="53" cy="4.2" r="2.7" fill="currentColor"/></g></g></g>
+  <g transform="translate(352 275) scale(1.0)"><g color="#efeee9"><svg width="36" height="36" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="7" fill="#efeee9"/>
+      <path d="M4 21.5C10 20 13 15 19 14.2c3.6-.5 6.2-2.2 9-4.2v8c-2.8 2-5.4 3.5-9 4C13 22.8 10 26.6 4 28z" fill="#111110" fill-opacity=".28"/>
+      <path d="M4 24.6C10 23.2 13 19 19 18.2c3.6-.5 6.2-2.2 9-4.2" fill="none" stroke="#111110" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="9" cy="19" r="1.9" fill="#111110"/><circle cx="15.5" cy="23.4" r="1.9" fill="#111110"/><circle cx="23.5" cy="12.2" r="1.9" fill="#111110"/></svg><g transform="translate(46 0)">
+  <g fill="none" stroke="currentColor" stroke-width="4.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M13.4 15.2C12.4 13.1 10.4 12 7.9 12 4.6 12 2.6 13.8 2.6 16.3c0 5.9 11.2 3.9 11.2 10.4 0 3.2-2.7 5.3-6.1 5.3-3 0-5.1-1.2-6.2-3.3"/>
+    <path d="M21 2.4V32M31.6 12.4 21.6 22.6M25.2 19.4 32.4 32"/>
+    <path d="M39 12.4V32M39 19.6c0-4.6 2.9-7.4 7.6-7.4"/>
+    <path d="M53 12.4V32"/>
+    <path d="M60 12.4V32M60 19.4c0-4.6 2.5-7.2 6-7.2s5.6 2.6 5.6 7.2V32M71.6 19.4c0-4.6 2.5-7.2 6-7.2s5.6 2.6 5.6 7.2V32"/>
+  </g>
+  <circle cx="53" cy="4.2" r="2.7" fill="currentColor"/></g></g></g><text x="352" y="331" font-family="system-ui, sans-serif" font-size="12" fill="#a3a199">monochrome</text>
+  <g transform="translate(32 355)"><svg width="64" height="64" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="7" fill="#8ab8ff"/>
+      <path d="M4 21.5C10 20 13 15 19 14.2c3.6-.5 6.2-2.2 9-4.2v8c-2.8 2-5.4 3.5-9 4C13 22.8 10 26.6 4 28z" fill="#111110" fill-opacity=".28"/>
+      <path d="M4 24.6C10 23.2 13 19 19 18.2c3.6-.5 6.2-2.2 9-4.2" fill="none" stroke="#111110" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="9" cy="19" r="1.9" fill="#111110"/><circle cx="15.5" cy="23.4" r="1.9" fill="#111110"/><circle cx="23.5" cy="12.2" r="1.9" fill="#111110"/></svg></g><text x="32" y="437" font-family="system-ui, sans-serif" font-size="12" fill="#a3a199">64px</text><g transform="translate(124 387)"><svg width="32" height="32" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="7" fill="#8ab8ff"/>
+      <path d="M4 21.5C10 20 13 15 19 14.2c3.6-.5 6.2-2.2 9-4.2v8c-2.8 2-5.4 3.5-9 4C13 22.8 10 26.6 4 28z" fill="#111110" fill-opacity=".28"/>
+      <path d="M4 24.6C10 23.2 13 19 19 18.2c3.6-.5 6.2-2.2 9-4.2" fill="none" stroke="#111110" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="9" cy="19" r="1.9" fill="#111110"/><circle cx="15.5" cy="23.4" r="1.9" fill="#111110"/><circle cx="23.5" cy="12.2" r="1.9" fill="#111110"/></svg></g><text x="124" y="437" font-family="system-ui, sans-serif" font-size="12" fill="#a3a199">32px</text><g transform="translate(184 395)"><svg width="24" height="24" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="7" fill="#8ab8ff"/>
+      <path d="M4 21.5C10 20 13 15 19 14.2c3.6-.5 6.2-2.2 9-4.2v8c-2.8 2-5.4 3.5-9 4C13 22.8 10 26.6 4 28z" fill="#111110" fill-opacity=".28"/>
+      <path d="M4 24.6C10 23.2 13 19 19 18.2c3.6-.5 6.2-2.2 9-4.2" fill="none" stroke="#111110" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="9" cy="19" r="1.9" fill="#111110"/><circle cx="15.5" cy="23.4" r="1.9" fill="#111110"/><circle cx="23.5" cy="12.2" r="1.9" fill="#111110"/></svg></g><text x="184" y="437" font-family="system-ui, sans-serif" font-size="12" fill="#a3a199">24px</text><g transform="translate(236 403)"><svg width="16" height="16" viewBox="0 0 32 32">
+      <rect width="32" height="32" rx="7" fill="#8ab8ff"/>
+      <path d="M4 21.5C10 20 13 15 19 14.2c3.6-.5 6.2-2.2 9-4.2v8c-2.8 2-5.4 3.5-9 4C13 22.8 10 26.6 4 28z" fill="#111110" fill-opacity=".28"/>
+      <path d="M4 24.6C10 23.2 13 19 19 18.2c3.6-.5 6.2-2.2 9-4.2" fill="none" stroke="#111110" stroke-width="2.6" stroke-linecap="round"/>
+      <circle cx="9" cy="19" r="1.9" fill="#111110"/><circle cx="15.5" cy="23.4" r="1.9" fill="#111110"/><circle cx="23.5" cy="12.2" r="1.9" fill="#111110"/></svg></g><text x="236" y="437" font-family="system-ui, sans-serif" font-size="12" fill="#a3a199">16px</text>
+</svg>
