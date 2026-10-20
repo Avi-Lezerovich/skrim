@@ -89,7 +89,7 @@ export const EMBARGO_END = new Date("2026-10-27T22:00:00+02:00");
 
 export const BLOCS: Bloc[] = ["coalition", "opposition", "arab", "other"];
 export const BLOC_NAMES: Record<Bloc, string> = {
-  coalition: "גוש נתניהו",
+  coalition: "מפלגות הקואליציה",
   opposition: "האופוזיציה",
   arab: "המפלגות הערביות",
   other: "אחרות",

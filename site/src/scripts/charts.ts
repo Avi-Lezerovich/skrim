@@ -24,6 +24,8 @@ export function mount(el: HTMLElement, render: (width: number) => Element) {
     }
   }).observe(el);
   matchMedia("(prefers-color-scheme: dark)").addEventListener("change", draw);
+  // The header's theme switch sets data-theme on <html>.
+  new MutationObserver(draw).observe(document.documentElement, { attributeFilter: ["data-theme"] });
   return draw;
 }
 

@@ -1,5 +1,6 @@
 ---
 import Base from "../../layouts/Base.astro";
+import Num from "../../components/data/Num.astro";
 import {
   BLOC_NAMES,
   BLOCS,
@@ -52,8 +53,8 @@ const levelName = { error: "שגיאה", warn: "אזהרה", info: "לידיעה
         <dt>מדגם מתוכנן</dt><dd class="num">{fmtInt(m.planned_n)}</dd>
         <dt>משיבים</dt><dd class="num">{fmtInt(m.respondents)}</dd>
         <dt>שיעור היענות</dt><dd class="num">{fmtPct(m.response_rate)}</dd>
-        <dt>טעות דגימה מדווחת</dt><dd class="num">{m.moe_reported != null ? `±${m.moe_reported}%` : "—"}</dd>
-        <dt>טעות דגימה מחושבת</dt><dd class="num">{m.moe_computed != null ? `±${m.moe_computed}%` : "—"} <span class="small muted">(1.96·√(0.25/n), ללא שקלול)</span></dd>
+        <dt>טעות דגימה מדווחת</dt><dd>{m.moe_reported != null ? <bdi class="num">±{m.moe_reported}%</bdi> : <Num value={null} />}</dd>
+        <dt>טעות דגימה מחושבת</dt><dd>{m.moe_computed != null ? <bdi class="num">±{m.moe_computed}%</bdi> : <Num value={null} missing="מספר המשיבים לא אותר" />} <span class="small muted">(<bdi dir="ltr">1.96·√(0.25/n)</bdi>, ללא שקלול)</span></dd>
       </dl>
     </div>
     <div class="card">

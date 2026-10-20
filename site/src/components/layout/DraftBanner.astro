@@ -1,0 +1,22 @@
+---
+// Draft notice until polls close (publication ban, §16ה). Evaluated at build time, so the
+// public build after EMBARGO_END drops it.
+import { EMBARGO_END } from "../../lib/data";
+
+interface Props {
+  until?: Date;
+}
+const { until = EMBARGO_END } = Astro.props;
+const show = new Date() < until;
+---
+
+{
+  show && (
+    <div class="draft-banner" role="region" aria-label="הודעת טיוטה">
+      <div class="wrap">
+        <strong>גרסת פיתוח.</strong> אין לפרסם ניתוח סקרים לציבור לפני סגירת הקלפיות ב-27.10.2026 בשעה 22:00
+        (סעיף 16ה לחוק הבחירות (דרכי תעמולה)).
+      </div>
+    </div>
+  )
+}
