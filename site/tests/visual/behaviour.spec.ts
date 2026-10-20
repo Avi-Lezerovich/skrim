@@ -1,5 +1,5 @@
 // Interactions (FRONTEND_PLAN §6.3): table filter/sort with the live counter, CSV downloads,
-// pollster highlighting on trends, the chart readout from the keyboard, theme and mobile menu.
+// pollster highlighting on trends, the chart readout from the keyboard, theme, mobile tab bar.
 // Tagged @desktop / @mobile; each tag runs in its own project.
 import { readFileSync } from "node:fs";
 import { expect, test } from "@playwright/test";
@@ -109,16 +109,29 @@ test("theme switch persists across pages @desktop", async ({ page }) => {
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 });
 
-test("mobile menu opens as a dialog and returns focus @mobile", async ({ page }) => {
-  await page.goto("/");
-  const button = page.locator(".nav-toggle");
-  await button.click();
-  const dialog = page.locator("#nav-dialog");
-  await expect(dialog).toBeVisible();
-  await expect(dialog.getByRole("link", { name: "מגמות" })).toBeVisible();
-  await page.keyboard.press("Escape");
-  await expect(dialog).toBeHidden();
-  await expect(button).toBeFocused();
+test("primary navigation is a bottom tab bar with 44px targets @mobile", async ({ page }) => {
+  await page.goto("/trends/");
+  const nav = page.getByRole("navigation", { name: "ניווט ראשי" });
+  const vh = page.viewportSize()!.height;
+  const box = (await nav.boundingBox())!;
+  expect(Math.round(box.y + box.height)).toBe(vh);
+  const links = nav.getByRole("link");
+  await expect(links).toHaveCount(5);
+  for (const b of await links.evaluateAll((as) => as.map((a) => a.getBoundingClientRect()))) {
+    expect(b.height).toBeGreaterThanOrEqual(44);
+    expect(b.width).toBeGreaterThanOrEqual(44);
+  }
+  await expect(nav.getByRole("link", { name: "מגמות" })).toHaveAttribute("aria-current", "page");
+  // the sticky header stays on screen
+  await page.mouse.wheel(0, 2000);
+  expect((await page.locator(".site-header").boundingBox())!.y).toBe(0);
+});
+
+test("unknown paths get the site's own 404 page @mobile", async ({ page }) => {
+  const res = await page.goto("/no-such-page/");
+  expect(res?.status()).toBe(404);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("הדף לא נמצא");
+  await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
 });
 
 test("polls show as cards on phones @mobile", async ({ page }) => {
