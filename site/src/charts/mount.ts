@@ -47,7 +47,7 @@ export function fail(el: HTMLElement, err?: unknown) {
 /**
  * Render into el, and re-render on resize and on light/dark change (charts read the CSS
  * tokens). Without options the container is expected to carry its own role="img" label,
- * and the SVG is hidden from assistive tech.
+ * and the SVG is hidden from assistive tech. Returns a function that redraws on demand.
  */
 export function mount(el: HTMLElement, render: (width: number, height: number) => Element, opts?: ChartOptions) {
   let index = opts?.scrub?.initial ?? 0;
@@ -144,6 +144,7 @@ export function mount(el: HTMLElement, render: (width: number, height: number) =
       e.preventDefault();
     });
   }
+  return draw;
 }
 
 /**
