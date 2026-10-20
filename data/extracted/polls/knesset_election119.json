@@ -1,0 +1,132 @@
+{
+ "key": "knesset_election119",
+ "survey_id": "4223",
+ "version_no": 1,
+ "sha256": "dbe79a32a28fa92de397c6257d7359b5fb4f710f6f536eecef99bb1899249f12",
+ "source_url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election119/he/Survey_4223.pdf",
+ "pollster_raw": "טאטיקה מחקרים ומדיה",
+ "pollster_id": "tatika",
+ "sponsor_raw": "זמן ישראל",
+ "sponsor_id": "zman_israel",
+ "field_date": "2026-09-30",
+ "transfer_date": "2026-10-18",
+ "published_date": "2026-10-19",
+ "pages": 2,
+ "scanned": false,
+ "method": "text-v1",
+ "meta": {
+  "respondents": 500,
+  "contacted": 11085,
+  "planned_n": 11000,
+  "response_rate": null,
+  "moe_reported": 4.4,
+  "mode": "mixed",
+  "weighted_declared": false,
+  "moe_computed": 4.38
+ },
+ "seats": [
+  {
+   "label_raw": "ישר בראשות גדי אייזנקוט",
+   "party_id": "yashar",
+   "seats": 21,
+   "pct": 17.4,
+   "page": 1
+  },
+  {
+   "label_raw": "הליכוד",
+   "party_id": "likud",
+   "seats": 21,
+   "pct": 17.4,
+   "page": 1
+  },
+  {
+   "label_raw": "ביחד בראשות נפתלי בנט",
+   "party_id": "beyachad",
+   "seats": 10,
+   "pct": 8.6,
+   "page": 1
+  },
+  {
+   "label_raw": "ישראל ביתנו",
+   "party_id": "yisrael_beytenu",
+   "seats": 10,
+   "pct": 8.6,
+   "page": 1
+  },
+  {
+   "label_raw": "ש\"ס",
+   "party_id": "shas",
+   "seats": 9,
+   "pct": 7.4,
+   "page": 1
+  },
+  {
+   "label_raw": "יהדות התורה",
+   "party_id": "utj",
+   "seats": 8,
+   "pct": 6.4,
+   "page": 1
+  },
+  {
+   "label_raw": "הדמוקרטים",
+   "party_id": "democrats",
+   "seats": 8,
+   "pct": 6.4,
+   "page": 1
+  },
+  {
+   "label_raw": "חד\"ש תע\"ל בל״ד",
+   "party_id": "hadash_taal_balad",
+   "seats": 8,
+   "pct": 6.2,
+   "page": 1
+  },
+  {
+   "label_raw": "עוצמה יהודית",
+   "party_id": "otzma",
+   "seats": 6,
+   "pct": 4.6,
+   "page": 1
+  },
+  {
+   "label_raw": "רע\"ם",
+   "party_id": "raam",
+   "seats": 5,
+   "pct": 4.4,
+   "page": 1
+  },
+  {
+   "label_raw": "הציונות הדתית",
+   "party_id": "rzp",
+   "seats": 5,
+   "pct": 4.2,
+   "page": 2
+  },
+  {
+   "label_raw": "מילואימניקים + הכלכלית",
+   "party_id": "reservists",
+   "seats": 5,
+   "pct": 3.6,
+   "page": 2
+  },
+  {
+   "label_raw": "עמך ישראל בראשות עופר וינטר",
+   "party_id": "amcha",
+   "seats": 4,
+   "pct": 3.4,
+   "page": 2
+  },
+  {
+   "label_raw": "כחול לבן בהובלת בני גנץ",
+   "party_id": "blue_white",
+   "seats": 0,
+   "pct": 1.4,
+   "page": 2
+  }
+ ],
+ "seat_sum": 120,
+ "scenario_tables": 0,
+ "tables_found": 1,
+ "qa_flags": [],
+ "status": "ok"
+}

@@ -1,0 +1,44 @@
+{
+ "key": "knesset_election95",
+ "survey_id": "4183",
+ "version_no": 1,
+ "sha256": "a592e8382a07ccaa9af9653c41d29dbbe950e03ccc914f12a59b61d149060c91",
+ "source_url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election95/he/Survey_4183.pdf",
+ "pollster_raw": "מרכז אקורד",
+ "pollster_id": "accord",
+ "sponsor_raw": "עצמאי",
+ "sponsor_id": "self",
+ "field_date": "2026-09-10",
+ "transfer_date": "2026-10-04",
+ "published_date": "2026-10-05",
+ "pages": 135,
+ "scanned": false,
+ "method": "text-v1",
+ "meta": {
+  "respondents": 1001,
+  "contacted": 4415,
+  "planned_n": 1000,
+  "response_rate": 30.3,
+  "moe_reported": 3.1,
+  "mode": "online",
+  "weighted_declared": true,
+  "moe_computed": 3.1
+ },
+ "seats": [],
+ "seat_sum": 0,
+ "scenario_tables": 0,
+ "tables_found": 1,
+ "qa_flags": [
+  {
+   "code": "no_seat_table",
+   "level": "error",
+   "detail": "no seat table extracted"
+  },
+  {
+   "code": "response_rate_mismatch",
+   "level": "info",
+   "detail": "reported 30.3% vs respondents/contacted 22.7%"
+  }
+ ],
+ "status": "needs_review"
+}

@@ -1,0 +1,27 @@
+id,name_he,name_en,bloc,color
+likud,הליכוד,Likud,coalition,#1f5fa8
+yashar,ישר!,Yashar (Eisenkot),opposition,#2a9d8f
+beyachad,ביחד,Beyachad (Bennett),opposition,#264653
+democrats,הדמוקרטים,The Democrats,opposition,#e63946
+yisrael_beytenu,ישראל ביתנו,Yisrael Beytenu,opposition,#457b9d
+shas,ש"ס,Shas,coalition,#283618
+utj,יהדות התורה,United Torah Judaism,coalition,#3a3a3a
+otzma,עוצמה יהודית,Otzma Yehudit,coalition,#e9a03b
+rzp,הציונות הדתית,Religious Zionism,coalition,#8d6e3f
+hadash_taal_balad,חד"ש-תע"ל-בל"ד,Hadash-Ta'al-Balad,arab,#6a994e
+raam,רע"ם,Ra'am,arab,#386641
+reservists,המילואימניקים,The Reservists (Hendel),opposition,#7f5539
+amcha,עמך ישראל,Amcha Yisrael (Winter),other,#9c6644
+blue_white,כחול לבן,Blue and White (Gantz),opposition,#4895ef
+bayit_zioni,בית ציוני,Bayit Zioni,other,#b08968
+noam,נעם,Noam,coalition,#5e503f
+haredi_public,הציבור החרדי,HaTzibur HaHaredi,other,#555555
+achi,אח"י,Achi,other,#a5a58d
+tzeva_shahor,צבע שחור,Tzeva Shahor,other,#222222
+israel_first,ישראל תחילה,Israel First,other,#b7b7a4
+hakahal,הקהל,HaKahal,other,#cb997e
+achdut,אחדות,Achdut (Erdan & Edelstein),other,#adb5bd
+undecided,לא החליטו,Undecided,none,#cccccc
+other,אחר,Other,none,#cccccc
+tzomet,צומת,Tzomet,other,#8a817c
+balad,בל"ד,Balad (running alone),arab,#a7c957

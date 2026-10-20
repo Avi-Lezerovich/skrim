@@ -1,0 +1,125 @@
+{
+ "key": "knesset_election92",
+ "survey_id": "4178",
+ "version_no": 1,
+ "sha256": "62c3c1fd91d7cd0c250759a1a9547a0c53317988672ef74e2f672d79d081a729",
+ "source_url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election92/he/Survey_4178.pdf",
+ "pollster_raw": "דיירקט פולס בע\"מ",
+ "pollster_id": "direct_polls",
+ "sponsor_raw": "חדשות המזרח התיכון 24 בע\"מ",
+ "sponsor_id": "i24",
+ "field_date": "2026-10-01",
+ "transfer_date": "2026-10-04",
+ "published_date": "2026-10-04",
+ "pages": 2,
+ "scanned": false,
+ "method": "text-v1",
+ "meta": {
+  "respondents": 504,
+  "contacted": 8600,
+  "planned_n": 500,
+  "response_rate": 5.9,
+  "moe_reported": 4.3,
+  "mode": "online",
+  "weighted_declared": false,
+  "moe_computed": 4.37
+ },
+ "seats": [
+  {
+   "label_raw": "הליכוד",
+   "party_id": "likud",
+   "seats": 28,
+   "pct": 22.0,
+   "page": 2
+  },
+  {
+   "label_raw": "ישר",
+   "party_id": "yashar",
+   "seats": 22,
+   "pct": 17.1,
+   "page": 2
+  },
+  {
+   "label_raw": "ביחד",
+   "party_id": "beyachad",
+   "seats": 9,
+   "pct": 7.4,
+   "page": 2
+  },
+  {
+   "label_raw": "הדמוקרטים",
+   "party_id": "democrats",
+   "seats": 9,
+   "pct": 7.1,
+   "page": 2
+  },
+  {
+   "label_raw": "הרשימה המשותפת",
+   "party_id": "hadash_taal_balad",
+   "seats": 8,
+   "pct": 6.5,
+   "page": 2
+  },
+  {
+   "label_raw": "עוצמה יהודית",
+   "party_id": "otzma",
+   "seats": 8,
+   "pct": 6.4,
+   "page": 2
+  },
+  {
+   "label_raw": "יהדות התורה",
+   "party_id": "utj",
+   "seats": 8,
+   "pct": 6.1,
+   "page": 2
+  },
+  {
+   "label_raw": "ישראל ביתנו",
+   "party_id": "yisrael_beytenu",
+   "seats": 7,
+   "pct": 5.6,
+   "page": 2
+  },
+  {
+   "label_raw": "ש\"ס",
+   "party_id": "shas",
+   "seats": 7,
+   "pct": 5.5,
+   "page": 2
+  },
+  {
+   "label_raw": "הציונות הדתית וזהות",
+   "party_id": "rzp",
+   "seats": 5,
+   "pct": 4.3,
+   "page": 2
+  },
+  {
+   "label_raw": "רע\"ם",
+   "party_id": "raam",
+   "seats": 5,
+   "pct": 4.2,
+   "page": 2
+  },
+  {
+   "label_raw": "עמך ישראל",
+   "party_id": "amcha",
+   "seats": 4,
+   "pct": 3.3,
+   "page": 2
+  },
+  {
+   "label_raw": "המילואימניקים",
+   "party_id": "reservists",
+   "seats": null,
+   "pct": 1.8,
+   "page": 2
+  }
+ ],
+ "seat_sum": 120,
+ "scenario_tables": 0,
+ "tables_found": 1,
+ "qa_flags": [],
+ "status": "ok"
+}

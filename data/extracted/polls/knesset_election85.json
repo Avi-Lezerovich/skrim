@@ -1,0 +1,39 @@
+{
+ "key": "knesset_election85",
+ "survey_id": "4166",
+ "version_no": 1,
+ "sha256": "09d2e006108fa0854038fa8f8c7fe00b640cf06d2ccaaea0e8e7ad63da7c402e",
+ "source_url": "https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election85/he/Survey_4166.pdf",
+ "pollster_raw": "דיאלוג",
+ "pollster_id": "dialog",
+ "sponsor_raw": "ידיעות אחרונות",
+ "sponsor_id": "yedioth",
+ "field_date": "2026-09-22",
+ "transfer_date": "2026-09-28",
+ "published_date": "2026-09-28",
+ "pages": 5,
+ "scanned": false,
+ "method": "text-v1",
+ "meta": {
+  "respondents": 500,
+  "contacted": 2080,
+  "planned_n": 500,
+  "response_rate": 24.0,
+  "moe_reported": 4.4,
+  "mode": "online",
+  "weighted_declared": false,
+  "moe_computed": 4.38
+ },
+ "seats": [],
+ "seat_sum": 0,
+ "scenario_tables": 0,
+ "tables_found": 1,
+ "qa_flags": [
+  {
+   "code": "no_seat_table",
+   "level": "error",
+   "detail": "no seat table extracted"
+  }
+ ],
+ "status": "needs_review"
+}
