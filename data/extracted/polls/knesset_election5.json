@@ -13,7 +13,7 @@
  "published_date": "2026-08-06",
  "pages": 3,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 547,
   "contacted": null,
@@ -100,6 +100,20 @@
    "party_id": "raam",
    "seats": 4,
    "pct": 3.0,
+   "page": 3
+  },
+  {
+   "label_raw": "מפלגה אחר ת",
+   "party_id": "other",
+   "seats": null,
+   "pct": 2.0,
+   "page": 3
+  },
+  {
+   "label_raw": "לא יודע/ ת",
+   "party_id": "undecided",
+   "seats": null,
+   "pct": 10.0,
    "page": 3
   }
  ],

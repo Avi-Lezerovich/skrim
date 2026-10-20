@@ -13,7 +13,7 @@
  "published_date": "2026-10-11",
  "pages": 4,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 543,
   "contacted": 1703,
@@ -31,6 +31,7 @@
  "field_date_listed": "2026-10-05",
  "field_date_pdf": null,
  "field_date_source": "listing",
+ "review_note": "Left in queue: sample of 18-22 year olds only (N=543); vote intention in raw % only, no seats.",
  "qa_flags": [
   {
    "code": "no_seat_table",

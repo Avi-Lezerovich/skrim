@@ -13,7 +13,7 @@
  "published_date": "2026-08-10",
  "pages": 5,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 552,
   "contacted": 2400,
@@ -55,7 +55,7 @@
   },
   {
    "label_raw": "חילי טרופר ויועז הנדל – מפלגת בית ציוני המילואימניקים",
-   "party_id": "reservists",
+   "party_id": "bayit_zioni",
    "seats": 4,
    "pct": 3.3,
    "page": 2

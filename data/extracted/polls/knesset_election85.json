@@ -13,7 +13,7 @@
  "published_date": "2026-09-28",
  "pages": 5,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 500,
   "contacted": 2080,
@@ -31,6 +31,7 @@
  "field_date_listed": "2026-09-22",
  "field_date_pdf": null,
  "field_date_source": "listing",
+ "review_note": "Left in queue: sample of self-described liberals only (N=500); vote intention in raw % only, no seats.",
  "qa_flags": [
   {
    "code": "no_seat_table",

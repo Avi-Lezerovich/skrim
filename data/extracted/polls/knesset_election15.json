@@ -13,7 +13,7 @@
  "published_date": "2026-08-16",
  "pages": 3,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 506,
   "contacted": 3112,
@@ -135,6 +135,13 @@
    "party_id": "israel_first",
    "seats": 0,
    "pct": 0.6,
+   "page": 2
+  },
+  {
+   "label_raw": "המפלגה הכלכלית בראשות פרופ' זליכה",
+   "party_id": "kalkalit",
+   "seats": 0,
+   "pct": 2.5,
    "page": 2
   }
  ],

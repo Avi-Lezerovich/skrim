@@ -13,7 +13,7 @@
  "published_date": "2026-08-25",
  "pages": 5,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 484,
   "contacted": 5002,
@@ -107,6 +107,13 @@
    "party_id": "bayit_zioni",
    "seats": null,
    "pct": 1.4,
+   "page": 2
+  },
+  {
+   "label_raw": "המפלגה הכלכלית החדשה בראשות ירון זליכה",
+   "party_id": "kalkalit",
+   "seats": null,
+   "pct": 1.0,
    "page": 2
   },
   {

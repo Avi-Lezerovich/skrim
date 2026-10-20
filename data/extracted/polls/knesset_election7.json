@@ -13,7 +13,7 @@
  "published_date": "2026-08-10",
  "pages": 2,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 961,
   "contacted": 5098,
@@ -114,6 +114,13 @@
    "party_id": "yashar",
    "seats": 23,
    "pct": 12.0,
+   "page": 1
+  },
+  {
+   "label_raw": "יסודות ישראל",
+   "party_id": "yesodot_israel",
+   "seats": 0,
+   "pct": 2.0,
    "page": 1
   },
   {

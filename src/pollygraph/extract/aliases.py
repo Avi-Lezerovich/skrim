@@ -41,13 +41,16 @@ def parties() -> dict[str, Party]:
 
 _QUOTES = re.compile(r"[\"'״׳“”‘’`]")
 _PUNCT = re.compile(r"[!?.,:;()\-–—_/\\+&]+")
+# An acronym whose last letter the PDF split off after the gershayim: 'חד" ש' → 'חד"ש'.
+_SPLIT_ACRONYM = re.compile(r"(?<=[א-ת])\s*([\"״])\s+(?=[א-ת](?![א-ת]))")
 # Words a list name may be prefixed with in a filing ("מפלגת הדמוקרטים", "רשימת ...").
 _PREFIXES = ("מפלגת", "רשימת", "תנועת", "מפלגה", "רשימה", "תנועה")
 
 
 def words(text: str) -> str:
     """Quotes dropped, punctuation → space, final letters normalised, spaces collapsed."""
-    t = _PUNCT.sub(" ", _QUOTES.sub("", text)).translate(_FINALS)
+    t = _SPLIT_ACRONYM.sub(r"\1", text)
+    t = _PUNCT.sub(" ", _QUOTES.sub("", t)).translate(_FINALS)
     return " ".join(t.split())
 
 
@@ -69,6 +72,15 @@ def _party_aliases() -> list[tuple[str, str]]:
     return sorted(pairs, key=lambda p: -len(p[0]))
 
 
+def _disambiguate(pid: str | None, label: str) -> str | None:
+    # "בית ציוני – המילואימניקים" (Tropper and Hendel) ran until early September 2026; then
+    # Tropper joined Yashar and Hendel's HaMiluimnikim merged with Zelekha's economic party
+    # ("המילואימניקים והכלכלית"). A Miluimnikim label that names Tropper is the earlier list.
+    if pid == "reservists" and "טרופר" in label.replace(" ", ""):
+        return "bayit_zioni"
+    return pid
+
+
 def match_party_in(label: str) -> str | None:
     """Looser match: a known alias appears anywhere in the label as whole words.
 
@@ -78,7 +90,7 @@ def match_party_in(label: str) -> str | None:
     w = f" {words(label)} "
     for alias, pid in _party_aliases():
         if len(alias) >= 3 and f" {alias} " in w:
-            return pid
+            return _disambiguate(pid, label)
     return None
 
 
@@ -95,14 +107,14 @@ def match_party(label: str) -> str | None:
         return None
     for alias, pid in _party_aliases():
         if w == alias or w.startswith(alias + " "):
-            return pid
+            return _disambiguate(pid, label)
     joined = _strip_prefix(w.replace(" ", ""), "")
     for alias, pid in _party_aliases():
         a = alias.replace(" ", "")
         if joined.startswith(a):
             rest = joined[len(a) :]
-            if not rest or rest.startswith(("בראשות", "בהובלת", "וזהות", "והכלכלית")):
-                return pid
+            if not rest or rest.startswith(("בראשות", "בהובלת", "וזהות", "זהות", "והכלכלית")):
+                return _disambiguate(pid, label)
     return None
 
 

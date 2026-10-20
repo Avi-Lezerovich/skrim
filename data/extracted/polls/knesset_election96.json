@@ -13,7 +13,7 @@
  "published_date": "2026-10-06",
  "pages": 2,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 505,
   "contacted": 39148,
@@ -31,6 +31,7 @@
  "field_date_listed": "2026-10-18",
  "field_date_pdf": "2026-09-18",
  "field_date_source": "pdf",
+ "review_note": "Left in queue: only a cross-tab about Ofer Winter's party joining a Netanyahu government; no vote-intention question and no seats.",
  "qa_flags": [
   {
    "code": "no_seat_table",

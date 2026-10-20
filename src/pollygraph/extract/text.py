@@ -19,7 +19,7 @@ HEBREW = re.compile("[֐-׿]")
 MIN_CHARS_PER_PAGE = 80  # below this a page is probably a scan
 
 
-NUMERIC_TOKEN = re.compile(r"^[-+±()]*\d[\d.,%]*[-+±()]*$|^-$")
+NUMERIC_TOKEN = re.compile(r"^[-+±()]*\d[\d.,%+]*[-+±()]*$|^-$")  # "3.1+0.9" is one cell
 
 
 def to_logical(line: str) -> str:

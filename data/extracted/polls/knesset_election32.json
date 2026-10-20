@@ -13,7 +13,7 @@
  "published_date": "2026-08-25",
  "pages": 5,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 502,
   "contacted": 2508,
@@ -139,7 +139,7 @@
   }
  ],
  "seat_sum": 120,
- "scenario_tables": 0,
+ "scenario_tables": 2,
  "tables_found": 4,
  "field_date_listed": "2026-08-24",
  "field_date_pdf": "2026-08-24",

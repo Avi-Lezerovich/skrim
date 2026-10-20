@@ -13,7 +13,7 @@
  "published_date": "2026-09-07",
  "pages": 5,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 555,
   "contacted": 2349,
@@ -65,6 +65,13 @@
    "party_id": "otzma",
    "seats": 7,
    "pct": 5.5,
+   "page": 2
+  },
+  {
+   "label_raw": "מפלגת ימין חדשה בראשות עופר וינטר",
+   "party_id": "amcha",
+   "seats": 4,
+   "pct": 3.3,
    "page": 2
   },
   {
@@ -124,18 +131,12 @@
    "page": 2
   }
  ],
- "seat_sum": 116,
+ "seat_sum": 120,
  "scenario_tables": 0,
  "tables_found": 3,
  "field_date_listed": "2026-09-02",
  "field_date_pdf": null,
  "field_date_source": "listing",
- "qa_flags": [
-  {
-   "code": "seat_sum",
-   "level": "error",
-   "detail": "seats sum to 116, not 120"
-  }
- ],
- "status": "needs_review"
+ "qa_flags": [],
+ "status": "ok"
 }

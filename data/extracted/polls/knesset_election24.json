@@ -13,7 +13,7 @@
  "published_date": "2026-08-19",
  "pages": 5,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 501,
   "contacted": 2523,
@@ -89,6 +89,13 @@
    "page": 2
   },
   {
+   "label_raw": "חד\" ש-תע\" ל בראשות יוסף ג`ב ארין ואחמד טיב י",
+   "party_id": "hadash_taal_balad",
+   "seats": 5,
+   "pct": 3.7,
+   "page": 2
+  },
+  {
    "label_raw": "הרשימה הערבית המאוחדת - רע\"ם בראשות מנסור עבאס",
    "party_id": "raam",
    "seats": 5,
@@ -138,18 +145,12 @@
    "page": 2
   }
  ],
- "seat_sum": 115,
- "scenario_tables": 0,
+ "seat_sum": 120,
+ "scenario_tables": 2,
  "tables_found": 4,
  "field_date_listed": "2026-08-17",
  "field_date_pdf": "2026-08-17",
  "field_date_source": "listing",
- "qa_flags": [
-  {
-   "code": "seat_sum",
-   "level": "error",
-   "detail": "seats sum to 115, not 120"
-  }
- ],
- "status": "needs_review"
+ "qa_flags": [],
+ "status": "ok"
 }

@@ -13,7 +13,7 @@
  "published_date": "2026-09-30",
  "pages": 3,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 550,
   "contacted": null,
@@ -96,6 +96,13 @@
    "page": 3
   },
   {
+   "label_raw": "הציונות הדתי ת + זהות, בראשות בצלאל",
+   "party_id": "rzp",
+   "seats": 6,
+   "pct": 5.0,
+   "page": 3
+  },
+  {
    "label_raw": "עמך ישראל בראשות עופר וינט ר",
    "party_id": "amcha",
    "seats": 5,
@@ -122,9 +129,23 @@
    "seats": null,
    "pct": 0.6,
    "page": 3
+  },
+  {
+   "label_raw": "מפלגות אחרו ת",
+   "party_id": "other",
+   "seats": null,
+   "pct": 0.8,
+   "page": 3
+  },
+  {
+   "label_raw": "לא יודע/ ת",
+   "party_id": "undecided",
+   "seats": null,
+   "pct": 4.0,
+   "page": 3
   }
  ],
- "seat_sum": 114,
+ "seat_sum": 120,
  "scenario_tables": 0,
  "tables_found": 1,
  "field_date_listed": "2026-09-29",
@@ -132,15 +153,10 @@
  "field_date_source": "listing",
  "qa_flags": [
   {
-   "code": "seat_sum",
-   "level": "error",
-   "detail": "seats sum to 114, not 120"
-  },
-  {
    "code": "seats_below_threshold",
    "level": "info",
    "detail": "seats given while raw % < 3.25: reservists"
   }
  ],
- "status": "needs_review"
+ "status": "ok"
 }

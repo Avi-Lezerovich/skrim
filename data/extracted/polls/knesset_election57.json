@@ -13,7 +13,7 @@
  "published_date": "2026-09-08",
  "pages": 5,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 551,
   "contacted": 2450,
@@ -96,6 +96,13 @@
    "page": 2
   },
   {
+   "label_raw": "המילואמיניקים בראשות יועז הנדל והמפלגה הכלכלית של",
+   "party_id": "reservists",
+   "seats": 4,
+   "pct": 3.3,
+   "page": 2
+  },
+  {
    "label_raw": "חד\"ש-תע\"ל ובל\"ד בראשות יוסף ג'אברין",
    "party_id": "hadash_taal_balad",
    "seats": 7,
@@ -124,18 +131,12 @@
    "page": 2
   }
  ],
- "seat_sum": 116,
+ "seat_sum": 120,
  "scenario_tables": 0,
  "tables_found": 2,
  "field_date_listed": "2026-09-06",
  "field_date_pdf": null,
  "field_date_source": "listing",
- "qa_flags": [
-  {
-   "code": "seat_sum",
-   "level": "error",
-   "detail": "seats sum to 116, not 120"
-  }
- ],
- "status": "needs_review"
+ "qa_flags": [],
+ "status": "ok"
 }

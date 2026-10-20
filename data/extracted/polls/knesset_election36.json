@@ -13,7 +13,7 @@
  "published_date": "2026-08-24",
  "pages": 5,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 509,
   "contacted": 4013,
@@ -130,6 +130,7 @@
  "field_date_listed": "2026-08-17",
  "field_date_pdf": "2026-08-17",
  "field_date_source": "listing",
+ "review_note": "Left in queue: sample of IDF reservists only (N=509). The seat column is a hypothetical 'if only reservists voted' projection, not a national vote-intention estimate, so it is kept out of averages.",
  "qa_flags": [
   {
    "code": "seat_sum",

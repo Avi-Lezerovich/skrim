@@ -13,7 +13,7 @@
  "published_date": "2026-09-10",
  "pages": 3,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 551,
   "contacted": null,
@@ -96,14 +96,56 @@
    "page": 3
   },
   {
+   "label_raw": "הציונות הדתי ת + זהות, בראשות בצלאל",
+   "party_id": "rzp",
+   "seats": 4,
+   "pct": 3.0,
+   "page": 3
+  },
+  {
+   "label_raw": "עמך ישראל בראשות עופר וינט ר",
+   "party_id": "amcha",
+   "seats": 4,
+   "pct": 3.0,
+   "page": 3
+  },
+  {
+   "label_raw": "המילואימניקים והכלכלית בראשות יועז",
+   "party_id": "reservists",
+   "seats": null,
+   "pct": 2.0,
+   "page": 3
+  },
+  {
    "label_raw": "כחול לבן בראשות בני גנ ץ",
    "party_id": "blue_white",
-   "seats": 1,
+   "seats": null,
    "pct": 1.0,
+   "page": 3
+  },
+  {
+   "label_raw": "\"הציבור החרדי\" בראשות מוטי לייטנ ר",
+   "party_id": "haredi_public",
+   "seats": null,
+   "pct": 0.7,
+   "page": 3
+  },
+  {
+   "label_raw": "מפלגה אחר ת",
+   "party_id": "other",
+   "seats": null,
+   "pct": 1.0,
+   "page": 3
+  },
+  {
+   "label_raw": "לא יודע/ ת",
+   "party_id": "undecided",
+   "seats": null,
+   "pct": 6.0,
    "page": 3
   }
  ],
- "seat_sum": 113,
+ "seat_sum": 120,
  "scenario_tables": 0,
  "tables_found": 1,
  "field_date_listed": "2026-09-08",
@@ -111,15 +153,10 @@
  "field_date_source": "listing",
  "qa_flags": [
   {
-   "code": "seat_sum",
-   "level": "error",
-   "detail": "seats sum to 113, not 120"
-  },
-  {
    "code": "seats_below_threshold",
    "level": "info",
-   "detail": "seats given while raw % < 3.25: blue_white"
+   "detail": "seats given while raw % < 3.25: rzp, amcha"
   }
  ],
- "status": "needs_review"
+ "status": "ok"
 }

@@ -13,7 +13,7 @@
  "published_date": "2026-08-03",
  "pages": 1,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 956,
   "contacted": 5051,
@@ -117,6 +117,13 @@
    "page": 1
   },
   {
+   "label_raw": "יסודות ישראל",
+   "party_id": "yesodot_israel",
+   "seats": null,
+   "pct": 2.3,
+   "page": 1
+  },
+  {
    "label_raw": "מפלגה אחרת",
    "party_id": "other",
    "seats": null,
@@ -137,6 +144,7 @@
  "field_date_listed": "2026-07-28",
  "field_date_pdf": "2026-07-28",
  "field_date_source": "listing",
+ "review_note": "Left in queue: the seat column does not line up with the party rows (כחול לבן 23 at 1.4% raw; ביחד/ישר/יסודות ישראל have no seats). The 12 printed seat values are the same multiset as in knesset_election6, the corrected re-filing of this poll (same fieldwork, same raw %), which should be used instead.",
  "qa_flags": [
   {
    "code": "seat_sum",

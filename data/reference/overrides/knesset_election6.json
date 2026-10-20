@@ -1,0 +1,119 @@
+{
+ "sha256": "14e30e543e8409484d62361f9d9f573651fd54d6fa0a50c24b83e6aaf7af9a3f",
+ "method": "manual-claude",
+ "note": "Corrected re-filing of knesset_election1 (same fieldwork 28-29.7.2026, same raw %). The seat cell of ביחד (13) is printed on its own line above the row, so the text parser lost it; read from the PDF page 1 table. יסודות ישראל 5.",
+ "seats": [
+  {
+   "label_raw": "כחול לבן",
+   "party_id": "blue_white",
+   "seats": 0,
+   "pct": 1.4,
+   "page": 1
+  },
+  {
+   "label_raw": "ליכוד",
+   "party_id": "likud",
+   "seats": 23,
+   "pct": 10.7,
+   "page": 1
+  },
+  {
+   "label_raw": "ש\"ס",
+   "party_id": "shas",
+   "seats": 7,
+   "pct": 7.8,
+   "page": 1
+  },
+  {
+   "label_raw": "הציונות הדתית",
+   "party_id": "rzp",
+   "seats": 4,
+   "pct": 4.4,
+   "page": 1
+  },
+  {
+   "label_raw": "יהדות התורה",
+   "party_id": "utj",
+   "seats": 9,
+   "pct": 15.1,
+   "page": 1
+  },
+  {
+   "label_raw": "ישראל ביתנו",
+   "party_id": "yisrael_beytenu",
+   "seats": 10,
+   "pct": 6.0,
+   "page": 1
+  },
+  {
+   "label_raw": "רע\"מ",
+   "party_id": "raam",
+   "seats": 5,
+   "pct": 0.0,
+   "page": 1
+  },
+  {
+   "label_raw": "חד\"ש-תע\"ל",
+   "party_id": "hadash_taal_balad",
+   "seats": 4,
+   "pct": 0.0,
+   "page": 1
+  },
+  {
+   "label_raw": "בל\"ד",
+   "party_id": "balad",
+   "seats": 0,
+   "pct": 0.0,
+   "page": 1
+  },
+  {
+   "label_raw": "עוצמה יהודית",
+   "party_id": "otzma",
+   "seats": 8,
+   "pct": 4.8,
+   "page": 1
+  },
+  {
+   "label_raw": "הדמוקרטים",
+   "party_id": "democrats",
+   "seats": 9,
+   "pct": 5.4,
+   "page": 1
+  },
+  {
+   "label_raw": "ביחד",
+   "party_id": "beyachad",
+   "seats": 13,
+   "pct": 7.0,
+   "page": 1
+  },
+  {
+   "label_raw": "ישר",
+   "party_id": "yashar",
+   "seats": 23,
+   "pct": 12.7,
+   "page": 1
+  },
+  {
+   "label_raw": "יסודות ישראל",
+   "party_id": "yesodot_israel",
+   "seats": 5,
+   "pct": 2.3,
+   "page": 1
+  },
+  {
+   "label_raw": "מפלגה אחרת",
+   "party_id": "other",
+   "seats": null,
+   "pct": 1.9,
+   "page": 1
+  },
+  {
+   "label_raw": "עדיין לא החלטתי",
+   "party_id": "undecided",
+   "seats": null,
+   "pct": 14.0,
+   "page": 1
+  }
+ ]
+}

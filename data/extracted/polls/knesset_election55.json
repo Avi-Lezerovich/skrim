@@ -13,7 +13,7 @@
  "published_date": "2026-09-07",
  "pages": 3,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 815,
   "contacted": null,
@@ -68,6 +68,13 @@
    "page": 2
   },
   {
+   "label_raw": "המחנה הממלכתי בראשות בני גנ ץ 0 %",
+   "party_id": "blue_white",
+   "seats": 0,
+   "pct": null,
+   "page": 2
+  },
+  {
    "label_raw": "הליכוד בראשות בנימין נתניהו 2 %",
    "party_id": "likud",
    "seats": null,
@@ -109,6 +116,7 @@
  "field_date_listed": "2026-08-27",
  "field_date_pdf": null,
  "field_date_source": "listing",
+ "review_note": "Left in queue: Arab-sector sample only (N=815). Its seat column is the seats contributed by Arab voters (sums to about 16), not a 120-seat table.",
  "qa_flags": [
   {
    "code": "seat_sum",

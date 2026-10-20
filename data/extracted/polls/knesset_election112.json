@@ -13,7 +13,7 @@
  "published_date": "2026-10-18",
  "pages": 3,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 2099,
   "contacted": null,
@@ -128,6 +128,20 @@
    "party_id": "haredi_public",
    "seats": null,
    "pct": 1.1,
+   "page": 3
+  },
+  {
+   "label_raw": "מפלגות אחרו ת",
+   "party_id": "other",
+   "seats": null,
+   "pct": 0.7,
+   "page": 3
+  },
+  {
+   "label_raw": "לא יודע/ ת",
+   "party_id": "undecided",
+   "seats": null,
+   "pct": 10.0,
    "page": 3
   }
  ],

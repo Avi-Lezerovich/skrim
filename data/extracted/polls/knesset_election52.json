@@ -13,7 +13,7 @@
  "published_date": "2026-09-06",
  "pages": 2,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 500,
   "contacted": 3402,
@@ -114,6 +114,13 @@
    "party_id": "amcha",
    "seats": 0,
    "pct": 2.3,
+   "page": 2
+  },
+  {
+   "label_raw": "הכלכלית החדשה",
+   "party_id": "kalkalit",
+   "seats": 0,
+   "pct": 2.0,
    "page": 2
   },
   {

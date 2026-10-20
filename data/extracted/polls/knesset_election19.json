@@ -13,7 +13,7 @@
  "published_date": "2026-08-16",
  "pages": 4,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 539,
   "contacted": null,
@@ -112,6 +112,13 @@
   {
    "label_raw": "כחול לבן בראשות בני גנ ץ",
    "party_id": "blue_white",
+   "seats": null,
+   "pct": 1.1,
+   "page": 2
+  },
+  {
+   "label_raw": "מפלגה בראשות עופר וינטר",
+   "party_id": "amcha",
    "seats": null,
    "pct": 1.1,
    "page": 2

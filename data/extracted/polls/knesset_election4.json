@@ -13,7 +13,7 @@
  "published_date": "2026-08-04",
  "pages": 6,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 503,
   "contacted": 2515,
@@ -26,113 +26,120 @@
  },
  "seats": [
   {
-   "label_raw": "הליכוד בראשות בנימין נתניה ו",
-   "party_id": "likud",
-   "seats": 23,
-   "pct": 18.7,
-   "page": 3
-  },
-  {
    "label_raw": "ישר! עם איזנקוט בראשות גדי איזנקו ט",
    "party_id": "yashar",
    "seats": 23,
+   "pct": 18.7,
+   "page": 2
+  },
+  {
+   "label_raw": "הליכוד בראשות בנימין נתניה ו",
+   "party_id": "likud",
+   "seats": 23,
    "pct": 18.6,
-   "page": 3
+   "page": 2
   },
   {
    "label_raw": "ביחד בראשות נפתלי בנ ט",
    "party_id": "beyachad",
    "seats": 14,
-   "pct": 11.3,
-   "page": 3
+   "pct": 11.2,
+   "page": 2
+  },
+  {
+   "label_raw": "הדמוקרטים בראשות יאיר גולן",
+   "party_id": "democrats",
+   "seats": 10,
+   "pct": 8.0,
+   "page": 2
   },
   {
    "label_raw": "ישראל ביתנו בראשות אביגדור ליברמ ן",
    "party_id": "yisrael_beytenu",
    "seats": 9,
-   "pct": 7.4,
-   "page": 3
-  },
-  {
-   "label_raw": "הדמוקרטים בראשות יאיר גולן",
-   "party_id": "democrats",
-   "seats": 9,
-   "pct": 7.4,
-   "page": 3
+   "pct": 7.2,
+   "page": 2
   },
   {
    "label_raw": "יהדות התורה בראשות יצחק גולדקנופ ף",
    "party_id": "utj",
    "seats": 8,
-   "pct": 6.5,
-   "page": 3
+   "pct": 6.4,
+   "page": 2
   },
   {
    "label_raw": "ש\"ס בראשות אריה דרע י",
    "party_id": "shas",
    "seats": 7,
-   "pct": 5.6,
-   "page": 3
+   "pct": 5.7,
+   "page": 2
   },
   {
    "label_raw": "עוצמה יהודית בראשות איתמר בן גבי ר",
    "party_id": "otzma",
    "seats": 7,
    "pct": 5.6,
-   "page": 3
+   "page": 2
   },
   {
-   "label_raw": "הרשימה הערבית המאוחדת - רע\"ם בראשות מנסור עבאס עם יואב סגלוביץ`",
-   "party_id": "raam",
-   "seats": 6,
-   "pct": 4.8,
-   "page": 3
+   "label_raw": "חד\" ש-תע\" ל בראשות יוסף ג`אברין ואחמד טיב י",
+   "party_id": "hadash_taal_balad",
+   "seats": 5,
+   "pct": 4.1,
+   "page": 2
   },
   {
    "label_raw": "הציונות הדתית בראשות בצלאל סמוטרי ץ`",
    "party_id": "rzp",
    "seats": 5,
-   "pct": 4.1,
-   "page": 3
+   "pct": 4.0,
+   "page": 2
   },
   {
-   "label_raw": "איחוד המפלגות הערביות של חד\"ש, תע\"ל ובל\" ד",
-   "party_id": "hadash_taal_balad",
+   "label_raw": "הרשימה הערבית המאוחדת - רע\"ם בראשות מנסור עבאס",
+   "party_id": "raam",
    "seats": 5,
-   "pct": 4.0,
-   "page": 3
+   "pct": 3.9,
+   "page": 2
   },
   {
    "label_raw": "בית ציוני - המילואימניקים בראשות חילי טרופר ויועז הנד ל",
    "party_id": "bayit_zioni",
    "seats": 4,
    "pct": 3.3,
-   "page": 3
+   "page": 2
   },
   {
    "label_raw": "כחול לבן בראשות בני גנץ",
    "party_id": "blue_white",
    "seats": 0,
-   "pct": 1.3,
-   "page": 3
+   "pct": 1.4,
+   "page": 2
+  },
+  {
+   "label_raw": "בל\"ד בראשות סמי אבו שחאד ה",
+   "party_id": "balad",
+   "seats": 0,
+   "pct": 0.8,
+   "page": 2
   },
   {
    "label_raw": "מפלגות אחרו ת",
    "party_id": "other",
    "seats": 0,
-   "pct": 1.2,
-   "page": 3
+   "pct": 1.0,
+   "page": 2
   },
   {
    "label_raw": "לא החליט ו",
    "party_id": "undecided",
    "seats": null,
-   "pct": 8.0,
-   "page": 3
+   "pct": 10.4,
+   "page": 2
   }
  ],
  "seat_sum": 120,
- "scenario_tables": 0,
+ "scenario_tables": 1,
  "tables_found": 6,
  "field_date_listed": "2026-08-03",
  "field_date_pdf": "2026-08-03",

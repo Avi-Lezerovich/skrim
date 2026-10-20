@@ -13,7 +13,7 @@
  "published_date": "2026-08-17",
  "pages": 1,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 1240,
   "contacted": 4866,
@@ -131,14 +131,14 @@
    "page": 1
   },
   {
-   "label_raw": "מפלגה אחרת -",
+   "label_raw": "מפלגה אחרת",
    "party_id": "other",
    "seats": null,
    "pct": 1.7,
    "page": 1
   },
   {
-   "label_raw": "עדיין לא החלטתי -",
+   "label_raw": "עדיין לא החלטתי",
    "party_id": "undecided",
    "seats": null,
    "pct": 13.4,

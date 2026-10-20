@@ -13,7 +13,7 @@
  "published_date": "2026-08-19",
  "pages": 9,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 656,
   "contacted": null,
@@ -31,6 +31,7 @@
  "field_date_listed": "2026-07-27",
  "field_date_pdf": null,
  "field_date_source": "listing",
+ "review_note": "Left in queue: attitude survey of right-wing voters (N=656), no vote-intention question and no seat table.",
  "qa_flags": [
   {
    "code": "no_seat_table",

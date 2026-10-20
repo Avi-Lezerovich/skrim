@@ -13,7 +13,7 @@
  "published_date": "2026-08-06",
  "pages": 1,
  "scanned": false,
- "method": "text-v1",
+ "method": "manual-claude",
  "meta": {
   "respondents": 956,
   "contacted": 5051,
@@ -105,7 +105,7 @@
   {
    "label_raw": "ביחד",
    "party_id": "beyachad",
-   "seats": null,
+   "seats": 13,
    "pct": 7.0,
    "page": 1
   },
@@ -114,6 +114,13 @@
    "party_id": "yashar",
    "seats": 23,
    "pct": 12.7,
+   "page": 1
+  },
+  {
+   "label_raw": "יסודות ישראל",
+   "party_id": "yesodot_israel",
+   "seats": 5,
+   "pct": 2.3,
    "page": 1
   },
   {
@@ -131,22 +138,18 @@
    "page": 1
   }
  ],
- "seat_sum": 102,
+ "seat_sum": 120,
  "scenario_tables": 0,
  "tables_found": 1,
  "field_date_listed": "2026-07-28",
  "field_date_pdf": "2026-07-28",
  "field_date_source": "listing",
+ "review_note": "Corrected re-filing of knesset_election1 (same fieldwork 28-29.7.2026, same raw %). The seat cell of ביחד (13) is printed on its own line above the row, so the text parser lost it; read from the PDF page 1 table. יסודות ישראל 5.",
  "qa_flags": [
-  {
-   "code": "seat_sum",
-   "level": "error",
-   "detail": "seats sum to 102, not 120"
-  },
   {
    "code": "seats_below_threshold",
    "level": "info",
-   "detail": "seats given while raw % < 3.25: raam, hadash_taal_balad"
+   "detail": "seats given while raw % < 3.25: raam, hadash_taal_balad, yesodot_israel"
   },
   {
    "code": "response_rate_mismatch",
@@ -154,5 +157,5 @@
    "detail": "reported 10.7% vs respondents/contacted 18.9%"
   }
  ],
- "status": "needs_review"
+ "status": "ok"
 }

@@ -13,7 +13,7 @@
  "published_date": "2026-08-30",
  "pages": 3,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 552,
   "contacted": null,
@@ -89,6 +89,13 @@
    "page": 3
   },
   {
+   "label_raw": "עמך ישראל בראשות עופר וינט ר",
+   "party_id": "amcha",
+   "seats": 7,
+   "pct": 4.0,
+   "page": 3
+  },
+  {
    "label_raw": "רע\"ם בראשות מנסור עבא ס",
    "party_id": "raam",
    "seats": 4,
@@ -98,14 +105,21 @@
   {
    "label_raw": "הציונות הדתית בראשות בצלאל סמוטריץ '",
    "party_id": "rzp",
-   "seats": 4,
+   "seats": null,
    "pct": 2.0,
    "page": 3
   },
   {
    "label_raw": "הבית הציוני בראשות יועז הנדל וחילי טרופ ר",
    "party_id": "bayit_zioni",
-   "seats": 3,
+   "seats": null,
+   "pct": 2.0,
+   "page": 3
+  },
+  {
+   "label_raw": "האחדות בראשות גלעד ארדן ויולי אדלשטיי ן",
+   "party_id": "achdut",
+   "seats": null,
    "pct": 2.0,
    "page": 3
   },
@@ -114,6 +128,27 @@
    "party_id": "blue_white",
    "seats": null,
    "pct": 1.0,
+   "page": 3
+  },
+  {
+   "label_raw": "המפלגה הכלכלית בראשות ירון זליכ ה",
+   "party_id": "kalkalit",
+   "seats": null,
+   "pct": 1.0,
+   "page": 3
+  },
+  {
+   "label_raw": "מפלגה אחר ת",
+   "party_id": "other",
+   "seats": null,
+   "pct": 1.0,
+   "page": 3
+  },
+  {
+   "label_raw": "לא יודע/ ת",
+   "party_id": "undecided",
+   "seats": null,
+   "pct": 9.0,
    "page": 3
   }
  ],
@@ -127,7 +162,7 @@
   {
    "code": "seats_below_threshold",
    "level": "info",
-   "detail": "seats given while raw % < 3.25: raam, rzp, bayit_zioni"
+   "detail": "seats given while raw % < 3.25: raam"
   }
  ],
  "status": "ok"

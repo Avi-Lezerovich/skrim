@@ -13,6 +13,9 @@ from dataclasses import asdict, dataclass, field
 from .aliases import match_party, match_party_in
 
 NUM = re.compile(r"^[-+±]?\d{1,3}(?:,\d{3})*(?:\.\d+)?%?[-+±]?$")
+# Cells that hold no seat count but still occupy a column: "-" (no value) and
+# "3.1+0.9" (a sum shown in a history column).
+PLACEHOLDER = re.compile(r"^[-–—]$|^\d+(?:\.\d+)?(?:\+\d+(?:\.\d+)?)+$")
 NON_PARTY = {"undecided", "other"}
 
 
@@ -23,7 +26,9 @@ class SeatRow:
     seats: int | None
     pct: float | None
     page: int
-    ints: list[int] = field(default_factory=list, repr=False)  # whole-number columns, in order
+    # whole-number columns after the label, in order; None marks a cell that is not a
+    # whole number (a placeholder, or a decimal after the % column) so columns stay aligned
+    ints: list[int | None] = field(default_factory=list, repr=False)
 
 
 @dataclass
@@ -51,7 +56,7 @@ class Table:
         width = max((len(r.ints) for r in party_rows), default=0)
         plausible = []
         for j in range(width):
-            col = [r.ints[j] for r in party_rows if len(r.ints) > j]
+            col = [r.ints[j] for r in party_rows if len(r.ints) > j and r.ints[j] is not None]
             if col and all(0 <= v <= 61 for v in col):
                 plausible.append((j, sum(col)))
         exact = [j for j, total in plausible if total == 120]
@@ -73,8 +78,10 @@ def split_row(line: str) -> tuple[str, list[str]]:
     """Split 'label 26 19.8%' into ('label', ['26', '19.8%'])."""
     toks = line.split()
     nums: list[str] = []
-    while toks and NUM.match(toks[-1]):
+    while toks and (NUM.match(toks[-1]) or PLACEHOLDER.match(toks[-1])):
         nums.insert(0, toks.pop())
+    if all(PLACEHOLDER.match(t) and not NUM.match(t) for t in nums):
+        return line.strip(), []  # "מפלגה אחרת -": a dash alone is not a number column
     return " ".join(toks), nums
 
 
@@ -86,19 +93,28 @@ def parse_row(label: str, nums: list[str], page: int, in_table: bool = False) ->
         pid = match_party_in(label)
     if pid is None:
         return None
-    ints: list[int] = []
+    ints: list[int | None] = []
     pct = None
     for tok in nums:
         v = _num(tok)
         if v is None:
+            if ints or pct is not None:
+                ints.append(None)  # placeholder ("-") inside the number columns
             continue
-        if "%" in tok or v != int(v):
-            # a decimal without a % sign is a percentage column too
+        if "%" in tok:
             if pct is None and v <= 100:
                 pct = v
+        elif v != int(v):
+            # a decimal without a % sign is the percentage column, unless that was
+            # already read: then it is a fractional value in a seat-like column
+            # (Maagar Mochot prints 2.2 "seats" for lists under the threshold)
+            if pct is None and v <= 100:
+                pct = v
+            else:
+                ints.append(None)
         else:
             ints.append(int(v))
-    if not ints and pct is None:
+    if not any(i is not None for i in ints) and pct is None:
         return None
     return SeatRow(label.strip(), pid, None, pct, page, ints)
 

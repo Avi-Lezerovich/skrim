@@ -13,7 +13,7 @@
  "published_date": "2026-08-16",
  "pages": 3,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 588,
   "contacted": null,
@@ -107,6 +107,13 @@
    "party_id": "balad",
    "seats": null,
    "pct": 2.9,
+   "page": 2
+  },
+  {
+   "label_raw": "מפלגה בראשות עופר וינטר",
+   "party_id": "amcha",
+   "seats": null,
+   "pct": 1.2,
    "page": 2
   },
   {

@@ -1,0 +1,140 @@
+{
+ "sha256": "e3fe5c22553110ac9b3b9a6b91d6be2786ed2f84ae0773346cd125bb6d1b3434",
+ "method": "manual-claude",
+ "note": "Maagar Mochot prints a seat-equivalent for lists under the threshold in the seats column (הבית הציוני 3, המפלגה הכלכלית 2.7, האחדות 1.4, כחול לבן 1, הציבור החרדי 1). The filing's own total (120) and bloc lines (coalition incl. Amcha 54, opposition 55, Arab parties 11) count only the 12 lists with 4+ seats, so those lists get 0 here.",
+ "seats": [
+  {
+   "label_raw": "מפלגת \"ישר!\" בראשות גדי איזנקו ט",
+   "party_id": "yashar",
+   "seats": 20,
+   "pct": 15.0,
+   "page": 3
+  },
+  {
+   "label_raw": "הליכוד בראשות בנימין נתניה ו",
+   "party_id": "likud",
+   "seats": 19,
+   "pct": 14.0,
+   "page": 3
+  },
+  {
+   "label_raw": "מפלגת \"ביחד\", בראשות נפתלי בנ ט",
+   "party_id": "beyachad",
+   "seats": 18,
+   "pct": 13.0,
+   "page": 3
+  },
+  {
+   "label_raw": "הדמוקרטים בראשות יאיר גול ן",
+   "party_id": "democrats",
+   "seats": 10,
+   "pct": 7.0,
+   "page": 3
+  },
+  {
+   "label_raw": "עוצמה יהודית בראשות איתמר בן גבי ר",
+   "party_id": "otzma",
+   "seats": 9,
+   "pct": 6.0,
+   "page": 3
+  },
+  {
+   "label_raw": "ש\"ס בראשות אריה דרע י",
+   "party_id": "shas",
+   "seats": 9,
+   "pct": 7.0,
+   "page": 3
+  },
+  {
+   "label_raw": "יהדות התורה בראשות משה גפנ י",
+   "party_id": "utj",
+   "seats": 7,
+   "pct": 5.0,
+   "page": 3
+  },
+  {
+   "label_raw": "ישראל ביתנו בראשות אביגדור ליברמ ן",
+   "party_id": "yisrael_beytenu",
+   "seats": 7,
+   "pct": 5.0,
+   "page": 3
+  },
+  {
+   "label_raw": "הרשימה המשותפת בראשות פרופ' יוסף",
+   "party_id": "hadash_taal_balad",
+   "seats": 7,
+   "pct": 5.0,
+   "page": 3
+  },
+  {
+   "label_raw": "הציונות הדתית +זהות, בראשות בצלאל",
+   "party_id": "rzp",
+   "seats": 5,
+   "pct": 4.0,
+   "page": 3
+  },
+  {
+   "label_raw": "עמך ישראל בראשות עופר וינט ר",
+   "party_id": "amcha",
+   "seats": 5,
+   "pct": 4.0,
+   "page": 3
+  },
+  {
+   "label_raw": "רע\"ם בראשות מנסור עבא ס",
+   "party_id": "raam",
+   "seats": 4,
+   "pct": 3.0,
+   "page": 3
+  },
+  {
+   "label_raw": "הבית הציוני בראשות יועז הנדל וחילי טרופ ר",
+   "party_id": "bayit_zioni",
+   "seats": 0,
+   "pct": 2.0,
+   "page": 3
+  },
+  {
+   "label_raw": "המפלגה הכלכלית בראשות ירון זליכ ה",
+   "party_id": "kalkalit",
+   "seats": 0,
+   "pct": 2.0,
+   "page": 3
+  },
+  {
+   "label_raw": "האחדות בראשות גלעד ארדן ויולי אדלשטיי ן",
+   "party_id": "achdut",
+   "seats": 0,
+   "pct": 1.0,
+   "page": 3
+  },
+  {
+   "label_raw": "כחול לבן בראשות בני גנ ץ",
+   "party_id": "blue_white",
+   "seats": 0,
+   "pct": 1.0,
+   "page": 3
+  },
+  {
+   "label_raw": "מפלגת \"הציבור החרדי\" בראשות מוטי",
+   "party_id": "haredi_public",
+   "seats": 0,
+   "pct": 1.0,
+   "page": 3
+  },
+  {
+   "label_raw": "מפלגה אחר ת",
+   "party_id": "other",
+   "seats": null,
+   "pct": 1.0,
+   "page": 3
+  },
+  {
+   "label_raw": "לא יודע/ ת",
+   "party_id": "undecided",
+   "seats": null,
+   "pct": 4.0,
+   "page": 3
+  }
+ ]
+}

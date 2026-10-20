@@ -13,7 +13,7 @@
  "published_date": "2026-08-30",
  "pages": 1,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 500,
   "contacted": 3189,
@@ -114,6 +114,13 @@
    "party_id": "bayit_zioni",
    "seats": 0,
    "pct": 2.1,
+   "page": 1
+  },
+  {
+   "label_raw": "המפלגה הכלכלית בראשות פרופ' זליכה",
+   "party_id": "kalkalit",
+   "seats": 0,
+   "pct": 1.2,
    "page": 1
   },
   {

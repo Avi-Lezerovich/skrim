@@ -13,7 +13,7 @@
  "published_date": "2026-09-08",
  "pages": 4,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 789,
   "contacted": 7024,

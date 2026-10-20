@@ -27,7 +27,7 @@ MANIFEST = ROOT / "data" / "raw" / "manifest.csv"
 OUT = ROOT / "data" / "extracted" / "polls"
 TEXT_CACHE = ROOT / "data" / "extracted" / "text"
 OVERRIDES = ROOT / "data" / "reference" / "overrides"
-PARSER_VERSION = "text-v1"
+PARSER_VERSION = "text-v2"
 IL = ZoneInfo("Asia/Jerusalem")
 
 
@@ -99,10 +99,11 @@ def build(row: dict) -> dict:
         if fix.get("sha256") and fix["sha256"] != row["sha256"]:
             print(f"  ! override for {row['key']} is for another file version; ignored")
         else:
-            for k in ("seats", "meta", "field_date"):
-                if k in fix:
-                    poll[k] = {**poll[k], **fix[k]} if k == "meta" else fix[k]
-            poll["method"] = fix.get("method", "manual")
+            fixed = [k for k in ("seats", "meta", "field_date") if k in fix]
+            for k in fixed:
+                poll[k] = {**poll[k], **fix[k]} if k == "meta" else fix[k]
+            if fixed:  # a note-only override documents why a filing stays in the queue
+                poll["method"] = fix.get("method", "manual")
             poll["review_note"] = fix.get("note")
     poll["seat_sum"] = sum(
         r["seats"] or 0 for r in poll["seats"] if r["party_id"] not in qa.NON_PARTY
@@ -124,7 +125,14 @@ def main() -> int:
         if poll["status"] != "ok":
             errors = "; ".join(f["detail"] for f in poll["qa_flags"] if f["level"] == "error")
             queue.append(
-                [poll["key"], poll["pollster_raw"], poll["field_date"], errors, poll["source_url"]]
+                [
+                    poll["key"],
+                    poll["pollster_raw"],
+                    poll["field_date"],
+                    errors,
+                    poll.get("review_note") or "",
+                    poll["source_url"],
+                ]
             )
         stats[poll["status"]] += 1
         for kind in ("pollster", "sponsor"):
@@ -134,7 +142,7 @@ def main() -> int:
         (OUT / f"{row['key']}.json").write_text(text + "\n", encoding="utf-8")
     with (OUT.parent / "review_queue.csv").open("w", encoding="utf-8", newline="") as f:
         w = csv.writer(f, lineterminator="\n")
-        w.writerow(["key", "pollster", "field_date", "errors", "pdf"])
+        w.writerow(["key", "pollster", "field_date", "errors", "note", "pdf"])
         w.writerows(sorted(queue))
     total = sum(stats.values())
     print(f"extracted {total} polls: {dict(stats)} ({100 * stats['ok'] / total:.0f}% pass QA)")

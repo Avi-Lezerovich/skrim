@@ -13,7 +13,7 @@
  "published_date": "2026-08-30",
  "pages": 4,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 981,
   "contacted": 1717,
@@ -96,6 +96,13 @@
    "page": 2
   },
   {
+   "label_raw": "מפלגה בראשות עופר וינטר",
+   "party_id": "amcha",
+   "seats": 4,
+   "pct": 3.9,
+   "page": 2
+  },
+  {
    "label_raw": "הציונות הדתית בראשות בצלאל סמוטריץ '",
    "party_id": "rzp",
    "seats": 4,
@@ -117,18 +124,12 @@
    "page": 2
   }
  ],
- "seat_sum": 116,
+ "seat_sum": 120,
  "scenario_tables": 0,
  "tables_found": 1,
  "field_date_listed": "2026-08-27",
  "field_date_pdf": "2026-08-27",
  "field_date_source": "listing",
- "qa_flags": [
-  {
-   "code": "seat_sum",
-   "level": "error",
-   "detail": "seats sum to 116, not 120"
-  }
- ],
- "status": "needs_review"
+ "qa_flags": [],
+ "status": "ok"
 }

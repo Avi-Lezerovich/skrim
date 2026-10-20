@@ -13,7 +13,7 @@
  "published_date": "2026-09-07",
  "pages": 7,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 508,
   "contacted": 2849,
@@ -31,6 +31,7 @@
  "field_date_listed": "2026-08-31",
  "field_date_pdf": null,
  "field_date_source": "listing",
+ "review_note": "Left in queue: sample of the religious-Zionist sector only (N=508/484); vote intention in raw % only, no seats.",
  "qa_flags": [
   {
    "code": "no_seat_table",

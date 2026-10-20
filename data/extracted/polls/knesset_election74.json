@@ -13,7 +13,7 @@
  "published_date": "2026-09-17",
  "pages": 4,
  "scanned": false,
- "method": "text-v1",
+ "method": "text-v2",
  "meta": {
   "respondents": 535,
   "contacted": null,
@@ -35,7 +35,7 @@
   {
    "label_raw": "הליכוד בראשות בנימין נתניה ו",
    "party_id": "likud",
-   "seats": 21,
+   "seats": 18,
    "pct": 14.0,
    "page": 3
   },
@@ -63,7 +63,7 @@
   {
    "label_raw": "הדמוקרטים בראשות יאיר גול ן",
    "party_id": "democrats",
-   "seats": 11,
+   "seats": 9,
    "pct": 6.0,
    "page": 3
   },
@@ -77,28 +77,42 @@
   {
    "label_raw": "ישראל ביתנו בראשות אביגדור ליברמ ן",
    "party_id": "yisrael_beytenu",
-   "seats": 8,
+   "seats": 7,
    "pct": 5.0,
    "page": 3
   },
   {
    "label_raw": "הרשימה המשותפת בראשות פרופ' יוסף",
    "party_id": "hadash_taal_balad",
-   "seats": 7,
+   "seats": 6,
    "pct": 5.0,
    "page": 3
   },
   {
    "label_raw": "רע \" מ בראשות מנסור עבאס",
    "party_id": "raam",
-   "seats": 4,
+   "seats": 5,
+   "pct": 4.0,
+   "page": 3
+  },
+  {
+   "label_raw": "הציונות הדתי ת + זהות, בראשות בצלאל",
+   "party_id": "rzp",
+   "seats": 5,
    "pct": 4.0,
    "page": 3
   },
   {
    "label_raw": "עמך ישראל בראשות עופר וינט ר",
    "party_id": "amcha",
-   "seats": 7,
+   "seats": 4,
+   "pct": 3.0,
+   "page": 3
+  },
+  {
+   "label_raw": "המילואימניקים והכלכלית בראשו ת",
+   "party_id": "reservists",
+   "seats": 4,
    "pct": 3.0,
    "page": 3
   },
@@ -110,32 +124,18 @@
    "page": 3
   },
   {
-   "label_raw": "המילואימניקים והכלכלית: 4 מנדטי ם",
-   "party_id": "reservists",
-   "seats": null,
-   "pct": null,
-   "page": 4
+   "label_raw": "מפלגות אחרות",
+   "party_id": "other",
+   "seats": 1,
+   "pct": 2.8,
+   "page": 3
   },
   {
-   "label_raw": "ישראל תחילה בראשות שרן השכ ל",
-   "party_id": "israel_first",
+   "label_raw": "לא יודע/ ת",
+   "party_id": "undecided",
    "seats": null,
-   "pct": 0.2,
-   "page": 4
-  },
-  {
-   "label_raw": "\"הציבור החרדי\" בראשות מוטי לייטנ ר",
-   "party_id": "haredi_public",
-   "seats": null,
-   "pct": 1.2,
-   "page": 4
-  },
-  {
-   "label_raw": "נעם לישרא ל",
-   "party_id": "noam",
-   "seats": null,
-   "pct": 0.2,
-   "page": 4
+   "pct": 7.0,
+   "page": 3
   }
  ],
  "seat_sum": 120,
@@ -148,7 +148,7 @@
   {
    "code": "seats_below_threshold",
    "level": "info",
-   "detail": "seats given while raw % < 3.25: amcha"
+   "detail": "seats given while raw % < 3.25: amcha, reservists"
   }
  ],
  "status": "ok"
