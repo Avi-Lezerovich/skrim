@@ -1,0 +1,79 @@
+---
+// G6 — this poll against the average on its field date: ○ average (with the spread band),
+// ● this poll, and the difference written at the end. HTML rather than Plot: the poll page
+// needs no chart library, and the rows are their own text alternative.
+import Num from "../data/Num.astro";
+import { average, fmtDate, partyName, parties, type Poll } from "../../lib/data";
+import { fmtNum } from "../../lib/format";
+
+interface Props {
+  poll: Poll;
+}
+const { poll } = Astro.props;
+const day = poll.field_date ? average.parties.find((d) => d.date === poll.field_date) : undefined;
+const rows = day
+  ? Object.entries(day.values)
+      .filter(([id, v]) => v.mean >= 0.5 || (poll.seats[id] ?? 0) > 0)
+      .map(([id, v]) => {
+        const seats = poll.seats[id] ?? 0; // a party the poll did not show counts as 0, as in the average
+        return { id, name: partyName(id), color: parties[id]?.color ?? "transparent", seats, mean: v.mean, lo: Math.max(0, v.mean - v.sd), hi: v.mean + v.sd, diff: seats - v.mean };
+      })
+      .sort((a, b) => b.mean - a.mean || a.name.localeCompare(b.name, "he"))
+  : [];
+const max = Math.max(1, ...rows.flatMap((r) => [r.seats, r.hi])) * 1.04;
+const pct = (v: number) => `${((100 * v) / max).toFixed(2)}%`;
+const big = [...rows].filter((r) => Math.abs(Math.round(r.diff)) >= 1).sort((a, b) => Math.abs(b.diff) - Math.abs(a.diff)).slice(0, 3);
+const summary = !rows.length
+  ? ""
+  : big.length
+    ? `ההפרשים הגדולים ביותר מהממוצע באותו יום: ${big.map((r) => `${r.name} ${fmtNum(Math.round(r.diff), "signed", { digits: 0 })}`).join(", ")}.`
+    : "כל המפלגות בסקר נמצאות פחות ממנדט אחד מהממוצע באותו יום.";
+---
+
+{
+  rows.length > 0 && (
+    <figure class="pva card" id="poll-vs-average">
+      <figcaption>
+        <h2 class="chart-title">הסקר מול הממוצע באותו יום</h2>
+        <p class="chart-summary">{summary}</p>
+      </figcaption>
+      <p class="legend-key small">
+        <span><span class="pva-key pva-key-avg" aria-hidden="true" />ממוצע הסקרים ב-{fmtDate(day!.date)}</span>
+        <span><span class="pva-key pva-key-band" aria-hidden="true" />פיזור בין הסוקרים</span>
+        <span><span class="pva-key pva-key-poll" aria-hidden="true" />הסקר הזה</span>
+      </p>
+      <ol class="pva-rows">
+        {rows.map((r) => {
+          const [a, b] = r.seats < r.mean ? [r.seats, r.mean] : [r.mean, r.seats];
+          return (
+            <li class="pva-row">
+              <span class="pva-name">
+                <i class="swatch" style={`background: ${r.color}`} />
+                {r.name}
+              </span>
+              <span class="pva-track" aria-hidden="true">
+                <span class="pva-band" style={`inset-inline-start: ${pct(r.lo)}; width: calc(${pct(r.hi)} - ${pct(r.lo)})`} />
+                <span class="pva-link" style={`inset-inline-start: ${pct(a)}; width: calc(${pct(b)} - ${pct(a)})`} />
+                <span class="pva-dot pva-avg" style={`inset-inline-start: ${pct(r.mean)}`} />
+                <span class="pva-dot pva-poll" style={`inset-inline-start: ${pct(r.seats)}`} />
+              </span>
+              <span class="pva-val">
+                <strong><Num value={r.seats} /></strong>
+                <span class="muted">
+                  ממוצע <Num value={r.mean} />
+                </span>
+                <span class="pva-diff">
+                  <Num kind="signed" value={Math.round(r.diff)} digits={0} />
+                </span>
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+      <p class="small muted">
+        הממוצע של אותו יום כולל את הסקר הזה ואת הסקר האחרון של כל סוקר אחר מ-{average.window_days} הימים שקדמו לו.
+        מפלגה שהסקר לא הציג נספרת כ-0, כמו בממוצע.
+      </p>
+    </figure>
+  )
+}

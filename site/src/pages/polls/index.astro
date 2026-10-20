@@ -1,121 +1,276 @@
 ---
 import Base from "../../layouts/Base.astro";
+import FlagBadge from "../../components/data/FlagBadge.astro";
+import Num from "../../components/data/Num.astro";
+import PollCard from "../../components/summary/PollCard.astro";
 import {
-  BLOC_NAMES,
-  MODE_NAMES,
+  BLOC_SHORT,
   fmtDate,
-  fmtInt,
+  okPolls,
   partyName,
   pollsterName,
   polls,
   sponsorName,
   trendParties,
+  type Poll,
 } from "../../lib/data";
 
 const cols = trendParties.slice(0, 14);
+const blocs = ["coalition", "opposition", "arab"] as const;
 const opts = (pairs: [string, string][]) =>
   [...new Map(pairs).entries()].sort((a, b) => a[1].localeCompare(b[1], "he"));
 const pollsterOpts = opts(polls.map((p) => [p.pollster ?? "", pollsterName(p.pollster, p.pollster_raw)]));
 const sponsorOpts = opts(polls.map((p) => [p.sponsor ?? "", sponsorName(p.sponsor, p.sponsor_raw)]));
-const review = polls.filter((p) => p.status !== "ok").length;
+const review = polls.length - okPolls.length;
+const notes = (p: Poll) => p.flags.filter((f) => f.level !== "error");
+const sortOptions = [
+  ["date:desc", "תאריך ביצוע, מהחדש"],
+  ["date:asc", "תאריך ביצוע, מהישן"],
+  ["transfer:desc", "תאריך העברה לוועדה, מהחדש"],
+  ["pollster:asc", "סוקר (א–ת)"],
+  ["sponsor:asc", "מזמין (א–ת)"],
+  ["n:desc", "מספר משיבים, מהגדול"],
+];
 ---
 
-<Base title="כל הסקרים" description="כל סקרי הבחירות לכנסת ה-26 שהוגשו לוועדת הבחירות, עם סינון וייצוא">
-  <h1>כל הסקרים</h1>
-  <p class="lead">
-    {polls.length} סקרים שהוגשו לוועדת הבחירות המרכזית. {review} מהם ממתינים לבדיקה ידנית ואינם נכללים בממוצע.
-    לחיצה על תאריך פותחת את דף הסקר עם הקישור לדיווח המקורי.
-  </p>
+<Base title="כל הסקרים" description="כל סקרי הבחירות לכנסת ה-26 שהוגשו לוועדת הבחירות, עם סינון, מיון והורדה">
+  <header class="page-head">
+    <h1>כל הסקרים</h1>
+    <p class="page-meta">
+      {polls.length} סקרים שהוגשו לוועדה · {okPolls.length} בממוצע · {review} ממתינים לבדיקה ידנית
+    </p>
+    <p class="page-note">
+      כל סקר מקושר לדף משלו ולדיווח המקורי (PDF) בוועדת הבחירות. סקר שממתין לבדיקה מוצג באפור ואינו נכלל
+      בממוצע.
+    </p>
+  </header>
 
-  <div class="filters" role="search">
+  <form class="filters" id="poll-filters" role="search" aria-label="סינון ומיון הסקרים">
     <label>סוקר
-      <select id="f-pollster"><option value="">הכל</option>{pollsterOpts.map(([v, l]) => <option value={v}>{l}</option>)}</select>
+      <select name="pollster"><option value="">הכול</option>{pollsterOpts.map(([v, l]) => <option value={v}>{l}</option>)}</select>
     </label>
     <label>מזמין
-      <select id="f-sponsor"><option value="">הכל</option>{sponsorOpts.map(([v, l]) => <option value={v}>{l}</option>)}</select>
+      <select name="sponsor"><option value="">הכול</option>{sponsorOpts.map(([v, l]) => <option value={v}>{l}</option>)}</select>
     </label>
-    <label>מתאריך <input type="date" id="f-from" /></label>
-    <label>עד תאריך <input type="date" id="f-to" /></label>
-    <button type="button" id="f-csv">ייצוא CSV</button>
-    <span class="small muted" id="f-count" aria-live="polite"></span>
+    <label>מתאריך ביצוע <input type="date" name="from" /></label>
+    <label>עד תאריך <input type="date" name="to" /></label>
+    <label>סטטוס
+      <select name="status">
+        <option value="">הכול</option>
+        <option value="ok">בממוצע</option>
+        <option value="review">ממתינים לבדיקה</option>
+      </select>
+    </label>
+    <label>מיון
+      <select name="sort">
+        {sortOptions.map(([v, l]) => <option value={v}>{l}</option>)}
+        <option value="" hidden>לפי עמודה בטבלה</option>
+      </select>
+    </label>
+    <button type="reset">נקה סינון</button>
+  </form>
+
+  <div class="list-bar">
+    <p class="filter-count" id="f-count" aria-live="polite">{polls.length} סקרים</p>
+    <p class="downloads">
+      <span>הורדה:</span>
+      <a href="/data/polls.csv" download="knesset26-polls.csv">כל הסקרים (CSV)</a>
+      <button type="button" class="link-btn" id="csv-filtered">הסינון הנוכחי (CSV)</button>
+      <a href="/data/answers.csv" download="knesset26-answers.csv">מפלגה × סקר (CSV)</a>
+    </p>
   </div>
 
-  <div class="table-wrap">
-    <table id="polls-table">
+  <div class="empty-state" id="f-empty" hidden>
+    <p>אין סקרים שמתאימים לסינון.</p>
+    <button type="button" id="f-empty-clear">נקה סינון</button>
+  </div>
+
+  <div class="table-wrap tall polls-table-wrap" tabindex="0" role="region" aria-label="טבלת הסקרים">
+    <table id="polls-table" class="polls-table">
+      <caption class="sr-only">כל הסקרים. הכפתורים בכותרות העמודות ממיינים את הטבלה.</caption>
       <thead>
         <tr>
-          <th>תאריך ביצוע</th>
-          <th>סוקר</th>
-          <th>מזמין</th>
-          <th class="num">משיבים</th>
-          <th>שיטה</th>
-          <th class="num">{BLOC_NAMES.coalition}</th>
-          <th class="num">{BLOC_NAMES.opposition}</th>
-          <th class="num">{BLOC_NAMES.arab}</th>
-          {cols.map((id) => <th class="num">{partyName(id)}</th>)}
+          <th scope="col" data-col="date" aria-sort="descending"><button type="button">תאריך ביצוע<span class="sort-ind" aria-hidden="true"></span></button></th>
+          <th scope="col" data-col="pollster"><button type="button">סוקר<span class="sort-ind" aria-hidden="true"></span></button></th>
+          <th scope="col" data-col="sponsor"><button type="button">מזמין<span class="sort-ind" aria-hidden="true"></span></button></th>
+          <th scope="col" data-col="transfer"><button type="button">הועבר לוועדה<span class="sort-ind" aria-hidden="true"></span></button></th>
+          <th scope="col" data-col="n" class="num"><button type="button">משיבים<span class="sort-ind" aria-hidden="true"></span></button></th>
+          {blocs.map((b) => <th scope="col" data-col={b} class="num bloc-col"><button type="button">{BLOC_SHORT[b]}<span class="sort-ind" aria-hidden="true"></span></button></th>)}
+          {cols.map((id) => <th scope="col" data-col={`party:${id}`} class="num"><button type="button">{partyName(id)}<span class="sort-ind" aria-hidden="true"></span></button></th>)}
+          <th scope="col">דגלים</th>
+          <th scope="col">מקור</th>
         </tr>
       </thead>
       <tbody>
         {
-          polls.map((p) => (
-            <tr data-pollster={p.pollster ?? ""} data-sponsor={p.sponsor ?? ""} data-date={p.field_date ?? ""} data-key={p.key}>
-              <td>
-                <a href={`/polls/${p.key}`}>{fmtDate(p.field_date)}</a>
-                {p.status !== "ok" && <span class="badge review">בבדיקה</span>}
-              </td>
-              <td>{pollsterName(p.pollster, p.pollster_raw)}</td>
-              <td>{sponsorName(p.sponsor, p.sponsor_raw)}</td>
-              <td class="num">{fmtInt(p.meta.respondents)}</td>
-              <td>{p.meta.mode ? MODE_NAMES[p.meta.mode] : "—"}</td>
-              <td class="num">{p.blocs?.coalition ?? "—"}</td>
-              <td class="num">{p.blocs?.opposition ?? "—"}</td>
-              <td class="num">{p.blocs?.arab ?? "—"}</td>
-              {cols.map((id) => <td class="num">{p.status === "ok" ? (p.seats[id] ?? "—") : "—"}</td>)}
-            </tr>
-          ))
+          polls.map((p) => {
+            const isReview = p.status !== "ok";
+            const pollster = pollsterName(p.pollster, p.pollster_raw);
+            return (
+              <tr
+                class:list={{ "is-review": isReview }}
+                data-key={p.key}
+                data-pollster={p.pollster ?? ""}
+                data-sponsor={p.sponsor ?? ""}
+                data-date={p.field_date ?? ""}
+                data-status={isReview ? "review" : "ok"}
+              >
+                <td data-v={p.field_date ?? ""}>
+                  <a href={`/polls/${p.key}`}>{fmtDate(p.field_date)}</a>
+                  {isReview && <FlagBadge level="review" />}
+                </td>
+                <td data-v={pollster}>{pollster}</td>
+                <td data-v={sponsorName(p.sponsor, p.sponsor_raw)}>{sponsorName(p.sponsor, p.sponsor_raw)}</td>
+                <td data-v={p.transfer_date ?? ""}>{fmtDate(p.transfer_date)}</td>
+                <td class="num" data-v={p.meta.respondents ?? ""}><Num value={p.meta.respondents} kind="int" missing="לא אותר בחילוץ" /></td>
+                {blocs.map((b) => (
+                  <td class="num bloc-col" data-v={p.blocs?.[b] ?? ""}>
+                    <Num value={p.blocs?.[b]} missing={isReview ? "לא בממוצע — ממתין לבדיקה" : "לא דווח"} />
+                  </td>
+                ))}
+                {cols.map((id) => (
+                  <td class="num" data-v={p.seats[id] ?? ""}>
+                    <Num value={p.seats[id]} missing={isReview ? "לא בממוצע — ממתין לבדיקה" : "המפלגה לא הופיעה בסקר"} />
+                  </td>
+                ))}
+                <td>
+                  {!isReview && (
+                    <FlagBadge level={notes(p).some((f) => f.level === "warn") ? "warn" : "info"} count={notes(p).length} />
+                  )}
+                </td>
+                <td>
+                  <a href={p.source_url}>
+                    PDF<span class="sr-only"> — הדיווח של {pollster} מ-{fmtDate(p.field_date)}</span>
+                    <span aria-hidden="true"> ↗</span>
+                  </a>
+                </td>
+              </tr>
+            );
+          })
         }
       </tbody>
     </table>
   </div>
+
+  <ol class="poll-card-list" id="poll-cards">
+    {
+      polls.map((p) => (
+        <li data-key={p.key}>
+          <PollCard poll={p} heading="h2" />
+        </li>
+      ))
+    }
+  </ol>
 </Base>
 
 <script>
-  const $ = <T extends HTMLElement>(id: string) => document.getElementById(id) as T;
-  const table = $("polls-table") as HTMLTableElement;
-  const rows = [...table.tBodies[0].rows];
-  const pollster = $<HTMLSelectElement>("f-pollster");
-  const sponsor = $<HTMLSelectElement>("f-sponsor");
-  const from = $<HTMLInputElement>("f-from");
-  const to = $<HTMLInputElement>("f-to");
-  const count = $("f-count");
+  const form = document.getElementById("poll-filters") as HTMLFormElement;
+  const table = document.getElementById("polls-table") as HTMLTableElement;
+  const tbody = table.tBodies[0];
+  const rows = [...tbody.rows];
+  const cardList = document.getElementById("poll-cards")!;
+  const cards = new Map([...cardList.children].map((li) => [(li as HTMLElement).dataset.key!, li]));
+  const heads = [...table.tHead!.rows[0].cells];
+  const count = document.getElementById("f-count")!;
+  const empty = document.getElementById("f-empty")!;
+  const field = (name: string) => form.elements.namedItem(name) as HTMLInputElement | HTMLSelectElement;
+  const FILTERS = ["pollster", "sponsor", "from", "to", "status"];
+
+  let sort = { col: "date", dir: "desc" as "asc" | "desc" };
+
+  // Restore filters and sort from the URL, so a filtered view can be shared.
+  const params = new URLSearchParams(location.search);
+  for (const name of FILTERS) if (params.has(name)) field(name).value = params.get(name)!;
+  const s = params.get("sort")?.split(":");
+  if (s && heads.some((h) => h.dataset.col === s[0])) sort = { col: s[0], dir: s[1] === "asc" ? "asc" : "desc" };
+
+  const cellValue = (r: HTMLTableRowElement, i: number) => r.cells[i].dataset.v ?? "";
+
+  function sortRows(list: HTMLTableRowElement[]) {
+    const i = heads.findIndex((h) => h.dataset.col === sort.col);
+    const sign = sort.dir === "asc" ? 1 : -1;
+    return list.sort((a, b) => {
+      const x = cellValue(a, i), y = cellValue(b, i);
+      if (x === "" || y === "") return x === y ? 0 : x === "" ? 1 : -1; // missing values last
+      const nx = Number(x), ny = Number(y);
+      const c = Number.isFinite(nx) && Number.isFinite(ny) ? nx - ny : x.localeCompare(y, "he");
+      return c * sign || cellValue(b, 0).localeCompare(cellValue(a, 0));
+    });
+  }
 
   function apply() {
+    const v = Object.fromEntries(FILTERS.map((n) => [n, field(n).value]));
     let shown = 0;
     for (const r of rows) {
       const d = r.dataset;
       const ok =
-        (!pollster.value || d.pollster === pollster.value) &&
-        (!sponsor.value || d.sponsor === sponsor.value) &&
-        (!from.value || (d.date ?? "") >= from.value) &&
-        (!to.value || (d.date ?? "") <= to.value);
+        (!v.pollster || d.pollster === v.pollster) &&
+        (!v.sponsor || d.sponsor === v.sponsor) &&
+        (!v.from || (d.date ?? "") >= v.from) &&
+        (!v.to || (d.date ?? "") <= v.to) &&
+        (!v.status || d.status === v.status);
       r.hidden = !ok;
+      (cards.get(d.key!) as HTMLElement).hidden = !ok;
       if (ok) shown++;
     }
-    count.textContent = `${shown} סקרים`;
+    for (const r of sortRows(rows)) {
+      tbody.append(r);
+      cardList.append(cards.get(r.dataset.key!)!);
+    }
+    for (const h of heads) {
+      if (!h.dataset.col) continue;
+      if (h.dataset.col === sort.col) h.setAttribute("aria-sort", sort.dir === "asc" ? "ascending" : "descending");
+      else h.removeAttribute("aria-sort");
+    }
+    const key = `${sort.col}:${sort.dir}`;
+    const sel = field("sort") as HTMLSelectElement;
+    sel.value = [...sel.options].some((o) => o.value === key) ? key : "";
+    count.textContent = shown === rows.length ? `${shown} סקרים` : `מוצגים ${shown} מתוך ${rows.length} סקרים`;
+    empty.hidden = shown > 0;
+
+    const q = new URLSearchParams();
+    for (const n of FILTERS) if (v[n]) q.set(n, v[n]);
+    if (key !== "date:desc") q.set("sort", key);
+    const qs = q.toString();
+    history.replaceState(null, "", qs ? `?${qs}` : location.pathname);
   }
-  [pollster, sponsor, from, to].forEach((el) => el.addEventListener("input", apply));
+
+  form.addEventListener("submit", (e) => e.preventDefault());
+  form.addEventListener("input", (e) => {
+    const t = e.target as HTMLElement;
+    if (t === field("sort")) {
+      const [col, dir] = field("sort").value.split(":");
+      if (col) sort = { col, dir: dir as "asc" | "desc" };
+    }
+    apply();
+  });
+  form.addEventListener("reset", () => {
+    sort = { col: "date", dir: "desc" };
+    setTimeout(apply); // after the browser has cleared the fields
+  });
+  document.getElementById("f-empty-clear")!.addEventListener("click", () => form.reset());
+  for (const h of heads) {
+    h.querySelector("button")?.addEventListener("click", () => {
+      const col = h.dataset.col!;
+      // Dates and numbers start newest/largest first; names start alphabetically.
+      const first = /^(pollster|sponsor)$/.test(col) ? "asc" : "desc";
+      sort = { col, dir: sort.col === col ? (sort.dir === "asc" ? "desc" : "asc") : first };
+      apply();
+    });
+  }
   apply();
 
-  $("f-csv").addEventListener("click", () => {
-    const esc = (s: string) => (/[",\n]/.test(s) ? `"${s.replace(/"/g, '""')}"` : s);
-    const head = [...table.tHead!.rows[0].cells].map((c) => c.textContent!.trim());
-    const lines = [["key", "date", ...head.slice(1)].map(esc).join(",")];
-    for (const r of rows.filter((r) => !r.hidden)) {
-      const cells = [...r.cells].map((c) => c.textContent!.replace("בבדיקה", "").trim().replace(/^—$/, ""));
-      lines.push([r.dataset.key!, r.dataset.date!, ...cells.slice(1)].map(esc).join(","));
-    }
-    const blob = new Blob(["﻿" + lines.join("\n")], { type: "text/csv;charset=utf-8" });
-    const a = Object.assign(document.createElement("a"), { href: URL.createObjectURL(blob), download: "knesset26-polls.csv" });
+  // Download the rows currently shown, in the current order, from the full static CSV.
+  document.getElementById("csv-filtered")!.addEventListener("click", async () => {
+    const text = await (await fetch("/data/polls.csv")).text();
+    const [head, ...lines] = text.replace(/^﻿/, "").split("\r\n").filter(Boolean);
+    const byKey = new Map(lines.map((l) => [l.slice(0, l.indexOf(",")), l]));
+    const keys = rows.filter((r) => !r.hidden).map((r) => r.dataset.key!);
+    const body = "﻿" + [head, ...keys.map((k) => byKey.get(k)!)].join("\r\n") + "\r\n";
+    const a = Object.assign(document.createElement("a"), {
+      href: URL.createObjectURL(new Blob([body], { type: "text/csv;charset=utf-8" })),
+      download: "knesset26-polls-filtered.csv",
+    });
     a.click();
     URL.revokeObjectURL(a.href);
   });

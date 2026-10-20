@@ -7,6 +7,7 @@ import pollstersJson from "../data/pollsters.json";
 import sponsorsJson from "../data/sponsors.json";
 import metaJson from "../data/meta.json";
 import type { BlocData, BlocDay } from "../charts/readout";
+import { ltr } from "./format";
 
 export type Flag = { code: string; level: "error" | "warn" | "info"; detail: string };
 export type Row = {
@@ -143,53 +144,91 @@ export const trendParties = (() => {
 
 export const MODE_NAMES = { online: "אינטרנט", phone: "טלפון", mixed: "משולב" } as const;
 
-/** Plain-language explanation of each QA flag, with the innocent reading next to it. */
-export const FLAG_TEXT: Record<string, { title: string; why: string }> = {
+/**
+ * Wording for each QA flag (FRONTEND_PLAN §4): a factual title whose subject is the data, the
+ * innocent reading ("הסבר אפשרי"), and what we did about it. Never "חשוד", "מניפולציה",
+ * "זיוף" or "בעייתי". `title` may use the poll's own numbers.
+ */
+export const FLAG_TEXT: Record<string, { title: string | ((p: Poll, f: Flag) => string); why: string; did?: string }> = {
   seat_sum: {
-    title: "סכום המנדטים שחולץ אינו 120",
-    why: "כמעט תמיד שגיאת חילוץ שלנו מטבלה בפורמט חריג. הסקר ממתין לבדיקה ידנית ואינו נכלל בממוצע.",
+    title: (_, f) => {
+      const n = f.detail.match(/\d+/)?.[0];
+      return n ? `סכום המנדטים שחולצו הוא ${n}, לא 120` : "סכום המנדטים שחולצו אינו 120";
+    },
+    why: "כמעט תמיד שגיאת חילוץ שלנו בטבלה בפורמט חריג.",
   },
   no_seat_table: {
-    title: "לא אותרה טבלת מנדטים",
-    why: "הדיווח בפורמט שהחילוץ האוטומטי לא מזהה, או שהסקר לא כלל חלוקת מנדטים. ממתין לבדיקה ידנית.",
+    title: "לא אותרה טבלת מנדטים בחילוץ",
+    why: "הדיווח בפורמט שהחילוץ האוטומטי לא מזהה, או שהסקר לא כלל חלוקת מנדטים.",
   },
   duplicate_party: {
-    title: "מפלגה מופיעה פעמיים",
+    title: "מפלגה מופיעה פעמיים בטבלה שחולצה",
     why: "בדרך כלל שתי טבלאות שחוברו בטעות בחילוץ.",
   },
   seats_below_threshold: {
-    title: "מנדטים למפלגה שאחוז התמיכה הגולמי שלה מתחת ל-3.25%",
+    title: (_, f) => {
+      const ids = f.detail.split(":")[1]?.split(",").map((s) => partyName(s.trim())) ?? [];
+      return `מנדטים למפלגה שאחוז התמיכה הגולמי שלה בדיווח מתחת ל-3.25%${ids.length ? `: ${ids.join(", ")}` : ""}`;
+    },
     why: "האחוז הגולמי אינו משוקלל; אחרי שקלול המפלגה יכולה לעבור את אחוז החסימה.",
   },
   no_respondents: {
-    title: "מספר המשיבים לא אותר בדיווח",
-    why: "ייתכן שהוא מופיע בניסוח שהחילוץ לא מזהה.",
+    title: "מספר המשיבים לא אותר בחילוץ",
+    why: "ייתכן שהוא מופיע בדיווח בניסוח שהחילוץ לא מזהה.",
   },
   respondents_gt_contacted: {
-    title: "יותר משיבים מפניות",
-    why: "בדרך כלל דיווח נפרד לכמה תת-מדגמים, שהחילוץ קרא חלקית.",
+    title: "מספר המשיבים שחולץ גדול ממספר הפניות",
+    why: "בדרך כלל הדיווח מפרט כמה תת-מדגמים, והחילוץ קרא רק חלק מהם.",
   },
   response_rate_mismatch: {
-    title: "שיעור ההיענות המדווח שונה ממשיבים ÷ פניות",
-    why: "סוקרים מגדירים היענות בדרכים שונות (למשל כולל מי שהתחיל ולא סיים).",
+    title: (p) => {
+      const { response_rate: rr, respondents: n, contacted: c } = p.meta;
+      return rr != null && n && c
+        ? `שיעור ההיענות המדווח (${ltr(`${rr}%`)}) שונה ממשיבים חלקי פניות (${ltr(`${((100 * n) / c).toFixed(1)}%`)})`
+        : "שיעור ההיענות המדווח שונה ממשיבים חלקי פניות";
+    },
+    why: "סוקרים מגדירים היענות בדרכים שונות, למשל כולל מי שהתחיל את הסקר ולא סיים.",
   },
   moe_mismatch: {
-    title: "טעות הדגימה המדווחת שונה מהמחושבת לפי n",
-    why: "השקלול מגדיל את טעות הדגימה בפועל (design effect), ולכן דיווח שמרני הוא סביר.",
+    title: (p) => {
+      const { moe_reported: r, moe_computed: c } = p.meta;
+      return r != null && c != null
+        ? `טעות הדגימה המדווחת (${ltr(`±${r}%`)}) שונה מהמחושבת לפי מספר המשיבים (${ltr(`±${c.toFixed(1)}%`)})`
+        : "טעות הדגימה המדווחת שונה מהמחושבת לפי מספר המשיבים";
+    },
+    why: "שקלול מגדיל את טעות הדגימה בפועל, ולכן דיווח שמרני הוא סביר.",
   },
   field_after_transfer: {
-    title: "תאריך הביצוע מאוחר מתאריך ההעברה לוועדה",
-    why: "טעות הקלדה ברשימת הוועדה.",
+    title: "תאריך הביצוע ברשימת הוועדה מאוחר מתאריך ההעברה לוועדה",
+    why: "ככל הנראה טעות הקלדה ברשימה.",
   },
   field_date_corrected: {
-    title: "תאריך הביצוע תוקן לפי ה-PDF",
-    why: "ברשימת הוועדה הופיע תאריך מאוחר ממועד ההעברה, שאינו אפשרי; השתמשנו בתאריך המודפס בדיווח.",
+    title: (_, f) => {
+      const [listed, transfer] = f.detail.match(/\d{4}-\d{2}-\d{2}/g) ?? [];
+      return listed && transfer
+        ? `תאריך הביצוע ברשימת הוועדה (${fmtDate(listed)}) מאוחר ממועד ההעברה (${fmtDate(transfer)})`
+        : "תאריך הביצוע ברשימת הוועדה מאוחר ממועד ההעברה";
+    },
+    why: "ככל הנראה טעות הקלדה ברשימה.",
+    did: "השתמשנו בתאריך הביצוע המודפס בדיווח עצמו.",
   },
   scanned: {
-    title: "קובץ סרוק",
-    why: "מעט טקסט ניתן לחילוץ; הנתונים דורשים בדיקה מול המקור.",
+    title: "הדיווח הוא קובץ סרוק",
+    why: "בקובץ סרוק יש מעט טקסט שאפשר לחלץ, ולכן הנתונים דורשים בדיקה מול המקור.",
   },
 };
+
+/** Title, innocent reading and action for one flag on one poll. */
+export function flagText(p: Poll, f: Flag) {
+  const t = FLAG_TEXT[f.code];
+  const title = typeof t?.title === "function" ? t.title(p, f) : (t?.title ?? f.code);
+  const did =
+    t?.did ??
+    (f.level === "error"
+      ? "הסקר אינו נכלל בממוצע עד שייבדק ידנית מול ה-PDF."
+      : "אין השפעה על הממוצע. הדגל מוצג לשקיפות בלבד.");
+  return { title, why: t?.why ?? "", did };
+}
 
 // ---- chart payloads (serialised into the page, rendered client-side) ----
 
