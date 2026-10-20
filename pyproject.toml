@@ -4,7 +4,9 @@ version = "0.1.0"
 description = "Open database and analysis of Israeli Knesset-26 election polls filed with the Central Elections Committee"
 readme = "README.md"
 requires-python = ">=3.12"
-dependencies = []
+dependencies = [
+    "curl-cffi>=0.7",
+]
 
 [dependency-groups]
 dev = ["pytest>=8", "ruff>=0.6"]
