@@ -113,6 +113,7 @@ main { padding-block: var(--s-5) var(--s-7); }
 /* footer */
 .site-footer { border-top: var(--border); padding-block: var(--s-5); color: var(--muted); font-size: var(--text-sm); line-height: var(--lh-sm); }
 .site-footer p { max-width: var(--prose-max); }
+.footer-name { color: var(--ink-2); font-weight: var(--w-label); }
 .footer-links { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-2) var(--s-5); }
 
 .swatch { width: 10px; height: 10px; border-radius: 2px; display: inline-block; flex: none; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 25%, transparent); }
