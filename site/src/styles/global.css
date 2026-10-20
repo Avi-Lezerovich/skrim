@@ -463,13 +463,27 @@ details.method-note p { margin: var(--s-1) 0 var(--s-2); max-width: var(--prose-
 .chart-title { margin: 0 0 var(--s-1); }
 .chart-summary { color: var(--ink-2); margin: 0; max-width: var(--prose-max); }
 .chart-readout {
-  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s-4);
+  display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s-3);
   margin: 0 0 var(--s-2); padding-block: var(--s-2); border-block: var(--border);
   font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--ink-2);
   /* room for the longest readout, so moving along the chart never shifts the page */
-  min-height: calc(4 * var(--lh-sm) + 2 * var(--s-2) + 2px);
+  min-height: calc(3 * var(--lh-sm) + 2 * var(--s-2) + 2px);
 }
+.chart-readout .ro-head, .chart-readout .ro-items { display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 var(--s-3); flex-basis: 100%; }
+.chart-readout .ro-src { margin-inline-start: auto; display: inline-flex; align-items: center; min-height: 24px; }
 @media (min-width: 768px) { .chart-readout { min-height: calc(2 * var(--lh-sm) + 2 * var(--s-2) + 2px); } }
+/* phones: read the chart first, then the key */
+.chart-frame { display: flex; flex-direction: column; }
+.chart-frame > figcaption { order: 1; }
+.chart-frame > .chart-readout { order: 2; }
+.chart-frame > .chart-box { order: 3; }
+.chart-frame > .chart-legend { order: 4; margin-top: var(--s-3); }
+.chart-frame > * { order: 5; }
+@media (min-width: 768px) {
+  .chart-frame > .chart-legend { order: 2; margin-top: 0; }
+  .chart-frame > .chart-readout { order: 3; }
+  .chart-frame > .chart-box { order: 4; }
+}
 .chart-readout .ro-date { color: var(--ink); }
 .chart-readout .ro-item { display: inline-flex; align-items: center; gap: 6px; }
 .chart-readout strong { color: var(--ink); }

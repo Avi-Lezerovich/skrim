@@ -98,6 +98,14 @@ test("chart readout follows the arrow keys @desktop", async ({ page }) => {
   await expect(date).toHaveText(latest!);
 });
 
+test("chart readout links to the polls behind the day @mobile", async ({ page }) => {
+  await page.goto("/");
+  const link = page.locator("#bloc-chart .ro-src");
+  await expect(link).toHaveAttribute("href", /\/polls\?from=\d{4}-\d\d-\d\d&to=\d{4}-\d\d-\d\d&status=ok/);
+  await link.click();
+  await expect(page.locator("#f-count")).toContainText("מוצגים");
+});
+
 test("theme switch persists across pages @desktop", async ({ page }) => {
   await page.goto("/");
   const toggle = page.locator(".theme-toggle");

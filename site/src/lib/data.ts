@@ -268,6 +268,7 @@ export function blocChartData(): BlocData {
     names: BLOC_NAMES,
     short: BLOC_SHORT,
     tiny: { ...BLOC_SHORT, arab: "ערביות" },
+    window: average.window_days,
     days,
     dots: okPolls
       .filter((p) => p.blocs && p.field_date)

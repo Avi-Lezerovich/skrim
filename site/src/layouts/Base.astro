@@ -6,6 +6,8 @@ import "@fontsource/ibm-plex-sans-hebrew/400.css";
 import "@fontsource/ibm-plex-sans-hebrew/600.css";
 import "@fontsource/ibm-plex-sans-hebrew/700.css";
 import hebrew400 from "@fontsource/ibm-plex-sans-hebrew/files/ibm-plex-sans-hebrew-hebrew-400-normal.woff2?url";
+import hebrew600 from "@fontsource/ibm-plex-sans-hebrew/files/ibm-plex-sans-hebrew-hebrew-600-normal.woff2?url";
+import latin400 from "@fontsource/ibm-plex-sans-hebrew/files/ibm-plex-sans-hebrew-latin-400-normal.woff2?url";
 import "../styles/tokens.css";
 import "../styles/global.css";
 import DraftBanner from "../components/layout/DraftBanner.astro";
@@ -37,7 +39,9 @@ const draft = new Date() < EMBARGO_END;
     <link rel="manifest" href="/manifest.webmanifest" />
     <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
     <meta name="theme-color" content="#1a1a19" media="(prefers-color-scheme: dark)" />
-    <link rel="preload" href={hebrew400} as="font" type="font/woff2" crossorigin />
+    {/* body text, its digits (Latin file) and headings: the faces in the first screen, so the
+        swap from the fallback happens before the text above the charts settles (CLS) */}
+    {[hebrew400, latin400, hebrew600].map((href) => <link rel="preload" href={href} as="font" type="font/woff2" crossorigin />)}
     <script is:inline>
       // Apply a saved theme before first paint; the header switch writes it.
       try {
