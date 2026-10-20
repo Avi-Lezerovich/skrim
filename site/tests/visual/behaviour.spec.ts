@@ -142,8 +142,32 @@ test("unknown paths get the site's own 404 page @mobile", async ({ page }) => {
   await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
 });
 
-test("polls show as cards on phones @mobile", async ({ page }) => {
+test("polls list on phones: compact rows, paged, filters in a bottom sheet with chips @mobile", async ({ page }) => {
   await page.goto("/polls/");
   await expect(page.locator(".polls-table-wrap")).toBeHidden();
-  await expect(page.locator("#poll-cards > li")).toHaveCount(polls.length);
+  const rows = page.locator("#poll-compact tbody tr");
+  await expect(rows).toHaveCount(polls.length);
+  await expect(page.locator("#poll-compact tbody tr:visible")).toHaveCount(30);
+  await page.locator("#f-more").click();
+  await expect(page.locator("#poll-compact tbody tr:visible")).toHaveCount(Math.min(60, polls.length));
+
+  // no horizontal scroll in the list
+  const overflow = await page.locator(".polls-compact-wrap").evaluate((el) => el.scrollWidth - el.clientWidth);
+  expect(overflow).toBeLessThanOrEqual(0);
+
+  await page.getByRole("button", { name: /סינון ומיון/ }).click();
+  const sheet = page.getByRole("dialog", { name: "סינון ומיון" });
+  await expect(sheet).toBeVisible();
+  await sheet.locator("select[name=pollster]").selectOption("kantar");
+  await sheet.getByRole("button", { name: `הצגת ${kantar} סקרים` }).click();
+  await expect(sheet).toBeHidden();
+  await expect(page.locator("#f-count")).toHaveText(`מוצגים ${kantar} מתוך ${polls.length} סקרים`);
+  await expect(page.locator("#poll-compact tbody tr:visible")).toHaveCount(Math.min(30, kantar));
+
+  const chip = page.locator(".filter-chips .chip");
+  await expect(chip).toHaveCount(1);
+  await expect(chip).toContainText("סוקר");
+  await chip.click();
+  await expect(page.locator("#f-count")).toHaveText(`${polls.length} סקרים`);
+  await expect(page).toHaveURL(/\/polls\/$/);
 });

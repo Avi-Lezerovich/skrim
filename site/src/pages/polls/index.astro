@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import FlagBadge from "../../components/data/FlagBadge.astro";
 import Num from "../../components/data/Num.astro";
-import PollCard from "../../components/summary/PollCard.astro";
+import PollsCompact from "../../components/summary/PollsCompact.astro";
 import {
   BLOC_SHORT,
   fmtDate,
@@ -45,6 +45,16 @@ const sortOptions = [
     </p>
   </header>
 
+  {/* Phones: the form is a bottom sheet behind the sticky bar's button. From 768px (and
+      without JS) the same form sits inline above the table. */}
+  <dialog class="filter-sheet" id="filter-sheet" aria-labelledby="filter-sheet-title">
+  <div class="sheet-head">
+    <h2 id="filter-sheet-title">סינון ומיון</h2>
+    <button type="button" class="icon-btn" data-close>
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+      <span class="sr-only">סגירה</span>
+    </button>
+  </div>
   <form class="filters" id="poll-filters" role="search" aria-label="סינון ומיון הסקרים">
     <label>סוקר
       <select name="pollster"><option value="">הכול</option>{pollsterOpts.map(([v, l]) => <option value={v}>{l}</option>)}</select>
@@ -67,11 +77,22 @@ const sortOptions = [
         <option value="" hidden>לפי עמודה בטבלה</option>
       </select>
     </label>
-    <button type="reset">נקה סינון</button>
+    <div class="sheet-actions">
+      <button type="reset">נקה סינון</button>
+      <button type="button" class="btn-primary" data-close>הצגת <span class="sheet-n">{polls.length}</span> סקרים</button>
+    </div>
   </form>
+  </dialog>
 
-  <div class="list-bar">
+  <div class="filter-bar">
+    <button type="button" class="filter-open" aria-haspopup="dialog" aria-controls="filter-sheet">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 7h16M7 12h10M10 17h4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" /></svg>
+      סינון ומיון<span class="filter-n" hidden></span>
+    </button>
     <p class="filter-count" id="f-count" aria-live="polite">{polls.length} סקרים</p>
+    <ul class="filter-chips" aria-label="סינון פעיל"></ul>
+  </div>
+  <div class="list-bar">
     <p class="downloads">
       <span>הורדה:</span>
       <a href="/data/polls.csv" download="knesset26-polls.csv">כל הסקרים (CSV)</a>
@@ -152,15 +173,10 @@ const sortOptions = [
     </table>
   </div>
 
-  <ol class="poll-card-list" id="poll-cards">
-    {
-      polls.map((p) => (
-        <li data-key={p.key}>
-          <PollCard poll={p} heading="h2" />
-        </li>
-      ))
-    }
-  </ol>
+  <div class="card card-flush polls-compact-wrap">
+    <PollsCompact polls={polls} id="poll-compact" caption="כל הסקרים, עם סך המנדטים לכל גוש. לסינון ולמיון: כפתור «סינון ומיון»." />
+  </div>
+  <p class="more-polls"><button type="button" id="f-more" hidden>הצגת עוד סקרים</button></p>
 </Base>
 
 <script>
@@ -168,8 +184,16 @@ const sortOptions = [
   const table = document.getElementById("polls-table") as HTMLTableElement;
   const tbody = table.tBodies[0];
   const rows = [...tbody.rows];
-  const cardList = document.getElementById("poll-cards")!;
-  const cards = new Map([...cardList.children].map((li) => [(li as HTMLElement).dataset.key!, li]));
+  const compact = (document.getElementById("poll-compact") as HTMLTableElement).tBodies[0];
+  const lines = new Map([...compact.rows].map((r) => [r.dataset.key!, r]));
+  const sheet = document.getElementById("filter-sheet") as HTMLDialogElement;
+  const chips = document.querySelector(".filter-chips")!;
+  const badge = document.querySelector<HTMLElement>(".filter-n")!;
+  const more = document.getElementById("f-more") as HTMLButtonElement;
+  const sheetN = document.querySelector(".sheet-n")!;
+  // The phone list shows PAGE matching polls at a time.
+  const PAGE = 30;
+  let pages = 1;
   const heads = [...table.tHead!.rows[0].cells];
   const count = document.getElementById("f-count")!;
   const empty = document.getElementById("f-empty")!;
@@ -198,6 +222,41 @@ const sortOptions = [
     });
   }
 
+  const key0 = () => `${sort.col}:${sort.dir}`;
+  const LABELS: Record<string, string> = { pollster: "סוקר", sponsor: "מזמין", from: "מ-", to: "עד", status: "סטטוס", sort: "מיון" };
+  const optionText = (name: string) => {
+    const el = field(name);
+    if (el instanceof HTMLSelectElement) return el.selectedOptions[0]?.textContent?.trim() ?? el.value;
+    const [y, m, d] = el.value.split("-");
+    return `${+d}.${+m}.${y}`;
+  };
+
+  /** One removable chip per active filter (and a non-default sort), plus the count on the button. */
+  function renderChips(v: Record<string, string>, key: string) {
+    chips.replaceChildren();
+    const active = FILTERS.filter((n) => v[n]);
+    if (key !== "date:desc") active.push("sort");
+    for (const name of active) {
+      const li = document.createElement("li");
+      const b = Object.assign(document.createElement("button"), { type: "button", className: "chip" });
+      const text = name === "sort" ? (field("sort").value ? optionText("sort") : "לפי עמודה") : optionText(name);
+      b.innerHTML = `<span>${LABELS[name]}${name === "from" || name === "to" ? "" : ":"} <bdi></bdi></span><span aria-hidden="true">✕</span>`;
+      b.querySelector("bdi")!.textContent = text;
+      b.setAttribute("aria-label", `הסרת הסינון ${LABELS[name]} ${text}`);
+      b.addEventListener("click", () => {
+        if (name === "sort") sort = { col: "date", dir: "desc" };
+        else field(name).value = "";
+        pages = 1;
+        apply();
+        (chips.querySelector("button") ?? document.querySelector<HTMLElement>(".filter-open"))!.focus();
+      });
+      li.append(b);
+      chips.append(li);
+    }
+    badge.hidden = active.length === 0;
+    badge.textContent = ` (${active.length})`;
+  }
+
   function apply() {
     const v = Object.fromEntries(FILTERS.map((n) => [n, field(n).value]));
     let shown = 0;
@@ -210,19 +269,27 @@ const sortOptions = [
         (!v.to || (d.date ?? "") <= v.to) &&
         (!v.status || d.status === v.status);
       r.hidden = !ok;
-      (cards.get(d.key!) as HTMLElement).hidden = !ok;
+      lines.get(d.key!)!.hidden = !ok;
       if (ok) shown++;
     }
+    let n = 0;
     for (const r of sortRows(rows)) {
       tbody.append(r);
-      cardList.append(cards.get(r.dataset.key!)!);
+      const line = lines.get(r.dataset.key!)!;
+      compact.append(line);
+      if (!line.hidden) line.classList.toggle("is-later", ++n > pages * PAGE);
     }
+    const rest = shown - pages * PAGE;
+    more.hidden = rest <= 0;
+    more.textContent = `הצגת עוד ${Math.min(PAGE, rest)} סקרים (מתוך ${rest})`;
+    sheetN.textContent = String(shown);
+    renderChips(v, key0());
     for (const h of heads) {
       if (!h.dataset.col) continue;
       if (h.dataset.col === sort.col) h.setAttribute("aria-sort", sort.dir === "asc" ? "ascending" : "descending");
       else h.removeAttribute("aria-sort");
     }
-    const key = `${sort.col}:${sort.dir}`;
+    const key = key0();
     const sel = field("sort") as HTMLSelectElement;
     sel.value = [...sel.options].some((o) => o.value === key) ? key : "";
     count.textContent = shown === rows.length ? `${shown} סקרים` : `מוצגים ${shown} מתוך ${rows.length} סקרים`;
@@ -242,13 +309,24 @@ const sortOptions = [
       const [col, dir] = field("sort").value.split(":");
       if (col) sort = { col, dir: dir as "asc" | "desc" };
     }
+    pages = 1;
     apply();
   });
   form.addEventListener("reset", () => {
     sort = { col: "date", dir: "desc" };
+    pages = 1;
     setTimeout(apply); // after the browser has cleared the fields
   });
   document.getElementById("f-empty-clear")!.addEventListener("click", () => form.reset());
+  more.addEventListener("click", () => {
+    pages++;
+    apply();
+  });
+  document.querySelector(".filter-open")!.addEventListener("click", () => sheet.showModal());
+  for (const b of sheet.querySelectorAll("[data-close]")) b.addEventListener("click", () => sheet.close());
+  sheet.addEventListener("click", (e) => e.target === sheet && sheet.close()); // backdrop
+  // The sheet is a modal only on phones; from 768px its form is inline.
+  matchMedia("(min-width: 768px)").addEventListener("change", (e) => e.matches && sheet.open && sheet.close());
   for (const h of heads) {
     h.querySelector("button")?.addEventListener("click", () => {
       const col = h.dataset.col!;
