@@ -203,7 +203,7 @@ main { padding-block: var(--s-4) var(--s-7); }
 .around h3 { font-size: var(--text-base); line-height: var(--lh-base); margin-bottom: var(--s-1); }
 .around ul { list-style: none; margin: 0 0 var(--s-2); padding: 0; }
 .around li { padding-block: 2px; }
-.around li a { display: inline-flex; align-items: center; gap: 6px; }
+.around li a { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
 .trust-line { margin-top: var(--s-6); padding-top: var(--s-4); border-top: var(--border); font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--muted); }
 
 /* seat bars: one row per party — name with its spread, bar, seats */
@@ -273,6 +273,7 @@ tbody tr:hover { background: var(--surface-2); }
 .list-bar p { margin: 0; }
 .filter-count { font-weight: var(--w-label); }
 .downloads { display: flex; flex-wrap: wrap; align-items: baseline; gap: var(--s-1) var(--s-4); font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--ink-2); }
+.downloads a, .downloads .link-btn { display: inline-flex; align-items: center; min-height: 44px; }
 .link-btn { background: none; border: 0; padding: 0; min-height: 0; color: var(--link); text-decoration: underline; text-underline-offset: 0.18em; font: inherit; cursor: pointer; }
 .link-btn:hover { background: none; text-decoration-thickness: 2px; }
 .empty-state { padding: var(--s-5); text-align: center; background: var(--surface-2); border-radius: var(--r-2); margin-bottom: var(--s-4); }
@@ -317,7 +318,7 @@ tbody tr:hover { background: var(--surface-2); }
   .poll-layout { grid-template-columns: 22rem minmax(0, 1fr); align-items: start; }
   .poll-aside, .poll-main { display: grid; gap: var(--s-4); }
 }
-.source-pdf { font-weight: var(--w-label); display: inline-block; margin-bottom: var(--s-3); }
+.source-pdf { font-weight: var(--w-label); display: inline-flex; align-items: center; min-height: 44px; margin-bottom: var(--s-2); }
 .source-chain .meta { font-size: var(--text-sm); line-height: var(--lh-sm); margin-bottom: var(--s-2); }
 .party-cell { display: inline-flex; align-items: center; gap: 6px; font-weight: var(--w-body); }
 /* phones: the printed name sits under the party name and raw % is behind a toggle, so the
@@ -602,7 +603,7 @@ dl.meta dd { margin: 0; }
   align-items: center; column-gap: var(--s-3); padding-block: var(--s-1); border-bottom: 1px solid var(--rule);
 }
 .he-row:last-child { border-bottom: 0; }
-.he-name { grid-area: name; display: flex; align-items: baseline; gap: var(--s-2); min-height: 32px; align-items: center; color: var(--ink); text-decoration: none; font-size: var(--text-sm); }
+.he-name { grid-area: name; display: flex; gap: var(--s-2); min-height: 44px; align-items: center; color: var(--ink); text-decoration: none; font-size: var(--text-sm); }
 .he-name:hover { text-decoration: underline; }
 .he-n { font-size: var(--text-xs); color: var(--muted); white-space: nowrap; }
 .he-val { grid-area: val; font-size: var(--text-base); }
