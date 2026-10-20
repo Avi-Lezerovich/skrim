@@ -1,90 +1,88 @@
 ---
 import Base from "../layouts/Base.astro";
 import BlocChart from "../components/charts/BlocChart.astro";
-import PollList from "../components/PollList.astro";
-import Num from "../components/data/Num.astro";
-import {
-  BLOC_NAMES,
-  average,
-  fmtDate,
-  latestBlocs,
-  latestParties,
-  leadingParties,
-  okPolls,
-  partyName,
-  pollsterName,
-} from "../lib/data";
+import BlocTile from "../components/summary/BlocTile.astro";
+import PollCard from "../components/summary/PollCard.astro";
+import SeatBars from "../components/summary/SeatBars.astro";
+import SeatStrip from "../components/summary/SeatStrip.astro";
+import { average, fmtDate, latestParties, polls, pollsterName } from "../lib/data";
+import { THRESHOLD_SEATS, blocTiles, isFinal, partyRows, stripSegments } from "../lib/selectors";
 
-const b = latestBlocs.values;
-const tiles = (["coalition", "opposition", "arab"] as const).map((k) => ({
-  k,
-  name: BLOC_NAMES[k],
-  mean: b[k]?.mean ?? 0,
-  sd: b[k]?.sd ?? 0,
-}));
-const max = Math.max(...leadingParties.map((p) => p.mean + p.sd)) * 1.05;
-const pct = (v: number) => `${Math.max(0, Math.min(100, (100 * v) / max))}%`;
+const date = latestParties.date;
+const nPollsters = latestParties.n_polls;
 const inWindow = latestParties.pollsters.map((id) => pollsterName(id)).join(", ");
-const recent = okPolls.slice(0, 8);
+const { above, around, windowSize } = partyRows();
+const recent = polls.slice(0, 5);
 ---
 
 <Base title="pollygraph" description="ממוצע סקרי הבחירות לכנסת ה-26, לפי הדיווחים לוועדת הבחירות המרכזית">
-  <h1>ממוצע הסקרים, {fmtDate(latestParties.date)}</h1>
-  <p class="lead">
-    {`${BLOC_NAMES.coalition} ${Math.round(b.coalition.mean)} מנדטים, ${BLOC_NAMES.opposition} ${Math.round(b.opposition.mean)} ו${BLOC_NAMES.arab} ${Math.round(b.arab.mean)}.`} הממוצע משקלל את הסקר
-    האחרון של כל סוקר מ-{average.window_days} הימים האחרונים ({latestParties.n_polls} סוקרים: {inWindow}).
-  </p>
-
-  <div class="grid grid-3">
-    {
-      tiles.map((t) => (
-        <div class="card tile">
-          <div class="label">
-            <i class="swatch" style={`background: var(--bloc-${t.k})`} />
-            {t.name}
-          </div>
-          <div class="value"><Num value={t.mean} /></div>
-          <div class="range">
-            פיזור בין הסוקרים: <Num kind="range" lo={t.mean - t.sd} hi={t.mean + t.sd} />
-          </div>
-        </div>
-      ))
-    }
-  </div>
-
-  <h2>מנדטים לפי מפלגה</h2>
-  <div class="card">
-    <div class="bars" role="list">
-      {
-        leadingParties.map((p) => (
-          <div
-            class="bar-row"
-            role="listitem"
-            tabindex="0"
-            title={`${partyName(p.id)}: ${p.mean.toFixed(1)} מנדטים בממוצע; פיזור בין הסוקרים ${(p.mean - p.sd).toFixed(1)}–${(p.mean + p.sd).toFixed(1)}`}
-          >
-            <span class="name">{partyName(p.id)}</span>
-            <span class="bar-track" aria-hidden="true">
-              <span class="bar-fill" style={`width: ${pct(p.mean)}`} />
-              <span
-                class="bar-range"
-                style={`inset-inline-start: ${pct(Math.max(0, p.mean - p.sd))}; width: calc(${pct(p.mean + p.sd)} - ${pct(Math.max(0, p.mean - p.sd))})`}
-              />
-            </span>
-            <span class="val num">{Math.round(p.mean)}</span>
-          </div>
-        ))
-      }
-    </div>
-    <p class="small muted threshold-note">
-      העמודה היא הממוצע המשוקלל; הקו הדק מראה את הפיזור בין הסוקרים (סטיית תקן משוקללת). הפרש של מנדט או
-      שניים נמצא בדרך כלל בתוך הפיזור.
+  <header class="page-head">
+    <h1>{isFinal() ? "הממוצע הסופי לפני הבחירות" : "ממוצע הסקרים"}</h1>
+    <p class="page-meta">
+      <time datetime={date}>{fmtDate(date)}</time> · {nPollsters} סוקרים ב-{average.window_days} הימים האחרונים
     </p>
+    {
+      nPollsters < 3 && (
+        <p class="notice">ממוצע על בסיס מעט סוקרים: כל סקר בודד משפיע עליו הרבה.</p>
+      )
+    }
+    <p class="page-note">
+      הממוצע משקלל את הסקר האחרון של כל סוקר בחלון: {inWindow}.
+      <a href="/methodology#ממוצע-הסקרים">איך מחושב הממוצע</a>
+    </p>
+  </header>
+
+  <section class="home-blocs" aria-labelledby="blocs-h">
+    <h2 id="blocs-h" class="sr-only">הגושים</h2>
+    <div class="tiles">
+      {blocTiles().map((t) => <BlocTile tile={t} />)}
+    </div>
+    <SeatStrip segments={stripSegments()} />
+  </section>
+
+  <div class="home-split">
+    <section class="card home-parties" aria-labelledby="parties-h">
+      <h2 id="parties-h">מנדטים לפי מפלגה</h2>
+      <p class="legend-key small">
+        עמודה = ממוצע · קו דק = פיזור בין הסוקרים · קו מקווקו = אחוז החסימה ({THRESHOLD_SEATS} מנדטים)
+      </p>
+      <SeatBars rows={above.slice(0, 12)} />
+      {
+        around.length > 0 && (
+          <div class="around">
+            <h3>סביב אחוז החסימה</h3>
+            <ul>
+              {around.map((r) => (
+                <li>
+                  <a href={`/trends#party-${r.id}`}>
+                    <i class="swatch" style={`background: ${r.color}`} />
+                    {r.name}
+                  </a>{" "}
+                  — עוברת את החסימה ב-{r.passing} מתוך {windowSize} הסקרים בחלון
+                </li>
+              ))}
+            </ul>
+            <p class="small muted">
+              מפלגה שעוברת את אחוז החסימה מקבלת לפחות {THRESHOLD_SEATS} מנדטים, ומפלגה שלא עוברת מקבלת 0, ולכן ממוצע
+              מנדטים אינו מתאר אותה היטב.
+            </p>
+          </div>
+        )
+      }
+    </section>
+    <BlocChart />
   </div>
 
-  <BlocChart />
+  <section aria-labelledby="recent-h">
+    <h2 id="recent-h">הסקרים האחרונים</h2>
+    <div class="poll-cards">
+      {recent.map((p) => <PollCard poll={p} />)}
+    </div>
+    <p><a href="/polls">כל {polls.length} הסקרים ←</a></p>
+  </section>
 
-  <h2>הסקרים האחרונים</h2>
-  <PollList polls={recent} />
-  <p><a href="/polls">כל {okPolls.length} הסקרים ←</a></p>
+  <p class="trust-line">
+    כל מספר מקושר לדיווח המקורי בוועדת הבחירות · <a href="/methodology">מתודולוגיה</a> ·
+    <a href="/polls">כל הסקרים והורדה</a>
+  </p>
 </Base>

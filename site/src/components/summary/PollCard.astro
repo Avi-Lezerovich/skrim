@@ -1,0 +1,45 @@
+---
+// One poll as a card: who, when, for whom, the bloc totals, flags and the source PDF.
+import FlagBadge from "../data/FlagBadge.astro";
+import Num from "../data/Num.astro";
+import { BLOC_SHORT, MODE_NAMES, fmtDate, pollsterName, sponsorName, type Poll } from "../../lib/data";
+
+interface Props {
+  poll: Poll;
+}
+const { poll: p } = Astro.props;
+const review = p.status !== "ok";
+const notes = p.flags.filter((f) => f.level !== "error");
+const pollster = pollsterName(p.pollster, p.pollster_raw);
+---
+
+<article class:list={["poll-card card", { "is-review": review }]}>
+  <h3 class="poll-card-title">
+    <a href={`/polls/${p.key}`}>
+      <time datetime={p.field_date ?? undefined}>{fmtDate(p.field_date)}</time> · {pollster}
+    </a>
+  </h3>
+  <p class="poll-card-meta">
+    {sponsorName(p.sponsor, p.sponsor_raw)} ·{" "}
+    {p.meta.respondents != null ? <><Num value={p.meta.respondents} kind="int" /> משיבים</> : <span title="מספר המשיבים לא אותר">משיבים: —</span>}
+    {p.meta.mode && <> · {MODE_NAMES[p.meta.mode]}</>}
+  </p>
+  {
+    p.blocs && !review ? (
+      <ul class="poll-card-blocs">
+        {(["coalition", "opposition", "arab"] as const).map((b) => (
+          <li>
+            <i class="swatch" style={`background: var(--bloc-${b})`} />
+            {BLOC_SHORT[b]} <strong><Num value={p.blocs![b]} /></strong>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <p class="poll-card-blocs muted">לא בממוצע עד לבדיקה ידנית</p>
+    )
+  }
+  <p class="poll-card-foot">
+    {review ? <FlagBadge level="review" /> : <FlagBadge level={notes.some((f) => f.level === "warn") ? "warn" : "info"} count={notes.length} />}
+    <a href={p.source_url} class="pdf-link">PDF בוועדה<span class="sr-only"> — הדיווח של {pollster} מ-{fmtDate(p.field_date)}</span> <span aria-hidden="true">↗</span></a>
+  </p>
+</article>
