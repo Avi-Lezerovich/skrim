@@ -7,11 +7,12 @@ import { average } from "../lib/data";
 const REPO = "https://github.com/Avi-Lezerovich/pollygraph-il";
 const toc = getHeadings().filter((h) => h.depth === 2);
 
-// Change log of methodology.md, read from git at build time. A shallow clone yields fewer
+// Change log of methodology.md, read from git at build time. Merge commits are left out (CI
+// builds a PR's merge commit, whose subject is two full hashes). A shallow clone yields fewer
 // entries (or none), so the page always links to the full history as well.
 let changes: { hash: string; date: string; subject: string }[] = [];
 try {
-  changes = execFileSync("git", ["log", "--format=%h%x09%ad%x09%s", "--date=short", "--", "../methodology.md"], {
+  changes = execFileSync("git", ["log", "--no-merges", "--format=%h%x09%ad%x09%s", "--date=short", "--", "../methodology.md"], {
     encoding: "utf8",
   })
     .trim()

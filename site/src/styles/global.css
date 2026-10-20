@@ -409,7 +409,8 @@ dl.meta { display: grid; grid-template-columns: max-content 1fr; gap: 6px 16px; 
 dl.meta dt { color: var(--ink-2); }
 dl.meta dd { margin: 0; }
 
-.prose { max-width: var(--prose-max); }
+/* long unbroken strings (hashes, paths, formulas) wrap instead of widening the page */
+.prose { max-width: var(--prose-max); overflow-wrap: anywhere; }
 .prose .table-wrap { margin-bottom: var(--s-4); }
 .prose table { margin: 0; }
 .prose td, .prose th { white-space: normal; }
