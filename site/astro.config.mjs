@@ -30,8 +30,17 @@ function wrapTables() {
   };
 }
 
+/**
+ * The production origin, used for canonical and Open Graph URLs (share previews need absolute
+ * image URLs). Set SITE_URL in the deploy environment, e.g. SITE_URL=https://skrim.co.il.
+ * PLACEHOLDER until a domain exists: the current Pages project URL.
+ */
+const PLACEHOLDER_SITE = "https://pollygraph-il.pages.dev";
+const site = process.env.SITE_URL || PLACEHOLDER_SITE;
+if (site === PLACEHOLDER_SITE) console.warn(`[skrim] SITE_URL is not set; share previews use the placeholder ${site}`);
+
 export default defineConfig({
-  site: "https://pollygraph-il.pages.dev",
+  site,
   markdown: { rehypePlugins: [wrapTables] },
   // methodology.md lives at the repo root, one level up
   vite: { server: { fs: { allow: [".."] } } },

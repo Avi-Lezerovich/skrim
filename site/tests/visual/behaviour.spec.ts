@@ -106,6 +106,33 @@ test("chart readout links to the polls behind the day @mobile", async ({ page })
   await expect(page.locator("#f-count")).toContainText("מוצגים");
 });
 
+test("share previews: complete Open Graph tags with an absolute 1200×630 image under 300KB @desktop", async ({ page, request }) => {
+  for (const path of ["/", "/trends/", "/polls/", `/polls/${okPolls[0].key}/`, "/pollsters/", "/methodology/"]) {
+    await page.goto(path);
+    const tags = await page.evaluate(() =>
+      Object.fromEntries(
+        [...document.querySelectorAll("meta[property^='og:'], meta[name^='twitter:']")].map((m) => [
+          m.getAttribute("property") ?? m.getAttribute("name"),
+          m.getAttribute("content"),
+        ]),
+      ),
+    );
+    for (const k of ["og:title", "og:description", "og:url", "og:image", "og:image:alt", "twitter:card", "twitter:image"])
+      expect(tags[k], `${path} ${k}`).toBeTruthy();
+    expect(tags["og:site_name"]).toBe("skrim");
+    expect(tags["og:locale"]).toBe("he_IL");
+    expect(tags["twitter:card"]).toBe("summary_large_image");
+    expect(tags["og:image"]).toMatch(/^https:\/\//);
+    expect([tags["og:image:width"], tags["og:image:height"]]).toEqual(["1200", "630"]);
+    // the image itself, from this build
+    const res = await request.get(new URL(tags["og:image"]).pathname);
+    expect(res.status(), `${path} image`).toBe(200);
+    const buf = Buffer.from(await res.body());
+    expect(buf.length).toBeLessThan(300 * 1024);
+    if (buf.subarray(1, 4).toString() === "PNG") expect([buf.readUInt32BE(16), buf.readUInt32BE(20)]).toEqual([1200, 630]);
+  }
+});
+
 test("theme switch persists across pages @desktop", async ({ page }) => {
   await page.goto("/");
   const toggle = page.locator(".theme-toggle");

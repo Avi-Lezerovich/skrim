@@ -87,7 +87,7 @@ export const meta = metaJson;
 
 // Polls close at 22:00 on election day; before then the site carries a draft banner
 // (publication ban, §16ה). Deploying publicly is a separate, deliberate decision.
-export const EMBARGO_END = new Date("2026-10-27T22:00:00+02:00");
+export { EMBARGO_END } from "./embargo.mjs";
 
 export const BLOCS: Bloc[] = ["coalition", "opposition", "arab", "other"];
 export const BLOC_NAMES: Record<Bloc, string> = {

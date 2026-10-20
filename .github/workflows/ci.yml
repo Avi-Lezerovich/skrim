@@ -52,6 +52,7 @@ jobs:
           cache-dependency-path: site/package-lock.json
       - run: npm ci
       - run: npx playwright install --with-deps chromium
+      - run: npm run og # per-page share images (brand-only until the ban ends)
       - run: npm run build
       - run: npm run test:e2e
       - uses: actions/upload-artifact@v4
