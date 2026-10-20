@@ -275,7 +275,9 @@ main { padding-block: var(--s-4) var(--s-7); }
 /* position: relative contains sr-only text in off-screen cells, which would otherwise widen the page */
 .table-wrap { position: relative; overflow-x: auto; border: var(--border); border-radius: var(--r-2); background: var(--surface); }
 table { border-collapse: collapse; width: 100%; font-size: var(--text-sm); line-height: var(--lh-sm); }
-th, td { padding: var(--s-2) var(--s-3); text-align: start; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+/* cell padding 8×8 on phones, 8×12 from 768px (FRONTEND_PLAN §3.3) */
+th, td { padding: var(--s-2); text-align: start; border-bottom: 1px solid var(--rule); white-space: nowrap; }
+@media (min-width: 768px) { th, td { padding: var(--s-2) var(--s-3); } }
 th { color: var(--ink-2); font-weight: var(--w-label); background: var(--surface-2); }
 thead th { position: sticky; top: 0; z-index: 2; }
 tbody th, tfoot th { color: var(--ink); background: transparent; }
@@ -315,7 +317,10 @@ tbody tr:hover { background: var(--surface-2); }
 
 /* poll page */
 .breadcrumb ol { list-style: none; margin: 0 0 var(--s-3); padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-1); font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--muted); }
-.breadcrumb li + li::before { content: "›"; margin-inline-end: var(--s-1); }
+/* RTL: the separator points forward, toward the current page */
+.breadcrumb li + li::before { content: "‹"; margin-inline-end: var(--s-1); }
+.breadcrumb a { display: inline-flex; align-items: center; min-height: 44px; }
+.breadcrumb ol { align-items: center; }
 .notice-review { border-inline-start-color: var(--flag-review); }
 .poll-layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--s-4); }
 .poll-layout section, .poll-layout details, .poll-layout figure { margin: 0; min-width: 0; }
@@ -334,13 +339,20 @@ tbody tr:hover { background: var(--surface-2); }
 .source-pdf { font-weight: var(--w-label); display: inline-block; margin-bottom: var(--s-3); }
 .source-chain .meta { font-size: var(--text-sm); line-height: var(--lh-sm); margin-bottom: var(--s-2); }
 .party-cell { display: inline-flex; align-items: center; gap: 6px; font-weight: var(--w-body); }
+/* phones: the printed name sits under the party name and raw % is behind a toggle, so the
+   table fits without scrolling; from 600px both are their own columns */
 .label-raw { white-space: normal; min-width: 12rem; color: var(--ink-2); }
-.label-raw-inline { display: none; }
-@media (max-width: 599.98px) {
-  /* the printed name moves under the party name, so seats stay on screen */
-  .poll-results .label-raw { display: none; }
-  .label-raw-inline { display: block; white-space: normal; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); font-weight: var(--w-body); }
-  .poll-results tbody th { white-space: normal; }
+.poll-results .label-raw { display: none; }
+.label-raw-inline { display: block; white-space: normal; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); font-weight: var(--w-body); }
+.poll-results tbody th { white-space: normal; }
+.js .results-table:not(.show-pct) .pct-col { display: none; }
+.pct-toggle { display: inline-flex; align-items: center; min-height: 44px; }
+.results-table td a { display: inline-flex; align-items: center; justify-content: flex-end; min-width: 44px; min-height: 44px; }
+@media (min-width: 600px) {
+  .poll-results .label-raw { display: table-cell; }
+  .label-raw-inline { display: none; }
+  .js .results-table .pct-col { display: table-cell; }
+  .pct-toggle { display: none; }
 }
 .poll-card-blocs { list-style: none; padding: 0; display: flex; flex-wrap: wrap; gap: 2px var(--s-3); font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--ink-2); }
 .poll-card-blocs li { display: inline-flex; align-items: center; gap: 6px; }
@@ -372,7 +384,7 @@ tbody tr:hover { background: var(--surface-2); }
 
 /* G6 poll vs average */
 .pva-rows { list-style: none; margin: var(--s-3) 0; padding: 0; display: grid; gap: var(--s-1); }
-.pva-row { display: grid; grid-template-columns: minmax(6.5rem, 9.5rem) 1fr 9rem; align-items: center; gap: var(--s-3); min-height: 28px; font-size: var(--text-sm); }
+.pva-row { display: grid; grid-template-columns: 1fr auto; grid-template-areas: "name val" "track track"; row-gap: 2px; align-items: center; gap: var(--s-3); min-height: 28px; font-size: var(--text-sm); }
 .pva-name { display: flex; align-items: center; gap: 6px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .pva-track { position: relative; height: 18px; }
 .pva-band { position: absolute; inset-block: 3px; background: var(--ink-2); opacity: 0.16; border-radius: 2px; }
@@ -388,11 +400,11 @@ tbody tr:hover { background: var(--surface-2); }
 .pva-key-band { border-radius: 2px; width: 16px; background: var(--ink-2); opacity: 0.25; }
 .pva-key-poll { background: var(--ink); }
 .pva .legend-key span { display: inline-block; margin-inline-end: var(--s-4); }
-@media (max-width: 479.98px) {
-  .pva-row { grid-template-columns: 1fr auto; grid-template-areas: "name val" "track track"; row-gap: 2px; }
-  .pva-name { grid-area: name; }
-  .pva-val { grid-area: val; }
-  .pva-track { grid-area: track; }
+.pva-name { grid-area: name; }
+.pva-val { grid-area: val; }
+.pva-track { grid-area: track; }
+@media (min-width: 480px) {
+  .pva-row { grid-template-columns: minmax(6.5rem, 9.5rem) 1fr 9rem; grid-template-areas: "name track val"; row-gap: 0; }
 }
 
 /* trends */
@@ -601,5 +613,47 @@ dl.meta dd { margin: 0; }
 .download-meta { font-size: var(--text-xs); line-height: var(--lh-xs); }
 .todo { border: 1px dashed var(--flag-warn); border-radius: var(--r-1); padding: var(--s-2) var(--s-3); color: var(--ink-2); }
 .prose code { background: var(--surface-2); padding: 0 4px; border-radius: var(--r-1); }
-.axis-captions { display: flex; justify-content: space-between; gap: 16px; margin: 4px 160px 8px 16px; }
-@media (max-width: 600px) { .axis-captions { margin-inline: 0; } }
+/* G5 house effect: name and value over a full-width track on phones, one row from 768px.
+   The track is a numeric axis, so it runs left to right (negative left). */
+.house-effect { margin: 0 0 var(--s-2); }
+.he-rows { list-style: none; margin: 0; padding: 0; display: grid; }
+.he-row {
+  display: grid; grid-template-columns: 1fr auto; grid-template-areas: "name val" "track track";
+  align-items: center; column-gap: var(--s-3); padding-block: var(--s-1); border-bottom: 1px solid var(--rule);
+}
+.he-row:last-child { border-bottom: 0; }
+.he-name { grid-area: name; display: flex; align-items: baseline; gap: var(--s-2); min-height: 32px; align-items: center; color: var(--ink); text-decoration: none; font-size: var(--text-sm); }
+.he-name:hover { text-decoration: underline; }
+.he-n { font-size: var(--text-xs); color: var(--muted); white-space: nowrap; }
+.he-val { grid-area: val; font-size: var(--text-base); }
+.he-track, .he-scale-track { position: relative; direction: ltr; display: block; height: 20px; }
+.he-track { grid-area: track; }
+.he-grid { position: absolute; inset-block: 0; width: 0; border-left: 1px solid var(--rule); }
+.he-zero { border-left: 1px solid var(--axis); }
+.he-ci { position: absolute; top: 50%; height: 2px; margin-top: -1px; background: var(--ink-2); }
+.he-ci::before, .he-ci::after { content: ""; position: absolute; top: -4px; width: 2px; height: 10px; background: var(--ink-2); }
+.he-ci::before { left: 0; }
+.he-ci::after { right: 0; }
+.he-dot { position: absolute; top: 50%; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 2px var(--surface); }
+.he-scale { margin-bottom: var(--s-1); }
+.he-scale-track { height: var(--lh-xs); font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); }
+.he-tick { position: absolute; transform: translateX(-50%); }
+.he-captions { direction: ltr; display: flex; justify-content: space-between; gap: var(--s-4); margin-top: var(--s-2); }
+.he-captions span { direction: rtl; }
+@media (min-width: 768px) {
+  .he-row { grid-template-columns: 14rem 1fr 4rem; grid-template-areas: "name track val"; }
+  .he-scale { padding-inline: calc(14rem + var(--s-3)) calc(4rem + var(--s-3)); }
+  .he-val { text-align: end; }
+}
+
+/* pollsters: cards on phones, the table from 768px */
+.pollster-cards { list-style: none; margin: 0 0 var(--s-3); padding: 0; display: grid; gap: var(--s-3); }
+.pollster-card h3 { margin: 0 0 var(--s-2); font-size: var(--text-base); line-height: var(--lh-base); }
+.pollster-card h3 a { display: inline-flex; align-items: center; min-height: 44px; }
+.pollster-card dl.meta { font-size: var(--text-sm); line-height: var(--lh-sm); }
+.pollsters-table { display: none; }
+.pollsters-table .wrap-cell { white-space: normal; min-width: 12rem; }
+@media (min-width: 768px) {
+  .pollster-cards { display: none; }
+  .pollsters-table { display: block; }
+}

@@ -1,0 +1,116 @@
+---
+import Base from "../../layouts/Base.astro";
+import HouseEffect from "../../components/charts/HouseEffect.astro";
+import Num from "../../components/data/Num.astro";
+import { BLOC_NAMES, houseEffects, okPolls, pollsterName, polls, sponsorName } from "../../lib/data";
+
+const ids = [...new Set(polls.map((p) => p.pollster).filter(Boolean))] as string[];
+const avg = (xs: (number | null)[]) => {
+  const v = xs.filter((x): x is number => x != null);
+  return v.length ? v.reduce((a, b) => a + b, 0) / v.length : null;
+};
+const effect = (id: string, key: string) =>
+  houseEffects.blocs.find((e) => e.pollster === id && e.key === key);
+const stats = ids
+  .map((id) => {
+    const mine = polls.filter((p) => p.pollster === id);
+    const he = effect(id, "coalition");
+    return {
+      id,
+      name: pollsterName(id),
+      n: mine.length,
+      ok: okPolls.filter((p) => p.pollster === id).length,
+      sponsors: [...new Set(mine.map((p) => sponsorName(p.sponsor, p.sponsor_raw)))].join(", "),
+      respondents: avg(mine.map((p) => p.meta.respondents)),
+      rr: avg(mine.map((p) => p.meta.response_rate)),
+      he,
+    };
+  })
+  .sort((a, b) => b.n - a.n);
+const chartRows = stats
+  .filter((s) => s.he)
+  .map((s) => ({ id: s.id, name: s.name, effect: s.he!.effect, lo: s.he!.ci_low, hi: s.he!.ci_high, n: s.he!.n_polls }));
+const few = stats.filter((s) => !s.he).map((s) => s.name);
+---
+
+<Base title="סוקרים" description="השוואת סוקרים: אפקט בית, מזמינים, גודל מדגם ושיעור היענות">
+  <header class="page-head">
+    <h1>סוקרים</h1>
+    <p class="lead">
+      «אפקט בית» הוא ההפרש הממוצע בין סוקר לבין שאר הסוקרים באותם ימים. הוא מראה מי <strong>שונה</strong> מהשאר,
+      לא מי <strong>מוטה</strong>: עד פרסום התוצאות אין דרך לדעת מי קרוב יותר לאמת.
+    </p>
+  </header>
+
+  <HouseEffect rows={chartRows} subject={BLOC_NAMES.coalition} />
+  {few.length > 0 && <p class="small muted">מעט מדי סקרים בממוצע להערכת אפקט בית: {few.join(", ")}.</p>}
+
+  <h2>כל הסוקרים</h2>
+  {/* phones: one card per pollster; from 768px the table */}
+  <ul class="pollster-cards">
+    {
+      stats.map((s) => (
+        <li class="card pollster-card">
+          <h3><a href={`/polls?pollster=${s.id}`}>{s.name}</a></h3>
+          <dl class="meta">
+            <dt>סקרים</dt>
+            <dd><Num value={s.n} kind="int" /> (<Num value={s.ok} kind="int" /> בממוצע)</dd>
+            <dt>מזמינים</dt>
+            <dd>{s.sponsors}</dd>
+            <dt>משיבים בממוצע</dt>
+            <dd><Num value={s.respondents ? Math.round(s.respondents) : null} kind="int" missing="לא אותר" /></dd>
+            <dt>היענות בממוצע</dt>
+            <dd>{s.rr ? <bdi>{s.rr.toFixed(1)}%</bdi> : <Num value={null} missing="לא דווח" />}</dd>
+            <dt>אפקט בית</dt>
+            <dd>
+              {s.he ? (
+                <>
+                  <Num kind="signed" value={s.he.effect} digits={1} /> <span class="muted">(<Num kind="signed" value={s.he.ci_low} digits={1} /> עד <Num kind="signed" value={s.he.ci_high} digits={1} />)</span>
+                </>
+              ) : (
+                <span class="muted">מעט מדי סקרים</span>
+              )}
+            </dd>
+          </dl>
+        </li>
+      ))
+    }
+  </ul>
+  <div class="table-wrap pollsters-table" tabindex="0" role="region" aria-label="טבלת הסוקרים">
+    <table>
+      <caption class="sr-only">כל הסוקרים: מספר סקרים, מזמינים, משיבים, היענות ואפקט בית על {BLOC_NAMES.coalition}</caption>
+      <thead>
+        <tr>
+          <th scope="col">סוקר</th><th scope="col" class="num">סקרים</th><th scope="col" class="num">בממוצע</th><th scope="col">מזמינים</th>
+          <th scope="col" class="num">משיבים (ממוצע)</th><th scope="col" class="num">היענות (ממוצע)</th>
+          <th scope="col" class="num">אפקט בית, {BLOC_NAMES.coalition}</th>
+        </tr>
+      </thead>
+      <tbody>
+        {
+          stats.map((s) => (
+            <tr>
+              <th scope="row"><a href={`/polls?pollster=${s.id}`}>{s.name}</a></th>
+              <td class="num">{s.n}</td>
+              <td class="num">{s.ok}</td>
+              <td class="wrap-cell">{s.sponsors}</td>
+              <td class="num"><Num value={s.respondents ? Math.round(s.respondents) : null} kind="int" missing="לא אותר" /></td>
+              <td class="num">{s.rr ? <bdi>{s.rr.toFixed(1)}%</bdi> : <Num value={null} missing="לא דווח" />}</td>
+              <td class="num">
+                {s.he ? (
+                  <>
+                    <Num kind="signed" value={s.he.effect} digits={1} /> (<Num kind="signed" value={s.he.ci_low} digits={1} /> עד{" "}
+                    <Num kind="signed" value={s.he.ci_high} digits={1} />)
+                  </>
+                ) : (
+                  <Num value={null} missing="מעט מדי סקרים בממוצע" />
+                )}
+              </td>
+            </tr>
+          ))
+        }
+      </tbody>
+    </table>
+  </div>
+  <p class="small muted">שיעור היענות מוגדר אחרת אצל כל סוקר, ולכן ההשוואה בו גסה.</p>
+</Base>

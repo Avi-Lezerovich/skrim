@@ -1,0 +1,66 @@
+---
+// G5 — house effect: each pollster's average difference from the other pollsters, a point
+// with its 95% interval around zero. HTML rather than Plot, like G3 and G6: no chart library
+// on the page, no layout shift, and the rows are their own text alternative. The numeric
+// axis runs left to right (negative left) whatever the page direction (FRONTEND_PLAN §5.3);
+// names sit at the start edge.
+import Num from "../data/Num.astro";
+
+export type EffectRow = { id: string; name: string; effect: number; lo: number; hi: number; n: number };
+
+interface Props {
+  rows: EffectRow[];
+  /** Bloc or party the effect is on, for the captions. */
+  subject: string;
+}
+const { rows, subject } = Astro.props;
+const sorted = [...rows].sort((a, b) => b.effect - a.effect);
+const ext = Math.ceil(Math.max(4, ...rows.flatMap((r) => [Math.abs(r.lo), Math.abs(r.hi)])) + 0.5);
+const step = ext > 8 ? 4 : 2;
+const ticks: number[] = [];
+for (let v = -Math.floor(ext / step) * step; v <= ext; v += step) ticks.push(v);
+const pos = (v: number) => `${(((v + ext) / (2 * ext)) * 100).toFixed(2)}%`;
+const signed = (v: number) => (v > 0 ? `+${v}` : v < 0 ? `−${Math.abs(v)}` : "0");
+---
+
+<figure class="card house-effect">
+  <figcaption>
+    <h2 class="chart-title">במה כל סוקר שונה מהשאר: {subject}</h2>
+    <p class="chart-summary small">
+      נקודה = ההפרש הממוצע במנדטים מהסוקרים האחרים באותם ימים; קו = רווח בטחון של 95%. זה הפרש מהממוצע, לא מהתוצאה.
+    </p>
+  </figcaption>
+  <div class="he-scale" aria-hidden="true">
+    <span class="he-scale-track">
+      {ticks.map((t) => <span class="he-tick" style={`left: ${pos(t)}`}><bdi>{signed(t)}</bdi></span>)}
+    </span>
+  </div>
+  <ol class="he-rows">
+    {
+      sorted.map((r) => (
+        <li class="he-row">
+          <a class="he-name" href={`/polls?pollster=${r.id}`}>
+            {r.name}
+            <span class="he-n">{r.n} סקרים</span>
+          </a>
+          <span class="he-track" aria-hidden="true">
+            {ticks.map((t) => <span class:list={["he-grid", { "he-zero": t === 0 }]} style={`left: ${pos(t)}`} />)}
+            <span class="he-ci" style={`left: ${pos(r.lo)}; width: calc(${pos(r.hi)} - ${pos(r.lo)})`} />
+            <span class="he-dot" style={`left: ${pos(r.effect)}`} />
+          </span>
+          <span class="he-val">
+            <strong><Num kind="signed" value={r.effect} digits={1} /></strong>
+            <span class="sr-only">
+              מנדטים, רווח בטחון של 95% <Num kind="signed" value={r.lo} digits={1} /> עד <Num kind="signed" value={r.hi} digits={1} />
+            </span>
+          </span>
+        </li>
+      ))
+    }
+  </ol>
+  {/* LTR row to match the axis; each caption is RTL text with its arrow at the outer edge */}
+  <div class="he-captions small muted" aria-hidden="true">
+    <span>פחות מנדטים ל{subject} ←</span>
+    <span>→ יותר מנדטים ל{subject}</span>
+  </div>
+</figure>
