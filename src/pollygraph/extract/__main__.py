@@ -58,6 +58,19 @@ def pages_for(row: dict) -> list[list[str]]:
     return pages
 
 
+def fix_field_date(poll: dict) -> None:
+    """The CEC listing has typos (18.10 for 18.9). A field date after the date the poll was
+    transferred to the CEC is impossible; prefer the date printed in the PDF, else cap it."""
+    listed, transfer, pdf = poll["field_date"], poll["transfer_date"], poll.pop("field_date_pdf")
+    poll["field_date_listed"] = listed
+    poll["field_date_pdf"] = pdf
+    if listed and transfer and listed > transfer:
+        poll["field_date"] = pdf if pdf and pdf <= transfer else transfer
+        poll["field_date_source"] = "pdf" if pdf and pdf <= transfer else "transfer_date"
+    else:
+        poll["field_date_source"] = "listing"
+
+
 def build(row: dict) -> dict:
     pages = pages_for(row)
     parsed = extract(pages)
@@ -79,6 +92,7 @@ def build(row: dict) -> dict:
         "method": PARSER_VERSION,
         **parsed,
     }
+    fix_field_date(poll)
     override = OVERRIDES / f"{row['key']}.json"
     if override.exists():
         fix = json.loads(override.read_text(encoding="utf-8"))

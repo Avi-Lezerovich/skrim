@@ -8,7 +8,7 @@
  "pollster_id": "dri",
  "sponsor_raw": "סקר עצמאי - ללא מזמין חיצוני",
  "sponsor_id": "self",
- "field_date": "2026-10-18",
+ "field_date": "2026-09-18",
  "transfer_date": "2026-10-05",
  "published_date": "2026-10-06",
  "pages": 2,
@@ -28,6 +28,9 @@
  "seat_sum": 0,
  "scenario_tables": 0,
  "tables_found": 0,
+ "field_date_listed": "2026-10-18",
+ "field_date_pdf": "2026-09-18",
+ "field_date_source": "pdf",
  "qa_flags": [
   {
    "code": "no_seat_table",
@@ -35,9 +38,9 @@
    "detail": "no seat table extracted"
   },
   {
-   "code": "field_after_transfer",
-   "level": "warn",
-   "detail": "field date 2026-10-18 is after CEC transfer 2026-10-05"
+   "code": "field_date_corrected",
+   "level": "info",
+   "detail": "CEC listing gives 2026-10-18, after the transfer date 2026-10-05; using 2026-09-18 from the pdf"
   }
  ],
  "status": "needs_review"

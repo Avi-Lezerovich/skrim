@@ -141,6 +141,9 @@
  "seat_sum": 120,
  "scenario_tables": 0,
  "tables_found": 1,
+ "field_date_listed": "2026-09-15",
+ "field_date_pdf": "2026-09-15",
+ "field_date_source": "listing",
  "qa_flags": [],
  "status": "ok"
 }

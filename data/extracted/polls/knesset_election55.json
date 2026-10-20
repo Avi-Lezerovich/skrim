@@ -106,6 +106,9 @@
  "seat_sum": 16,
  "scenario_tables": 0,
  "tables_found": 3,
+ "field_date_listed": "2026-08-27",
+ "field_date_pdf": null,
+ "field_date_source": "listing",
  "qa_flags": [
   {
    "code": "seat_sum",

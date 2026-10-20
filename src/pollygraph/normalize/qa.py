@@ -89,6 +89,15 @@ def check(poll: dict) -> list[dict]:
         flags.append(
             _flag("field_after_transfer", "warn", f"field date {fd} is after CEC transfer {td}")
         )
+    if poll.get("field_date_source") in ("pdf", "transfer_date"):
+        flags.append(
+            _flag(
+                "field_date_corrected",
+                "info",
+                f"CEC listing gives {poll['field_date_listed']}, after the transfer date {td}; "
+                f"using {fd} from the {poll['field_date_source'].replace('_', ' ')}",
+            )
+        )
     if poll.get("scanned"):
         flags.append(_flag("scanned", "warn", "little extractable text; probably a scan"))
     return flags

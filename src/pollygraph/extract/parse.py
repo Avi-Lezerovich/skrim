@@ -228,6 +228,24 @@ def parse_meta(pages: list[list[str]]) -> dict:
     return out
 
 
+DATE = re.compile(r"(?<!\d)(\d{1,2})[./](\d{1,2})[./](20\d{2}|\d{2})(?!\d)")
+DATE_WORDS = ("ביצוע", "איסוף", "מועד", "תאריך", "נערך", "בוצע")
+
+
+def parse_field_date(pages: list[list[str]]) -> str | None:
+    """First d.m.yyyy date on a line about fieldwork, as ISO; None if not found."""
+    for line in (ln for page in pages[:2] for ln in page):
+        if not any(w in line.replace(" ", "") for w in DATE_WORDS):
+            continue
+        m = DATE.search(line)
+        if m:
+            d, mo, y = int(m.group(1)), int(m.group(2)), int(m.group(3))
+            y = y + 2000 if y < 100 else y
+            if 1 <= mo <= 12 and 1 <= d <= 31:
+                return f"{y:04d}-{mo:02d}-{d:02d}"
+    return None
+
+
 def _row_out(r: SeatRow) -> dict:
     d = asdict(r)
     d.pop("ints")
@@ -239,6 +257,7 @@ def extract(pages: list[list[str]]) -> dict:
     vote, scenarios = pick_vote_table(tables)
     return {
         "meta": parse_meta(pages),
+        "field_date_pdf": parse_field_date(pages),
         "seats": [_row_out(r) for r in vote.rows] if vote else [],
         "seat_sum": vote.seat_sum() if vote else None,
         "scenario_tables": scenarios,

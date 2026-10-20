@@ -8,7 +8,7 @@
  "pollster_id": "lazar",
  "sponsor_raw": "עיתון מעריב",
  "sponsor_id": "maariv",
- "field_date": "2026-10-30",
+ "field_date": "2026-09-30",
  "transfer_date": "2026-10-04",
  "published_date": "2026-10-04",
  "pages": 2,
@@ -169,11 +169,14 @@
  "seat_sum": 120,
  "scenario_tables": 0,
  "tables_found": 1,
+ "field_date_listed": "2026-10-30",
+ "field_date_pdf": "2026-09-30",
+ "field_date_source": "pdf",
  "qa_flags": [
   {
-   "code": "field_after_transfer",
-   "level": "warn",
-   "detail": "field date 2026-10-30 is after CEC transfer 2026-10-04"
+   "code": "field_date_corrected",
+   "level": "info",
+   "detail": "CEC listing gives 2026-10-30, after the transfer date 2026-10-04; using 2026-09-30 from the pdf"
   }
  ],
  "status": "ok"
