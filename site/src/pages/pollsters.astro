@@ -89,7 +89,8 @@ const chartRows = stats
 </Base>
 
 <script>
-  import { houseEffectChart, mount } from "../scripts/charts";
+  import { houseEffectChart } from "../charts/deviation";
+  import { mount } from "../charts/mount";
   const rows = JSON.parse(document.getElementById("he-data")!.textContent!);
   mount(document.getElementById("he-chart")!, (w) => houseEffectChart(rows, w));
 </script>

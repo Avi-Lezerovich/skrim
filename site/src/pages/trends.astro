@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import BlocChart from "../components/BlocChart.astro";
+import BlocChart from "../components/charts/BlocChart.astro";
 import {
   average,
   okPolls,
@@ -26,8 +26,7 @@ const payload = { charts, ymax, domain: seriesDomain, pollsterNames };
     והנקודות הן הסקרים עצמם. הרצועה איננה רווח בטחון: היא מראה עד כמה הסוקרים חלוקים ביניהם.
   </p>
 
-  <h2>גושים</h2>
-  <div class="card"><BlocChart /></div>
+  <BlocChart legend="expanded" />
 
   <h2>מפלגות</h2>
   <div class="filters">
@@ -81,7 +80,8 @@ const payload = { charts, ymax, domain: seriesDomain, pollsterNames };
 </Base>
 
 <script>
-  import { mount, partyChart } from "../scripts/charts";
+  import { mount } from "../charts/mount";
+  import { partyChart } from "../charts/party";
   const payload = JSON.parse(document.getElementById("party-data")!.textContent!);
   const select = document.getElementById("pollster-filter") as HTMLSelectElement;
   const redraws: (() => void)[] = [];

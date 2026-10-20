@@ -1,6 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
-import BlocChart from "../components/BlocChart.astro";
+import BlocChart from "../components/charts/BlocChart.astro";
 import PollList from "../components/PollList.astro";
 import Num from "../components/data/Num.astro";
 import {
@@ -82,10 +82,7 @@ const recent = okPolls.slice(0, 8);
     </p>
   </div>
 
-  <h2>הגושים לאורך זמן</h2>
-  <div class="card">
-    <BlocChart />
-  </div>
+  <BlocChart />
 
   <h2>הסקרים האחרונים</h2>
   <PollList polls={recent} />

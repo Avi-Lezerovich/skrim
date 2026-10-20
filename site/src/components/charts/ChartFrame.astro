@@ -1,0 +1,57 @@
+---
+// Frame for every chart: message title and build-time summary (figcaption), legend, value
+// readout, a fixed-height box (no layout shift while Plot loads), the fallback message, and
+// the HTML table that carries the same data. The chart script reads the JSON payload.
+interface Props {
+  id: string;
+  title: string;
+  summary: string;
+  /** Chart height in px: [below 768px, from 768px]. */
+  height: [number, number];
+  /** Accessible name of the scrollable table region. */
+  tableLabel: string;
+  /** Serialised for the chart script. */
+  data: unknown;
+  /** Initial readout HTML; when present the chart is interactive (pointer, touch, arrow keys). */
+  readout?: string;
+  heading?: "h2" | "h3";
+}
+const { id, title, summary, height, tableLabel, data, readout, heading: Heading = "h2" } = Astro.props;
+const titleId = `${id}-title`;
+const hintId = `${id}-hint`;
+const interactive = readout != null;
+---
+
+<figure class="chart-frame card" id={id}>
+  <figcaption>
+    <Heading class="chart-title" id={titleId}>{title}</Heading>
+    <p class="chart-summary">{summary}</p>
+  </figcaption>
+  <slot name="legend" />
+  {interactive && <p class="chart-readout" aria-live="polite" set:html={readout} />}
+  <div
+    class="chart chart-box"
+    style={`--chart-h-sm: ${height[0]}px; --chart-h: ${height[1]}px`}
+    tabindex={interactive ? 0 : undefined}
+    role={interactive ? "group" : undefined}
+    aria-labelledby={interactive ? titleId : undefined}
+    aria-describedby={interactive ? hintId : undefined}
+  >
+  </div>
+  {
+    interactive && (
+      <p class="sr-only" id={hintId}>
+        הצביעו על הגרף או גררו עליו כדי לקרוא ערכים. במקלדת: חץ ימינה ליום מאוחר יותר, חץ שמאלה ליום מוקדם יותר.
+      </p>
+    )
+  }
+  <p class="chart-error" hidden>הגרף לא נטען — הנתונים בטבלה למטה.</p>
+  <details class="table-view">
+    <summary>הצג כטבלה</summary>
+    <div class="table-wrap" tabindex="0" role="region" aria-label={tableLabel}>
+      <slot name="table" />
+    </div>
+  </details>
+  <slot />
+  <script type="application/json" data-chart set:html={JSON.stringify(data)} />
+</figure>

@@ -1,0 +1,78 @@
+---
+// G1 — blocs over time, in a ChartFrame with a value readout and a weekly table.
+import ChartFrame from "./ChartFrame.astro";
+import UncertaintyLegend from "./UncertaintyLegend.astro";
+import Num from "../data/Num.astro";
+import { BLOC_NAMES, BLOCS, average, blocChartData, fmtDate } from "../../lib/data";
+import { blocReadout } from "../../charts/readout";
+
+interface Props {
+  /** "expanded" explains what the spread band is not (trends page). */
+  legend?: "inline" | "expanded";
+}
+const { legend = "inline" } = Astro.props;
+const data = blocChartData();
+const weekly = average.blocs.slice().reverse().filter((_, i) => i % 7 === 0);
+---
+
+<ChartFrame
+  id="bloc-chart"
+  title="הגושים לאורך זמן"
+  summary={data.summary}
+  height={[300, 380]}
+  tableLabel="טבלת ממוצע הגושים לפי שבוע"
+  data={data}
+  readout={blocReadout(data.days.at(-1)!, data)}
+>
+  {/* Bloc colors are named in the readout and the end labels; the legend explains the marks. */}
+  <UncertaintyLegend slot="legend" majority variant={legend} />
+  <table slot="table">
+    <caption class="sr-only">ממוצע המנדטים לפי גוש, יום אחד בכל שבוע, מהעדכני לישן</caption>
+    <thead>
+      <tr>
+        <th scope="col">תאריך</th>
+        {BLOCS.map((b) => <th scope="col" class="num">{BLOC_NAMES[b]}</th>)}
+        <th scope="col" class="num">סוקרים בחלון</th>
+      </tr>
+    </thead>
+    <tbody>
+      {
+        weekly.map((d) => (
+          <tr>
+            <th scope="row">{fmtDate(d.date)}</th>
+            {BLOCS.map((b) => (
+              <td class="num">
+                <Num value={d.values[b]?.mean} digits={1} missing="אין סקרים בחלון" />
+              </td>
+            ))}
+            <td class="num">{d.n_polls}</td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</ChartFrame>
+
+<script>
+  import { lazyChart, mount } from "../../charts/mount";
+  import { blocReadout, type BlocData } from "../../charts/readout";
+  import { day } from "../../charts/theme";
+
+  lazyChart(
+    "bloc-chart",
+    () => import("../../charts/bloc"),
+    ({ blocChart, blocPoints }, el, data: BlocData, frame) => {
+      const readout = frame.querySelector(".chart-readout")!;
+      mount(el, (w, h) => blocChart(data, w, h), {
+        label: data.label,
+        description: data.summary,
+        scrub: {
+          dates: data.days.map((d) => day(d.date)),
+          initial: data.days.length - 1,
+          points: (i) => blocPoints(data, i),
+          onIndex: (i) => (readout.innerHTML = blocReadout(data.days[i], data)),
+        },
+      });
+    },
+  );
+</script>
