@@ -1008,6 +1008,7 @@
     "Knesset_26": [
      "1"
     ],
+    "Survey_Notes": "מועד העברת הסקר המתוקן לוועדת הבחירות: 18.10.2026",
     "date_the_survey": "2026-08-25T21:00:00Z",
     "file_PDF": [
      {
@@ -3003,7 +3004,132 @@
    },
    "Description": null,
    "UrlName": "knesset_election115"
+  },
+  {
+   "Data": {
+    "Knesset_26": [
+     "1"
+    ],
+    "date_the_survey": "2026-10-17T21:00:00Z",
+    "file_PDF": [
+     {
+      "DisplayName": "סקר בחירות מיום 19.10.2026 4229",
+      "Extension": "pdf",
+      "FileMime": "application/pdf",
+      "FileName": "Survey_4229.pdf",
+      "FileSize": "164698"
+     }
+    ],
+    "public_to_cec": "2026-10-20T21:00:00Z",
+    "reference_number": "4229",
+    "survey_editor": "דיירקט פולס בע\"מ",
+    "survey_publisher": "חדשות המזרח התיכון 24 בע\"מ",
+    "transfer_to_cec": "2026-10-18T21:00:00Z",
+    "update_to_cec": "2026-10-20T21:00:00Z"
+   },
+   "Description": null,
+   "UrlName": "knesset_election123"
+  },
+  {
+   "Data": {
+    "Knesset_26": [
+     "1"
+    ],
+    "date_the_survey": "2026-10-17T21:00:00Z",
+    "file_PDF": [
+     {
+      "DisplayName": "סקר בחירות מיום 19.10.2026 4230",
+      "Extension": "pdf",
+      "FileMime": "application/pdf",
+      "FileName": "Survey_4230.pdf",
+      "FileSize": "238800"
+     }
+    ],
+    "public_to_cec": "2026-10-20T21:00:00Z",
+    "reference_number": "4230",
+    "survey_editor": "קנטאר ישראל",
+    "survey_publisher": "תאגיד השידור כאן , כנפי נשרים 23, ירושלים",
+    "transfer_to_cec": "2026-10-18T21:00:00Z",
+    "update_to_cec": "2026-10-20T21:00:00Z"
+   },
+   "Description": null,
+   "UrlName": "knesset_election124"
+  },
+  {
+   "Data": {
+    "Knesset_26": [
+     "1"
+    ],
+    "date_the_survey": "2026-10-18T21:00:00Z",
+    "file_PDF": [
+     {
+      "DisplayName": "סקר בחירות מיום 20.10.2026 4232",
+      "Extension": "pdf",
+      "FileMime": "application/pdf",
+      "FileName": "Survey_4232.pdf",
+      "FileSize": "170866"
+     }
+    ],
+    "public_to_cec": "2026-10-20T21:00:00Z",
+    "reference_number": "4232",
+    "survey_editor": "מדגם יעוץ ומחקר",
+    "survey_publisher": "חדשות 12",
+    "transfer_to_cec": "2026-10-19T21:00:00Z",
+    "update_to_cec": "2026-10-20T21:00:00Z"
+   },
+   "Description": null,
+   "UrlName": "knesset_election125"
+  },
+  {
+   "Data": {
+    "Knesset_26": [
+     "1"
+    ],
+    "date_the_survey": "2026-10-18T21:00:00Z",
+    "file_PDF": [
+     {
+      "DisplayName": "סקר בחירות מיום 20.10.2026 4233",
+      "Extension": "pdf",
+      "FileMime": "application/pdf",
+      "FileName": "Surveyl_4236-4233.pdf",
+      "FileSize": "127206"
+     }
+    ],
+    "public_to_cec": "2026-10-20T21:00:00Z",
+    "reference_number": "4233",
+    "survey_editor": "נקסט דאטה",
+    "survey_publisher": "ערוץ 14",
+    "transfer_to_cec": "2026-10-19T21:00:00Z",
+    "update_to_cec": "2026-10-20T21:00:00Z"
+   },
+   "Description": null,
+   "UrlName": "knesset_election126"
+  },
+  {
+   "Data": {
+    "Knesset_26": [
+     "1"
+    ],
+    "date_the_survey": "2026-10-17T21:00:00Z",
+    "file_PDF": [
+     {
+      "DisplayName": "סקר בחירות מיום 20.10.2026 4235",
+      "Extension": "pdf",
+      "FileMime": "application/pdf",
+      "FileName": "Survey_4235.pdf",
+      "FileSize": "201119"
+     }
+    ],
+    "public_to_cec": "2026-10-20T21:00:00Z",
+    "reference_number": "4235",
+    "survey_editor": "שמואל רוזנר",
+    "survey_publisher": "ערוץ 13",
+    "transfer_to_cec": "2026-10-19T21:00:00Z",
+    "update_to_cec": "2026-10-20T21:00:00Z"
+   },
+   "Description": null,
+   "UrlName": "knesset_election127"
   }
  ],
- "total_results": 120
+ "total_results": 125
 }
