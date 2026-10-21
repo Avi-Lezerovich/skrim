@@ -563,6 +563,7 @@ dl.meta dd { margin: 0; }
 .method-summary ol { margin: 0; padding-inline-start: var(--s-5); display: grid; gap: var(--s-2); }
 .methodology-body > h1:first-child { display: none; } /* the page has its own h1 */
 .method-layout { display: grid; gap: var(--s-4); }
+.method-layout > * { min-width: 0; } /* a wide formula scrolls in its box instead of widening the column */
 .method-toc { display: none; }
 .method-toc-mobile summary { font-weight: var(--w-label); }
 .method-toc-mobile a { display: inline-flex; align-items: center; min-height: 44px; }
@@ -579,7 +580,23 @@ dl.meta dd { margin: 0; }
 .method-toc a { color: var(--ink-2); text-decoration: none; }
 .method-toc a:hover { text-decoration: underline; }
 .method-toc a[aria-current] { color: var(--ink); font-weight: var(--w-label); }
+.methodology-body h2 { padding-top: var(--s-5); border-top: var(--border); }
+.methodology-body h3 { margin-top: var(--s-5); }
+.methodology-body li + li { margin-top: var(--s-2); }
+/* tables scroll inside .table-wrap, so cells keep whole words */
+.methodology-body td, .methodology-body th { overflow-wrap: normal; }
 .change-log { padding-inline-start: var(--s-5); font-size: var(--text-sm); line-height: var(--lh-sm); }
+
+/* math: MathML from rehype-katex (methodology.md). Formulas read left to right inside the
+   RTL page; display formulas sit in a box that scrolls sideways on narrow screens. */
+.katex { direction: ltr; unicode-bidi: isolate; }
+math { font-family: "Cambria Math", "STIX Two Math", "Latin Modern Math", math; font-size: 1.1em; }
+.katex:has(> math[display="block"]) {
+  display: block; margin: 0 0 var(--s-4); padding: var(--s-4);
+  background: var(--surface); border: var(--border); border-radius: var(--r-2);
+  overflow-x: auto; text-align: center;
+}
+math[display="block"] { font-size: 1.3em; }
 .report-box { margin-top: var(--s-5); padding: var(--s-3) var(--s-4); background: var(--surface-2); border-radius: var(--r-1); }
 
 /* data page */

@@ -1,4 +1,6 @@
 import { defineConfig } from "astro/config";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 
 const text = (node) =>
   node.type === "text" ? node.value : (node.children ?? []).map(text).join("");
@@ -43,7 +45,12 @@ const base = process.env.BASE_PATH || "/";
 export default defineConfig({
   site,
   base,
-  markdown: { rehypePlugins: [wrapTables] },
+  // $…$ and $$…$$ in Markdown become MathML at build time; browsers draw it natively, so the
+  // page loads no math fonts or CSS.
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [[rehypeKatex, { output: "mathml" }], wrapTables],
+  },
   // methodology.md lives at the repo root, one level up
   vite: { server: { fs: { allow: [".."] } } },
 });
