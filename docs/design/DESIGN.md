@@ -220,8 +220,8 @@ The pollsters page grew because a sideways-scrolling table became readable cards
 - e2e: 72 passing, with new tests for the tab bar, 404, readout link, compact list with the
   sheet and chips, and the share tags plus image.
 - The site's 127 HTML files and 2,587 internal references were checked under `/skrim/`.
-- Screenshots: `design-audit/mobile-before/` and `design-audit/mobile-after/`, plus
-  `device-*.jpg` from the emulation.
+- Screenshots before and after, and from the device emulation, were taken but are not kept in the
+  repository (about 40 MB); the metrics are in `design-audit/mobile-*/_report.json`.
 
 ## 11. Open
 

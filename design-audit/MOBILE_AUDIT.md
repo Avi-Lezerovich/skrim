@@ -2,15 +2,14 @@
 
 > **After:** the redesign, the verification numbers (Lighthouse before/after, page heights,
 > device emulation) and every deviation from the plan are in `docs/design/DESIGN.md`.
-> Screenshots after the redesign: `design-audit/mobile-after/`. Phone shots are stored at 1×
-> CSS pixels, as JPEG, to keep the repository small.
+> The before/after screenshots are not kept in the repository (about 40 MB); the measured
+> metrics are, in `design-audit/mobile-before/_report.json` and `design-audit/mobile-after/_report.json`.
 
 Baseline for the mobile-first redesign and the rename to **skrim**. It is measured against
 `docs/design/FRONTEND_PLAN.md`, which is the binding baseline. Nothing in `site/` has been changed yet.
 
-- **Screenshots:** `design-audit/mobile-before/{page}-{width}-{scheme}.jpg` (full page) and
-  `mobile-before/fold/…` (first screen only). Every page was captured at 360, 390, 768 and 1440px,
-  in light and dark (72 shots).
+- **Screenshots** (not kept in the repository): every page, full page and first screen, at 360,
+  390, 768 and 1440px, in light and dark (72 shots).
 - **Metrics:** `mobile-before/_report.json` (overflow, touch targets, font sizes, axe, meta tags).
 - **How it was captured:** Playwright (Chromium) against the dev server on `:4321`, with the Astro dev
   toolbar hidden. Mobile widths were captured at DPR 2 with touch enabled. Every page was scrolled
