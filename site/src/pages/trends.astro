@@ -29,7 +29,7 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
   <section class="trends-parties" aria-labelledby="parties-h">
     <h2 id="parties-h">מפלגות</h2>
     <p class="page-note">
-      כל המפלגות על אותו סולם (0–{payload.ymax} מנדטים) ועל אותו ציר זמן. הקו המקווקו הוא אחוז החסימה ({THRESHOLD_SEATS} מנדטים). הקישו על נקודה כדי לראות את הסקר שמאחוריה.
+      כל המפלגות על אותו סולם (<Num kind="range" lo={0} hi={payload.ymax} /> מנדטים) ועל אותו ציר זמן. הקו המקווקו הוא אחוז החסימה ({THRESHOLD_SEATS} מנדטים). הקישו על נקודה כדי לראות את הסקר שמאחוריה.
     </p>
 
     <form class="control-bar" id="trend-controls" aria-label="הגדרות גרפי המפלגות">

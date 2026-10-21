@@ -4,7 +4,7 @@
 // needs no chart library, and the rows are their own text alternative.
 import Num from "../data/Num.astro";
 import { average, fmtDate, partyName, parties, type Poll } from "../../lib/data";
-import { fmtNum } from "../../lib/format";
+import { fmtNum, ltr } from "../../lib/format";
 
 interface Props {
   poll: Poll;
@@ -26,7 +26,7 @@ const big = [...rows].filter((r) => Math.abs(Math.round(r.diff)) >= 1).sort((a, 
 const summary = !rows.length
   ? ""
   : big.length
-    ? `ההפרשים הגדולים ביותר מהממוצע באותו יום: ${big.map((r) => `${r.name} ${fmtNum(Math.round(r.diff), "signed", { digits: 0 })}`).join(", ")}.`
+    ? `ההפרשים הגדולים ביותר מהממוצע באותו יום: ${big.map((r) => `${r.name} ${ltr(fmtNum(Math.round(r.diff), "signed", { digits: 0 })!)}`).join(", ")}.`
     : "כל המפלגות בסקר נמצאות פחות ממנדט אחד מהממוצע באותו יום.";
 ---
 
