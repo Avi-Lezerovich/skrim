@@ -1,6 +1,6 @@
 ---
-// Frame for every chart: message title and build-time summary (figcaption), legend, value
-// readout, a fixed-height box (no layout shift while Plot loads), the fallback message, and
+// Frame for every chart: message title and build-time summary (figcaption), legend (under the
+// chart on phones, above it from 768px), value readout, a fixed-height box (no layout shift while Plot loads), the fallback message, and
 // the HTML table that carries the same data. The chart script reads the JSON payload.
 interface Props {
   id: string;
@@ -27,7 +27,7 @@ const interactive = readout != null;
     <Heading class="chart-title" id={titleId}>{title}</Heading>
     <p class="chart-summary">{summary}</p>
   </figcaption>
-  <slot name="legend" />
+  {Astro.slots.has("legend") && <div class="chart-legend"><slot name="legend" /></div>}
   {interactive && <p class="chart-readout" aria-live="polite" set:html={readout} />}
   <div
     class="chart chart-box"

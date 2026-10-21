@@ -1,5 +1,5 @@
 // Interactions (FRONTEND_PLAN §6.3): table filter/sort with the live counter, CSV downloads,
-// pollster highlighting on trends, the chart readout from the keyboard, theme and mobile menu.
+// pollster highlighting on trends, the chart readout from the keyboard, theme, mobile tab bar.
 // Tagged @desktop / @mobile; each tag runs in its own project.
 import { readFileSync } from "node:fs";
 import { expect, test } from "@playwright/test";
@@ -98,6 +98,41 @@ test("chart readout follows the arrow keys @desktop", async ({ page }) => {
   await expect(date).toHaveText(latest!);
 });
 
+test("chart readout links to the polls behind the day @mobile", async ({ page }) => {
+  await page.goto("/");
+  const link = page.locator("#bloc-chart .ro-src");
+  await expect(link).toHaveAttribute("href", /\/polls\?from=\d{4}-\d\d-\d\d&to=\d{4}-\d\d-\d\d&status=ok/);
+  await link.click();
+  await expect(page.locator("#f-count")).toContainText("מוצגים");
+});
+
+test("share previews: complete Open Graph tags with an absolute 1200×630 image under 300KB @desktop", async ({ page, request }) => {
+  for (const path of ["/", "/trends/", "/polls/", `/polls/${okPolls[0].key}/`, "/pollsters/", "/methodology/"]) {
+    await page.goto(path);
+    const tags = await page.evaluate(() =>
+      Object.fromEntries(
+        [...document.querySelectorAll("meta[property^='og:'], meta[name^='twitter:']")].map((m) => [
+          m.getAttribute("property") ?? m.getAttribute("name"),
+          m.getAttribute("content"),
+        ]),
+      ),
+    );
+    for (const k of ["og:title", "og:description", "og:url", "og:image", "og:image:alt", "twitter:card", "twitter:image"])
+      expect(tags[k], `${path} ${k}`).toBeTruthy();
+    expect(tags["og:site_name"]).toBe("skrim");
+    expect(tags["og:locale"]).toBe("he_IL");
+    expect(tags["twitter:card"]).toBe("summary_large_image");
+    expect(tags["og:image"]).toMatch(/^https:\/\//);
+    expect([tags["og:image:width"], tags["og:image:height"]]).toEqual(["1200", "630"]);
+    // the image itself, from this build
+    const res = await request.get(new URL(tags["og:image"]).pathname);
+    expect(res.status(), `${path} image`).toBe(200);
+    const buf = Buffer.from(await res.body());
+    expect(buf.length).toBeLessThan(300 * 1024);
+    if (buf.subarray(1, 4).toString() === "PNG") expect([buf.readUInt32BE(16), buf.readUInt32BE(20)]).toEqual([1200, 630]);
+  }
+});
+
 test("theme switch persists across pages @desktop", async ({ page }) => {
   await page.goto("/");
   const toggle = page.locator(".theme-toggle");
@@ -109,20 +144,57 @@ test("theme switch persists across pages @desktop", async ({ page }) => {
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
 });
 
-test("mobile menu opens as a dialog and returns focus @mobile", async ({ page }) => {
-  await page.goto("/");
-  const button = page.locator(".nav-toggle");
-  await button.click();
-  const dialog = page.locator("#nav-dialog");
-  await expect(dialog).toBeVisible();
-  await expect(dialog.getByRole("link", { name: "מגמות" })).toBeVisible();
-  await page.keyboard.press("Escape");
-  await expect(dialog).toBeHidden();
-  await expect(button).toBeFocused();
+test("primary navigation is a bottom tab bar with 44px targets @mobile", async ({ page }) => {
+  await page.goto("/trends/");
+  const nav = page.getByRole("navigation", { name: "ניווט ראשי" });
+  const vh = page.viewportSize()!.height;
+  const box = (await nav.boundingBox())!;
+  expect(Math.round(box.y + box.height)).toBe(vh);
+  const links = nav.getByRole("link");
+  await expect(links).toHaveCount(5);
+  for (const b of await links.evaluateAll((as) => as.map((a) => a.getBoundingClientRect()))) {
+    expect(b.height).toBeGreaterThanOrEqual(44);
+    expect(b.width).toBeGreaterThanOrEqual(44);
+  }
+  await expect(nav.getByRole("link", { name: "מגמות" })).toHaveAttribute("aria-current", "page");
+  // the sticky header stays on screen
+  await page.mouse.wheel(0, 2000);
+  expect((await page.locator(".site-header").boundingBox())!.y).toBe(0);
 });
 
-test("polls show as cards on phones @mobile", async ({ page }) => {
+test("unknown paths get the site's own 404 page @mobile", async ({ page }) => {
+  const res = await page.goto("/no-such-page/");
+  expect(res?.status()).toBe(404);
+  await expect(page.getByRole("heading", { level: 1 })).toHaveText("הדף לא נמצא");
+  await expect(page.locator("html")).toHaveAttribute("dir", "rtl");
+});
+
+test("polls list on phones: compact rows, paged, filters in a bottom sheet with chips @mobile", async ({ page }) => {
   await page.goto("/polls/");
   await expect(page.locator(".polls-table-wrap")).toBeHidden();
-  await expect(page.locator("#poll-cards > li")).toHaveCount(polls.length);
+  const rows = page.locator("#poll-compact tbody tr");
+  await expect(rows).toHaveCount(polls.length);
+  await expect(page.locator("#poll-compact tbody tr:visible")).toHaveCount(30);
+  await page.locator("#f-more").click();
+  await expect(page.locator("#poll-compact tbody tr:visible")).toHaveCount(Math.min(60, polls.length));
+
+  // no horizontal scroll in the list
+  const overflow = await page.locator(".polls-compact-wrap").evaluate((el) => el.scrollWidth - el.clientWidth);
+  expect(overflow).toBeLessThanOrEqual(0);
+
+  await page.getByRole("button", { name: /סינון ומיון/ }).click();
+  const sheet = page.getByRole("dialog", { name: "סינון ומיון" });
+  await expect(sheet).toBeVisible();
+  await sheet.locator("select[name=pollster]").selectOption("kantar");
+  await sheet.getByRole("button", { name: `הצגת ${kantar} סקרים` }).click();
+  await expect(sheet).toBeHidden();
+  await expect(page.locator("#f-count")).toHaveText(`מוצגים ${kantar} מתוך ${polls.length} סקרים`);
+  await expect(page.locator("#poll-compact tbody tr:visible")).toHaveCount(Math.min(30, kantar));
+
+  const chip = page.locator(".filter-chips .chip");
+  await expect(chip).toHaveCount(1);
+  await expect(chip).toContainText("סוקר");
+  await chip.click();
+  await expect(page.locator("#f-count")).toHaveText(`${polls.length} סקרים`);
+  await expect(page).toHaveURL(/\/polls\/$/);
 });

@@ -1,4 +1,6 @@
 import { defineConfig } from "astro/config";
+import rehypeKatex from "rehype-katex";
+import remarkMath from "remark-math";
 
 const text = (node) =>
   node.type === "text" ? node.value : (node.children ?? []).map(text).join("");
@@ -30,9 +32,25 @@ function wrapTables() {
   };
 }
 
+/**
+ * Where the site is served, for canonical and Open Graph URLs (share previews need absolute
+ * image URLs) and for internal links. Defaults: the root of the GitHub Pages origin, which is
+ * what CI and the tests use. The live site, https://avi-lezerovich.github.io/skrim/, is built
+ * with BASE_PATH=/skrim (npm run build:pages). A custom domain later: SITE_URL=https://…,
+ * BASE_PATH unset.
+ */
+const site = process.env.SITE_URL || "https://avi-lezerovich.github.io";
+const base = process.env.BASE_PATH || "/";
+
 export default defineConfig({
-  site: "https://pollygraph-il.pages.dev",
-  markdown: { rehypePlugins: [wrapTables] },
+  site,
+  base,
+  // $…$ and $$…$$ in Markdown become MathML at build time; browsers draw it natively, so the
+  // page loads no math fonts or CSS.
+  markdown: {
+    remarkPlugins: [remarkMath],
+    rehypePlugins: [[rehypeKatex, { output: "mathml" }], wrapTables],
+  },
   // methodology.md lives at the repo root, one level up
   vite: { server: { fs: { allow: [".."] } } },
 });

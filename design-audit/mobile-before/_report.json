@@ -1,0 +1,5666 @@
+[
+  {
+    "page": "home",
+    "path": "/",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "home-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 3951,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 38,
+    "smallTargets": 36,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ישר!",
+        "w": 215,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הליכוד",
+        "w": 215,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ביחד",
+        "w": 215,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הדמוקרטים",
+        "w": 241,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 16,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "trends-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 5273,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 21,
+    "smallTargets": 18,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "מה הרצועה לא אומרת",
+        "w": 294,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 255,
+        "h": 39,
+        "inline": true
+      },
+      {
+        "tag": "summary",
+        "text": "הצג כטבלה",
+        "w": 294,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "ללא הדגשהדיירקט פולסטאטיקה מחק",
+        "w": 185,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "input",
+        "text": "",
+        "w": 124,
+        "h": 40,
+        "inline": false
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 136,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "polls-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 22199,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 258,
+    "smallTargets": 256,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולאפקאר מחקרים וידעדיאלוגדיי",
+        "w": 158,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולוואלהזמן ישראלחדשות 12חדשו",
+        "w": 158,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולבממוצעממתינים לבדיקה",
+        "w": 158,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "תאריך ביצוע, מהחדשתאריך ביצוע,",
+        "w": 158,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "נקה סינון",
+        "w": 158,
+        "h": 42,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 4757,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 174,
+    "headerSticky": "static",
+    "targets": 37,
+    "smallTargets": 36,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "פרט טכני",
+        "w": 267,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "פרט טכני",
+        "w": 267,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-review-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 2067,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 174,
+    "headerSticky": "static",
+    "targets": 14,
+    "smallTargets": 13,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "פרט טכני",
+        "w": 267,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "pollsters-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 1806,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 9,
+    "smallTargets": 8,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 66,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "נתונים והורדה",
+        "w": 84,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "קוד פתוח",
+        "w": 57,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "דיווח על טעות",
+        "w": 85,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 10,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "methodology-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 5139,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 24,
+    "smallTargets": 22,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "תוכן העניינים",
+        "w": 328,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מקור",
+        "w": 31,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "איסוף",
+        "w": 36,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "חילוץ ובקרה",
+        "w": 74,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע הסקרים",
+        "w": 94,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13.5,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 360,
+    "scheme": "light",
+    "status": 200,
+    "file": "data-360-light.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 2351,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 16,
+    "smallTargets": 16,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-polls.csv",
+        "w": 294,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-answers.csv",
+        "w": 294,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-average.json",
+        "w": 294,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "↗ manifest.csv",
+        "w": 294,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "היסטוריית השינויים בנתונים ב-G",
+        "w": 261,
+        "h": 22,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 360,
+    "scheme": "light",
+    "status": 404,
+    "file": "404-360-light.png",
+    "scrollW": 980,
+    "clientW": 980,
+    "pageH": 2178,
+    "headerH": null,
+    "bannerH": 0,
+    "h1Top": 1112,
+    "headerSticky": null,
+    "targets": 0,
+    "smallTargets": 0,
+    "smallExamples": [],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 15.6,
+    "under12": 0,
+    "overflowers": [],
+    "title": "404: Not Found",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "home-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 3951,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 38,
+    "smallTargets": 36,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ישר!",
+        "w": 215,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הליכוד",
+        "w": 215,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ביחד",
+        "w": 215,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הדמוקרטים",
+        "w": 241,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 16,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "trends-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 5273,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 21,
+    "smallTargets": 18,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "מה הרצועה לא אומרת",
+        "w": 294,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 255,
+        "h": 39,
+        "inline": true
+      },
+      {
+        "tag": "summary",
+        "text": "הצג כטבלה",
+        "w": 294,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "ללא הדגשהדיירקט פולסטאטיקה מחק",
+        "w": 185,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "input",
+        "text": "",
+        "w": 124,
+        "h": 40,
+        "inline": false
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 136,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "polls-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 22199,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 258,
+    "smallTargets": 256,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולאפקאר מחקרים וידעדיאלוגדיי",
+        "w": 158,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולוואלהזמן ישראלחדשות 12חדשו",
+        "w": 158,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולבממוצעממתינים לבדיקה",
+        "w": 158,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "תאריך ביצוע, מהחדשתאריך ביצוע,",
+        "w": 158,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "נקה סינון",
+        "w": 158,
+        "h": 42,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 4757,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 174,
+    "headerSticky": "static",
+    "targets": 37,
+    "smallTargets": 36,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "פרט טכני",
+        "w": 267,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "פרט טכני",
+        "w": 267,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-review-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 2067,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 174,
+    "headerSticky": "static",
+    "targets": 14,
+    "smallTargets": 13,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "פרט טכני",
+        "w": 267,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "pollsters-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 1806,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 9,
+    "smallTargets": 8,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 284,
+        "h": 39,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 66,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "נתונים והורדה",
+        "w": 84,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "קוד פתוח",
+        "w": 57,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "דיווח על טעות",
+        "w": 85,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 10,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "methodology-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 5139,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 24,
+    "smallTargets": 22,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "תוכן העניינים",
+        "w": 328,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מקור",
+        "w": 31,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "איסוף",
+        "w": 36,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "חילוץ ובקרה",
+        "w": 74,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע הסקרים",
+        "w": 94,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13.5,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 360,
+    "scheme": "dark",
+    "status": 200,
+    "file": "data-360-dark.png",
+    "scrollW": 360,
+    "clientW": 360,
+    "pageH": 2351,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 16,
+    "smallTargets": 16,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-polls.csv",
+        "w": 294,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-answers.csv",
+        "w": 294,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-average.json",
+        "w": 294,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "↗ manifest.csv",
+        "w": 294,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "היסטוריית השינויים בנתונים ב-G",
+        "w": 261,
+        "h": 22,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 360,
+    "scheme": "dark",
+    "status": 404,
+    "file": "404-360-dark.png",
+    "scrollW": 980,
+    "clientW": 980,
+    "pageH": 2178,
+    "headerH": null,
+    "bannerH": 0,
+    "h1Top": 1112,
+    "headerSticky": null,
+    "targets": 0,
+    "smallTargets": 0,
+    "smallExamples": [],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 15.6,
+    "under12": 0,
+    "overflowers": [],
+    "title": "404: Not Found",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "home-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 3911,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 38,
+    "smallTargets": 36,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ישר!",
+        "w": 245,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הליכוד",
+        "w": 245,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ביחד",
+        "w": 245,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הדמוקרטים",
+        "w": 271,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 16,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "trends-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 5233,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 21,
+    "smallTargets": 18,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "מה הרצועה לא אומרת",
+        "w": 324,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "summary",
+        "text": "הצג כטבלה",
+        "w": 324,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "ללא הדגשהדיירקט פולסטאטיקה מחק",
+        "w": 185,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "input",
+        "text": "",
+        "w": 124,
+        "h": 40,
+        "inline": false
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 136,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "polls-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 22179,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 258,
+    "smallTargets": 256,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולאפקאר מחקרים וידעדיאלוגדיי",
+        "w": 173,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולוואלהזמן ישראלחדשות 12חדשו",
+        "w": 173,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולבממוצעממתינים לבדיקה",
+        "w": 173,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "תאריך ביצוע, מהחדשתאריך ביצוע,",
+        "w": 173,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "נקה סינון",
+        "w": 173,
+        "h": 42,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 4657,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 174,
+    "headerSticky": "static",
+    "targets": 37,
+    "smallTargets": 36,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "פרט טכני",
+        "w": 297,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "פרט טכני",
+        "w": 297,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-review-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 1999,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 174,
+    "headerSticky": "static",
+    "targets": 14,
+    "smallTargets": 13,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "פרט טכני",
+        "w": 297,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "pollsters-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 1738,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 9,
+    "smallTargets": 8,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 66,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "נתונים והורדה",
+        "w": 84,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "קוד פתוח",
+        "w": 57,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "דיווח על טעות",
+        "w": 85,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 10,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "methodology-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 4787,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 24,
+    "smallTargets": 22,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "תוכן העניינים",
+        "w": 358,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מקור",
+        "w": 31,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "איסוף",
+        "w": 36,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "חילוץ ובקרה",
+        "w": 74,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע הסקרים",
+        "w": 94,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13.5,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 390,
+    "scheme": "light",
+    "status": 200,
+    "file": "data-390-light.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 2311,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 16,
+    "smallTargets": 15,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-polls.csv",
+        "w": 324,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-answers.csv",
+        "w": 324,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-average.json",
+        "w": 324,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "↗ manifest.csv",
+        "w": 324,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "היסטוריית השינויים בנתונים ב-G",
+        "w": 261,
+        "h": 22,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 390,
+    "scheme": "light",
+    "status": 404,
+    "file": "404-390-light.png",
+    "scrollW": 980,
+    "clientW": 980,
+    "pageH": 2011,
+    "headerH": null,
+    "bannerH": 0,
+    "h1Top": 1029,
+    "headerSticky": null,
+    "targets": 0,
+    "smallTargets": 0,
+    "smallExamples": [],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 15.6,
+    "under12": 0,
+    "overflowers": [],
+    "title": "404: Not Found",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "home-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 3911,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 38,
+    "smallTargets": 36,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ישר!",
+        "w": 245,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הליכוד",
+        "w": 245,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ביחד",
+        "w": 245,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "הדמוקרטים",
+        "w": 271,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 16,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "trends-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 5233,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 21,
+    "smallTargets": 18,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "מה הרצועה לא אומרת",
+        "w": 324,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "summary",
+        "text": "הצג כטבלה",
+        "w": 324,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "ללא הדגשהדיירקט פולסטאטיקה מחק",
+        "w": 185,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "input",
+        "text": "",
+        "w": 124,
+        "h": 40,
+        "inline": false
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 136,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "polls-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 22179,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 258,
+    "smallTargets": 256,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולאפקאר מחקרים וידעדיאלוגדיי",
+        "w": 173,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולוואלהזמן ישראלחדשות 12חדשו",
+        "w": 173,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולבממוצעממתינים לבדיקה",
+        "w": 173,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "תאריך ביצוע, מהחדשתאריך ביצוע,",
+        "w": 173,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "נקה סינון",
+        "w": 173,
+        "h": 42,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 4657,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 174,
+    "headerSticky": "static",
+    "targets": 37,
+    "smallTargets": 36,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "פרט טכני",
+        "w": 297,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "פרט טכני",
+        "w": 297,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-review-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 1999,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 174,
+    "headerSticky": "static",
+    "targets": 14,
+    "smallTargets": 13,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "הדיווח המקורי בוועדת הבחירות (",
+        "w": 288,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "פרט טכני",
+        "w": 297,
+        "h": 20,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "אילו בקרות רצות על כל סקר",
+        "w": 169,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "פתחו דיווח ב-GitHub",
+        "w": 131,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "pollsters-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 1738,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 9,
+    "smallTargets": 8,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 66,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "נתונים והורדה",
+        "w": 84,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "קוד פתוח",
+        "w": 57,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "דיווח על טעות",
+        "w": 85,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 10,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "methodology-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 4787,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 24,
+    "smallTargets": 22,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "תוכן העניינים",
+        "w": 358,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מקור",
+        "w": 31,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "איסוף",
+        "w": 36,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "חילוץ ובקרה",
+        "w": 74,
+        "h": 19,
+        "inline": true
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע הסקרים",
+        "w": 94,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13.5,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 390,
+    "scheme": "dark",
+    "status": 200,
+    "file": "data-390-dark.png",
+    "scrollW": 390,
+    "clientW": 390,
+    "pageH": 2311,
+    "headerH": 65,
+    "bannerH": 77,
+    "h1Top": 142,
+    "headerSticky": "static",
+    "targets": 16,
+    "smallTargets": 15,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 132,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "תפריט",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-polls.csv",
+        "w": 324,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-answers.csv",
+        "w": 324,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-average.json",
+        "w": 324,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "↗ manifest.csv",
+        "w": 324,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "היסטוריית השינויים בנתונים ב-G",
+        "w": 261,
+        "h": 22,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 390,
+    "scheme": "dark",
+    "status": 404,
+    "file": "404-390-dark.png",
+    "scrollW": 980,
+    "clientW": 980,
+    "pageH": 2011,
+    "headerH": null,
+    "bannerH": 0,
+    "h1Top": 1029,
+    "headerSticky": null,
+    "targets": 0,
+    "smallTargets": 0,
+    "smallExamples": [],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 15.6,
+    "under12": 0,
+    "overflowers": [],
+    "title": "404: Not Found",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "home-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 2829,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 168,
+    "headerSticky": "static",
+    "targets": 42,
+    "smallTargets": 38,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 25,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "trends-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 3469,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 168,
+    "headerSticky": "static",
+    "targets": 25,
+    "smallTargets": 22,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 47,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "מה הרצועה לא אומרת",
+        "w": 686,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 145,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "polls-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1445,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 168,
+    "headerSticky": "static",
+    "targets": 285,
+    "smallTargets": 282,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולאפקאר מחקרים וידעדיאלוגדיי",
+        "w": 185,
+        "h": 40,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 3373,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 200,
+    "headerSticky": "static",
+    "targets": 41,
+    "smallTargets": 40,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-review-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1769,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 200,
+    "headerSticky": "static",
+    "targets": 18,
+    "smallTargets": 18,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "pollsters-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1600,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 168,
+    "headerSticky": "static",
+    "targets": 13,
+    "smallTargets": 12,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 16,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "methodology-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 3292,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 168,
+    "headerSticky": "static",
+    "targets": 28,
+    "smallTargets": 27,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 78,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "תוכן העניינים",
+        "w": 720,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13.5,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 768,
+    "scheme": "light",
+    "status": 200,
+    "file": "data-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1944,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 168,
+    "headerSticky": "static",
+    "targets": 20,
+    "smallTargets": 20,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-polls.csv",
+        "w": 686,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 768,
+    "scheme": "light",
+    "status": 404,
+    "file": "404-768-light.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1024,
+    "headerH": null,
+    "bannerH": 0,
+    "h1Top": 536,
+    "headerSticky": null,
+    "targets": 0,
+    "smallTargets": 0,
+    "smallExamples": [],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 15.6,
+    "under12": 0,
+    "overflowers": [],
+    "title": "404: Not Found",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "home-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 2829,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 168,
+    "headerSticky": "static",
+    "targets": 42,
+    "smallTargets": 38,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 25,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "trends-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 3469,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 168,
+    "headerSticky": "static",
+    "targets": 25,
+    "smallTargets": 22,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 47,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "מה הרצועה לא אומרת",
+        "w": 686,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 145,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "polls-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1445,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 168,
+    "headerSticky": "static",
+    "targets": 285,
+    "smallTargets": 282,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולאפקאר מחקרים וידעדיאלוגדיי",
+        "w": 185,
+        "h": 40,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 3373,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 200,
+    "headerSticky": "static",
+    "targets": 41,
+    "smallTargets": 40,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-review-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1769,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 200,
+    "headerSticky": "static",
+    "targets": 18,
+    "smallTargets": 18,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "pollsters-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1600,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 168,
+    "headerSticky": "static",
+    "targets": 13,
+    "smallTargets": 12,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 16,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "methodology-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 3292,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 168,
+    "headerSticky": "static",
+    "targets": 28,
+    "smallTargets": 27,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 78,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "תוכן העניינים",
+        "w": 720,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13.5,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 768,
+    "scheme": "dark",
+    "status": 200,
+    "file": "data-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1944,
+    "headerH": 111,
+    "bannerH": 57,
+    "h1Top": 168,
+    "headerSticky": "static",
+    "targets": 20,
+    "smallTargets": 20,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 45,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 46,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 50,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 75,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-polls.csv",
+        "w": 686,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 768,
+    "scheme": "dark",
+    "status": 404,
+    "file": "404-768-dark.png",
+    "scrollW": 768,
+    "clientW": 768,
+    "pageH": 1024,
+    "headerH": null,
+    "bannerH": 0,
+    "h1Top": 536,
+    "headerSticky": null,
+    "targets": 0,
+    "smallTargets": 0,
+    "smallExamples": [],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 15.6,
+    "under12": 0,
+    "overflowers": [],
+    "title": "404: Not Found",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": null
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "home-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1860,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 102,
+    "headerSticky": "static",
+    "targets": 42,
+    "smallTargets": 35,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 51,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 25,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "trends-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 2407,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 102,
+    "headerSticky": "static",
+    "targets": 25,
+    "smallTargets": 22,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "מה הרצועה לא אומרת",
+        "w": 1102,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 145,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "polls-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1258,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 102,
+    "headerSticky": "static",
+    "targets": 285,
+    "smallTargets": 282,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 51,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולאפקאר מחקרים וידעדיאלוגדיי",
+        "w": 185,
+        "h": 40,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 2162,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 134,
+    "headerSticky": "static",
+    "targets": 41,
+    "smallTargets": 40,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 51,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "poll-review-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1637,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 134,
+    "headerSticky": "static",
+    "targets": 18,
+    "smallTargets": 18,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 51,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "pollsters-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1514,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 102,
+    "headerSticky": "static",
+    "targets": 13,
+    "smallTargets": 12,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 56,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 24,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "methodology-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 3186,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 102,
+    "headerSticky": "static",
+    "targets": 27,
+    "smallTargets": 26,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 83,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות לכנסת ה-26",
+        "w": 245,
+        "h": 23,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13.5,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 1440,
+    "scheme": "light",
+    "status": 200,
+    "file": "data-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1246,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 102,
+    "headerSticky": "static",
+    "targets": 20,
+    "smallTargets": 20,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-polls.csv",
+        "w": 766,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 1440,
+    "scheme": "light",
+    "status": 404,
+    "file": "404-1440-light.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 900,
+    "headerH": null,
+    "bannerH": 0,
+    "h1Top": 474,
+    "headerSticky": null,
+    "targets": 0,
+    "smallTargets": 0,
+    "smallExamples": [],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 15.6,
+    "under12": 0,
+    "overflowers": [],
+    "title": "404: Not Found",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "home",
+    "path": "/",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "home-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1860,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 102,
+    "headerSticky": "static",
+    "targets": 42,
+    "smallTargets": 35,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 51,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "איך מחושב הממוצע",
+        "w": 121,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 25,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "trends",
+    "path": "/trends",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "trends-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 2407,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 102,
+    "headerSticky": "static",
+    "targets": 25,
+    "smallTargets": 22,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "summary",
+        "text": "מה הרצועה לא אומרת",
+        "w": 1102,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 145,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מגמות · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "polls",
+    "path": "/polls",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "polls-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1258,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 102,
+    "headerSticky": "static",
+    "targets": 285,
+    "smallTargets": 282,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 51,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "select",
+        "text": "הכולאפקאר מחקרים וידעדיאלוגדיי",
+        "w": 185,
+        "h": 40,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "כל הסקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "poll",
+    "path": "/polls/knesset_election109",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 2162,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 134,
+    "headerSticky": "static",
+    "targets": 41,
+    "smallTargets": 40,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 51,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "שמואל רוזנר · 13.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "poll-review",
+    "path": "/polls/knesset_election103",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "poll-review-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1637,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 134,
+    "headerSticky": "static",
+    "targets": 18,
+    "smallTargets": 18,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 51,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "כל הסקרים",
+        "w": 69,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "דיאלוג · 5.10.2026 · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "pollsters",
+    "path": "/pollsters",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "pollsters-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1514,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 102,
+    "headerSticky": "static",
+    "targets": 13,
+    "smallTargets": 12,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 56,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות של ועדת הבחי",
+        "w": 294,
+        "h": 19,
+        "inline": true
+      }
+    ],
+    "chartMinFont": 12,
+    "chartTexts": 24,
+    "minFont": 12,
+    "under12": 0,
+    "overflowers": [],
+    "title": "סוקרים · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "methodology",
+    "path": "/methodology",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "methodology-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 3186,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 102,
+    "headerSticky": "static",
+    "targets": 27,
+    "smallTargets": 26,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 83,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מאגר סקרי הבחירות לכנסת ה-26",
+        "w": 245,
+        "h": 23,
+        "inline": true
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13.5,
+    "under12": 0,
+    "overflowers": [],
+    "title": "מתודולוגיה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "data",
+    "path": "/data",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 200,
+    "file": "data-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 1246,
+    "headerH": 65,
+    "bannerH": 37,
+    "h1Top": 102,
+    "headerSticky": "static",
+    "targets": 20,
+    "smallTargets": 20,
+    "smallExamples": [
+      {
+        "tag": "a",
+        "text": "pollygraphסקרי הבחירות לכנסת ה",
+        "w": 307,
+        "h": 28,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "ממוצע",
+        "w": 49,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מגמות",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סקרים",
+        "w": 48,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "סוקרים",
+        "w": 53,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "מתודולוגיה",
+        "w": 79,
+        "h": 38,
+        "inline": false
+      },
+      {
+        "tag": "button",
+        "text": "מצב כהה",
+        "w": 40,
+        "h": 40,
+        "inline": false
+      },
+      {
+        "tag": "a",
+        "text": "⤓ knesset26-polls.csv",
+        "w": 766,
+        "h": 28,
+        "inline": false
+      }
+    ],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 13,
+    "under12": 0,
+    "overflowers": [],
+    "title": "נתונים והורדה · pollygraph",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  },
+  {
+    "page": "404",
+    "path": "/no-such-page",
+    "width": 1440,
+    "scheme": "dark",
+    "status": 404,
+    "file": "404-1440-dark.png",
+    "scrollW": 1440,
+    "clientW": 1440,
+    "pageH": 900,
+    "headerH": null,
+    "bannerH": 0,
+    "h1Top": 474,
+    "headerSticky": null,
+    "targets": 0,
+    "smallTargets": 0,
+    "smallExamples": [],
+    "chartMinFont": null,
+    "chartTexts": 0,
+    "minFont": 15.6,
+    "under12": 0,
+    "overflowers": [],
+    "title": "404: Not Found",
+    "ogTags": 0,
+    "themeColor": false,
+    "manifest": false,
+    "axe": []
+  }
+]

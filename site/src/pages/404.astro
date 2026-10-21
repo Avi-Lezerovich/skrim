@@ -1,0 +1,16 @@
+---
+import { u } from "../lib/url";
+import Base from "../layouts/Base.astro";
+---
+
+<Base title="הדף לא נמצא" description="הדף המבוקש אינו קיים">
+  <header class="page-head">
+    <h1>הדף לא נמצא</h1>
+    <p class="lead">ייתכן שהקישור שגוי, או שהדף הועבר.</p>
+  </header>
+  <ul class="link-list">
+    <li><a href={u("/")}>ממוצע הסקרים</a></li>
+    <li><a href={u("/polls")}>כל הסקרים</a></li>
+    <li><a href={u("/methodology")}>מתודולוגיה</a></li>
+  </ul>
+</Base>

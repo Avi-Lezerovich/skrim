@@ -1,0 +1,25 @@
+---
+// The skrim lockup, inline so it follows the theme: the box and the wordmark take the text
+// colour, the line and the dot take --link. The SVG is decorative; the name is real text for
+// assistive tech, in Latin with lang="en" so it is not read as Hebrew.
+import { LOCKUP, lockupPaths } from "../../lib/brand.mjs";
+
+interface Props {
+  /** Rendered height in px. */
+  height?: number;
+}
+const { height = 24 } = Astro.props;
+const width = Math.round((height * LOCKUP.width) / LOCKUP.height);
+---
+
+<span class="logo">
+  <svg
+    viewBox={`0 0 ${LOCKUP.width} ${LOCKUP.height}`}
+    width={width}
+    height={height}
+    aria-hidden="true"
+    focusable="false"
+    set:html={lockupPaths("currentColor", "var(--link)")}
+  />
+  <span class="sr-only" lang="en">skrim</span>
+</span>

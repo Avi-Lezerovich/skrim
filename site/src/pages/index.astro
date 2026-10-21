@@ -1,11 +1,15 @@
 ---
+import { u } from "../lib/url";
 import Base from "../layouts/Base.astro";
 import BlocChart from "../components/charts/BlocChart.astro";
 import BlocTile from "../components/summary/BlocTile.astro";
-import PollCard from "../components/summary/PollCard.astro";
+import PollsCompact from "../components/summary/PollsCompact.astro";
 import SeatBars from "../components/summary/SeatBars.astro";
 import SeatStrip from "../components/summary/SeatStrip.astro";
 import { average, fmtDate, latestParties, polls, pollsterName } from "../lib/data";
+
+/** Tile labels on phones, where three tiles share one row. */
+const BLOC_TILE = { coalition: "קואליציה", opposition: "אופוזיציה", arab: "ערביות", other: "אחרות" } as const;
 import { THRESHOLD_SEATS, blocTiles, isFinal, partyRows, stripSegments } from "../lib/selectors";
 
 const date = latestParties.date;
@@ -15,7 +19,7 @@ const { above, around, windowSize } = partyRows();
 const recent = polls.slice(0, 5);
 ---
 
-<Base title="pollygraph" description="ממוצע סקרי הבחירות לכנסת ה-26, לפי הדיווחים לוועדת הבחירות המרכזית">
+<Base title="skrim · סקרי הבחירות לכנסת ה-26" description="ממוצע סקרי הבחירות לכנסת ה-26, לפי הדיווחים לוועדת הבחירות המרכזית">
   <header class="page-head">
     <h1>{isFinal() ? "הממוצע הסופי לפני הבחירות" : "ממוצע הסקרים"}</h1>
     <p class="page-meta">
@@ -26,17 +30,20 @@ const recent = polls.slice(0, 5);
         <p class="notice">ממוצע על בסיס מעט סוקרים: כל סקר בודד משפיע עליו הרבה.</p>
       )
     }
-    <p class="page-note">
-      הממוצע משקלל את הסקר האחרון של כל סוקר בחלון: {inWindow}.
-      <a href="/methodology#ממוצע-הסקרים">איך מחושב הממוצע</a>
-    </p>
+    <details class="page-note window-note">
+      <summary>הממוצע משקלל את הסקר האחרון של כל סוקר בחלון</summary>
+      <p>
+        הסוקרים בחלון: {inWindow}. <a href={u("/methodology#ממוצע-הסקרים")}>איך מחושב הממוצע</a>
+      </p>
+    </details>
   </header>
 
   <section class="home-blocs" aria-labelledby="blocs-h">
     <h2 id="blocs-h" class="sr-only">הגושים</h2>
     <div class="tiles">
-      {blocTiles().map((t) => <BlocTile tile={t} />)}
+      {blocTiles().map((t) => <BlocTile tile={t} short={BLOC_TILE[t.bloc]} />)}
     </div>
+    <p class="tiles-key">מספר גדול: מנדטים בממוצע · מספר קטן: הפיזור בין הסוקרים · קו: 30 הימים האחרונים</p>
     <SeatStrip segments={stripSegments()} />
   </section>
 
@@ -44,7 +51,7 @@ const recent = polls.slice(0, 5);
     <section class="card home-parties" aria-labelledby="parties-h">
       <h2 id="parties-h">מנדטים לפי מפלגה</h2>
       <p class="legend-key small">
-        עמודה = ממוצע · קו דק = פיזור בין הסוקרים · קו מקווקו = אחוז החסימה ({THRESHOLD_SEATS} מנדטים)
+        עמודה = ממוצע · קו כהה = פיזור בין הסוקרים · קו מקווקו = אחוז החסימה ({THRESHOLD_SEATS} מנדטים)
       </p>
       <SeatBars rows={above.slice(0, 12)} />
       {
@@ -54,7 +61,7 @@ const recent = polls.slice(0, 5);
             <ul>
               {around.map((r) => (
                 <li>
-                  <a href={`/trends#party-${r.id}`}>
+                  <a href={u(`/trends#party-${r.id}`)}>
                     <i class="swatch" style={`background: ${r.color}`} />
                     {r.name}
                   </a>{" "}
@@ -73,16 +80,16 @@ const recent = polls.slice(0, 5);
     <BlocChart />
   </div>
 
-  <section aria-labelledby="recent-h">
+  <section class="recent-polls" aria-labelledby="recent-h">
     <h2 id="recent-h">הסקרים האחרונים</h2>
-    <div class="poll-cards">
-      {recent.map((p) => <PollCard poll={p} />)}
+    <div class="card card-flush">
+      <PollsCompact polls={recent} caption="חמשת הסקרים האחרונים לפי תאריך ביצוע, עם סך המנדטים לכל גוש" />
     </div>
-    <p><a href="/polls">כל {polls.length} הסקרים ←</a></p>
+    <p class="more-link"><a href={u("/polls")}>כל {polls.length} הסקרים ←</a></p>
   </section>
 
   <p class="trust-line">
-    כל מספר מקושר לדיווח המקורי בוועדת הבחירות · <a href="/methodology">מתודולוגיה</a> ·
-    <a href="/data">הורדת הנתונים</a>
+    כל מספר מקושר לדיווח המקורי בוועדת הבחירות · <a href={u("/methodology")}>מתודולוגיה</a> ·
+    <a href={u("/data")}>הורדת הנתונים</a>
   </p>
 </Base>

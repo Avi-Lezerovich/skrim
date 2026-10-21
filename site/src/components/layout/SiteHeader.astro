@@ -1,80 +1,52 @@
 ---
-// Logo, primary navigation and the theme switch. On narrow screens the navigation moves
-// into a <dialog> behind a ≡ button; without JS it stays inline and wraps.
+// Compact sticky header: logo and theme switch. The one primary <nav> is a bottom tab bar on
+// phones (thumb reach, five sections) and moves into the header row from 768px; it is plain
+// links, so it works without JS.
+import Logo from "./Logo.astro";
+import { u } from "../../lib/url";
+
 interface Props {
   current: string;
 }
 const { current } = Astro.props;
+// Icons are 24×24 line drawings in currentColor, shown only in the tab bar.
 const nav = [
-  ["/", "ממוצע"],
-  ["/trends", "מגמות"],
-  ["/polls", "סקרים"],
-  ["/pollsters", "סוקרים"],
-  ["/methodology", "מתודולוגיה"],
+  ["/", "ממוצע", "M3 9h18v6H3zM12 5v14"],
+  ["/trends", "מגמות", "M3 18l5-6 4 3 8-9M3 21h18"],
+  ["/polls", "סקרים", "M8 6h12M8 12h12M8 18h12M4 6h.01M4 12h.01M4 18h.01"],
+  ["/pollsters", "סוקרים", "M9 11a3 3 0 1 0 0-6 3 3 0 0 0 0 6zM3 19c0-3 2.7-5 6-5s6 2 6 5M16 11a2.5 2.5 0 1 0 0-5M17.5 14c2.2.5 3.5 2.3 3.5 5"],
+  ["/methodology", "מתודולוגיה", "M5 4h10l4 4v12H5zM15 4v4h4M8 12h8M8 16h6"],
 ];
 const isCurrent = (href: string) =>
   href === "/" ? current === "/" : current === href || current.startsWith(href + "/");
 ---
 
 <header class="site-header">
-  <div class="wrap">
-    <a class="brand" href="/">
-      <svg class="brand-mark" viewBox="0 0 32 32" width="24" height="24" aria-hidden="true">
-        <rect width="32" height="32" rx="6" fill="currentColor" />
-        <path d="M7 22l6-7 5 4 7-9" fill="none" stroke="var(--surface)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
-      <span class="brand-name" lang="en">pollygraph</span>
+  <div class="wrap header-row">
+    <a class="brand" href={u("/")}>
+      <Logo />
       <span class="brand-sub">סקרי הבחירות לכנסת ה-26</span>
     </a>
     <nav class="nav" aria-label="ניווט ראשי">
       {
-        nav.map(([href, label]) => (
-          <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>
-            {label}
+        nav.map(([href, label, icon]) => (
+          <a href={u(href)} aria-current={isCurrent(href) ? "page" : undefined}>
+            <svg class="nav-icon" viewBox="0 0 24 24" width="24" height="24" aria-hidden="true">
+              <path d={icon} fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" />
+            </svg>
+            <span>{label}</span>
           </a>
         ))
       }
     </nav>
-    <div class="header-tools">
-      <button class="icon-btn theme-toggle" type="button" aria-pressed="false" title="מצב כהה">
-        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-          <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2" />
-          <path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" />
-        </svg>
-        <span class="sr-only">מצב כהה</span>
-      </button>
-      <button class="icon-btn nav-toggle" type="button" aria-haspopup="dialog" aria-controls="nav-dialog">
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-          <path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-        <span class="sr-only">תפריט</span>
-      </button>
-    </div>
+    <button class="icon-btn theme-toggle" type="button" aria-pressed="false" title="מצב כהה">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2" />
+        <path d="M12 4a8 8 0 0 1 0 16z" fill="currentColor" />
+      </svg>
+      <span class="sr-only">מצב כהה</span>
+    </button>
   </div>
-  <dialog class="nav-dialog" id="nav-dialog" aria-label="תפריט">
-    <div class="nav-dialog-head">
-      <span class="brand-name" lang="en">pollygraph</span>
-      <button class="icon-btn" type="button" data-close>
-        <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
-          <path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
-        </svg>
-        <span class="sr-only">סגירת התפריט</span>
-      </button>
-    </div>
-    <nav aria-label="ניווט ראשי">
-      <ul>
-        {
-          nav.map(([href, label]) => (
-            <li>
-              <a href={href} aria-current={isCurrent(href) ? "page" : undefined}>
-                {label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
-    </nav>
-  </dialog>
 </header>
 
 <script>
@@ -82,7 +54,12 @@ const isCurrent = (href: string) =>
   const toggle = document.querySelector<HTMLButtonElement>(".theme-toggle")!;
   const system = matchMedia("(prefers-color-scheme: dark)");
   const isDark = () => (root.dataset.theme ? root.dataset.theme === "dark" : system.matches);
-  const sync = () => toggle.setAttribute("aria-pressed", String(isDark()));
+  const metas = document.querySelectorAll<HTMLMetaElement>('meta[name="theme-color"]');
+  const sync = () => {
+    toggle.setAttribute("aria-pressed", String(isDark()));
+    // A theme picked by hand overrides the media-matched browser chrome colour.
+    if (root.dataset.theme) for (const m of metas) m.content = isDark() ? "#1a1a19" : "#ffffff";
+  };
   toggle.addEventListener("click", () => {
     const next = isDark() ? "light" : "dark";
     root.dataset.theme = next;
@@ -93,13 +70,4 @@ const isCurrent = (href: string) =>
   });
   system.addEventListener("change", sync);
   sync();
-
-  const dialog = document.getElementById("nav-dialog") as HTMLDialogElement;
-  document.querySelector(".nav-toggle")!.addEventListener("click", () => dialog.showModal());
-  dialog.querySelector("[data-close]")!.addEventListener("click", () => dialog.close());
-  // Clicking the backdrop (outside the panel) closes the menu.
-  dialog.addEventListener("click", (e) => {
-    if (e.target === dialog) dialog.close();
-  });
-  matchMedia("(min-width: 768px)").addEventListener("change", (e) => e.matches && dialog.close());
 </script>

@@ -66,8 +66,9 @@ export function stripSegments(): StripSegment[] {
 export const MIN_POLLS_FOR_LINE = 5;
 
 /**
- * Compact payload for the trends grid (G4): polls are listed once and referenced by index,
- * and each party's series is [mean, sd] per average day (null when absent).
+ * Compact payload for the trends grid (G4): polls are listed once (key, date, pollster, PDF)
+ * and referenced by index, and each party's series is [mean, sd] per average day (null when
+ * absent).
  */
 export function trendsPayload() {
   const r2 = (v: number) => Math.round(v * 100) / 100;
@@ -86,13 +87,24 @@ export function trendsPayload() {
   const ymax = Math.ceil(Math.max(THRESHOLD_SEATS, ...charts.flatMap((c) => c.dots.map((d) => d[1]))) / 5) * 5;
   const pollsterIds = [...new Set(list.map((p) => p.pollster).filter(Boolean))] as string[];
   return {
-    polls: list.map((p) => ({ k: p.key, d: p.field_date!, p: p.pollster ?? "" })),
+    polls: list.map((p) => ({ k: p.key, d: p.field_date!, p: p.pollster ?? "", u: p.source_url })),
     days,
     charts,
     ymax,
     threshold: THRESHOLD_SEATS,
     pollsterNames: Object.fromEntries(pollsterIds.map((id) => [id, pollsterName(id)])),
   };
+}
+
+/**
+ * Sparkline points ("x,y …") for a party's average on the shared trends scale: x spans the
+ * whole period (0–100), y is 0–ymax seats over `h` units, top down.
+ */
+export function sparkPoints(series: ([number, number] | null)[], ymax: number, h: number) {
+  const n = Math.max(1, series.length - 1);
+  return series
+    .flatMap((v, i) => (v ? [`${((100 * i) / n).toFixed(1)},${(h - (h * Math.min(v[0], ymax)) / ymax).toFixed(1)}`] : []))
+    .join(" ");
 }
 
 export type PartyRow = {

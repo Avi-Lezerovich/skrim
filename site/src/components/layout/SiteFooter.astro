@@ -1,12 +1,14 @@
 ---
+import { REPO, u } from "../../lib/url";
 import { fmtDate, meta } from "../../lib/data";
 import Num from "../data/Num.astro";
 
-const repo = "https://github.com/Avi-Lezerovich/pollygraph-il";
+const repo = REPO;
 ---
 
 <footer class="site-footer">
   <div class="wrap">
+    <p class="footer-name"><bdi lang="en">skrim</bdi> · מאגר פתוח של סקרי הבחירות לכנסת ה-26</p>
     <p>
       המקור: <a href={meta.source}>מאגר סקרי הבחירות של ועדת הבחירות המרכזית</a>. כל מספר מקושר לדיווח
       המקורי. הנתונים חולצו אוטומטית ועלולים לכלול טעויות.
@@ -16,8 +18,8 @@ const repo = "https://github.com/Avi-Lezerovich/pollygraph-il";
       עודכן {fmtDate(meta.generated_at.slice(0, 10))}.
     </p>
     <ul class="footer-links">
-      <li><a href="/methodology">מתודולוגיה</a></li>
-      <li><a href="/data">נתונים והורדה</a></li>
+      <li><a href={u("/methodology")}>מתודולוגיה</a></li>
+      <li><a href={u("/data")}>נתונים והורדה</a></li>
       <li><a href={repo}>קוד פתוח</a></li>
       <li><a href={`${repo}/issues`}>דיווח על טעות</a></li>
     </ul>

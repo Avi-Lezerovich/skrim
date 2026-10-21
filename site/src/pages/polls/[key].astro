@@ -1,4 +1,5 @@
 ---
+import { REPO, u } from "../../lib/url";
 import Base from "../../layouts/Base.astro";
 import PollVsAverage from "../../components/charts/PollVsAverage.astro";
 import DisclosureList from "../../components/data/DisclosureList.astro";
@@ -33,7 +34,7 @@ const rows = poll.rows.slice().sort((a, b) => (b.seats ?? -1) - (a.seats ?? -1) 
 const seatSum = rows.reduce((s, r) => s + (r.seats ?? 0), 0);
 const order = { error: 0, warn: 1, info: 2 } as const;
 const flags = poll.flags.slice().sort((a, b) => order[a.level] - order[b.level]);
-const issue = `https://github.com/Avi-Lezerovich/pollygraph-il/issues/new?title=${encodeURIComponent(
+const issue = `${REPO}/issues/new?title=${encodeURIComponent(
   `טעות בסקר ${poll.key}`,
 )}&body=${encodeURIComponent(`דף הסקר: /polls/${poll.key}\nמקור: ${poll.source_url}\n\nמה שגוי:`)}`;
 const pageUrl = (page: number) => `${poll.source_url}#page=${page}`;
@@ -42,7 +43,7 @@ const pageUrl = (page: number) => `${poll.source_url}#page=${page}`;
 <Base title={title} description={`סקר ${pollster} עבור ${sponsor}, ${fmtDate(poll.field_date)}, עם קישור לדיווח המקורי בוועדת הבחירות`}>
   <nav class="breadcrumb" aria-label="פירורי לחם">
     <ol>
-      <li><a href="/polls">כל הסקרים</a></li>
+      <li><a href={u("/polls")}>כל הסקרים</a></li>
       <li aria-current="page">{title}</li>
     </ol>
   </nav>
@@ -86,7 +87,7 @@ const pageUrl = (page: number) => `${poll.source_url}#page=${page}`;
             <p class="muted">כל הבקרות האוטומטיות עברו.</p>
           )
         }
-        <p class="small"><a href="/methodology#חילוץ-ובקרה">אילו בקרות רצות על כל סקר</a></p>
+        <p class="small"><a href={u("/methodology#חילוץ-ובקרה")}>אילו בקרות רצות על כל סקר</a></p>
       </section>
     </div>
 
@@ -107,16 +108,18 @@ const pageUrl = (page: number) => `${poll.source_url}#page=${page}`;
         }
         {
           rows.length ? (
+            <>
+            <button type="button" class="link-btn pct-toggle" aria-pressed="false" aria-controls="results-table" hidden>הצגת האחוזים הגולמיים</button>
             <div class="table-wrap" tabindex="0" role="region" aria-label="טבלת כוונת ההצבעה בסקר">
-              <table>
+              <table id="results-table" class="results-table">
                 <caption class="sr-only">מנדטים לפי מפלגה בסקר, עם שם הרשימה כפי שהודפס בדיווח ועמוד ב-PDF</caption>
                 <thead>
                   <tr>
                     <th scope="col">מפלגה</th>
                     <th scope="col" class="label-raw">כפי שהודפס בדיווח</th>
                     <th scope="col" class="num">מנדטים</th>
-                    <th scope="col" class="num">אחוז גולמי</th>
-                    <th scope="col" class="num">עמוד</th>
+                    <th scope="col" class="num pct-col">אחוז גולמי</th>
+                    <th scope="col" class="num">עמ׳<span class="sr-only"> ב-PDF</span></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -135,7 +138,7 @@ const pageUrl = (page: number) => `${poll.source_url}#page=${page}`;
                       </th>
                       <td class="label-raw">{r.label_raw}</td>
                       <td class="num"><Num value={r.seats} missing="לא אותר בחילוץ" /></td>
-                      <td class="num"><Num value={r.pct} kind="pct" missing="לא אותר בחילוץ" /></td>
+                      <td class="num pct-col"><Num value={r.pct} kind="pct" missing="לא אותר בחילוץ" /></td>
                       <td class="num">
                         <a href={pageUrl(r.page)}>
                           {r.page}
@@ -150,12 +153,13 @@ const pageUrl = (page: number) => `${poll.source_url}#page=${page}`;
                     <th scope="row">סה״כ</th>
                     <td class="label-raw" />
                     <td class="num"><Num value={seatSum} /></td>
-                    <td />
+                    <td class="pct-col" />
                     <td />
                   </tr>
                 </tfoot>
               </table>
             </div>
+            </>
           ) : (
             <p class="muted">
               לא חולצה טבלת מנדטים. ראו את <a href={poll.source_url}>הדיווח המקורי</a>.
@@ -188,3 +192,18 @@ const pageUrl = (page: number) => `${poll.source_url}#page=${page}`;
     חולץ אוטומטית מטקסט ה-PDF (<bdi>{poll.method}</bdi>). מצאתם טעות? <a href={issue}>פתחו דיווח ב-GitHub</a>
   </p>
 </Base>
+
+<script>
+  // Phones show party, seats and page; the raw percentages are one tap away.
+  const toggle = document.querySelector<HTMLButtonElement>(".pct-toggle");
+  const table = document.getElementById("results-table");
+  if (toggle && table) {
+    toggle.hidden = false;
+    toggle.addEventListener("click", () => {
+      const on = toggle.getAttribute("aria-pressed") !== "true";
+      toggle.setAttribute("aria-pressed", String(on));
+      toggle.textContent = on ? "הסתרת האחוזים הגולמיים" : "הצגת האחוזים הגולמיים";
+      table.classList.toggle("show-pct", on);
+    });
+  }
+</script>

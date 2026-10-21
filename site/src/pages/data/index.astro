@@ -3,26 +3,26 @@ import Base from "../../layouts/Base.astro";
 import DownloadLinks from "../../components/data/DownloadLinks.astro";
 import { fmtDate, meta, polls } from "../../lib/data";
 import { answerCount, answersCsv, averageJson, dataVersion, pollsCsv } from "../../lib/exports";
+import { REPO, u } from "../../lib/url";
 
-const REPO = "https://github.com/Avi-Lezerovich/pollygraph-il";
 const bytes = (s: string) => Buffer.byteLength(s, "utf8");
 const files = [
   {
-    href: "/data/polls.csv",
+    href: u("/data/polls.csv"),
     name: "knesset26-polls.csv",
     desc: "שורה לכל סקר: סוקר, מזמין, תאריכים, מתודולוגיה, גושים, דגלים וקישור ל-PDF.",
     rows: polls.length,
     bytes: bytes(pollsCsv()),
   },
   {
-    href: "/data/answers.csv",
+    href: u("/data/answers.csv"),
     name: "knesset26-answers.csv",
     desc: "שורה לכל מפלגה בכל סקר, עם שם הרשימה כפי שהודפס בדיווח ומספר העמוד ב-PDF.",
     rows: answerCount(),
     bytes: bytes(answersCsv()),
   },
   {
-    href: "/data/average.json",
+    href: u("/data/average.json"),
     name: "knesset26-average.json",
     desc: "הממוצע היומי לפי מפלגה ולפי גוש, עם הפיזור בין הסוקרים ומספר הסוקרים בחלון.",
     bytes: bytes(averageJson()),
@@ -59,8 +59,7 @@ const files = [
       </section>
 
       <section class="card" aria-labelledby="license-h">
-        <h2 id="license-h">רישיון</h2>
-        <p class="todo">להשלמה לפני העלייה: רישיון הנתונים והקוד. במאגר עדיין אין קובץ LICENSE.</p>
+        <h2 id="license-h">מקור הדיווחים</h2>
         <p class="small muted">
           הדיווחים עצמם מתפרסמים באתר ועדת הבחירות המרכזית; הוועדה מעמידה אותם לעיון כפי שנשלחו, ללא אחריות על
           תוכנם.
@@ -75,19 +74,11 @@ const files = [
     </div>
 
     <aside class="data-aside" aria-label="אודות">
-      <section class="card" aria-labelledby="about-h">
-        <h2 id="about-h">מי אנחנו</h2>
-        <p class="todo">להשלמה לפני העלייה: מי מפעיל את האתר, ואמירה מפורשת על אי-תלות במפלגות, בסוקרים ובכלי תקשורת.</p>
-      </section>
-      <section class="card" aria-labelledby="funding-h">
-        <h2 id="funding-h">מימון</h2>
-        <p class="todo">להשלמה לפני העלייה: מקורות המימון, או שאין מימון.</p>
-      </section>
       <section class="card" aria-labelledby="code-h">
         <h2 id="code-h">קוד פתוח</h2>
         <p>
           הקוד של איסוף הנתונים, החילוץ, החישובים והאתר פתוח ב-<a href={REPO}>GitHub</a>. כל נוסחה מתועדת
-          ב<a href="/methodology">מתודולוגיה</a>.
+          ב<a href={u("/methodology")}>מתודולוגיה</a>.
         </p>
       </section>
       <section class="card" aria-labelledby="report-h">

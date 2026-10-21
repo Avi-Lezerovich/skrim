@@ -3,8 +3,8 @@ import { execFileSync } from "node:child_process";
 import Base from "../layouts/Base.astro";
 import { Content, getHeadings } from "../../../methodology.md";
 import { average } from "../lib/data";
+import { REPO } from "../lib/url";
 
-const REPO = "https://github.com/Avi-Lezerovich/pollygraph-il";
 const toc = getHeadings().filter((h) => h.depth === 2);
 
 // Change log of methodology.md, read from git at build time. Merge commits are left out (CI

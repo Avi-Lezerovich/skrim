@@ -53,6 +53,9 @@ test("charts: every party on trends is drawn, with one dot per poll", async ({ p
   await page.goto("/trends/");
   await settle(page);
   for (const id of ["likud", "yashar"]) {
+    // phones list the parties as rows; a tap opens the chart
+    const card = page.locator(`#party-${id}`);
+    if ((await card.getAttribute("open")) === null) await card.locator("summary").click();
     await expect(page.locator(`[data-party="${id}"]`)).toHaveAttribute("role", "img");
     await expect(page.locator(`[data-party="${id}"] svg circle`)).toHaveCount(partyDots(id));
   }
