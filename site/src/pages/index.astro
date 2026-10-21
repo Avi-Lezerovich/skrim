@@ -14,6 +14,9 @@ import { THRESHOLD_SEATS, blocTiles, isFinal, partyRows, stripSegments } from ".
 
 const date = latestParties.date;
 const nPollsters = latestParties.n_polls;
+// The averaging window ends on the average's date and spans window_days days, both ends included.
+const windowStart = new Date(new Date(date).getTime() - (average.window_days - 1) * 86_400_000).toISOString().slice(0, 10);
+const fmtDay = (iso: string) => new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "numeric", timeZone: "UTC" }).format(new Date(iso));
 const inWindow = latestParties.pollsters.map((id) => pollsterName(id)).join(", ");
 const { above, around, windowSize } = partyRows();
 const recent = polls.slice(0, 5);
@@ -23,7 +26,8 @@ const recent = polls.slice(0, 5);
   <header class="page-head">
     <h1>{isFinal() ? "הממוצע הסופי לפני הבחירות" : "ממוצע הסקרים"}</h1>
     <p class="page-meta">
-      <time datetime={date}>{fmtDate(date)}</time> · {nPollsters} סוקרים ב-{average.window_days} הימים האחרונים
+      ממוצע נכון ל-<time datetime={date}>{fmtDate(date)}</time>, יום הביצוע של הסקר האחרון · {nPollsters} סוקרים בחלון{" "}
+      <bdi dir="ltr">{fmtDay(windowStart)}–{fmtDay(date)}</bdi>
     </p>
     {
       nPollsters < 3 && (

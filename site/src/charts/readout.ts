@@ -22,12 +22,14 @@ export type BlocData = {
 };
 
 const dateFmt = new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "numeric", year: "numeric", timeZone: "UTC" });
+const dayFmt = new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "numeric", timeZone: "UTC" });
 
 /**
- * Two short lines: the day, the pollsters in its window and a link to those polls (the source
- * of the numbers); then each bloc's average with the spread in brackets.
+ * Two short lines: the day the average is for (on the last day, also that it is the fieldwork day
+ * of the latest poll), the pollsters in its window with the window's dates and a link to those
+ * polls (the source of the numbers); then each bloc's average with the spread in brackets.
  */
-export function blocReadout(d: BlocDay, data: Pick<BlocData, "blocs" | "tiny" | "window">): string {
+export function blocReadout(d: BlocDay, data: Pick<BlocData, "blocs" | "tiny" | "window" | "days">): string {
   const items = data.blocs
     .filter((b) => d.v[b])
     .map((b) => {
@@ -41,9 +43,12 @@ export function blocReadout(d: BlocDay, data: Pick<BlocData, "blocs" | "tiny" | 
     });
   const pollsters = d.n === 1 ? "סוקר אחד" : `${d.n} סוקרים`;
   const from = new Date(new Date(d.date).getTime() - (data.window - 1) * 86_400_000).toISOString().slice(0, 10);
+  const latest = d.date === data.days.at(-1)?.date ? ", יום הביצוע של הסקר האחרון" : "";
+  const span = `${dayFmt.format(new Date(from))}–${dayFmt.format(new Date(d.date))}`;
   return (
-    `<span class="ro-head"><strong class="ro-date"><bdi>${dateFmt.format(new Date(d.date))}</bdi></strong>` +
-    ` <span class="muted">· ${pollsters} בחלון</span>` +
+    // the "·" ends the first part, so a wrapped line never starts with it
+    `<span class="ro-head"><span>ממוצע נכון ל-<strong class="ro-date"><bdi>${dateFmt.format(new Date(d.date))}</bdi></strong>${latest} ·</span>` +
+    ` <span class="muted">${pollsters} בחלון <bdi dir="ltr">${span}</bdi></span>` +
     ` <a class="ro-src" href="${u(`/polls?from=${from}&amp;to=${d.date}&amp;status=ok`)}">הסקרים ←</a></span>` +
     `<span class="ro-items">${items.join("")}</span>`
   );
