@@ -5,7 +5,7 @@
         if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
       } catch {}
       document.documentElement.classList.add("js");
-    </script><link rel="stylesheet" href="/skrim/_astro/Base.DthGJHHo.css"></head><body><a class="skip-link" href="#main">דלג לתוכן</a><header class="site-header"><div class="wrap header-row"><a class="brand" href="/skrim/"><span class="logo"><svg viewBox="0 0 134 36" width="89" height="24" aria-hidden="true" focusable="false">
+    </script><link rel="stylesheet" href="/skrim/_astro/Base.DI5SEoJT.css"></head><body><a class="skip-link" href="#main">דלג לתוכן</a><header class="site-header"><div class="wrap header-row"><a class="brand" href="/skrim/"><span class="logo"><svg viewBox="0 0 134 36" width="89" height="24" aria-hidden="true" focusable="false">
   <g transform="scale(1.125)">
   <path d="M11.5 4.5H7A3.5 3.5 0 0 0 3.5 8v17A3.5 3.5 0 0 0 7 28.5h18a3.5 3.5 0 0 0 3.5-3.5V8A3.5 3.5 0 0 0 25 4.5h-4.5" style="fill:none;stroke:currentColor" stroke-width="2.8" stroke-linecap="round"/>
   <path d="M8.5 23 13 18.5l3.6 2.6L22 13" style="fill:none;stroke:var(--link)" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
@@ -34,16 +34,75 @@
 <ul>
 <li>טבלת המנדטים ונתוני המתודולוגיה (פניות, משיבים, שיעור היענות, טעות דגימה) מחולצים אוטומטית מטקסט ה-PDF. שם המפלגה כפי שהודפס נשמר תמיד לצד המזהה המנורמל.</li>
 <li>כשבדיווח יש כמה טבלאות של 120 מנדטים, הראשונה נחשבת לשאלת כוונת ההצבעה והשאר לתרחישים.</li>
-<li>בקרות: סכום מנדטים = 120, מפלגה לא מופיעה פעמיים, משיבים ≤ פניות, שיעור היענות תואם, טעות דגימה מדווחת מול 1.96·√(0.25/n), תאריך ביצוע ≤ תאריך העברה.</li>
-<li>סקר שנכשל בבקרה מסוג «שגיאה» אינו נכנס לממוצעים ומופיע בתור לבדיקה ידנית. בקרות מסוג «מידע» מוצגות בדף הסקר לשקיפות בלבד; לכל אחת יש הסבר תמים (למשל שקלול).</li>
+<li>סקר שנכשל בבקרה מסוג «שגיאה» אינו נכנס לממוצעים ומופיע בתור לבדיקה ידנית. שאר הבקרות מוצגות בדף הסקר כדגל סטטיסטי, לשקיפות בלבד; לכל אחת יש הסבר תמים (למשל שקלול).</li>
 </ul>
+<p>בטבלה <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">s_p</annotation></semantics></math></span> הוא מספר המנדטים של מפלגה <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span> מספר המשיבים, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>N</mi></mrow><annotation encoding="application/x-tex">N</annotation></semantics></math></span> מספר הפניות, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>RR</mtext></mrow><annotation encoding="application/x-tex">\text{RR}</annotation></semantics></math></span> שיעור ההיענות המדווח ו-<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mtext>MoE</mtext></mrow><annotation encoding="application/x-tex">\text{MoE}</annotation></semantics></math></span> טעות הדגימה המדווחת (באחוזים).</p>
+<div class="table-wrap" tabindex="0" role="region" aria-label="טבלה: חילוץ ובקרה">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<table><thead><tr><th>בקרה</th><th>הכלל</th><th>כשלא מתקיים</th></tr></thead><tbody><tr><td>סכום מנדטים</td><td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mo>∑</mo><mi>p</mi></msub><msub><mi>s</mi><mi>p</mi></msub><mo>=</mo><mn>120</mn></mrow><annotation encoding="application/x-tex">\sum_p s_p = 120</annotation></semantics></math></span></td><td>שגיאה: ממתין לבדיקה</td></tr><tr><td>מפלגה כפולה</td><td>כל מפלגה מופיעה פעם אחת</td><td>שגיאה: ממתין לבדיקה</td></tr><tr><td>משיבים ופניות</td><td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>≤</mo><mi>N</mi></mrow><annotation encoding="application/x-tex">n \le N</annotation></semantics></math></span></td><td>דגל</td></tr><tr><td>שיעור היענות</td><td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mn>100</mn><mtext> </mtext><mi>n</mi><mi mathvariant="normal">/</mi><mi>N</mi><mo>−</mo><mtext>RR</mtext><mi mathvariant="normal">∣</mi><mo>≤</mo><mn>2</mn></mrow><annotation encoding="application/x-tex">\vert 100\,n/N - \text{RR} \vert \le 2</annotation></semantics></math></span></td><td>דגל</td></tr><tr><td>טעות דגימה</td><td><span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi mathvariant="normal">∣</mi><mtext>MoE</mtext><mo>−</mo><mn>100</mn><mo>⋅</mo><mn>1.96</mn><msqrt><mrow><mn>0.25</mn><mi mathvariant="normal">/</mi><mi>n</mi></mrow></msqrt><mi mathvariant="normal">∣</mi><mo>≤</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\vert \text{MoE} - 100 \cdot 1.96\sqrt{0.25/n} \vert \le 1</annotation></semantics></math></span></td><td>דגל</td></tr><tr><td>תאריכים</td><td>תאריך ביצוע ≤ תאריך העברה לוועדה</td><td>דגל</td></tr><tr><td>אחוז חסימה</td><td>מפלגה שקיבלה מנדטים אינה מתחת ל-3.25% גולמי</td><td>דגל</td></tr><tr><td>קובץ סרוק</td><td>ב-PDF יש טקסט שאפשר לחלץ</td><td>דגל</td></tr></tbody></table></div>
 <h2 id="ממוצע-הסקרים">ממוצע הסקרים</h2>
 <ul>
 <li>לכל יום: הסקר האחרון של כל סוקר שבוצע ב-14 הימים האחרונים (סוקר אחד = סקר אחד, כדי שסוקר תכוף לא ישתלט על הממוצע).</li>
-<li>משקל: √n × 0.5^(גיל בימים / 7). סקר בלי n ידוע נספר כ-n = 500.</li>
 <li>מפלגה שסוקר לא הציג נספרת אצלו כ-0 מנדטים.</li>
-<li><strong>הטווח סביב הממוצע</strong> הוא סטיית התקן המשוקללת בין הסוקרים בחלון — מדד לפיזור בין הסוקרים, לא רווח בטחון סטטיסטי. הבדל של מנדט או שניים בין מפלגות או גושים נמצא בדרך כלל בתוך הטווח.</li>
 </ul>
+<p>לכל סקר <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span> בחלון יש משקל, לפי גודל המדגם ולפי גילו. משקלו יורד בחצי כל 7 ימים:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>w</mi><mi>i</mi></msub><mo>=</mo><msqrt><msub><mi>n</mi><mi>i</mi></msub></msqrt><mo>⋅</mo><msup><mn>0.5</mn><mrow><mtext> </mtext><msub><mi>a</mi><mi>i</mi></msub><mi mathvariant="normal">/</mi><mn>7</mn></mrow></msup></mrow><annotation encoding="application/x-tex">w_i = \sqrt{n_i}\cdot 0.5^{\,a_i/7}</annotation></semantics></math></span>
+<p>הממוצע של מפלגה <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> והטווח סביבו:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="center" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><mi>p</mi></msub><mo>=</mo><mfrac><mrow><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><mtext> </mtext><msub><mi>x</mi><mrow><mi>i</mi><mi>p</mi></mrow></msub></mrow><mrow><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub></mrow></mfrac></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>σ</mi><mi>p</mi></msub><mo>=</mo><msqrt><mfrac><mrow><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub><mtext> </mtext><msup><mrow><mo fence="true">(</mo><msub><mi>x</mi><mrow><mi>i</mi><mi>p</mi></mrow></msub><mo>−</mo><msub><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><mi>p</mi></msub><mo fence="true">)</mo></mrow><mn>2</mn></msup></mrow><mrow><munder><mo>∑</mo><mi>i</mi></munder><msub><mi>w</mi><mi>i</mi></msub></mrow></mfrac></msqrt></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{gathered}
+\bar{x}_p = \frac{\sum_i w_i\, x_{ip}}{\sum_i w_i}
+\\[8pt]
+\sigma_p = \sqrt{\frac{\sum_i w_i\,\left(x_{ip}-\bar{x}_p\right)^2}{\sum_i w_i}}
+\end{gathered}</annotation></semantics></math></span>
+<p>כאשר <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>n</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">n_i</annotation></semantics></math></span> הוא מספר המשיבים (סקר בלי <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span> ידוע נספר כ-<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>n</mi><mo>=</mo><mn>500</mn></mrow><annotation encoding="application/x-tex">n = 500</annotation></semantics></math></span>), <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow><annotation encoding="application/x-tex">a_i</annotation></semantics></math></span> גיל הסקר בימים ו-<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>x</mi><mrow><mi>i</mi><mi>p</mi></mrow></msub></mrow><annotation encoding="application/x-tex">x_{ip}</annotation></semantics></math></span> מספר המנדטים של מפלגה <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> בסקר <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>i</mi></mrow><annotation encoding="application/x-tex">i</annotation></semantics></math></span>.</p>
+<p><strong>הטווח סביב הממוצע</strong> (<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><mi>p</mi></msub><mo>±</mo><msub><mi>σ</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\bar{x}_p \pm \sigma_p</annotation></semantics></math></span>) הוא סטיית התקן המשוקללת בין הסוקרים בחלון — מדד לפיזור בין הסוקרים, לא רווח בטחון סטטיסטי. הבדל של מנדט או שניים בין מפלגות או גושים נמצא בדרך כלל בתוך הטווח.</p>
 <h2 id="גושים">גושים</h2>
 <p>הגושים מוגדרים בקובץ <code>data/reference/parties.csv</code>:</p>
 <div class="table-wrap" tabindex="0" role="region" aria-label="טבלה: גושים">
@@ -74,18 +133,32 @@
 <table><thead><tr><th>גוש</th><th>מפלגות</th></tr></thead><tbody><tr><td>קואליציה (גוש נתניהו)</td><td>הליכוד, ש”ס, יהדות התורה, הציונות הדתית, עוצמה יהודית, נעם</td></tr><tr><td>אופוזיציה</td><td>ישר!, ביחד, הדמוקרטים, ישראל ביתנו, המילואימניקים, כחול לבן</td></tr><tr><td>מפלגות ערביות</td><td>חד”ש-תע”ל-בל”ד, רע”ם, בל”ד (כשרצה לבד)</td></tr><tr><td>אחר</td><td>עמך ישראל, בית ציוני ומפלגות קטנות אחרות</td></tr></tbody></table></div>
 <p>שיוך מפלגה לגוש הוא החלטה פרשנית; הוא מתועד כאן ובקוד, וכל שינוי בו יירשם בהיסטוריית ה-git.</p>
 <h2 id="אפקט-בית">אפקט בית</h2>
-<p>לכל סוקר ולכל מפלגה או גוש: הממוצע של (תוצאת הסקר − ממוצע שאר הסוקרים באותו יום), עם רווח בטחון של 95%. <strong>אפקט בית מודד כמה סוקר שונה משאר הסוקרים, לא כמה הוא רחוק מהאמת.</strong> עד פרסום התוצאות אפשר לדעת רק מי שונה, לא מי מוטה.</p>
+<p>לכל סוקר ולכל מפלגה או גוש: הממוצע של (תוצאת הסקר − ממוצע שאר הסוקרים באותו יום), עם רווח בטחון של 95%:</p>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mtable rowspacing="0.25em" columnalign="center" columnspacing="0em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>h</mi><mrow><mi>k</mi><mi>p</mi></mrow></msub><mo>=</mo><mfrac><mn>1</mn><mi>m</mi></mfrac><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><mrow><mo fence="true">(</mo><msub><mi>x</mi><mrow><mi>j</mi><mi>p</mi></mrow></msub><mo>−</mo><msubsup><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><mi>p</mi><mrow><mo stretchy="false">(</mo><mo>−</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><msub><mi>t</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo fence="true">)</mo></mrow></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="true"><mrow><msub><mi>h</mi><mrow><mi>k</mi><mi>p</mi></mrow></msub><mo>±</mo><mn>1.96</mn><mtext> </mtext><mfrac><msub><mi>s</mi><mrow><mi>k</mi><mi>p</mi></mrow></msub><msqrt><mi>m</mi></msqrt></mfrac></mrow></mstyle></mtd></mtr></mtable><annotation encoding="application/x-tex">\begin{gathered}
+h_{kp} = \frac{1}{m}\sum_{j=1}^{m}\left(x_{jp} - \bar{x}^{(-k)}_{p}(t_j)\right)
+\\[8pt]
+h_{kp} \pm 1.96\,\frac{s_{kp}}{\sqrt{m}}
+\end{gathered}</annotation></semantics></math></span>
+<p>כאשר <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>j</mi></mrow><annotation encoding="application/x-tex">j</annotation></semantics></math></span> עובר על <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>m</mi></mrow><annotation encoding="application/x-tex">m</annotation></semantics></math></span> הסקרים של סוקר <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span>, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>t</mi><mi>j</mi></msub></mrow><annotation encoding="application/x-tex">t_j</annotation></semantics></math></span> הוא יום הביצוע, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msubsup><mover accent="true"><mi>x</mi><mo>ˉ</mo></mover><mi>p</mi><mrow><mo stretchy="false">(</mo><mo>−</mo><mi>k</mi><mo stretchy="false">)</mo></mrow></msubsup><mo stretchy="false">(</mo><msub><mi>t</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\bar{x}^{(-k)}_{p}(t_j)</annotation></semantics></math></span> הממוצע של שאר הסוקרים באותו יום ו-<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mrow><mi>k</mi><mi>p</mi></mrow></msub></mrow><annotation encoding="application/x-tex">s_{kp}</annotation></semantics></math></span> סטיית התקן של ההפרשים. אפקט בית מחושב רק כשיש לפחות שני סוקרים אחרים בחלון, ומוצג רק לסוקר עם שני סקרים לפחות.</p>
+<p><strong>אפקט בית מודד כמה סוקר שונה משאר הסוקרים, לא כמה הוא רחוק מהאמת.</strong> עד פרסום התוצאות אפשר לדעת רק מי שונה, לא מי מוטה.</p>
 <h2 id="בדיקת-גרנולריות-grim">בדיקת גרנולריות (GRIM)</h2>
 <p>הבדיקה מחושבת אך <strong>אינה מוצגת באתר</strong>. רוב הדיווחים מציגים אחוזים מתוך בסיס שאינו כלל המשיבים (בעלי זכות בחירה, ללא מתלבטים) או משוקללים בלי לציין זאת, ולכן כשל בבדיקה אינו ראיה לדבר. היא תוצג רק לסוקרים שבהם הבסיס וההשקלול ידועים.</p>
 <h2 id="ציון-דיוק-טיוטה--לאישור-לפני-2710">ציון דיוק (טיוטה — לאישור לפני 27.10)</h2>
-<ul>
-<li><strong>סקר אחרון:</strong> הסקר האחרון של כל סוקר שתאריך ביצועו מוקדם מתחילת איסור הפרסום. תחילת האיסור: [לאמת מול סעיף 16ה — ככל הנראה יום שישי 23.10.2026].</li>
-<li><strong>ציון ראשי:</strong> Σ|מנדטים בסקר − מנדטים בפועל| / 2 — מספר המנדטים ש«זזו» למקום הלא נכון.</li>
-<li><strong>שגיאת גוש:</strong> |גוש הקואליציה בסקר − בפועל|.</li>
-<li><strong>חסימה:</strong> כמה מפלגות סווגו נכון כעוברות או לא עוברות את 3.25%.</li>
-<li><strong>שגיאה באחוזים (RMSE):</strong> רק לסוקרים שדיווחו אחוזים ארציים.</li>
-<li><strong>שגיאה חתומה לפי מפלגה:</strong> הכיוון העקבי של הטעות.</li>
-<li>סוקר שהסקר האחרון שלו בוצע יותר מ-7 ימים לפני הבחירות יסומן בנפרד, כי אינו שקול לסקר מהימים האחרונים.</li>
-</ul>
+<p><strong>סקר אחרון:</strong> הסקר האחרון של כל סוקר שתאריך ביצועו מוקדם מתחילת איסור הפרסום. האיסור מתחיל בתום יום שישי שלפני פתיחת הקלפיות, כלומר בתום יום שישי 23.10.2026 (סעיף 16ה(ח) לחוק; <a href="https://www.gov.il/BlobFolder/guide/knesset25-elections-info/he/survey_section16_acces.pdf">נוסח הסעיף באתר ועדת הבחירות</a>). סוקר שהסקר האחרון שלו בוצע יותר מ-7 ימים לפני הבחירות יסומן בנפרד, כי אינו שקול לסקר מהימים האחרונים.</p>
+<p>בנוסחאות <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover accent="true"><mi>s</mi><mo>^</mo></mover><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\hat{s}_p</annotation></semantics></math></span> הוא מספר המנדטים של מפלגה <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>p</mi></mrow><annotation encoding="application/x-tex">p</annotation></semantics></math></span> בסקר ו-<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>s</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">s_p</annotation></semantics></math></span> מספר המנדטים שקיבלה בפועל.</p>
+<h3 id="ציון-ראשי">ציון ראשי</h3>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mi>E</mi><mo>=</mo><mfrac><mn>1</mn><mn>2</mn></mfrac><munder><mo>∑</mo><mi>p</mi></munder><mi mathvariant="normal">∣</mi><msub><mover accent="true"><mi>s</mi><mo>^</mo></mover><mi>p</mi></msub><mo>−</mo><msub><mi>s</mi><mi>p</mi></msub><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">E = \frac{1}{2}\sum_p \vert \hat{s}_p - s_p \vert</annotation></semantics></math></span>
+<p>מספר המנדטים ש«זזו» למקום הלא נכון. מפלגה שלא הופיעה בסקר או לא נכנסה לכנסת נספרת כ-0 מנדטים.</p>
+<h3 id="שגיאת-גוש">שגיאת גוש</h3>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>E</mi><mi>B</mi></msub><mo>=</mo><mi mathvariant="normal">∣</mi><mover accent="true"><mi>B</mi><mo>^</mo></mover><mo>−</mo><mi>B</mi><mi mathvariant="normal">∣</mi></mrow><annotation encoding="application/x-tex">E_B = \vert \hat{B} - B \vert</annotation></semantics></math></span>
+<p>כאשר <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mover accent="true"><mi>B</mi><mo>^</mo></mover></mrow><annotation encoding="application/x-tex">\hat{B}</annotation></semantics></math></span> הוא גוש הקואליציה בסקר ו-<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span> גוש הקואליציה בפועל.</p>
+<h3 id="חסימה">חסימה</h3>
+<p>כמה מפלגות סווגו נכון כעוברות או לא עוברות את 3.25%.</p>
+<h3 id="שגיאה-באחוזים-rmse">שגיאה באחוזים (RMSE)</h3>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><mtext>RMSE</mtext><mo>=</mo><msqrt><mrow><mfrac><mn>1</mn><mrow><mi mathvariant="normal">∣</mi><mi>P</mi><mi mathvariant="normal">∣</mi></mrow></mfrac><munder><mo>∑</mo><mrow><mi>p</mi><mo>∈</mo><mi>P</mi></mrow></munder><msup><mrow><mo fence="true">(</mo><msub><mover accent="true"><mi>π</mi><mo>^</mo></mover><mi>p</mi></msub><mo>−</mo><msub><mi>π</mi><mi>p</mi></msub><mo fence="true">)</mo></mrow><mn>2</mn></msup></mrow></msqrt></mrow><annotation encoding="application/x-tex">\text{RMSE} = \sqrt{\frac{1}{\vert P \vert}\sum_{p \in P}\left(\hat{\pi}_p - \pi_p\right)^2}</annotation></semantics></math></span>
+<p>כאשר <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mover accent="true"><mi>π</mi><mo>^</mo></mover><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\hat{\pi}_p</annotation></semantics></math></span> הוא אחוז התמיכה במפלגה בסקר, <span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>π</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">\pi_p</annotation></semantics></math></span> האחוז שקיבלה בפועל ו-<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mi>P</mi></mrow><annotation encoding="application/x-tex">P</annotation></semantics></math></span> המפלגות שהסוקר דיווח עליהן. רק לסוקרים שדיווחו אחוזים ארציים.</p>
+<h3 id="שגיאה-חתומה-לפי-מפלגה">שגיאה חתומה לפי מפלגה</h3>
+<span class="katex"><math xmlns="http://www.w3.org/1998/Math/MathML" display="block"><semantics><mrow><msub><mi>d</mi><mi>p</mi></msub><mo>=</mo><msub><mover accent="true"><mi>s</mi><mo>^</mo></mover><mi>p</mi></msub><mo>−</mo><msub><mi>s</mi><mi>p</mi></msub></mrow><annotation encoding="application/x-tex">d_p = \hat{s}_p - s_p</annotation></semantics></math></span>
+<p>הכיוון העקבי של הטעות: ערך חיובי פירושו שהסוקר נתן למפלגה יותר מנדטים ממה שקיבלה.</p>
 <h2 id="מגבלות-ודיווח-טעויות">מגבלות ודיווח טעויות</h2>
-<p>החילוץ האוטומטי עלול לטעות. כל מספר מקושר למקור, הקוד פתוח, וניתן לדווח על טעות דרך GitHub Issues.</p><h2 id="changes">יומן שינויים</h2><ol class="change-log"><li><time datetime="2026-10-20">20.10.2026</time> · <a href="https://github.com/Avi-Lezerovich/skrim/commit/78b23ec"><code dir="ltr">78b23ec</code></a> <span lang="en" dir="ltr">Feat/design (#1)</span></li></ol><p><a href="https://github.com/Avi-Lezerovich/skrim/commits/main/methodology.md">ההיסטוריה המלאה של המסמך ב-GitHub</a></p><p class="report-box">מצאתם טעות במספר, בחישוב או בניסוח? <a href="https://github.com/Avi-Lezerovich/skrim/issues/new">פתחו דיווח ב-GitHub</a></p></article><nav class="method-toc" aria-label="תוכן העניינים"><p class="method-toc-title">תוכן</p><ol><li><a href="#מקור">מקור</a></li><li><a href="#איסוף">איסוף</a></li><li><a href="#חילוץ-ובקרה">חילוץ ובקרה</a></li><li><a href="#ממוצע-הסקרים">ממוצע הסקרים</a></li><li><a href="#גושים">גושים</a></li><li><a href="#אפקט-בית">אפקט בית</a></li><li><a href="#בדיקת-גרנולריות-grim">בדיקת גרנולריות (GRIM)</a></li><li><a href="#ציון-דיוק-טיוטה--לאישור-לפני-2710">ציון דיוק (טיוטה — לאישור לפני 27.10)</a></li><li><a href="#מגבלות-ודיווח-טעויות">מגבלות ודיווח טעויות</a></li><li><a href="#changes">יומן שינויים</a></li></ol></nav></div></main><footer class="site-footer"><div class="wrap"><p class="footer-name"><bdi lang="en">skrim</bdi> · מאגר פתוח של סקרי הבחירות לכנסת ה-26</p><p>המקור: <a href="https://www.gov.il/he/Departments/DynamicCollectors/knesset_election_polls_26">מאגר סקרי הבחירות של ועדת הבחירות המרכזית</a>. כל מספר מקושר לדיווח המקורי. הנתונים חולצו אוטומטית ועלולים לכלול טעויות.</p><p><bdi class="num">120</bdi> סקרים במאגר, <bdi class="num">101</bdi> בממוצע. עודכן 20.10.2026.</p><ul class="footer-links"><li><a href="/skrim/methodology">מתודולוגיה</a></li><li><a href="/skrim/data">נתונים והורדה</a></li><li><a href="https://github.com/Avi-Lezerovich/skrim">קוד פתוח</a></li><li><a href="https://github.com/Avi-Lezerovich/skrim/issues">דיווח על טעות</a></li></ul></div></footer></body></html><script type="module">var e=new Map([...document.querySelectorAll(`.method-toc a`)].map(e=>[decodeURIComponent(e.hash.slice(1)),e])),t=new IntersectionObserver(t=>{for(let n of t)if(n.isIntersecting){for(let t of e.values())t.removeAttribute(`aria-current`);e.get(n.target.id)?.setAttribute(`aria-current`,`location`)}},{rootMargin:`0px 0px -70% 0px`});for(let n of e.keys()){let e=document.getElementById(n);e&&t.observe(e)}</script>
+<p>החילוץ האוטומטי עלול לטעות. כל מספר מקושר למקור, הקוד פתוח, וניתן לדווח על טעות דרך GitHub Issues.</p><h2 id="changes">יומן שינויים</h2><ol class="change-log"><li><time datetime="2026-10-21">21.10.2026</time> · <a href="https://github.com/Avi-Lezerovich/skrim/commit/b30bdf2"><code dir="ltr">b30bdf2</code></a> <span lang="en" dir="ltr">skrim: mobile-first redesign, logo and icons, share previews, go live on GitHub Pages (#12)</span></li><li><time datetime="2026-10-20">20.10.2026</time> · <a href="https://github.com/Avi-Lezerovich/skrim/commit/78b23ec"><code dir="ltr">78b23ec</code></a> <span lang="en" dir="ltr">Feat/design (#1)</span></li></ol><p><a href="https://github.com/Avi-Lezerovich/skrim/commits/main/methodology.md">ההיסטוריה המלאה של המסמך ב-GitHub</a></p><p class="report-box">מצאתם טעות במספר, בחישוב או בניסוח? <a href="https://github.com/Avi-Lezerovich/skrim/issues/new">פתחו דיווח ב-GitHub</a></p></article><nav class="method-toc" aria-label="תוכן העניינים"><p class="method-toc-title">תוכן</p><ol><li><a href="#מקור">מקור</a></li><li><a href="#איסוף">איסוף</a></li><li><a href="#חילוץ-ובקרה">חילוץ ובקרה</a></li><li><a href="#ממוצע-הסקרים">ממוצע הסקרים</a></li><li><a href="#גושים">גושים</a></li><li><a href="#אפקט-בית">אפקט בית</a></li><li><a href="#בדיקת-גרנולריות-grim">בדיקת גרנולריות (GRIM)</a></li><li><a href="#ציון-דיוק-טיוטה--לאישור-לפני-2710">ציון דיוק (טיוטה — לאישור לפני 27.10)</a></li><li><a href="#מגבלות-ודיווח-טעויות">מגבלות ודיווח טעויות</a></li><li><a href="#changes">יומן שינויים</a></li></ol></nav></div></main><footer class="site-footer"><div class="wrap"><p class="footer-name"><bdi lang="en">skrim</bdi> · מאגר פתוח של סקרי הבחירות לכנסת ה-26</p><p>המקור: <a href="https://www.gov.il/he/Departments/DynamicCollectors/knesset_election_polls_26">מאגר סקרי הבחירות של ועדת הבחירות המרכזית</a>. כל מספר מקושר לדיווח המקורי. הנתונים חולצו אוטומטית ועלולים לכלול טעויות.</p><p><bdi class="num">125</bdi> סקרים במאגר, <bdi class="num">106</bdi> בממוצע. עודכן 21.10.2026.</p><ul class="footer-links"><li><a href="/skrim/methodology">מתודולוגיה</a></li><li><a href="/skrim/data">נתונים והורדה</a></li><li><a href="https://github.com/Avi-Lezerovich/skrim">קוד פתוח</a></li><li><a href="https://github.com/Avi-Lezerovich/skrim/issues">דיווח על טעות</a></li></ul></div></footer></body></html><script type="module">var e=new Map([...document.querySelectorAll(`.method-toc a`)].map(e=>[decodeURIComponent(e.hash.slice(1)),e])),t=new IntersectionObserver(t=>{for(let n of t)if(n.isIntersecting){for(let t of e.values())t.removeAttribute(`aria-current`);e.get(n.target.id)?.setAttribute(`aria-current`,`location`)}},{rootMargin:`0px 0px -70% 0px`});for(let n of e.keys()){let e=document.getElementById(n);e&&t.observe(e)}</script>
