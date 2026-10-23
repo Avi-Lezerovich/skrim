@@ -1,0 +1,8 @@
+{
+ "sha256": "e3b16ff443a2f2e5a0fdcfebf20d1a60c538fb81ab8093101dd94c421a7f5f22",
+ "meta": {
+  "respondents": 2026,
+  "contacted": 16216
+ },
+ "note": "Page 2 prints «מספר האנשים שהשתתפו בסקר בפועל 2,026» and «מס' האנשים אליהם פנו 16,216»; the parser does not know this wording. Seats are as parsed."
+}
