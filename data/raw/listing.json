@@ -3254,7 +3254,82 @@
    },
    "Description": null,
    "UrlName": "knesset_election132"
+  },
+  {
+   "Data": {
+    "Knesset_26": [
+     "1"
+    ],
+    "date_the_survey": "2026-10-19T21:00:00Z",
+    "file_PDF": [
+     {
+      "DisplayName": "סקר בחירות מיום 22.10.2026 4243",
+      "Extension": "pdf",
+      "FileMime": "application/pdf",
+      "FileName": "Survey_4243.pdf",
+      "FileSize": "328796"
+     }
+    ],
+    "public_to_cec": "2026-10-21T21:00:00Z",
+    "reference_number": "4243",
+    "survey_editor": "דיירקט פולס בע\"מ",
+    "survey_publisher": "חדשות המזרח התיכון 24 בע\"מ",
+    "transfer_to_cec": "2026-10-21T21:00:00Z",
+    "update_to_cec": "2026-10-21T21:00:00Z"
+   },
+   "Description": null,
+   "UrlName": "knesset_election133"
+  },
+  {
+   "Data": {
+    "Knesset_26": [
+     "1"
+    ],
+    "date_the_survey": "2026-10-20T21:00:00Z",
+    "file_PDF": [
+     {
+      "DisplayName": "סקר בחירות מיום 22.10.2026 4245",
+      "Extension": "pdf",
+      "FileMime": "application/pdf",
+      "FileName": "Survey_4245.pdf",
+      "FileSize": "192396"
+     }
+    ],
+    "public_to_cec": "2026-10-22T21:00:00Z",
+    "reference_number": "4245",
+    "survey_editor": "מדגם יעוץ ומחקר",
+    "survey_publisher": "ערוץ 12",
+    "transfer_to_cec": "2026-10-21T21:00:00Z",
+    "update_to_cec": "2026-10-22T21:00:00Z"
+   },
+   "Description": null,
+   "UrlName": "knesset_election134"
+  },
+  {
+   "Data": {
+    "Knesset_26": [
+     "1"
+    ],
+    "date_the_survey": "2026-10-18T21:00:00Z",
+    "file_PDF": [
+     {
+      "DisplayName": "סקר בחירות מיום 22.10.2026 4247",
+      "Extension": "pdf",
+      "FileMime": "application/pdf",
+      "FileName": "Survey_4247.pdf",
+      "FileSize": "61850"
+     }
+    ],
+    "public_to_cec": "2026-10-22T21:00:00Z",
+    "reference_number": "4247",
+    "survey_editor": "מכון די אר איי",
+    "survey_publisher": "סקר עצמאי - ללא מזמין חיצוני",
+    "transfer_to_cec": "2026-10-21T21:00:00Z",
+    "update_to_cec": "2026-10-22T21:00:00Z"
+   },
+   "Description": null,
+   "UrlName": "knesset_election135"
   }
  ],
- "total_results": 130
+ "total_results": 133
 }
