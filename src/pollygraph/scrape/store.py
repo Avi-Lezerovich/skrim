@@ -115,7 +115,11 @@ class Store:
             raise ValueError(f"empty download for {ref.url}")
         digest = sha256(content)
         versions = [r for r in self.rows if r.key == ref.key]
-        if any(r.sha256 == digest for r in versions):
+        known = next((r for r in versions if r.sha256 == digest), None)
+        if known:
+            held = self.raw.parent.parent / known.path
+            if not held.exists():  # manifest row from CI, PDF not yet on this machine
+                held.write_bytes(content)
             return None
         version = max((r.version_no for r in versions), default=0) + 1
         name = f"{ref.key}.pdf" if version == 1 else f"{ref.key}.v{version}.pdf"

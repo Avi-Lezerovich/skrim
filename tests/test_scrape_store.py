@@ -40,6 +40,16 @@ def test_identical_bytes_are_not_stored_twice(store):
     assert len(store.rows) == 1
 
 
+def test_known_bytes_restore_a_missing_local_copy(store):
+    (ref,) = file_refs(RECORD)
+    row = store.add(ref, RECORD, b"%PDF1")
+    (store.pdfs / "knesset_election76.pdf").unlink()  # manifest committed by CI, PDF in R2
+    assert store.needs_fetch(ref, RECORD)
+    assert store.add(ref, RECORD, b"%PDF1") is None
+    assert (store.pdfs / "knesset_election76.pdf").read_bytes() == b"%PDF1"
+    assert store.rows == [row]
+
+
 def test_changed_bytes_become_a_new_version(store):
     (ref,) = file_refs(RECORD)
     store.add(ref, RECORD, b"%PDF1")
