@@ -1,25 +1,65 @@
 {
- "generated": "2026-10-21T13:41:09.542Z",
+ "generated": "2026-10-23T12:54:34.009Z",
  "images": {
   "home": {
    "file": "/og/home.png",
-   "alt": "ממוצע הסקרים ב-19.10.2026: קואליציה 51, אופוזיציה 53, מפלגות ערביות 14 מנדטים, עם גרף הגושים ב-60 הימים האחרונים",
-   "bytes": 48492
+   "alt": "ממוצע הסקרים ב-21.10.2026: קואליציה 53, אופוזיציה 52, מפלגות ערביות 14 מנדטים, עם גרף הגושים ב-60 הימים האחרונים",
+   "bytes": 49498
   },
   "trends": {
    "file": "/og/trends.png",
    "alt": "גרף ממוצע הגושים מאז 29.7.2026, עם קו 61",
-   "bytes": 44442
+   "bytes": 44646
   },
   "polls": {
    "file": "/og/polls.png",
    "alt": "הלוגו של skrim והכותרת: כל סקרי הבחירות לכנסת ה-26",
-   "bytes": 30733
+   "bytes": 30530
   },
   "pollsters": {
    "file": "/og/pollsters.png",
    "alt": "הלוגו של skrim והכותרת: השוואת סוקרים",
    "bytes": 26659
+  },
+  "poll-knesset_election134": {
+   "file": "/og/poll-knesset_election134.png",
+   "alt": "סקר מדגם יעוץ ומחקר מ-21.10.2026: קואליציה 47, אופוזיציה 55, מפלגות ערביות 14 מנדטים",
+   "bytes": 35546
+  },
+  "poll-knesset_election129": {
+   "file": "/og/poll-knesset_election129.png",
+   "alt": "סקר נקסט דאטה מ-21.10.2026: קואליציה 62, אופוזיציה 44, מפלגות ערביות 14 מנדטים",
+   "bytes": 34985
+  },
+  "poll-knesset_election133": {
+   "file": "/og/poll-knesset_election133.png",
+   "alt": "סקר דיירקט פולס מ-20.10.2026: קואליציה 58, אופוזיציה 48, מפלגות ערביות 14 מנדטים",
+   "bytes": 36033
+  },
+  "poll-knesset_election132": {
+   "file": "/og/poll-knesset_election132.png",
+   "alt": "סקר שמואל רוזנר מ-20.10.2026: קואליציה 49, אופוזיציה 56, מפלגות ערביות 15 מנדטים",
+   "bytes": 37574
+  },
+  "poll-knesset_election131": {
+   "file": "/og/poll-knesset_election131.png",
+   "alt": "סקר נקסט דאטה מ-20.10.2026: קואליציה 62, אופוזיציה 44, מפלגות ערביות 14 מנדטים",
+   "bytes": 35099
+  },
+  "poll-knesset_election135": {
+   "file": "/og/poll-knesset_election135.png",
+   "alt": "סקר מכון DRI מ-19.10.2026: קואליציה 60, אופוזיציה 47, מפלגות ערביות 13 מנדטים",
+   "bytes": 36221
+  },
+  "poll-knesset_election130": {
+   "file": "/og/poll-knesset_election130.png",
+   "alt": "סקר מנחם לזר מ-19.10.2026: קואליציה 48, אופוזיציה 58, מפלגות ערביות 14 מנדטים",
+   "bytes": 33609
+  },
+  "poll-knesset_election128": {
+   "file": "/og/poll-knesset_election128.png",
+   "alt": "סקר מאגר מוחות מ-19.10.2026: קואליציה 46, אופוזיציה 56, מפלגות ערביות 14 מנדטים",
+   "bytes": 35690
   },
   "poll-knesset_election126": {
    "file": "/og/poll-knesset_election126.png",
@@ -253,8 +293,8 @@
   },
   "poll-knesset_election76": {
    "file": "/og/poll-knesset_election76.png",
-   "alt": "סקר מכון DRI מ-15.9.2026",
-   "bytes": 29610
+   "alt": "סקר מכון DRI מ-15.9.2026: קואליציה 59, אופוזיציה 48, מפלגות ערביות 13 מנדטים",
+   "bytes": 37307
   },
   "poll-knesset_election75": {
    "file": "/og/poll-knesset_election75.png",
