@@ -304,7 +304,7 @@ export function exitTable() {
   const dist = (s: Record<string, number>) => (results ? seatDistance(s, results) : null);
   const columns: ExitColumn[] = [
     ...cards.map((c) => ({ id: c.id, name: c.name, seats: c.latest.seats, distance: c.accuracy, kind: "exit" as const })),
-    { id: "mean", name: "ממוצע המדגמים", seats: mean, distance: dist(mean), kind: "average" },
+    { id: "mean", name: "ממוצע הערוצים", seats: mean, distance: dist(mean), kind: "average" },
     { id: "polls", name: "ממוצע הסקרים", seats: avg, distance: dist(avg), kind: "average" },
     ...(results ? [{ id: "results", name: exitPolls.results!.status === "final" ? "תוצאות האמת" : "תוצאות (חלקיות)", seats: results, distance: 0, kind: "results" as const }] : []),
   ];

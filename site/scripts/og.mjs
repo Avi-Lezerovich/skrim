@@ -163,12 +163,12 @@ if (defaultOnly) {
   // Election night: once polls close the home page leads with the exit polls, and so does its card.
   const exitNight = new Date() >= EMBARGO_END && exitPolls.channels.length > 0;
   if (exitNight)
-    add("home", `מדגמי הערוצים לכנסת ה-26 לפי גוש: ${exitPolls.channels.map((c) => {
+    add("home", `הערוצים בליל הבחירות לכנסת ה-26, לפי גוש: ${exitPolls.channels.map((c) => {
       const b = { coalition: 0, opposition: 0, arab: 0 };
       for (const [id, n] of Object.entries(c.versions.at(-1).seats)) if (parties[id]?.bloc in b) b[parties[id].bloc] += n;
       return `${c.name}: ${Object.keys(b).map((k) => `${BLOC_SHORT[k]} ${b[k]}`).join(", ")}`;
     }).join("; ")}`,
-      card({ title: "מדגמי הערוצים לכנסת ה-26", visual: exitRows(), foot: "המדגמים כפי שפורסמו בערוצים ב-27.10.2026 בשעה 22:00" }));
+      card({ title: "הערוצים בליל הבחירות לכנסת ה-26", visual: exitRows(), foot: "המספרים כפי שפורסמו בערוצים ב-27.10.2026 בשעה 22:00" }));
   else add("home", `ממוצע הסקרים ב-${dmy(last.date)}: ${Object.keys(BLOC).map((b) => `${BLOC_SHORT[b]} ${Math.round(lastVals[b])}`).join(", ")} מנדטים, עם גרף הגושים ב-60 הימים האחרונים`,
     card({ title: homeTitle, body: blocNumbers(lastVals, dateNote), visual: blocChart(60, 400, 230) }));
   add("trends", `גרף ממוצע הגושים מאז ${dmy(average.blocs[0].date)}, עם קו 61`,
