@@ -219,11 +219,16 @@ test("home: exit polls switch channel and line up with the table @desktop", asyn
   await expect(page.locator("#exit-ch12")).toBeVisible();
   await expect(page.locator("#exit-kan")).toBeHidden();
   // Likud's seats on the card match its column in the side-by-side table.
-  const card = await page.locator("#exit-ch12 .exit-bars li").first().locator(".exit-seats").textContent();
+  const card = await page.locator("#exit-ch12 .exit-bars li").first().locator(".exit-seats .num").textContent();
   const cell = await page.locator(".exit-table tbody tr").first().locator("td").nth(1).textContent();
   expect(card?.trim()).toBe(cell?.trim());
 
   await page.keyboard.press("ArrowLeft");
   await expect(page.locator("#exit-tab-ch13")).toBeFocused();
   await expect(page.locator("#exit-ch13")).toBeVisible();
+
+  // Only an exit poll outside every other channel's range is flagged; its link opens its card.
+  await expect(page.locator(".exit-tab-flag")).toHaveCount(1);
+  await page.locator(".exit-outlier-line a").first().click();
+  await expect(page.locator(".exit-card:visible .exit-outlier")).toBeVisible();
 });

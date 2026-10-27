@@ -98,6 +98,9 @@ export function trendsPayload() {
     threshold: THRESHOLD_SEATS,
     pollsterNames: Object.fromEntries(pollsterIds.map((id) => [id, pollsterName(id)])),
     sponsorNames: Object.fromEntries(sponsorIds.map((id) => [id, sponsorName(id)])),
+    // Election night: each channel's latest exit poll, drawn on the election date.
+    exitDate: exitPolls.channels.length ? EMBARGO_END.toISOString().slice(0, 10) : null,
+    exits: exitPolls.channels.map((c) => ({ s: c.id, n: c.name, seats: c.versions.at(-1)!.seats })),
   };
 }
 
@@ -200,8 +203,6 @@ export type ExitBar = {
   seats: number;
   /** Seats in the channel's last filed poll. */
   before: number | null;
-  /** The final average of all polls. */
-  avg: number;
 };
 
 export type ExitCard = {
@@ -214,11 +215,18 @@ export type ExitCard = {
   bars: ExitBar[];
   /** The channel's last poll filed with the CEC before election day. */
   lastPoll: Poll | null;
+  /** Bloc totals in that poll. */
+  lastBlocs: Partial<Record<Bloc, number>> | null;
   vsLastPoll: number | null;
   vsAverage: number;
   /** Distance from the CEC results; null until they are published. */
   accuracy: number | null;
+  /** Blocs outside the range of every other channel's exit poll by OUTLIER_SEATS or more. */
+  outliers: { bloc: Bloc; name: string; seats: number; lo: number; hi: number }[];
 };
+
+/** How far outside the other exit polls' range a bloc has to be for a statistical flag. */
+export const OUTLIER_SEATS = 4;
 
 const finalAverage = () => Object.fromEntries(Object.entries(latestParties.values).map(([id, v]) => [id, v.mean]));
 
@@ -226,7 +234,7 @@ const finalAverage = () => Object.fromEntries(Object.entries(latestParties.value
 export function exitCards(): ExitCard[] {
   const avg = finalAverage();
   const results = exitPolls.results?.seats ?? null;
-  return exitPolls.channels.map((c) => {
+  const cards: ExitCard[] = exitPolls.channels.map((c) => {
     const latest = c.versions.at(-1)!;
     const lastPoll = okPolls.find((p) => p.sponsor === c.id && p.field_date) ?? null;
     const blocs = blocTotals(latest.seats);
@@ -236,23 +244,36 @@ export function exitCards(): ExitCard[] {
       latest,
       first: c.versions.length > 1 ? c.versions[0] : null,
       blocs: (["coalition", "arab", "opposition"] as const).map((b) => ({ bloc: b, name: BLOC_NAMES[b], seats: blocs[b] ?? 0 })),
-      bars: latest.rows
-        .map((r) => ({
-          id: r.party_id,
-          name: r.label_raw,
-          label: partyName(r.party_id),
-          color: parties[r.party_id]?.color ?? "transparent",
-          seats: r.seats,
-          before: lastPoll ? (lastPoll.seats[r.party_id] ?? 0) : null,
-          avg: avg[r.party_id] ?? 0,
+      // Every list in the exit poll, plus any that had seats in the channel's last poll and
+      // none in the exit poll, so the rows add up to the distance below them.
+      bars: [...new Set([...latest.rows.map((r) => r.party_id), ...Object.keys(lastPoll?.seats ?? {}).filter((id) => lastPoll!.seats[id] > 0)])]
+        .map((id) => ({
+          id,
+          name: latest.rows.find((r) => r.party_id === id)?.label_raw ?? partyName(id),
+          label: partyName(id),
+          color: parties[id]?.color ?? "transparent",
+          seats: latest.seats[id] ?? 0,
+          before: lastPoll ? (lastPoll.seats[id] ?? 0) : null,
         }))
-        .sort((a, b) => b.seats - a.seats || a.name.localeCompare(b.name, "he")),
+        .sort((a, b) => b.seats - a.seats || (b.before ?? 0) - (a.before ?? 0) || a.name.localeCompare(b.name, "he")),
       lastPoll,
+      lastBlocs: lastPoll ? blocTotals(lastPoll.seats) : null,
       vsLastPoll: lastPoll ? seatDistance(latest.seats, lastPoll.seats) : null,
       vsAverage: seatDistance(latest.seats, avg),
       accuracy: results ? seatDistance(latest.seats, results) : null,
+      outliers: [],
     };
   });
+  for (const c of cards) {
+    for (const b of c.blocs) {
+      const others = cards.filter((o) => o !== c).map((o) => o.blocs.find((x) => x.bloc === b.bloc)!.seats);
+      const lo = Math.min(...others);
+      const hi = Math.max(...others);
+      if (others.length && (b.seats - hi >= OUTLIER_SEATS || lo - b.seats >= OUTLIER_SEATS))
+        c.outliers.push({ bloc: b.bloc, name: b.name, seats: b.seats, lo, hi });
+    }
+  }
+  return cards;
 }
 
 function blocTotals(seats: Record<string, number>) {

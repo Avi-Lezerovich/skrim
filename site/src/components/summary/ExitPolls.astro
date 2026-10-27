@@ -6,15 +6,17 @@
 import { u } from "../../lib/url";
 import Num from "../data/Num.astro";
 import SeatStrip from "./SeatStrip.astro";
-import { exitPolls, fmtDate } from "../../lib/data";
+import { exitPolls, fmtDate, pollsterName } from "../../lib/data";
 import { exitCards, exitTable, seatDistance } from "../../lib/selectors";
 
 const cards = exitCards();
 const table = exitTable();
 const results = exitPolls.results;
 const time = (iso: string | null) => iso?.slice(11, 16) ?? null;
-const scale = Math.max(30, ...cards.flatMap((c) => c.bars.map((b) => b.seats)));
+const scale = Math.max(30, ...cards.flatMap((c) => c.bars.flatMap((b) => [b.seats, b.before ?? 0])));
 const pct = (v: number) => `${((100 * v) / scale).toFixed(2)}%`;
+/** Direction of a change, for its colour: up, down or none. */
+const dir = (d: number) => (d > 0 ? "up" : d < 0 ? "down" : "same");
 const digits = (v: number) => (Number.isInteger(v) ? 0 : 1);
 const pollsCol = table.columns.find((c) => c.id === "polls")!;
 const best = results ? Math.min(...cards.map((c) => c.accuracy!)) : null;
@@ -48,6 +50,14 @@ const gap = (seats: number, avg: number) => {
       הטווח בין {cards.length} המדגמים{ranges.every((r) => r.hi < 61) && <>; אף גוש לא מגיע ל-61 באף מדגם</>}.
       {sameLeader && <> {leaders[0].name} המפלגה הגדולה בכל המדגמים (<Num kind="range" lo={leaderLo} hi={leaderHi} />).</>}
     </p>
+    {
+      cards.filter((c) => c.outliers.length).map((c) => (
+        <p class="exit-outlier-line">
+          <a href={`#exit-${c.id}`} data-tab={`exit-tab-${c.id}`}>⚑ דגל סטטיסטי: מדגם {c.name} חורג מכל שאר המדגמים</a>
+          {" "}({c.outliers.map((o) => `${o.name} ${o.seats}`).join(", ")})
+        </p>
+      ))
+    }
     <details class="page-note window-note">
       <summary>המדגמים פורסמו עם סגירת הקלפיות; מדגם אינו תוצאה</summary>
       <p>
@@ -68,12 +78,13 @@ const gap = (seats: number, avg: number) => {
   <div class="exit-tabs" role="tablist" aria-label="בחירת ערוץ">
     {
       cards.map((c, i) => (
-        <button type="button" role="tab" id={`exit-tab-${c.id}`} aria-controls={`exit-${c.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1}>
+        <button type="button" role="tab" class:list={[c.outliers.length > 0 && "exit-tab-outlier"]} id={`exit-tab-${c.id}`} aria-controls={`exit-${c.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1}>
           <span class="exit-tab-name">
             {c.name}
             <span class="exit-tab-lead">
               {c.bars[0].name} {c.bars[0].seats}{c.first && <> · עודכן</>}
             </span>
+            {c.outliers.length > 0 && <span class="exit-tab-flag">⚑ חריג מכל השאר</span>}
           </span>
           <span class="exit-mini" aria-hidden="true">
             {c.blocs.map((b) => (
@@ -99,64 +110,120 @@ const gap = (seats: number, avg: number) => {
           </p>
         </header>
 
-        <SeatStrip segments={c.blocs} source={`לפי מדגם ${c.name}`} />
-
-        <ol class="exit-bars" aria-label={`המנדטים לכל מפלגה במדגם ${c.name}`}>
-          {c.bars.map((b) => (
-            <li>
-              <span class="exit-party">
-                <i class="swatch" style={`background: ${b.color}`} />
-                {b.name}
-              </span>
-              <span class="exit-track" aria-hidden="true">
-                <span class="exit-fill" style={`width: ${pct(b.seats)}; background: ${b.color}`} />
-                <span class="exit-avg" style={`inset-inline-start: ${pct(b.avg)}`} />
-              </span>
-              <strong class="exit-seats"><Num value={b.seats} /></strong>
-              <span class:list={["exit-delta", b.before != null && b.seats !== b.before && "changed"]}>
-                {b.before != null && (
-                  <>
-                    <span class="sr-only">שינוי מהסקר האחרון: </span>
-                    <Num kind="signed" value={b.seats - b.before} digits={0} />
-                  </>
-                )}
-              </span>
-            </li>
-          ))}
-        </ol>
-        {c.lastPoll && (
-          <p class="exit-key">
-            <span class="exit-avg-key" aria-hidden="true" /> קו דק: ממוצע הסקרים מ-{fmtDate(table.avgDate)} · המספר הקטן:
-            השינוי מהסקר האחרון של {c.name} שדווח לוועדת הבחירות (
-            <a href={u(`/polls/${c.lastPoll.key}`)}>{fmtDate(c.lastPoll.field_date)}</a>).
-          </p>
+        {c.outliers.length > 0 && (
+          <div class="exit-outlier" role="note">
+            <p class="exit-outlier-title">⚑ דגל סטטיסטי: מדגם {c.name} חורג מכל שאר המדגמים</p>
+            <ul>
+              {c.outliers.map((o) => (
+                <li>
+                  {o.name}: <strong><Num value={o.seats} /></strong> מנדטים, לעומת <Num kind="range" lo={o.lo} hi={o.hi} /> בכל שאר המדגמים
+                </li>
+              ))}
+            </ul>
+            <p class="exit-outlier-why">
+              הסבר אפשרי: שיטת דגימה, שקלול או מועד שונים. המספרים כפי שפורסמו; ציון הדיוק מול התוצאות יראה איזה מדגם היה
+              קרוב יותר.
+            </p>
+          </div>
         )}
 
-        <dl class="exit-scores">
-          <div>
-            <dt>מרחק מהסקר האחרון של הערוץ</dt>
-            <dd>
-              {c.vsLastPoll == null ? <Num value={null} missing="אין לערוץ סקר במאגר" /> : <><Num value={c.vsLastPoll} digits={digits(c.vsLastPoll)} /> מנדטים</>}
-            </dd>
+        <div class="exit-card-body">
+          <div class="exit-blocs-box">
+            <SeatStrip segments={c.blocs} source={`לפי מדגם ${c.name}`} legend={false} />
+            <table class="exit-bloc-diff">
+              <caption class="sr-only">הגושים במדגם {c.name} ובסקר האחרון של הערוץ</caption>
+              <thead>
+                <tr>
+                  <th scope="col">גוש</th>
+                  <th scope="col" class="num">מדגם</th>
+                  {c.lastBlocs && <th scope="col" class="num">סקר אחרון</th>}
+                  {c.lastBlocs && <th scope="col" class="num">הפרש</th>}
+                </tr>
+              </thead>
+              <tbody>
+                {c.blocs.map((b) => (
+                  <tr>
+                    <th scope="row"><span class="party-cell"><i class="swatch" style={`background: var(--bloc-${b.bloc})`} />{b.name}</span></th>
+                    <td class="num"><strong><Num value={b.seats} /></strong></td>
+                    {c.lastBlocs && <td class="num"><Num value={c.lastBlocs[b.bloc] ?? 0} /></td>}
+                    {c.lastBlocs && (
+                      <td class="num">
+                        <span class={`exit-diff ${dir(b.seats - (c.lastBlocs[b.bloc] ?? 0))}`}>
+                          <Num kind="signed" value={b.seats - (c.lastBlocs[b.bloc] ?? 0)} digits={0} />
+                        </span>
+                      </td>
+                    )}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
           </div>
-          <div>
-            <dt>מרחק מממוצע הסקרים</dt>
-            <dd><Num value={c.vsAverage} digits={1} /> מנדטים</dd>
-          </div>
-          <div class="exit-accuracy">
-            <dt>ציון דיוק מול התוצאות</dt>
-            <dd>
-              {c.accuracy == null ? (
-                <span class="muted">אחרי פרסום התוצאות</span>
-              ) : (
-                <>
-                  <Num value={c.accuracy} digits={digits(c.accuracy)} /> מנדטים
-                  {c.accuracy === best && <span class="exit-best">המדויק ביותר</span>}
-                </>
+
+          <div class="exit-parties">
+            <p class="exit-legend">
+              <span><i class="exit-lg-fill" aria-hidden="true" />מדגם {c.name}</span>
+              {c.lastPoll && (
+                <span>
+                  <i class="exit-lg-ghost" aria-hidden="true" />
+                  הסקר האחרון של {c.name}: <a href={u(`/polls/${c.lastPoll.key}`)}>{fmtDate(c.lastPoll.field_date)}</a>, {pollsterName(c.lastPoll.pollster, c.lastPoll.pollster_raw)}
+                </span>
               )}
-            </dd>
+            </p>
+            <div class="exit-cols" aria-hidden="true">
+              <span>מפלגה</span><span /><span>מדגם</span>{c.lastPoll && <><span>סקר</span><span>הפרש</span></>}
+            </div>
+            <ol class="exit-bars" aria-label={`המנדטים לכל מפלגה במדגם ${c.name} ובסקר האחרון של הערוץ`}>
+              {c.bars.map((b) => (
+                <li class:list={[b.seats === 0 && "exit-out"]}>
+                  <span class="exit-party">
+                    <i class="swatch" style={`background: ${b.color}`} />
+                    {b.name}
+                  </span>
+                  <span class="exit-track" aria-hidden="true">
+                    {b.before != null && <span class="exit-ghost" style={`width: ${pct(b.before)}`} />}
+                    <span class="exit-fill" style={`width: ${pct(b.seats)}; background: ${b.color}`} />
+                  </span>
+                  <strong class="exit-seats"><span class="sr-only">במדגם </span><Num value={b.seats} /></strong>
+                  {b.before != null && (
+                    <>
+                      <span class="exit-before"><span class="sr-only">בסקר האחרון </span><Num value={b.before} /></span>
+                      <span class={`exit-diff ${dir(b.seats - b.before)}`}>
+                        <span class="sr-only">הפרש </span><Num kind="signed" value={b.seats - b.before} digits={0} />
+                      </span>
+                    </>
+                  )}
+                </li>
+              ))}
+            </ol>
+            {c.bars.some((b) => b.seats === 0) && <p class="exit-key">0 במדגם: הרשימה לא עוברת את אחוז החסימה לפי המדגם.</p>}
           </div>
-        </dl>
+
+          <dl class="exit-scores">
+            <div class="exit-score-main">
+              <dt>המרחק בין המדגם לסקר האחרון של הערוץ</dt>
+              <dd>
+                {c.vsLastPoll == null ? <Num value={null} missing="אין לערוץ סקר במאגר" /> : <><Num value={c.vsLastPoll} digits={digits(c.vsLastPoll)} /> מנדטים זזו</>}
+              </dd>
+            </div>
+            <div>
+              <dt>המרחק מממוצע הסקרים</dt>
+              <dd><Num value={c.vsAverage} digits={1} /> מנדטים</dd>
+            </div>
+            <div class="exit-accuracy">
+              <dt>ציון דיוק מול התוצאות</dt>
+              <dd>
+                {c.accuracy == null ? (
+                  <span class="muted">אחרי פרסום התוצאות</span>
+                ) : (
+                  <>
+                    <Num value={c.accuracy} digits={digits(c.accuracy)} /> מנדטים
+                    {c.accuracy === best && <span class="exit-best">המדויק ביותר</span>}
+                  </>
+                )}
+              </dd>
+            </div>
+          </dl>
+        </div>
         {c.latest.note && <p class="exit-note">{c.latest.note}</p>}
       </article>
     ))
@@ -172,7 +239,12 @@ const gap = (seats: number, avg: number) => {
         <thead>
           <tr>
             <th scope="col">מפלגה</th>
-            {table.columns.map((col) => <th scope="col" class:list={["num", col.kind !== "exit" && "exit-col-ref"]}>{col.name}</th>)}
+            {table.columns.map((col) => (
+              <th scope="col" class:list={["num", col.kind !== "exit" && "exit-col-ref"]}>
+                {col.name}
+                {cards.find((c) => c.id === col.id)?.outliers.length ? <span class="exit-th-flag" title="דגל סטטיסטי: חורג מכל שאר המדגמים"> ⚑</span> : null}
+              </th>
+            ))}
           </tr>
         </thead>
         <tbody>
@@ -254,6 +326,13 @@ const gap = (seats: number, avg: number) => {
       if (focus) tab.focus();
     };
     select(tabs[0]);
+    // A link to a card (the outlier line, or #exit-ch14 in the address) opens its tab.
+    const fromHash = () => {
+      const tab = tabs.find((t) => `#${t.getAttribute("aria-controls")}` === location.hash);
+      if (tab) select(tab);
+    };
+    fromHash();
+    addEventListener("hashchange", fromHash);
     list.addEventListener("click", (e) => {
       const tab = (e.target as HTMLElement).closest<HTMLButtonElement>("[role=tab]");
       if (tab) select(tab);
