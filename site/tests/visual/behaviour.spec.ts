@@ -58,6 +58,15 @@ test("csv: static files are UTF-8 with BOM and complete @desktop", async ({ requ
 
   const avg = await (await request.get("/data/average.json")).json();
   expect(avg.parties.length).toBeGreaterThan(0);
+
+  // Election night: a row per list in every version of every channel, the same rows as the JSON.
+  const exits = await (await request.get("/data/exit-polls.json")).json();
+  const exitRows = exits.channels.flatMap((c: { versions: { rows: unknown[] }[] }) => c.versions.flatMap((v) => v.rows)).length;
+  const exitCsv = Buffer.from(await (await request.get("/data/exit-polls.csv")).body());
+  expect([...exitCsv.subarray(0, 3)]).toEqual(BOM);
+  const exitLines = csvLines(exitCsv);
+  expect(exitLines).toHaveLength(exitRows + 1);
+  expect(exitLines[0]).toContain("label_raw");
 });
 
 test("csv: the filtered download holds exactly the rows shown @desktop", async ({ page }) => {

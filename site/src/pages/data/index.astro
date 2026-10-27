@@ -2,7 +2,7 @@
 import Base from "../../layouts/Base.astro";
 import DownloadLinks from "../../components/data/DownloadLinks.astro";
 import { fmtDate, meta, polls } from "../../lib/data";
-import { answerCount, answersCsv, averageJson, dataVersion, pollsCsv } from "../../lib/exports";
+import { answerCount, answersCsv, averageJson, dataVersion, exitAnswerCount, exitPollsCsv, exitPollsJson, pollsCsv } from "../../lib/exports";
 import { REPO, u } from "../../lib/url";
 
 const bytes = (s: string) => Buffer.byteLength(s, "utf8");
@@ -28,6 +28,19 @@ const files = [
     bytes: bytes(averageJson()),
   },
   {
+    href: u("/data/exit-polls.csv"),
+    name: "knesset26-exit-polls.csv",
+    desc: "המספרים שכל ערוץ פרסם בליל הבחירות: שורה לכל רשימה בכל גרסה, עם שיטת האיסוף, השם כפי שפורסם, שעת הפרסום (שעון ישראל) וקישור למקור. אינם מדווחים לוועדת הבחירות.",
+    rows: exitAnswerCount(),
+    bytes: bytes(exitPollsCsv()),
+  },
+  {
+    href: u("/data/exit-polls.json"),
+    name: "knesset26-exit-polls.json",
+    desc: "אותם נתונים לפי ערוץ וגרסה, עם המקור לשיטת האיסוף, ותוצאות ועדת הבחירות כשיפורסמו.",
+    bytes: bytes(exitPollsJson()),
+  },
+  {
     href: `${REPO}/blob/main/data/raw/manifest.csv`,
     name: "manifest.csv",
     desc: "רשימת כל קובצי ה-PDF שנאספו מהוועדה, עם SHA-256 ומועד ההורדה (ב-GitHub).",
@@ -43,7 +56,7 @@ const files = [
       עודכן {fmtDate(meta.generated_at.slice(0, 10))} · גרסת נתונים <code dir="ltr">{dataVersion()}</code>
     </p>
     <p class="page-note">
-      כל המספרים באתר זמינים להורדה, לבדיקה ולשימוש חוזר. כל שורה מקושרת לדיווח המקורי בוועדת הבחירות.
+      כל המספרים באתר זמינים להורדה, לבדיקה ולשימוש חוזר. כל שורה מקושרת למקור שלה: הדיווח בוועדת הבחירות, ובמספרי ליל הבחירות העמוד שממנו הועתקו.
     </p>
   </header>
 

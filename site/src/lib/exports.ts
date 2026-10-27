@@ -2,7 +2,7 @@
 // (which lists their sizes and row counts).
 import { createHash } from "node:crypto";
 import { toCsv } from "./csv";
-import { average, meta, partyName, pollsterName, polls, sponsorName, sponsors, type Poll, type Row } from "./data";
+import { average, exitPolls, meta, partyName, pollsterName, polls, sponsorName, sponsors, type ExitRow, type Poll, type Row } from "./data";
 
 export const pollsCsv = () =>
   toCsv<Poll>(polls, [
@@ -58,8 +58,38 @@ export const answersCsv = () =>
 
 export const averageJson = () => JSON.stringify({ generated_at: meta.generated_at, ...average });
 
+type Channel = (typeof exitPolls.channels)[number];
+type ExitAnswer = ExitRow & { channel: Channel; version: Channel["versions"][number]; latest: boolean };
+const exitAnswers = (): ExitAnswer[] =>
+  exitPolls.channels.flatMap((channel) =>
+    channel.versions.flatMap((version, i, all) => version.rows.map((r) => ({ ...r, channel, version, latest: i === all.length - 1 }))),
+  );
+
+/** One row per list in each version of each channel's election-night numbers, with the page it was copied from. */
+export const exitPollsCsv = () =>
+  toCsv<ExitAnswer>(exitAnswers(), [
+    ["channel_id", (a) => a.channel.id],
+    ["channel", (a) => a.channel.name],
+    ["method", (a) => a.channel.method.kind],
+    ["method_source_url", (a) => a.channel.method.source_url],
+    ["version", (a) => a.version.version],
+    ["latest", (a) => a.latest],
+    ["published_at_israel", (a) => a.version.published_at],
+    ["pollster", (a) => a.version.pollster],
+    ["party_id", (a) => a.party_id],
+    ["party", (a) => partyName(a.party_id)],
+    ["label_raw", (a) => a.label_raw],
+    ["seats", (a) => a.seats],
+    ["source_url", (a) => a.version.source_url],
+    ["note", (a) => a.version.note],
+  ]);
+
+export const exitPollsJson = () => JSON.stringify({ generated_at: meta.generated_at, ...exitPolls });
+
+export const exitAnswerCount = () => exitAnswers().length;
+
 /** Short fingerprint of the published data, shown on /data so readers can cite a version. */
 export const dataVersion = () =>
-  createHash("sha256").update(JSON.stringify(polls)).update(JSON.stringify(average)).digest("hex").slice(0, 12);
+  createHash("sha256").update(JSON.stringify(polls)).update(JSON.stringify(average)).update(JSON.stringify(exitPolls)).digest("hex").slice(0, 12);
 
 export const answerCount = () => answers().length;
