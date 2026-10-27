@@ -25,7 +25,12 @@ const recent = polls.slice(0, 5);
 const showExit = isFinal() && exitPolls.channels.length > 0;
 ---
 
-<Base title="skrim · סקרי הבחירות לכנסת ה-26" description="ממוצע סקרי הבחירות לכנסת ה-26, לפי הדיווחים לוועדת הבחירות המרכזית">
+<Base
+  title={showExit ? "מדגמי הערוצים לכנסת ה-26" : "skrim · סקרי הבחירות לכנסת ה-26"}
+  description={showExit
+    ? "מדגמי כאן 11, חדשות 12, חדשות 13, ערוץ 14, i24NEWS וערוץ 16 זה לצד זה, מול הסקרים האחרונים, ובהמשך מול התוצאות"
+    : "ממוצע סקרי הבחירות לכנסת ה-26, לפי הדיווחים לוועדת הבחירות המרכזית"}
+>
   {showExit && <ExitPolls />}
 
   {/* On election night the exit polls lead the page; the average follows with a short heading. */}

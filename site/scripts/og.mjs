@@ -12,6 +12,7 @@
 import { mkdirSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { chromium } from "@playwright/test";
 import { COLORS, LOCKUP, lockupPaths } from "../src/lib/brand.mjs";
+import { EMBARGO_END } from "../src/lib/embargo.mjs";
 
 const root = new URL("../", import.meta.url);
 const json = (name) => JSON.parse(readFileSync(new URL(`src/data/${name}`, root), "utf8"));
@@ -20,6 +21,8 @@ const average = json("average.json");
 const pollsters = json("pollsters.json");
 const sponsors = json("sponsors.json");
 const meta = json("meta.json");
+const exitPolls = json("exit_polls.json");
+const parties = json("parties.json");
 
 const defaultOnly = process.argv.includes("--default-only");
 const host = `${new URL(process.env.SITE_URL || "https://avi-lezerovich.github.io").host}${(process.env.BASE_PATH ?? "/skrim").replace(/\/$/, "")}`;
@@ -87,6 +90,19 @@ function blocChart(days, w, h) {
   </svg>`;
 }
 
+/** One row per channel's exit poll: name and a 120-seat bar of the blocs, with the 61 tick. */
+function exitRows() {
+  const order = ["coalition", "arab", "opposition"];
+  const rows = exitPolls.channels.map((c) => {
+    const blocs = Object.fromEntries(order.map((b) => [b, 0]));
+    for (const [id, n] of Object.entries(c.versions.at(-1).seats)) if (parties[id]?.bloc in blocs) blocs[parties[id].bloc] += n;
+    const segs = order.map((b) => `<span style="width:${((100 * blocs[b]) / 120).toFixed(3)}%;background:${BLOC[b]}">${blocs[b]}</span>`).join("");
+    return `<div class="erow"><span class="ename">${esc(c.name)}</span><span class="ebar">${segs}<i></i></span></div>`;
+  });
+  const key = order.map((b) => `<span><b style="background:${BLOC[b]}"></b>${BLOC_SHORT[b]}</span>`).join("");
+  return `<div class="exit"><p class="ekey">${key}<span>· קו: 61 מנדטים</span></p>${rows.join("")}</div>`;
+}
+
 const blocNumbers = (vals, label) => `
   <div class="nums">${Object.keys(BLOC)
     .filter((b) => vals[b] != null)
@@ -97,7 +113,7 @@ const blocNumbers = (vals, label) => `
  * The card, centred so a square crop (small previews) keeps the headline: logo, headline,
  * subline, then an optional data row (numbers beside a chart). Footer: source line and domain.
  */
-const card = ({ title, sub = "", body = "", visual = "" }) => `<!doctype html>
+const card = ({ title, sub = "", body = "", visual = "", foot = "כל מספר מקושר לדיווח בוועדת הבחירות המרכזית" }) => `<!doctype html>
 <html lang="he" dir="rtl"><head><meta charset="utf-8"><style>
 ${fontFaces}
 *{box-sizing:border-box;margin:0}
@@ -114,10 +130,21 @@ h1{font-size:${visual || body ? 58 : 68}px;line-height:1.14;font-weight:700;text
 .num-l{font-size:21px;color:${C.ink2}}
 .note{margin-top:10px;font-size:21px;color:${C.muted}}
 .foot{width:100%;display:flex;justify-content:space-between;font-size:22px;color:${C.muted}}
+.exit{width:900px;display:grid;gap:10px}
+.ekey{display:flex;justify-content:center;gap:22px;font-size:21px;color:${C.ink2}}
+.ekey span{display:inline-flex;align-items:center;gap:8px}
+.ekey b{width:16px;height:16px;border-radius:3px}
+.erow{display:grid;grid-template-columns:170px 1fr;align-items:center;gap:20px}
+.ename{font-size:28px;font-weight:700;text-align:start}
+.ebar{position:relative;display:flex;height:38px;border-radius:5px;overflow:visible}
+.ebar span{display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700;box-shadow:inset -2px 0 0 ${C.page}}
+.ebar span:first-child{border-radius:0 5px 5px 0}
+.ebar span:last-child{border-radius:5px 0 0 5px;box-shadow:none}
+.ebar i{position:absolute;top:-6px;bottom:-6px;inset-inline-start:${((100 * 61) / 120).toFixed(3)}%;width:3px;margin-inline-start:-1.5px;background:linear-gradient(${C.ink} 0 7px,transparent 7px calc(100% - 7px),${C.ink} calc(100% - 7px))}
 </style></head><body><div class="frame">
 ${logoSvg(56)}
 <div class="main"><h1>${title}</h1>${sub ? `<p class="sub">${sub}</p>` : ""}${body || visual ? `<div class="data">${body ? `<div>${body}</div>` : ""}${visual}</div>` : ""}</div>
-<div class="foot"><span>כל מספר מקושר לדיווח בוועדת הבחירות המרכזית</span><bdi dir="ltr">${esc(host)}</bdi></div>
+<div class="foot"><span>${foot}</span><bdi dir="ltr">${esc(host)}</bdi></div>
 </div></body></html>`;
 
 // ---- the pages ----
@@ -131,7 +158,16 @@ if (defaultOnly) {
   add("default", "הלוגו של skrim והכותרת: מאגר פתוח של סקרי הבחירות לכנסת ה-26", card({ title: "מאגר פתוח של סקרי הבחירות לכנסת ה-26", sub: "כל סקר שהוגש לוועדת הבחירות, מקושר לדיווח המקורי" }));
 } else {
   const dateNote = `ממוצע ${last.n_polls} סוקרים, ${dmy(last.date)}`;
-  add("home", `ממוצע הסקרים ב-${dmy(last.date)}: ${Object.keys(BLOC).map((b) => `${BLOC_SHORT[b]} ${Math.round(lastVals[b])}`).join(", ")} מנדטים, עם גרף הגושים ב-60 הימים האחרונים`,
+  // Election night: once polls close the home page leads with the exit polls, and so does its card.
+  const exitNight = new Date() >= EMBARGO_END && exitPolls.channels.length > 0;
+  if (exitNight)
+    add("home", `מדגמי הערוצים לכנסת ה-26 לפי גוש: ${exitPolls.channels.map((c) => {
+      const b = { coalition: 0, opposition: 0, arab: 0 };
+      for (const [id, n] of Object.entries(c.versions.at(-1).seats)) if (parties[id]?.bloc in b) b[parties[id].bloc] += n;
+      return `${c.name}: ${Object.keys(b).map((k) => `${BLOC_SHORT[k]} ${b[k]}`).join(", ")}`;
+    }).join("; ")}`,
+      card({ title: "מדגמי הערוצים לכנסת ה-26", visual: exitRows(), foot: "המדגמים כפי שפורסמו בערוצים ב-27.10.2026 בשעה 22:00" }));
+  else add("home", `ממוצע הסקרים ב-${dmy(last.date)}: ${Object.keys(BLOC).map((b) => `${BLOC_SHORT[b]} ${Math.round(lastVals[b])}`).join(", ")} מנדטים, עם גרף הגושים ב-60 הימים האחרונים`,
     card({ title: homeTitle, body: blocNumbers(lastVals, dateNote), visual: blocChart(60, 400, 230) }));
   add("trends", `גרף ממוצע הגושים מאז ${dmy(average.blocs[0].date)}, עם קו 61`,
     card({ title: "מגמות בסקרי הבחירות", sub: `הממוצע לפי גוש מאז ${dmy(average.blocs[0].date)}`, visual: blocChart(average.blocs.length, 640, 250) }));

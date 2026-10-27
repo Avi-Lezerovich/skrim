@@ -19,6 +19,15 @@ const digits = (v: number) => (Number.isInteger(v) ? 0 : 1);
 const pollsCol = table.columns.find((c) => c.id === "polls")!;
 const best = results ? Math.min(...cards.map((c) => c.accuracy!)) : null;
 const sources = [...new Set(cards.flatMap((c) => [...(c.first ? [c.first.source_url] : []), c.latest.source_url]))];
+/** What all the exit polls share: each bloc's range, and the largest party in each. */
+const ranges = cards[0].blocs.map((b, i) => {
+  const v = cards.map((c) => c.blocs[i].seats);
+  return { ...b, lo: Math.min(...v), hi: Math.max(...v) };
+});
+const leaders = cards.map((c) => c.bars[0]);
+const sameLeader = leaders.every((l) => l.id === leaders[0].id) && cards.every((c) => c.bars[0].seats > c.bars[1].seats);
+const leaderLo = Math.min(...leaders.map((l) => l.seats));
+const leaderHi = Math.max(...leaders.map((l) => l.seats));
 const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
 /** Shade an exit-poll cell 2+ seats from the average of the polls (rounded to whole seats). */
 const gap = (seats: number, avg: number) => {
@@ -30,6 +39,15 @@ const gap = (seats: number, avg: number) => {
 <section class="exit-polls" aria-labelledby="exit-h">
   <header class="page-head">
     <h1 id="exit-h">מדגמי הערוצים</h1>
+    <p class="exit-summary">
+      {ranges.map((r) => (
+        <span><i class="swatch" style={`background: var(--bloc-${r.bloc})`} />{r.name} <strong>{r.lo === r.hi ? r.lo : <Num kind="range" lo={r.lo} hi={r.hi} />}</strong></span>
+      ))}
+    </p>
+    <p class="page-note exit-summary-note">
+      הטווח בין {cards.length} המדגמים{ranges.every((r) => r.hi < 61) && <>; אף גוש לא מגיע ל-61 באף מדגם</>}.
+      {sameLeader && <> {leaders[0].name} המפלגה הגדולה בכל המדגמים (<Num kind="range" lo={leaderLo} hi={leaderHi} />).</>}
+    </p>
     <details class="page-note window-note">
       <summary>המדגמים פורסמו עם סגירת הקלפיות; מדגם אינו תוצאה</summary>
       <p>
@@ -48,13 +66,15 @@ const gap = (seats: number, avg: number) => {
 
   {/* The tabs double as an overview: each channel's blocs at a glance, the 61 line in the middle. */}
   <div class="exit-tabs" role="tablist" aria-label="בחירת ערוץ">
-    <p class="exit-tabs-key" aria-hidden="true">
-      {cards[0].blocs.map((b) => <span><i class="swatch" style={`background: var(--bloc-${b.bloc})`} />{b.name}</span>)}
-    </p>
     {
       cards.map((c, i) => (
         <button type="button" role="tab" id={`exit-tab-${c.id}`} aria-controls={`exit-${c.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1}>
-          <span class="exit-tab-name">{c.name}</span>
+          <span class="exit-tab-name">
+            {c.name}
+            <span class="exit-tab-lead">
+              {c.bars[0].name} {c.bars[0].seats}{c.first && <> · עודכן</>}
+            </span>
+          </span>
           <span class="exit-mini" aria-hidden="true">
             {c.blocs.map((b) => (
               <span class="exit-mini-seg" style={`width: ${((100 * b.seats) / 120).toFixed(3)}%; background: var(--bloc-${b.bloc})`}>{b.seats}</span>
