@@ -9,6 +9,7 @@ import {
   partyName,
   parties,
   pollsterName,
+  sponsorName,
   trendParties,
   type Bloc,
   type Poll,
@@ -66,7 +67,7 @@ export function stripSegments(): StripSegment[] {
 export const MIN_POLLS_FOR_LINE = 5;
 
 /**
- * Compact payload for the trends grid (G4): polls are listed once (key, date, pollster, PDF)
+ * Compact payload for the trends grid (G4): polls are listed once (key, date, pollster, channel, PDF)
  * and referenced by index, and each party's series is [mean, sd] per average day (null when
  * absent).
  */
@@ -86,13 +87,15 @@ export function trendsPayload() {
   });
   const ymax = Math.ceil(Math.max(THRESHOLD_SEATS, ...charts.flatMap((c) => c.dots.map((d) => d[1]))) / 5) * 5;
   const pollsterIds = [...new Set(list.map((p) => p.pollster).filter(Boolean))] as string[];
+  const sponsorIds = [...new Set(list.map((p) => p.sponsor).filter(Boolean))] as string[];
   return {
-    polls: list.map((p) => ({ k: p.key, d: p.field_date!, p: p.pollster ?? "", u: p.source_url })),
+    polls: list.map((p) => ({ k: p.key, d: p.field_date!, p: p.pollster ?? "", s: p.sponsor ?? "", u: p.source_url })),
     days,
     charts,
     ymax,
     threshold: THRESHOLD_SEATS,
     pollsterNames: Object.fromEntries(pollsterIds.map((id) => [id, pollsterName(id)])),
+    sponsorNames: Object.fromEntries(sponsorIds.map((id) => [id, sponsorName(id)])),
   };
 }
 
@@ -141,4 +144,40 @@ export function partyRows() {
     around: rows.filter((r) => r.lo < THRESHOLD_SEATS && (r.passing > 0 || r.mean >= 0.5)),
     windowSize: polls.length,
   };
+}
+
+export type ChannelScore = {
+  sponsor: string;
+  name: string;
+  poll: Poll;
+  /** Seats that would have to move for the poll to match the average of all polls that day. */
+  score: number;
+  /** The party furthest from the average, with the poll minus the average. */
+  top: { id: string; name: string; diff: number } | null;
+};
+
+/**
+ * Each channel's latest poll against the average of all polls on its field date, newest
+ * first. The score is half the sum of absolute seat gaps over every party in either.
+ */
+export function channelScores(): ChannelScore[] {
+  const byDate = new Map(average.parties.map((d) => [d.date, d.values]));
+  const latest = new Map<string, Poll>();
+  for (const p of okPolls) {
+    if (!p.sponsor || !p.field_date || !byDate.has(p.field_date)) continue;
+    const cur = latest.get(p.sponsor);
+    if (!cur || p.field_date > cur.field_date!) latest.set(p.sponsor, p);
+  }
+  return [...latest.entries()]
+    .map(([sponsor, poll]) => {
+      const avg = byDate.get(poll.field_date!)!;
+      const gaps = [...new Set([...Object.keys(poll.seats), ...Object.keys(avg)])].map((id) => ({
+        id,
+        name: partyName(id),
+        diff: (poll.seats[id] ?? 0) - (avg[id]?.mean ?? 0),
+      }));
+      const top = gaps.reduce<(typeof gaps)[number] | null>((a, g) => (!a || Math.abs(g.diff) > Math.abs(a.diff) ? g : a), null);
+      return { sponsor, name: sponsorName(sponsor), poll, score: gaps.reduce((s, g) => s + Math.abs(g.diff), 0) / 2, top };
+    })
+    .sort((a, b) => b.poll.field_date!.localeCompare(a.poll.field_date!) || a.name.localeCompare(b.name, "he"));
 }

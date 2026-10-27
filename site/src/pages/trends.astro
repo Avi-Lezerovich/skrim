@@ -4,13 +4,20 @@ import Base from "../layouts/Base.astro";
 import BlocChart from "../components/charts/BlocChart.astro";
 import Num from "../components/data/Num.astro";
 import { average, fmtDate, latestParties, parties, pollsterName } from "../lib/data";
-import { THRESHOLD_SEATS, sparkPoints, trendsPayload } from "../lib/selectors";
+import { THRESHOLD_SEATS, channelScores, sparkPoints, trendsPayload } from "../lib/selectors";
 
 const payload = trendsPayload();
+const scores = channelScores();
 const first = payload.days[0];
 const last = payload.days.at(-1)!;
 const latest = (id: string) => latestParties.values[id];
-const pollsterOpts = Object.entries(payload.pollsterNames).sort((a, b) => a[1].localeCompare(b[1], "he"));
+/** Select options for one kind of focus: id, name and how many polls it has, by name. */
+const focusOpts = (names: Record<string, string>, key: "p" | "s") =>
+  Object.entries(names)
+    .map(([id, name]) => ({ id, name, n: payload.polls.filter((p) => p[key] === id).length }))
+    .sort((a, b) => a.name.localeCompare(b.name, "he"));
+const channelOpts = focusOpts(payload.sponsorNames, "s");
+const pollsterOpts = focusOpts(payload.pollsterNames, "p");
 const SPARK_H = 32;
 const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixed(1);
 ---
@@ -29,14 +36,19 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
   <section class="trends-parties" aria-labelledby="parties-h">
     <h2 id="parties-h">מפלגות</h2>
     <p class="page-note">
-      כל המפלגות על אותו סולם (<Num kind="range" lo={0} hi={payload.ymax} /> מנדטים) ועל אותו ציר זמן. הקו המקווקו הוא אחוז החסימה ({THRESHOLD_SEATS} מנדטים). הקישו על נקודה כדי לראות את הסקר שמאחוריה.
+      כל המפלגות על אותו סולם (<Num kind="range" lo={0} hi={payload.ymax} /> מנדטים) ועל אותו ציר זמן. הקו המקווקו הוא אחוז החסימה ({THRESHOLD_SEATS} מנדטים). הקישו על נקודה כדי לראות את הסקר שמאחוריה. בחרו ערוץ או סוקר כדי לראות את הסקרים שלו כקו נפרד לצד ממוצע כל הסקרים.
     </p>
 
     <form class="control-bar" id="trend-controls" aria-label="הגדרות גרפי המפלגות">
-      <label>הדגשת סוקר
-        <select name="pollster">
-          <option value="">ללא הדגשה</option>
-          {pollsterOpts.map(([id, name]) => <option value={id}>{name}</option>)}
+      <label>הצגת ערוץ או סוקר
+        <select name="focus">
+          <option value="">ממוצע כל הסקרים בלבד</option>
+          <optgroup label="ערוץ (מזמין הסקר)">
+            {channelOpts.map((o) => <option value={`s:${o.id}`}>{o.name} · {o.n} סקרים</option>)}
+          </optgroup>
+          <optgroup label="סוקר">
+            {pollsterOpts.map((o) => <option value={`p:${o.id}`}>{o.name} · {o.n} סקרים</option>)}
+          </optgroup>
         </select>
       </label>
       <fieldset class="segmented">
@@ -45,8 +57,29 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
         <label><input type="radio" name="range" value="30" /> 30 יום</label>
         <label><input type="radio" name="range" value="14" /> 14 יום</label>
       </fieldset>
-      <p class="control-msg" id="pollster-msg" aria-live="polite"></p>
+      <p class="control-msg" id="focus-msg" aria-live="polite"></p>
     </form>
+    <p class="legend legend-key">
+      <span>
+        <svg class="lg" viewBox="0 0 18 10" aria-hidden="true">
+          <line x1="1" y1="5" x2="17" y2="5" style="stroke: var(--ink); stroke-width: 2.25" />
+        </svg>
+        ממוצע כל הסקרים
+      </span>
+      <span>
+        <svg class="lg" viewBox="0 0 18 10" aria-hidden="true">
+          <circle cx="9" cy="5" r="3" style="fill: var(--ink-2); fill-opacity: 0.5" />
+        </svg>
+        סקר
+      </span>
+      <span id="focus-key" hidden>
+        <svg class="lg" viewBox="0 0 18 10" aria-hidden="true">
+          <line x1="1" y1="5" x2="17" y2="5" style="stroke: var(--accent); stroke-width: 1.75" />
+          <circle cx="9" cy="5" r="3" style="fill: var(--accent)" />
+        </svg>
+        <span id="focus-name"></span>
+      </span>
+    </p>
 
     {/* Phones: one row per party with a sparkline on the shared scale; a tap opens the full
         chart. From 768px every row is open and the list is a grid of small multiples. */}
@@ -83,6 +116,7 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
                 role="img"
                 aria-label={`ממוצע המנדטים של ${c.name} לאורך זמן${v ? `; ב-${fmtDate(last)}: ${Math.round(v.mean)}` : ""}`}
               />
+              <p class="party-focus small" hidden></p>
               <p class="party-readout" aria-live="polite"></p>
               {c.sparse && <p class="small muted">פחות מ-5 סקרים: מוצגות הנקודות בלבד, בלי קו ממוצע.</p>}
             </details>
@@ -129,6 +163,42 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
       <a href={u("/data/average.json")} download="knesset26-average.json">הממוצע היומי (JSON)</a>
     </p>
   </section>
+
+  <section class="trends-channels" aria-labelledby="channels-h">
+    <h2 id="channels-h">הסקר האחרון של כל ערוץ מול הממוצע</h2>
+    <p class="page-note">
+      לכל ערוץ: הסקר האחרון שלו מול ממוצע כל הסקרים באותו יום (הממוצע כולל גם את הסקר הזה). הציון הוא מספר
+      המנדטים שצריכים לעבור בין מפלגות כדי שהסקר יהיה זהה לממוצע: 0 הוא זהות מלאה. זה דגל סטטיסטי, לא טעות: סקר
+      בודד שונה מהממוצע גם בגלל שיטה, ניסוח, מדגם ומועד.
+    </p>
+    <div class="table-wrap" tabindex="0" role="region" aria-label="טבלת הסקר האחרון של כל ערוץ מול הממוצע">
+      <table>
+        <caption class="sr-only">הסקר האחרון של כל ערוץ, הפער שלו מממוצע כל הסקרים באותו יום, והמפלגה עם הפער הגדול ביותר</caption>
+        <thead>
+          <tr>
+            <th scope="col">ערוץ</th>
+            <th scope="col">סוקר</th>
+            <th scope="col">תאריך</th>
+            <th scope="col" class="num">ציון: מנדטים שונים מהממוצע</th>
+            <th scope="col">הפער הגדול ביותר</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            scores.map((r) => (
+              <tr>
+                <th scope="row"><a href={`?channel=${r.sponsor}#parties-h`}>{r.name}</a></th>
+                <td>{pollsterName(r.poll.pollster, r.poll.pollster_raw)}</td>
+                <td><a href={u(`/polls/${r.poll.key}`)}>{fmtDate(r.poll.field_date)}</a></td>
+                <td class="num"><Num value={r.score} digits={1} /></td>
+                <td>{r.top ? <>{r.top.name} <Num kind="signed" value={r.top.diff} /></> : <Num value={null} />}</td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
 </Base>
 
 <script>
@@ -138,17 +208,19 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
   import { day } from "../charts/theme";
 
   type Payload = {
-    polls: { k: string; d: string; p: string; u: string }[];
+    polls: { k: string; d: string; p: string; s: string; u: string }[];
     days: string[];
     charts: { id: string; name: string; s: ([number, number] | null)[]; dots: [number, number][]; sparse: boolean }[];
     ymax: number;
     threshold: number;
     pollsterNames: Record<string, string>;
+    sponsorNames: Record<string, string>;
   };
   const payload = JSON.parse(document.getElementById("trends-data")!.textContent!) as Payload;
   const form = document.getElementById("trend-controls") as HTMLFormElement;
-  const select = form.elements.namedItem("pollster") as HTMLSelectElement;
-  const msg = document.getElementById("pollster-msg")!;
+  const select = form.elements.namedItem("focus") as HTMLSelectElement;
+  const msg = document.getElementById("focus-msg")!;
+  const focusKey = document.getElementById("focus-key")!;
   const DAY = 86_400_000;
   const dateFmt = new Intl.DateTimeFormat("he-IL", { day: "numeric", month: "numeric", year: "numeric", timeZone: "UTC" });
 
@@ -158,46 +230,78 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
     name: c.name,
     sparse: c.sparse,
     series: c.s.flatMap((v, i) => (v ? [{ x: day(payload.days[i]), mean: v[0], sd: v[1] }] : [])),
-    dots: c.dots.map(([i, seats]) => ({ x: polls[i].x, seats, pollster: polls[i].p, key: polls[i].k, url: polls[i].u })),
+    dots: c.dots.map(([i, seats]) => ({ x: polls[i].x, seats, pollster: polls[i].p, sponsor: polls[i].s, key: polls[i].k, url: polls[i].u })),
   }));
   const names = new Map(charts.map((c) => [c.id, c.name]));
   const end = day(payload.days.at(-1)!);
   const start = day(payload.days[0]);
 
-  // Restore the highlighted pollster and range from the URL.
+  // Restore the shown channel or pollster and the range from the URL.
   const params = new URLSearchParams(location.search);
-  if (params.get("pollster") && payload.pollsterNames[params.get("pollster")!]) select.value = params.get("pollster")!;
+  const channel = params.get("channel");
+  const pollster = params.get("pollster");
+  if (channel && payload.sponsorNames[channel]) select.value = `s:${channel}`;
+  else if (pollster && payload.pollsterNames[pollster]) select.value = `p:${pollster}`;
   const r = params.get("range");
   if (r === "30" || r === "14") (form.querySelector(`input[name=range][value="${r}"]`) as HTMLInputElement).checked = true;
+
+  /** The selected channel ("s") or pollster ("p"), or null when only the average is shown. */
+  function focus() {
+    if (!select.value) return null;
+    const [kind, id] = select.value.split(":") as ["s" | "p", string];
+    const name = (kind === "s" ? payload.sponsorNames : payload.pollsterNames)[id] ?? id;
+    return { kind, id, name };
+  }
 
   function view(): PartyView {
     const range = (form.querySelector("input[name=range]:checked") as HTMLInputElement).value;
     const from = range === "full" ? start : new Date(end.getTime() - (Number(range) - 1) * DAY);
-    return { ymax: payload.ymax, threshold: payload.threshold, domain: [from, end], highlight: select.value || null };
+    const f = focus();
+    const highlight = f ? (p: PartyDot) => (f.kind === "s" ? p.sponsor : p.pollster) === f.id : null;
+    return { ymax: payload.ymax, threshold: payload.threshold, domain: [from, end], highlight };
   }
 
   /** The tapped poll, under its own chart: pollster, date, seats, its page and its PDF. */
   function show(party: string, p: PartyDot) {
     const readout = document.querySelector(`#party-${party} .party-readout`)!;
     const who = payload.pollsterNames[p.pollster] ?? p.pollster;
+    const channel = payload.sponsorNames[p.sponsor];
     readout.innerHTML = "";
     const strong = document.createElement("strong");
     strong.textContent = `${p.seats} מנדטים`;
     const page = Object.assign(document.createElement("a"), { href: u(`/polls/${p.key}`), textContent: "לדף הסקר" });
     const pdf = Object.assign(document.createElement("a"), { href: p.url, textContent: "PDF ↗" });
-    readout.append(strong, ` · ${who} · ${dateFmt.format(p.x)} · `, page, " · ", pdf);
+    readout.append(strong, ` · ${who}${channel ? ` · ${channel}` : ""} · ${dateFmt.format(p.x)} · `, page, " · ", pdf);
   }
 
   function update() {
     const v = view();
-    if (v.highlight) {
-      const n = polls.filter((p) => p.p === v.highlight && p.x >= v.domain[0] && p.x <= v.domain[1]).length;
+    const f = focus();
+    if (f) {
+      const n = polls.filter((p) => p[f.kind] === f.id && p.x >= v.domain[0] && p.x <= v.domain[1]).length;
       msg.textContent = n
-        ? `${payload.pollsterNames[v.highlight]}: ${n} סקרים בטווח, מודגשים בכל הגרפים.`
-        : "לסוקר שנבחר אין סקרים בטווח הזמן הזה.";
+        ? `${f.name}: ${n} סקרים בטווח, מחוברים בקו הצבעוני בכל הגרפים, לצד ממוצע כל הסקרים.`
+        : `ל${f.kind === "s" ? "ערוץ" : "סוקר"} שנבחר אין סקרים בטווח הזמן הזה.`;
+      document.getElementById("focus-name")!.textContent = `הסקרים של ${f.name}`;
     } else msg.textContent = "";
+    focusKey.hidden = !f;
+    for (const c of charts) {
+      const note = document.querySelector<HTMLElement>(`#party-${c.id} .party-focus`)!;
+      const p = f
+        ? c.dots.filter((d) => v.highlight!(d)).reduce<PartyDot | undefined>((a, d) => (!a || d.x > a.x ? d : a), undefined)
+        : undefined;
+      const avg = p && c.series.find((s) => +s.x === +p.x);
+      note.hidden = !p;
+      if (!p) continue;
+      const gap = avg ? p.seats - avg.mean : null;
+      const sign = gap == null ? "" : Math.abs(gap) < 0.05 ? "0.0" : `${gap > 0 ? "+" : "−"}${Math.abs(gap).toFixed(1)}`;
+      note.textContent = `הסקר האחרון של ${f!.name} (${dateFmt.format(p.x)}): ${p.seats} מנדטים${
+        gap == null ? "" : ` · ⁦${sign}⁩ מממוצע כל הסקרים באותו יום`
+      }`;
+    }
     const q = new URLSearchParams(location.search);
-    v.highlight ? q.set("pollster", v.highlight) : q.delete("pollster");
+    f?.kind === "s" ? q.set("channel", f.id) : q.delete("channel");
+    f?.kind === "p" ? q.set("pollster", f.id) : q.delete("pollster");
     const range = (form.querySelector("input[name=range]:checked") as HTMLInputElement).value;
     range === "full" ? q.delete("range") : q.set("range", range);
     const qs = q.toString();

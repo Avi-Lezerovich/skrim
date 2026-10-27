@@ -418,6 +418,7 @@ tbody tr:hover { background: var(--surface-2); }
 .party-card-num .muted { font-size: var(--text-xs); font-weight: var(--w-body); }
 .party-chart { --chart-h-sm: 180px; --chart-h: 170px; }
 .party-readout { margin: var(--s-1) 0 var(--s-3); min-height: calc(2 * var(--lh-xs)); font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--ink-2); }
+.party-focus { margin: var(--s-1) 0 0; color: var(--ink-2); }
 .party-readout a { display: inline-flex; align-items: center; min-height: 24px; }
 .party-card .small { margin: 0 0 var(--s-3); }
 @media (min-width: 768px) {
