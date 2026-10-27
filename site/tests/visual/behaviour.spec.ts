@@ -205,3 +205,25 @@ test("polls list on phones: compact rows, paged, filters in a bottom sheet with 
   await expect(page.locator("#f-count")).toHaveText(`${polls.length} סקרים`);
   await expect(page).toHaveURL(/\/polls\/$/);
 });
+
+test("home: exit polls switch channel and line up with the table @desktop", async ({ page }) => {
+  await page.goto("/");
+  await settle(page);
+  const tabs = page.locator(".exit-tabs [role=tab]");
+  await expect(tabs).toHaveCount(6);
+  await expect(page.locator(".exit-card:visible")).toHaveCount(1);
+  await expect(page.locator("#exit-kan")).toBeVisible();
+
+  await page.locator("#exit-tab-ch12").click();
+  await expect(page.locator("#exit-tab-ch12")).toHaveAttribute("aria-selected", "true");
+  await expect(page.locator("#exit-ch12")).toBeVisible();
+  await expect(page.locator("#exit-kan")).toBeHidden();
+  // Likud's seats on the card match its column in the side-by-side table.
+  const card = await page.locator("#exit-ch12 .exit-bars li").first().locator(".exit-seats").textContent();
+  const cell = await page.locator(".exit-table tbody tr").first().locator("td").nth(1).textContent();
+  expect(card?.trim()).toBe(cell?.trim());
+
+  await page.keyboard.press("ArrowLeft");
+  await expect(page.locator("#exit-tab-ch13")).toBeFocused();
+  await expect(page.locator("#exit-ch13")).toBeVisible();
+});

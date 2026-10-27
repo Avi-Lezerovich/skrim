@@ -6,6 +6,7 @@ import partiesJson from "../data/parties.json";
 import pollstersJson from "../data/pollsters.json";
 import sponsorsJson from "../data/sponsors.json";
 import metaJson from "../data/meta.json";
+import exitJson from "../data/exit_polls.json";
 import type { BlocData, BlocDay } from "../charts/readout";
 import { ltr } from "./format";
 
@@ -84,6 +85,24 @@ export const sponsors = sponsorsJson as unknown as Record<
   { id: string; name_he: string; type: string }
 >;
 export const meta = metaJson;
+
+export type ExitRow = { label_raw: string; party_id: string; seats: number };
+export type ExitVersion = {
+  version: number;
+  /** Local Israel time as published, "2026-10-27T22:04"; null when the source gave none. */
+  published_at: string | null;
+  pollster: string | null;
+  source_url: string;
+  note: string | null;
+  rows: ExitRow[];
+  seats: Record<string, number>;
+};
+/** Election-night exit polls (not CEC filings: each version names the page it was copied
+ * from) and the CEC results once published. */
+export const exitPolls = exitJson as unknown as {
+  channels: { id: string; name: string; versions: ExitVersion[] }[];
+  results: { status: "partial" | "final"; as_of: string; source_url: string; rows: ExitRow[]; seats: Record<string, number> } | null;
+};
 
 // Polls close at 22:00 on election day; before then the site carries a draft banner
 // (publication ban, §16ה). Deploying publicly is a separate, deliberate decision.
