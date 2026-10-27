@@ -662,7 +662,7 @@ math[display="block"] { font-size: 1.3em; }
 .exit-polls .page-head { margin-bottom: 0; }
 .exit-tabs { display: grid; gap: var(--s-1); margin: var(--s-3) 0 var(--s-4); }
 .exit-tabs [role=tab] {
-  display: grid; grid-template-columns: 6.5rem 1fr; align-items: center; gap: var(--s-3);
+  display: grid; grid-template-columns: 7.5rem 1fr; align-items: center; gap: var(--s-3);
   min-height: 44px; padding: var(--s-1) var(--s-3); border: 1px solid var(--rule); border-radius: var(--r-1);
   background: var(--surface); color: var(--ink); font: inherit; text-align: start; cursor: pointer;
 }
@@ -769,3 +769,18 @@ math[display="block"] { font-size: 1.3em; }
 .exit-th-flag { color: var(--flag-warn); }
 .exit-outlier-line { display: inline-block; margin: var(--s-2) 0 0; padding: var(--s-1) var(--s-3); border: 2px solid var(--flag-warn); border-radius: var(--r-1); background: color-mix(in srgb, var(--flag-warn) 10%, var(--surface)); font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--ink-2); }
 .exit-outlier-line a { font-weight: 700; color: var(--ink); }
+/* Exit poll method: polling stations, a survey (loud, like a flag), or not published. */
+.exit-method { display: inline-block; white-space: nowrap; padding: 0 6px; border-radius: var(--r-pill); font-size: var(--text-xs); line-height: 1.6; font-weight: var(--w-label); }
+.exit-method-station { background: var(--surface-2); color: var(--ink-2); }
+.exit-method-survey { background: var(--flag-warn); color: var(--page); }
+.exit-method-unknown { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 1px var(--rule); }
+.exit-tab-name .exit-method { justify-self: start; margin-top: 2px; }
+.exit-method-line { margin: var(--s-2) 0 0; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--ink-2); }
+.exit-h-note { font-size: var(--text-sm); font-weight: var(--w-label); color: var(--flag-warn); }
+.exit-method-alert { margin: var(--s-3) 0 0; padding: var(--s-3) var(--s-4); border: 2px solid var(--flag-warn); border-inline-start-width: 6px; border-radius: var(--r-1); background: color-mix(in srgb, var(--flag-warn) 12%, var(--surface)); max-width: 60rem; }
+.exit-method-alert p { margin: 0; font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--ink-2); }
+.exit-method-alert p + p { margin-top: var(--s-1); }
+.exit-method-alert .exit-method-alert-title { font-size: var(--text-lg); line-height: var(--lh-md); font-weight: 700; color: var(--ink); }
+.exit-method-alert-title a { color: inherit; }
+.exit-method-alert .exit-method-agree { font-weight: var(--w-label); color: var(--ink); }
+.exit-th-method { display: block; margin: 2px auto 0; width: fit-content; }

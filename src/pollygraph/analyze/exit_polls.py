@@ -11,6 +11,10 @@ from ..extract.aliases import _read, parties
 
 SEATS = 120
 
+# How each channel collected its numbers (data/reference/exit_poll_methods.csv): voters asked
+# at polling stations, a survey of respondents, or not described in any source we read.
+METHODS = {"station", "survey", "unknown"}
+
 # Broadcast names and order (by channel number) for the election-night table.
 CHANNELS = {
     "kan": "כאן 11",
@@ -66,7 +70,21 @@ def exit_polls() -> dict:
         }
         for ch, name in CHANNELS.items()
     ]
+    methods = _methods()
+    for c in channels:
+        c["method"] = methods.get(c["id"], {"kind": "unknown", "source_url": None, "source_quote": None})
     return {"channels": [c for c in channels if c["versions"]], "results": results()}
+
+
+def _methods() -> dict[str, dict]:
+    out = {}
+    for r in _read("exit_poll_methods.csv"):
+        if r["channel"] not in CHANNELS or r["method"] not in METHODS:
+            raise ValueError(f"exit_poll_methods.csv: bad row {r}")
+        if r["method"] != "unknown" and not r["source_url"].startswith("https://"):
+            raise ValueError(f"exit_poll_methods.csv: {r['channel']} needs a source_url for {r['method']!r}")
+        out[r["channel"]] = {"kind": r["method"], "source_url": r["source_url"] or None, "source_quote": r["source_quote"] or None}
+    return out
 
 
 def results() -> dict | None:

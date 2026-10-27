@@ -230,5 +230,9 @@ test("home: exit polls switch channel and line up with the table @desktop", asyn
   // Only an exit poll outside every other channel's range is flagged; its link opens its card.
   await expect(page.locator(".exit-tab-flag")).toHaveCount(1);
   await page.locator(".exit-outlier-line a").first().click();
-  await expect(page.locator(".exit-card:visible .exit-outlier")).toBeVisible();
+  await expect(page.locator(".exit-card:visible .exit-outlier:not(.exit-survey)")).toBeVisible();
+
+  // Channels that ran a survey, not an exit poll at polling stations, say so on their row and card.
+  await expect(page.locator(".exit-tabs .exit-method-survey")).toHaveCount(2);
+  await expect(page.locator(".exit-card:visible .exit-survey")).toBeVisible();
 });

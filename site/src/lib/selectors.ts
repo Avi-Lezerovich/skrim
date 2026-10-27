@@ -13,6 +13,7 @@ import {
   sponsorName,
   trendParties,
   type Bloc,
+  type ExitMethod,
   type ExitVersion,
   type Poll,
 } from "./data";
@@ -208,6 +209,7 @@ export type ExitBar = {
 export type ExitCard = {
   id: string;
   name: string;
+  method: ExitMethod;
   latest: ExitVersion;
   /** The first version when the channel later updated it. */
   first: ExitVersion | null;
@@ -241,6 +243,7 @@ export function exitCards(): ExitCard[] {
     return {
       id: c.id,
       name: c.name,
+      method: c.method,
       latest,
       first: c.versions.length > 1 ? c.versions[0] : null,
       blocs: (["coalition", "arab", "opposition"] as const).map((b) => ({ bloc: b, name: BLOC_NAMES[b], seats: blocs[b] ?? 0 })),

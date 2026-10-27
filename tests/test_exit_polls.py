@@ -33,3 +33,10 @@ def test_bloc_totals_match_what_the_channels_reported():
 def test_results_are_empty_or_a_full_house():
     res = ep.results()
     assert res is None or (sum(res["seats"].values()) == 120 and res["source_url"].startswith("https://"))
+
+
+def test_every_method_but_unknown_has_a_source():
+    for c in ep.exit_polls()["channels"]:
+        m = c["method"]
+        assert m["kind"] in ep.METHODS
+        assert m["kind"] == "unknown" or m["source_url"].startswith("https://"), c["id"]

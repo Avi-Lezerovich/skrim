@@ -97,7 +97,8 @@ function exitRows() {
     const blocs = Object.fromEntries(order.map((b) => [b, 0]));
     for (const [id, n] of Object.entries(c.versions.at(-1).seats)) if (parties[id]?.bloc in blocs) blocs[parties[id].bloc] += n;
     const segs = order.map((b) => `<span style="width:${((100 * blocs[b]) / 120).toFixed(3)}%;background:${BLOC[b]}">${blocs[b]}</span>`).join("");
-    return `<div class="erow"><span class="ename">${esc(c.name)}</span><span class="ebar">${segs}<i></i></span></div>`;
+    const tag = c.method?.kind === "survey" ? `<small>סקר, לא מדגם</small>` : "";
+    return `<div class="erow"><span class="ename">${esc(c.name)}${tag}</span><span class="ebar">${segs}<i></i></span></div>`;
   });
   const key = order.map((b) => `<span><b style="background:${BLOC[b]}"></b>${BLOC_SHORT[b]}</span>`).join("");
   return `<div class="exit"><p class="ekey">${key}<span>· קו: 61 מנדטים</span></p>${rows.join("")}</div>`;
@@ -135,7 +136,8 @@ h1{font-size:${visual || body ? 58 : 68}px;line-height:1.14;font-weight:700;text
 .ekey span{display:inline-flex;align-items:center;gap:8px}
 .ekey b{width:16px;height:16px;border-radius:3px}
 .erow{display:grid;grid-template-columns:170px 1fr;align-items:center;gap:20px}
-.ename{font-size:28px;font-weight:700;text-align:start}
+.ename{display:grid;font-size:28px;line-height:1.1;font-weight:700;text-align:start}
+.ename small{justify-self:start;margin-top:2px;padding:0 8px;border-radius:99px;background:#9a5b00;color:#fff;font-size:16px;font-weight:600}
 .ebar{position:relative;display:flex;height:38px;border-radius:5px;overflow:visible}
 .ebar span{display:flex;align-items:center;justify-content:center;color:#fff;font-size:22px;font-weight:700;box-shadow:inset -2px 0 0 ${C.page}}
 .ebar span:first-child{border-radius:0 5px 5px 0}

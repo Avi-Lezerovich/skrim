@@ -97,10 +97,13 @@ export type ExitVersion = {
   rows: ExitRow[];
   seats: Record<string, number>;
 };
+/** How a channel collected its numbers: voters asked at polling stations, a survey of
+ * respondents, or not described in any source read. Each known kind cites its source. */
+export type ExitMethod = { kind: "station" | "survey" | "unknown"; source_url: string | null; source_quote: string | null };
 /** Election-night exit polls (not CEC filings: each version names the page it was copied
  * from) and the CEC results once published. */
 export const exitPolls = exitJson as unknown as {
-  channels: { id: string; name: string; versions: ExitVersion[] }[];
+  channels: { id: string; name: string; versions: ExitVersion[]; method: ExitMethod }[];
   results: { status: "partial" | "final"; as_of: string; source_url: string; rows: ExitRow[]; seats: Record<string, number> } | null;
 };
 
