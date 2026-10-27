@@ -3,28 +3,44 @@ import { execFileSync } from "node:child_process";
 import Base from "../layouts/Base.astro";
 import { Content, getHeadings } from "../../../methodology.md";
 import { average } from "../lib/data";
+import { EMBARGO_END } from "../lib/embargo.mjs";
 import { REPO } from "../lib/url";
 
 const toc = getHeadings().filter((h) => h.depth === 2);
 
-// Change log of methodology.md, read from git at build time. Merge commits are left out (CI
-// builds a PR's merge commit, whose subject is two full hashes). A shallow clone yields fewer
-// entries (or none), so the page always links to the full history as well.
-let changes: { hash: string; date: string; subject: string }[] = [];
+/** `git log` at build time, one tab-separated row per commit; none when git or the history is missing. */
+const gitLog = (args: string[]) => {
+  try {
+    return execFileSync("git", ["log", ...args], { encoding: "utf8" })
+      .trim()
+      .split("\n")
+      .filter(Boolean)
+      .map((line) => line.split("\t"));
+  } catch {
+    return [];
+  }
+};
+
+// Change log of methodology.md. Merge commits are left out (CI builds a PR's merge commit, whose
+// subject is two full hashes). A shallow clone yields fewer entries (or none), so the page
+// always links to the full history as well.
+const changes = gitLog(["--no-merges", "--date=short", "--format=%h%x09%ad%x09%s", "--", "../methodology.md"]).map(
+  ([hash, date, subject]) => ({ hash, date, subject }),
+);
+
+// The last change to the accuracy rules: the body of «ציון דיוק», from its first rule to the
+// next section, so an edit to the heading alone does not count. Committer time, so a rebased
+// commit is dated when it landed. Only with full history: a shallow clone blames its boundary
+// commit for every line, which would date the rules to the build.
+let shallow = true;
 try {
-  changes = execFileSync("git", ["log", "--no-merges", "--format=%h%x09%ad%x09%s", "--date=short", "--", "../methodology.md"], {
-    encoding: "utf8",
-  })
-    .trim()
-    .split("\n")
-    .filter(Boolean)
-    .map((line) => {
-      const [hash, date, subject] = line.split("\t");
-      return { hash, date, subject };
-    });
-} catch {
-  changes = [];
-}
+  shallow = execFileSync("git", ["rev-parse", "--is-shallow-repository"], { encoding: "utf8" }).trim() !== "false";
+} catch {}
+const [rules] = shallow
+  ? []
+  : gitLog(["-1", "-s", "--format=%H%x09%cI", "-L/^\\*\\*סקר אחרון:\\*\\*/,/^## /:../methodology.md"]).map(([hash, time]) => ({ hash, time }));
+if (!shallow && !rules) throw new Error("methodology: no git history for the «ציון דיוק» rules; check the -L range above");
+const rulesBefore = rules && new Date(rules.time) < EMBARGO_END;
 const fmt = (iso: string) => iso.split("-").reverse().map(Number).join(".");
 ---
 
@@ -66,6 +82,26 @@ const fmt = (iso: string) => iso.split("-").reverse().map(Number).join(".");
     </details>
 
     <article class="prose methodology-body">
+      {
+        rules && (
+          <blockquote>
+            <p>
+              {rulesBefore ? (
+                <>
+                  <strong>הכללים נקבעו לפני הבחירות.</strong> הנוסחה של <a href="#ציון-דיוק">ציון הדיוק</a> וההגדרה
+                  של «סקר אחרון» לא השתנו מאז <a href={`${REPO}/commit/${rules.hash}`}>{fmt(rules.time.slice(0, 10))}</a>, לפני יום
+                  הבחירות. אחרי הבחירות הוסרה מכותרת הסעיף רק ההערה «טיוטה».
+                </>
+              ) : (
+                <>
+                  <strong>כללי <a href="#ציון-דיוק">ציון הדיוק</a> שונו אחרי הבחירות</strong>,
+                  ב-<a href={`${REPO}/commit/${rules.hash}`}>{fmt(rules.time.slice(0, 10))}</a>. השינוי מתועד ביומן השינויים בתחתית הדף.
+                </>
+              )}
+            </p>
+          </blockquote>
+        )
+      }
       <Content />
 
       <h2 id="changes">יומן שינויים</h2>

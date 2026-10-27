@@ -562,7 +562,7 @@ dl.meta dd { margin: 0; }
 .method-summary { margin-bottom: var(--s-5); max-width: var(--prose-max); }
 .method-summary h2 { margin-top: 0; }
 .method-summary ol { margin: 0; padding-inline-start: var(--s-5); display: grid; gap: var(--s-2); }
-.methodology-body > h1:first-child { display: none; } /* the page has its own h1 */
+.methodology-body > h1 { display: none; } /* the page has its own h1 */
 .method-layout { display: grid; gap: var(--s-4); }
 .method-layout > * { min-width: 0; } /* a wide formula scrolls in its box instead of widening the column */
 .method-toc { display: none; }
