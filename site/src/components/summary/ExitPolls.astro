@@ -20,6 +20,11 @@ const pollsCol = table.columns.find((c) => c.id === "polls")!;
 const best = results ? Math.min(...cards.map((c) => c.accuracy!)) : null;
 const sources = [...new Set(cards.flatMap((c) => [...(c.first ? [c.first.source_url] : []), c.latest.source_url]))];
 const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
+/** Shade an exit-poll cell 2+ seats from the average of the polls (rounded to whole seats). */
+const gap = (seats: number, avg: number) => {
+  const d = seats - Math.round(avg);
+  return Math.abs(d) < 2 ? undefined : `${d > 0 ? "up" : "down"}${Math.abs(d) >= 4 ? 4 : 2}`;
+};
 ---
 
 <section class="exit-polls" aria-labelledby="exit-h">
@@ -85,6 +90,7 @@ const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
               </span>
               <span class="exit-track" aria-hidden="true">
                 <span class="exit-fill" style={`width: ${pct(b.seats)}; background: ${b.color}`} />
+                <span class="exit-avg" style={`inset-inline-start: ${pct(b.avg)}`} />
               </span>
               <strong class="exit-seats"><Num value={b.seats} /></strong>
               <span class:list={["exit-delta", b.before != null && b.seats !== b.before && "changed"]}>
@@ -100,7 +106,8 @@ const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
         </ol>
         {c.lastPoll && (
           <p class="exit-key">
-            המספר הקטן: השינוי מהסקר האחרון של {c.name} שדווח לוועדת הבחירות (
+            <span class="exit-avg-key" aria-hidden="true" /> קו דק: ממוצע הסקרים מ-{fmtDate(table.avgDate)} · המספר הקטן:
+            השינוי מהסקר האחרון של {c.name} שדווח לוועדת הבחירות (
             <a href={u(`/polls/${c.lastPoll.key}`)}>{fmtDate(c.lastPoll.field_date)}</a>).
           </p>
         )}
@@ -154,7 +161,7 @@ const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
               <tr>
                 <th scope="row"><span class="party-cell"><i class="swatch" style={`background: ${r.color}`} />{r.name}</span></th>
                 {table.columns.map((col) => (
-                  <td class:list={["num", col.kind !== "exit" && "exit-col-ref"]}>
+                  <td class:list={["num", col.kind !== "exit" && "exit-col-ref"]} data-gap={col.kind === "exit" ? gap(col.seats[r.id] ?? 0, pollsCol.seats[r.id] ?? 0) : undefined}>
                     <Num value={col.seats[r.id] ?? 0} digits={col.kind === "average" ? 1 : 0} />
                   </td>
                 ))}
@@ -197,6 +204,12 @@ const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
         </tfoot>
       </table>
     </div>
+    <p class="exit-key exit-heat-key">
+      <span><i data-gap="up2" /> 2–3 מנדטים מעל ממוצע הסקרים</span>
+      <span><i data-gap="up4" /> 4 ומעלה מעל</span>
+      <span><i data-gap="down2" /> 2–3 מתחת</span>
+      <span><i data-gap="down4" /> 4 ומעלה מתחת</span>
+    </p>
     <p class="exit-key">
       המרחק והציון: כמה מנדטים צריכים לעבור בין מפלגות כדי שהמדגם יהיה זהה להשוואה; 0 הוא זהות מלאה, והנמוך יותר
       מדויק יותר. ממוצע הסקרים הוא הממוצע האחרון במאגר, מ-{fmtDate(table.avgDate)}.

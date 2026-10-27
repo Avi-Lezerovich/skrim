@@ -192,7 +192,17 @@ export const seatDistance = (a: Record<string, number>, b: Record<string, number
   [...new Set([...Object.keys(a), ...Object.keys(b)])].reduce((s, id) => s + Math.abs((a[id] ?? 0) - (b[id] ?? 0)), 0) / 2;
 
 /** `name` is the list as the channel printed it; `label` the site's name for the party. */
-export type ExitBar = { id: string; name: string; label: string; color: string; seats: number; before: number | null };
+export type ExitBar = {
+  id: string;
+  name: string;
+  label: string;
+  color: string;
+  seats: number;
+  /** Seats in the channel's last filed poll. */
+  before: number | null;
+  /** The final average of all polls. */
+  avg: number;
+};
 
 export type ExitCard = {
   id: string;
@@ -234,6 +244,7 @@ export function exitCards(): ExitCard[] {
           color: parties[r.party_id]?.color ?? "transparent",
           seats: r.seats,
           before: lastPoll ? (lastPoll.seats[r.party_id] ?? 0) : null,
+          avg: avg[r.party_id] ?? 0,
         }))
         .sort((a, b) => b.seats - a.seats || a.name.localeCompare(b.name, "he")),
       lastPoll,
