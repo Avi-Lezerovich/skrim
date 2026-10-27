@@ -16,3 +16,7 @@ export function toCsv<T>(rows: T[], columns: [string, (row: T) => Cell][]): stri
 
 export const csvResponse = (body: string) =>
   new Response(body, { headers: { "Content-Type": "text/csv; charset=utf-8" } });
+
+/** The JSON downloads, served the same way. */
+export const jsonResponse = (body: string) =>
+  new Response(body, { headers: { "Content-Type": "application/json; charset=utf-8" } });
