@@ -8,5 +8,8 @@ export const u = (path: string) => `${BASE}${path}`;
 /** The site path without the base: "/skrim/polls/" → "/polls/". */
 export const unbase = (pathname: string) => (BASE && pathname.startsWith(BASE) ? pathname.slice(BASE.length) || "/" : pathname);
 
+/** "https://www.ynet.co.il/…" → "ynet.co.il", for naming a source. */
+export const hostOf = (url: string) => new URL(url).hostname.replace(/^www\./, "");
+
 /** The public repository: source code, issues, data history. */
 export const REPO = "https://github.com/Avi-Lezerovich/skrim";

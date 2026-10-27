@@ -5,7 +5,8 @@ import Base from "../layouts/Base.astro";
 import Num from "../components/data/Num.astro";
 import { exitPolls, fmtDate } from "../lib/data";
 import { BAN_START, STALE_DAYS, lastPolls, nightEntries, ranked, signedRows, type EntryKind } from "../lib/accuracy";
-import { u } from "../lib/url";
+import { gapShade } from "../lib/selectors";
+import { hostOf, u } from "../lib/url";
 
 const results = exitPolls.results;
 const night = nightEntries();
@@ -21,12 +22,9 @@ const groups: { kind: EntryKind; title: string; note: string }[] = [
   },
 ];
 const entries = [...night, ...polls];
-const rows = signedRows(entries);
+const rows = signedRows(entries.filter((e) => !e.review));
 /** Columns of the signed-error table, best first. */
-const scoredAll = ranked(entries);
-/** Shade a signed-error cell 2+ seats off, as in the exit-poll table. */
-const gap = (d: number) => (Math.abs(d) < 2 ? undefined : `${d > 0 ? "up" : "down"}${Math.abs(d) >= 4 ? 4 : 2}`);
-const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
+const scoredAll = ranked(entries).filter((e) => e.score);
 ---
 
 <Base title="מי צדק" description="ציון הדיוק של הסקר האחרון של כל סוקר ושל מספרי הערוצים בליל הבחירות, מול תוצאות ועדת הבחירות">
@@ -45,7 +43,7 @@ const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
         </p>
       ) : (
         <p class="notice">
-          התוצאות הרשמיות עוד לא פורסמו. ועדת הבחירות צפויה לפרסם אותן ב-4.11.2026 (
+          התוצאות הרשמיות עוד לא הוזנו לאתר. ועדת הבחירות צפויה לפרסם אותן ב-4.11.2026 (
           <a href="https://www.maariv.co.il/news/politics/article-1357269" rel="noopener">מעריב ↗</a>). אז כל סקר ומדגם למטה יקבל
           ציון.
         </p>
@@ -85,10 +83,11 @@ const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
                     <tr>
                       {results && <td class="num">{e.rank}</td>}
                       <th scope="row">
-                        <a href={e.external ? e.href : u(e.href)} rel={e.external ? "noopener" : undefined}>{e.name}</a>
+                        {e.kind === "poll" ? <a href={u(e.href)}>{e.name}</a> : <a href={e.href} rel="noopener">{e.name}</a>}
                         <span class="acc-sub">
-                          {e.kind === "poll" ? fmtDate(e.date) : <>{e.by !== e.name && <>{e.by} · </>}מקור: {host(e.href)}</>}
+                          {e.kind === "poll" ? fmtDate(e.date) : <>{e.by && <>{e.by} · </>}מקור: {hostOf(e.href)}</>}
                           {e.stale && <> · מוקדם</>}
+                          {e.review && <> · ממתין לבדיקה ידנית</>}
                         </span>
                       </th>
                       {e.score ? (
@@ -99,7 +98,7 @@ const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
                           <td class="num"><Num kind="pct" value={e.score.rmse} digits={1} missing="לא דווחו אחוזים" /></td>
                         </>
                       ) : (
-                        <td colspan="4" class="acc-pending">אחרי פרסום התוצאות</td>
+                        <td colspan="4" class="acc-pending">{e.review ? "לא מדורג: הסקר ממתין לבדיקה ידנית" : "אחרי פרסום התוצאות"}</td>
                       )}
                     </tr>
                   ))}
@@ -136,7 +135,7 @@ const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
                   <td class="num exit-col-ref"><Num value={r.actual} /></td>
                   {scoredAll.map((e) => {
                     const d = e.score!.signed[r.id] ?? 0;
-                    return <td class="num" data-gap={gap(d)}><Num kind="signed" value={d} digits={0} /></td>;
+                    return <td class="num" data-gap={gapShade(d)}><Num kind="signed" value={d} digits={0} /></td>;
                   })}
                 </tr>
               ))}

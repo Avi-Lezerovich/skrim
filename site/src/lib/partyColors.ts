@@ -8,7 +8,7 @@ import { parties } from "./data";
 /** The colour to use in markup and inline styles: follows the theme. */
 export const partyColor = (id: string | null) => (id && parties[id] ? `var(--party-${id})` : "transparent");
 
-/** surface-2 in dark mode (tokens.css). */
+/** surface-2 in dark mode; keep in step with tokens.css. */
 const DARK_SURFACE_2 = "#242422";
 const MIN_CONTRAST = 3;
 
@@ -52,7 +52,7 @@ function fromOklab([L, a, b]: Rgb): Rgb {
 }
 
 /** The colour, lightened in steps of OKLab lightness until it reaches MIN_CONTRAST on the dark surface. */
-export function darkVariant(hex: string): string {
+function darkVariant(hex: string): string {
   const surface = hexToRgb(DARK_SURFACE_2);
   const [L0, a, b] = toOklab(hexToRgb(hex));
   for (let L = L0; L <= 1; L += 0.01) {
@@ -62,12 +62,10 @@ export function darkVariant(hex: string): string {
   return "#ffffff";
 }
 
-/** The variables for the page head: light values, and dark ones under the same selectors as tokens.css. */
-export function partyColorCss(): string {
-  const entries = Object.values(parties);
-  const light = entries.map((p) => `--party-${p.id}: ${p.color};`).join(" ");
-  const dark = entries.map((p) => `--party-${p.id}: ${darkVariant(p.color)};`).join(" ");
-  return `:root { ${light} }
+const light = Object.values(parties).map((p) => `--party-${p.id}: ${p.color};`).join(" ");
+const dark = Object.values(parties).map((p) => `--party-${p.id}: ${darkVariant(p.color)};`).join(" ");
+
+/** The variables for the page head (built once): light values, and dark ones under the same selectors as tokens.css. */
+export const PARTY_COLOR_CSS = `:root { ${light} }
 @media (prefers-color-scheme: dark) { :root:where(:not([data-theme="light"])) { ${dark} } }
 :root[data-theme="dark"] { ${dark} }`;
-}

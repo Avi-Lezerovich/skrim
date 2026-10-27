@@ -3,11 +3,11 @@
 // channel's last filed poll, distances), tabs to switch channel, and every exit poll side by
 // side. Once results.csv is filled each poll also gets an accuracy score. Without JS every
 // card is shown, one after another.
-import { u } from "../../lib/url";
+import { hostOf, u } from "../../lib/url";
 import Num from "../data/Num.astro";
 import SeatStrip from "./SeatStrip.astro";
 import { exitPolls, fmtDate, pollsterName } from "../../lib/data";
-import { exitCards, exitTable, seatDistance } from "../../lib/selectors";
+import { exitCards, exitTable, gapShade, seatDistance } from "../../lib/selectors";
 
 const cards = exitCards();
 const table = exitTable();
@@ -51,12 +51,8 @@ const methodOf = (id: string) => cards.find((c) => c.id === id)?.method.kind;
 /** Do all the station exit polls agree on every bloc? Then the headline says so. */
 const stationAgree =
   station.length > 1 && station[0].blocs.every((b, i) => station.every((c) => c.blocs[i].seats === b.seats));
-const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
 /** Shade an exit-poll cell 2+ seats from the average of the polls (rounded to whole seats). */
-const gap = (seats: number, avg: number) => {
-  const d = seats - Math.round(avg);
-  return Math.abs(d) < 2 ? undefined : `${d > 0 ? "up" : "down"}${Math.abs(d) >= 4 ? 4 : 2}`;
-};
+const gap = (seats: number, avg: number) => gapShade(seats - Math.round(avg));
 ---
 
 <section class="exit-polls" aria-labelledby="exit-h">
@@ -151,7 +147,7 @@ const gap = (seats: number, avg: number) => {
           <p class="exit-meta">
             {c.first ? <>מדגם מעודכן{time(c.latest.published_at) && <>, {time(c.latest.published_at)}</>} (הראשון ב-{time(c.first.published_at)})</> : <>פורסם ב-{time(c.latest.published_at)}</>}
             {c.latest.pollster && <> · {c.latest.pollster}</>}
-            {" · "}<a href={c.latest.source_url} rel="noopener">מקור: {host(c.latest.source_url)} ↗</a>
+            {" · "}<a href={c.latest.source_url} rel="noopener">מקור: {hostOf(c.latest.source_url)} ↗</a>
           </p>
         </header>
 
@@ -362,7 +358,7 @@ const gap = (seats: number, avg: number) => {
       המרחק והציון: כמה מנדטים צריכים לעבור בין מפלגות כדי שהמספרים של הערוץ יהיו זהים להשוואה; 0 הוא זהות מלאה,
       והנמוך יותר מדויק יותר. ממוצע הסקרים הוא הממוצע האחרון במאגר, מ-{fmtDate(table.avgDate)}.
       המקורות (המספרים של ליל הבחירות אינם מדווחים לוועדת הבחירות):{" "}
-      {sources.map((s, i) => <>{i > 0 && " · "}<a href={s} rel="noopener">{host(s)}</a></>)}
+      {sources.map((s, i) => <>{i > 0 && " · "}<a href={s} rel="noopener">{hostOf(s)}</a></>)}
     </p>
   </div>
 </section>

@@ -219,7 +219,7 @@ test("polls list on phones: compact rows, paged, filters in a bottom sheet with 
 test("who was right: a row per channel and per pollster's last poll before the ban @desktop", async ({ page }) => {
   await page.goto("/accuracy/");
   const exits = JSON.parse(readFileSync(new URL("../../src/data/exit_polls.json", import.meta.url), "utf8"));
-  const pollsters = new Set(okPolls.filter((p) => p.pollster && p.field_date && p.field_date <= "2026-10-23").map((p) => p.pollster));
+  const pollsters = new Set(polls.filter((p) => p.pollster && p.field_date && p.field_date <= "2026-10-23").map((p) => p.pollster));
   await expect(page.locator(".acc-table tbody tr")).toHaveCount(exits.channels.length + pollsters.size);
   // Before the CEC results are in, nothing is scored.
   if (!exits.results) await expect(page.locator(".acc-pending")).toHaveCount(exits.channels.length + pollsters.size);

@@ -280,7 +280,7 @@ export function exitCards(): ExitCard[] {
   return cards;
 }
 
-function blocTotals(seats: Record<string, number>) {
+export function blocTotals(seats: Record<string, number>) {
   const out: Partial<Record<Bloc, number>> = {};
   for (const [id, n] of Object.entries(seats)) {
     const b = parties[id]?.bloc as Bloc | undefined;
@@ -288,6 +288,9 @@ function blocTotals(seats: Record<string, number>) {
   }
   return out;
 }
+
+/** Shade for a seat difference of 2 or more, as data-gap ("up2", "down4"…); none below 2. */
+export const gapShade = (d: number) => (Math.abs(d) < 2 ? undefined : `${d > 0 ? "up" : "down"}${Math.abs(d) >= 4 ? 4 : 2}`);
 
 export type ExitColumn = { id: string; name: string; seats: Record<string, number>; distance: number | null; kind: "exit" | "average" | "results" };
 
