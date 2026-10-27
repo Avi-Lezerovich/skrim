@@ -17,6 +17,7 @@ import {
   type ExitVersion,
   type Poll,
 } from "./data";
+import { partyColor } from "./partyColors";
 
 /** Seats a party gets when it just passes the 3.25% threshold. */
 export const THRESHOLD_SEATS = 4;
@@ -138,7 +139,7 @@ export function partyRows() {
     .map(([id, v]) => ({
       id,
       name: partyName(id),
-      color: parties[id]?.color ?? "transparent",
+      color: partyColor(id),
       mean: v.mean,
       lo: Math.max(0, v.mean - v.sd),
       hi: v.mean + v.sd,
@@ -254,7 +255,7 @@ export function exitCards(): ExitCard[] {
           id,
           name: latest.rows.find((r) => r.party_id === id)?.label_raw ?? partyName(id),
           label: partyName(id),
-          color: parties[id]?.color ?? "transparent",
+          color: partyColor(id),
           seats: latest.seats[id] ?? 0,
           before: lastPoll ? (lastPoll.seats[id] ?? 0) : null,
         }))
@@ -310,7 +311,7 @@ export function exitTable() {
   ];
   const printed = new Map(cards.flatMap((c) => c.latest.rows.map((r) => [r.party_id, r.label_raw] as const)));
   const rows = ids
-    .map((id) => ({ id, name: printed.get(id) ?? partyName(id), color: parties[id]?.color ?? "transparent", bloc: parties[id]?.bloc as Bloc }))
+    .map((id) => ({ id, name: printed.get(id) ?? partyName(id), color: partyColor(id), bloc: parties[id]?.bloc as Bloc }))
     .sort((a, b) => mean[b.id] - mean[a.id] || a.name.localeCompare(b.name, "he"));
   const blocRows = (["coalition", "opposition", "arab"] as const).map((b) => ({
     bloc: b,

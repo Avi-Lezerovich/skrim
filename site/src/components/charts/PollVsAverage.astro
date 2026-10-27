@@ -3,7 +3,8 @@
 // ● this poll, and the difference written at the end. HTML rather than Plot: the poll page
 // needs no chart library, and the rows are their own text alternative.
 import Num from "../data/Num.astro";
-import { average, fmtDate, partyName, parties, type Poll } from "../../lib/data";
+import { average, fmtDate, partyName, type Poll } from "../../lib/data";
+import { partyColor } from "../../lib/partyColors";
 import { fmtNum, ltr } from "../../lib/format";
 
 interface Props {
@@ -16,7 +17,7 @@ const rows = day
       .filter(([id, v]) => v.mean >= 0.5 || (poll.seats[id] ?? 0) > 0)
       .map(([id, v]) => {
         const seats = poll.seats[id] ?? 0; // a party the poll did not show counts as 0, as in the average
-        return { id, name: partyName(id), color: parties[id]?.color ?? "transparent", seats, mean: v.mean, lo: Math.max(0, v.mean - v.sd), hi: v.mean + v.sd, diff: seats - v.mean };
+        return { id, name: partyName(id), color: partyColor(id), seats, mean: v.mean, lo: Math.max(0, v.mean - v.sd), hi: v.mean + v.sd, diff: seats - v.mean };
       })
       .sort((a, b) => b.mean - a.mean || a.name.localeCompare(b.name, "he"))
   : [];
