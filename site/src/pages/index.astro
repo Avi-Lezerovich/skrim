@@ -3,10 +3,11 @@ import { u } from "../lib/url";
 import Base from "../layouts/Base.astro";
 import BlocChart from "../components/charts/BlocChart.astro";
 import BlocTile from "../components/summary/BlocTile.astro";
+import ExitPolls from "../components/summary/ExitPolls.astro";
 import PollsCompact from "../components/summary/PollsCompact.astro";
 import SeatBars from "../components/summary/SeatBars.astro";
 import SeatStrip from "../components/summary/SeatStrip.astro";
-import { average, fmtDate, latestParties, polls, pollsterName } from "../lib/data";
+import { average, exitPolls, fmtDate, latestParties, polls, pollsterName } from "../lib/data";
 
 /** Tile labels on phones, where three tiles share one row. */
 const BLOC_TILE = { coalition: "קואליציה", opposition: "אופוזיציה", arab: "ערביות", other: "אחרות" } as const;
@@ -20,27 +21,46 @@ const fmtDay = (iso: string) => new Intl.DateTimeFormat("he-IL", { day: "numeric
 const inWindow = latestParties.pollsters.map((id) => pollsterName(id)).join(", ");
 const { above, around, windowSize } = partyRows();
 const recent = polls.slice(0, 5);
+/** Election night: once polls close and exit polls are in, they lead the page. */
+const showExit = isFinal() && exitPolls.channels.length > 0;
 ---
 
-<Base title="skrim · סקרי הבחירות לכנסת ה-26" description="ממוצע סקרי הבחירות לכנסת ה-26, לפי הדיווחים לוועדת הבחירות המרכזית">
-  <header class="page-head">
-    <h1>{isFinal() ? "הממוצע הסופי לפני הבחירות" : "ממוצע הסקרים"}</h1>
-    <p class="page-meta">
-      ממוצע נכון ל-<time datetime={date}>{fmtDate(date)}</time>, יום הביצוע של הסקר האחרון · {nPollsters} סוקרים בחלון{" "}
-      <bdi dir="ltr">{fmtDay(windowStart)}–{fmtDay(date)}</bdi>
-    </p>
-    {
-      nPollsters < 3 && (
-        <p class="notice">ממוצע על בסיס מעט סוקרים: כל סקר בודד משפיע עליו הרבה.</p>
-      )
-    }
-    <details class="page-note window-note">
-      <summary>הממוצע משקלל את הסקר האחרון של כל סוקר בחלון</summary>
-      <p>
-        הסוקרים בחלון: {inWindow}. <a href={u("/methodology#ממוצע-הסקרים")}>איך מחושב הממוצע</a>
-      </p>
-    </details>
-  </header>
+<Base
+  title={showExit ? "מדגמי הערוצים לכנסת ה-26" : "skrim · סקרי הבחירות לכנסת ה-26"}
+  description={showExit
+    ? "מדגמי כאן 11, חדשות 12, חדשות 13, ערוץ 14, i24NEWS וערוץ 16 זה לצד זה, מול הסקרים האחרונים, ובהמשך מול התוצאות"
+    : "ממוצע סקרי הבחירות לכנסת ה-26, לפי הדיווחים לוועדת הבחירות המרכזית"}
+>
+  {showExit && <ExitPolls />}
+
+  {/* On election night the exit polls lead the page; the average follows with a short heading. */}
+  {
+    showExit ? (
+      <header class="home-blocs-head">
+        <h2>הממוצע הסופי לפני הבחירות</h2>
+        <p class="page-meta">נכון ל-<time datetime={date}>{fmtDate(date)}</time>, יום הביצוע של הסקר האחרון</p>
+      </header>
+    ) : (
+      <header class="page-head">
+        <h1>{isFinal() ? "הממוצע הסופי לפני הבחירות" : "ממוצע הסקרים"}</h1>
+        <p class="page-meta">
+          ממוצע נכון ל-<time datetime={date}>{fmtDate(date)}</time>, יום הביצוע של הסקר האחרון · {nPollsters} סוקרים בחלון{" "}
+          <bdi dir="ltr">{fmtDay(windowStart)}–{fmtDay(date)}</bdi>
+        </p>
+        {
+          nPollsters < 3 && (
+            <p class="notice">ממוצע על בסיס מעט סוקרים: כל סקר בודד משפיע עליו הרבה.</p>
+          )
+        }
+        <details class="page-note window-note">
+          <summary>הממוצע משקלל את הסקר האחרון של כל סוקר בחלון</summary>
+          <p>
+            הסוקרים בחלון: {inWindow}. <a href={u("/methodology#ממוצע-הסקרים")}>איך מחושב הממוצע</a>
+          </p>
+        </details>
+      </header>
+    )
+  }
 
   <section class="home-blocs" aria-labelledby="blocs-h">
     <h2 id="blocs-h" class="sr-only">הגושים</h2>

@@ -8,14 +8,18 @@ interface Props {
   segments: StripSegment[];
   majority?: number;
   total?: number;
+  /** Whose seats these are, for the caption ("לפי הממוצע" by default). */
+  source?: string;
+  /** The list of numbers under the strip; off when the caller shows them its own way. */
+  legend?: boolean;
 }
-const { segments, majority = 61, total = 120 } = Astro.props;
+const { segments, majority = 61, total = 120, source = "לפי הממוצע", legend = true } = Astro.props;
 const pct = (v: number) => `${((100 * v) / total).toFixed(3)}%`;
 ---
 
 <figure class="seat-strip">
-  <figcaption class="strip-head">{total} המנדטים לפי הממוצע · הקו באמצע: {majority} מנדטים הם רוב</figcaption>
-  <div class="strip-scale" aria-hidden="true"><span>{majority}</span></div>
+  <figcaption class="strip-head">{total} המנדטים {source} · הקו: {majority} מנדטים הם רוב</figcaption>
+  <div class="strip-scale" aria-hidden="true"><span style={`inset-inline-start: ${pct(majority)}`}>{majority}</span></div>
   <div class="strip" aria-hidden="true">
     {
       segments.map((s) => (
@@ -24,16 +28,18 @@ const pct = (v: number) => `${((100 * v) / total).toFixed(3)}%`;
         </span>
       ))
     }
-    <span class="strip-line"></span>
+    <span class="strip-line" style={`inset-inline-start: ${pct(majority)}`}></span>
   </div>
-  <ul class="strip-legend">
-    {
-      segments.map((s) => (
-        <li>
-          <i class="swatch" style={`background: var(--bloc-${s.bloc})`} />
-          {s.name} <strong><Num value={s.seats} /></strong>
-        </li>
-      ))
-    }
-  </ul>
+  {
+    legend && (
+      <ul class="strip-legend">
+        {segments.map((s) => (
+          <li>
+            <i class="swatch" style={`background: var(--bloc-${s.bloc})`} />
+            {s.name} <strong><Num value={s.seats} /></strong>
+          </li>
+        ))}
+      </ul>
+    )
+  }
 </figure>

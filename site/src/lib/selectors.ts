@@ -3,6 +3,7 @@ import {
   BLOC_NAMES,
   EMBARGO_END,
   average,
+  exitPolls,
   latestBlocs,
   latestParties,
   okPolls,
@@ -12,6 +13,8 @@ import {
   sponsorName,
   trendParties,
   type Bloc,
+  type ExitMethod,
+  type ExitVersion,
   type Poll,
 } from "./data";
 
@@ -96,6 +99,9 @@ export function trendsPayload() {
     threshold: THRESHOLD_SEATS,
     pollsterNames: Object.fromEntries(pollsterIds.map((id) => [id, pollsterName(id)])),
     sponsorNames: Object.fromEntries(sponsorIds.map((id) => [id, sponsorName(id)])),
+    // Election night: each channel's latest exit poll, drawn on the election date.
+    exitDate: exitPolls.channels.length ? EMBARGO_END.toISOString().slice(0, 10) : null,
+    exits: exitPolls.channels.map((c) => ({ s: c.id, n: c.name, seats: c.versions.at(-1)!.seats })),
   };
 }
 
@@ -180,4 +186,136 @@ export function channelScores(): ChannelScore[] {
       return { sponsor, name: sponsorName(sponsor), poll, score: gaps.reduce((s, g) => s + Math.abs(g.diff), 0) / 2, top };
     })
     .sort((a, b) => b.poll.field_date!.localeCompare(a.poll.field_date!) || a.name.localeCompare(b.name, "he"));
+}
+
+/**
+ * Seats that would have to move for `a` to match `b`: half the sum of absolute gaps over every
+ * party in either. 0 is identical; it is the same score used for the channels table on trends.
+ */
+export const seatDistance = (a: Record<string, number>, b: Record<string, number>) =>
+  [...new Set([...Object.keys(a), ...Object.keys(b)])].reduce((s, id) => s + Math.abs((a[id] ?? 0) - (b[id] ?? 0)), 0) / 2;
+
+/** `name` is the list as the channel printed it; `label` the site's name for the party. */
+export type ExitBar = {
+  id: string;
+  name: string;
+  label: string;
+  color: string;
+  seats: number;
+  /** Seats in the channel's last filed poll. */
+  before: number | null;
+};
+
+export type ExitCard = {
+  id: string;
+  name: string;
+  method: ExitMethod;
+  latest: ExitVersion;
+  /** The first version when the channel later updated it. */
+  first: ExitVersion | null;
+  blocs: StripSegment[];
+  bars: ExitBar[];
+  /** The channel's last poll filed with the CEC before election day. */
+  lastPoll: Poll | null;
+  /** Bloc totals in that poll. */
+  lastBlocs: Partial<Record<Bloc, number>> | null;
+  vsLastPoll: number | null;
+  vsAverage: number;
+  /** Distance from the CEC results; null until they are published. */
+  accuracy: number | null;
+  /** Blocs outside the range of every other channel's exit poll by OUTLIER_SEATS or more. */
+  outliers: { bloc: Bloc; name: string; seats: number; lo: number; hi: number }[];
+};
+
+/** How far outside the other exit polls' range a bloc has to be for a statistical flag. */
+export const OUTLIER_SEATS = 4;
+
+const finalAverage = () => Object.fromEntries(Object.entries(latestParties.values).map(([id, v]) => [id, v.mean]));
+
+/** One card per channel: its latest exit poll, against its own last poll, the final average and the results. */
+export function exitCards(): ExitCard[] {
+  const avg = finalAverage();
+  const results = exitPolls.results?.seats ?? null;
+  const cards: ExitCard[] = exitPolls.channels.map((c) => {
+    const latest = c.versions.at(-1)!;
+    const lastPoll = okPolls.find((p) => p.sponsor === c.id && p.field_date) ?? null;
+    const blocs = blocTotals(latest.seats);
+    return {
+      id: c.id,
+      name: c.name,
+      method: c.method,
+      latest,
+      first: c.versions.length > 1 ? c.versions[0] : null,
+      blocs: (["coalition", "arab", "opposition"] as const).map((b) => ({ bloc: b, name: BLOC_NAMES[b], seats: blocs[b] ?? 0 })),
+      // Every list in the exit poll, plus any that had seats in the channel's last poll and
+      // none in the exit poll, so the rows add up to the distance below them.
+      bars: [...new Set([...latest.rows.map((r) => r.party_id), ...Object.keys(lastPoll?.seats ?? {}).filter((id) => lastPoll!.seats[id] > 0)])]
+        .map((id) => ({
+          id,
+          name: latest.rows.find((r) => r.party_id === id)?.label_raw ?? partyName(id),
+          label: partyName(id),
+          color: parties[id]?.color ?? "transparent",
+          seats: latest.seats[id] ?? 0,
+          before: lastPoll ? (lastPoll.seats[id] ?? 0) : null,
+        }))
+        .sort((a, b) => b.seats - a.seats || (b.before ?? 0) - (a.before ?? 0) || a.name.localeCompare(b.name, "he")),
+      lastPoll,
+      lastBlocs: lastPoll ? blocTotals(lastPoll.seats) : null,
+      vsLastPoll: lastPoll ? seatDistance(latest.seats, lastPoll.seats) : null,
+      vsAverage: seatDistance(latest.seats, avg),
+      accuracy: results ? seatDistance(latest.seats, results) : null,
+      outliers: [],
+    };
+  });
+  for (const c of cards) {
+    for (const b of c.blocs) {
+      const others = cards.filter((o) => o !== c).map((o) => o.blocs.find((x) => x.bloc === b.bloc)!.seats);
+      const lo = Math.min(...others);
+      const hi = Math.max(...others);
+      if (others.length && (b.seats - hi >= OUTLIER_SEATS || lo - b.seats >= OUTLIER_SEATS))
+        c.outliers.push({ bloc: b.bloc, name: b.name, seats: b.seats, lo, hi });
+    }
+  }
+  return cards;
+}
+
+function blocTotals(seats: Record<string, number>) {
+  const out: Partial<Record<Bloc, number>> = {};
+  for (const [id, n] of Object.entries(seats)) {
+    const b = parties[id]?.bloc as Bloc | undefined;
+    if (b && b in BLOC_NAMES) out[b] = (out[b] ?? 0) + n;
+  }
+  return out;
+}
+
+export type ExitColumn = { id: string; name: string; seats: Record<string, number>; distance: number | null; kind: "exit" | "average" | "results" };
+
+/**
+ * The side-by-side table: a column per channel (latest version), the mean of the exit polls,
+ * the final pre-election average and, once published, the results. Rows are parties, largest
+ * in the exit polls first; `distance` is each column's distance from the results.
+ */
+export function exitTable() {
+  const cards = exitCards();
+  const results = exitPolls.results?.seats ?? null;
+  const ids = [...new Set(cards.flatMap((c) => Object.keys(c.latest.seats)))];
+  const mean = Object.fromEntries(ids.map((id) => [id, cards.reduce((s, c) => s + (c.latest.seats[id] ?? 0), 0) / cards.length]));
+  const avg = finalAverage();
+  const dist = (s: Record<string, number>) => (results ? seatDistance(s, results) : null);
+  const columns: ExitColumn[] = [
+    ...cards.map((c) => ({ id: c.id, name: c.name, seats: c.latest.seats, distance: c.accuracy, kind: "exit" as const })),
+    { id: "mean", name: "ממוצע המדגמים", seats: mean, distance: dist(mean), kind: "average" },
+    { id: "polls", name: "ממוצע הסקרים", seats: avg, distance: dist(avg), kind: "average" },
+    ...(results ? [{ id: "results", name: exitPolls.results!.status === "final" ? "תוצאות האמת" : "תוצאות (חלקיות)", seats: results, distance: 0, kind: "results" as const }] : []),
+  ];
+  const printed = new Map(cards.flatMap((c) => c.latest.rows.map((r) => [r.party_id, r.label_raw] as const)));
+  const rows = ids
+    .map((id) => ({ id, name: printed.get(id) ?? partyName(id), color: parties[id]?.color ?? "transparent", bloc: parties[id]?.bloc as Bloc }))
+    .sort((a, b) => mean[b.id] - mean[a.id] || a.name.localeCompare(b.name, "he"));
+  const blocRows = (["coalition", "opposition", "arab"] as const).map((b) => ({
+    bloc: b,
+    name: BLOC_NAMES[b],
+    values: columns.map((col) => blocTotals(col.seats)[b] ?? 0),
+  }));
+  return { columns, rows, blocRows, avgDate: latestParties.date };
 }

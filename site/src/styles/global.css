@@ -656,3 +656,131 @@ math[display="block"] { font-size: 1.3em; }
   .pollster-cards { display: none; }
   .pollsters-table { display: block; }
 }
+
+/* Election night: exit polls. Tabs (pills like .segmented), one card per channel with the
+   bloc strip and party bars, then every exit poll side by side. */
+.exit-polls .page-head { margin-bottom: 0; }
+.exit-tabs { display: grid; gap: var(--s-1); margin: var(--s-3) 0 var(--s-4); }
+.exit-tabs [role=tab] {
+  display: grid; grid-template-columns: 7.5rem 1fr; align-items: center; gap: var(--s-3);
+  min-height: 44px; padding: var(--s-1) var(--s-3); border: 1px solid var(--rule); border-radius: var(--r-1);
+  background: var(--surface); color: var(--ink); font: inherit; text-align: start; cursor: pointer;
+}
+.exit-tabs [role=tab]:hover { border-color: var(--axis); }
+.exit-tabs [role=tab][aria-selected=true] { border-color: var(--ink); box-shadow: inset 3px 0 0 var(--ink); }
+.exit-tabs [role=tab]:focus-visible { outline: 2px solid var(--focus); outline-offset: 2px; }
+.exit-tab-name { font-weight: var(--w-label); }
+.exit-mini { position: relative; display: flex; height: 24px; border-radius: 3px; overflow: visible; }
+.exit-mini-seg { display: flex; align-items: center; justify-content: center; min-width: 0; color: var(--page); font-size: var(--text-xs); font-weight: var(--w-label); }
+.exit-mini-seg:first-child { border-start-start-radius: 3px; border-end-start-radius: 3px; }
+.exit-mini-seg:nth-last-child(2) { border-start-end-radius: 3px; border-end-end-radius: 3px; }
+.exit-mini-seg + .exit-mini-seg { box-shadow: inset -1px 0 0 var(--surface), inset 1px 0 0 var(--surface); }
+/* The 61 line as ticks above and below the bar, so it never covers a number. */
+.exit-mini-line { position: absolute; inset-block: -5px; width: 2px; margin-inline-start: -1px; background: linear-gradient(var(--ink) 0 6px, transparent 6px calc(100% - 6px), var(--ink) calc(100% - 6px)); }
+.exit-card + .exit-card { margin-top: var(--s-4); }
+.exit-card-head h2 { margin: 0; font-size: var(--text-lg, 1.25rem); }
+.exit-meta { margin: 2px 0 0; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); }
+.exit-party { display: inline-flex; align-items: center; gap: 6px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.exit-seats { text-align: end; font-size: var(--text-md); color: var(--ink); }
+.exit-key, .exit-note { margin: var(--s-2) 0 0; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); }
+.exit-scores > div { background: var(--surface-2); border-radius: var(--r-1); padding: var(--s-2) var(--s-3); }
+.exit-scores dt { font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); }
+.exit-scores dd { margin: 2px 0 0; font-size: var(--text-md); font-weight: var(--w-label); color: var(--ink); }
+.exit-scores .exit-accuracy { border-inline-start: 3px solid var(--accent); }
+.exit-best { display: inline-block; margin-inline-start: var(--s-2); padding: 0 var(--s-2); border-radius: var(--r-pill); background: var(--accent-soft); color: var(--ink); font-size: var(--text-xs); }
+.exit-compare { margin-top: var(--s-5); }
+.exit-compare h2 { margin: 0 0 var(--s-2); }
+.exit-table td.num, .exit-table th.num { text-align: center; }
+.exit-table .exit-col-ref { background: var(--surface-2); }
+.exit-table thead .exit-col-ref { color: var(--ink); }
+.exit-table .exit-blocs tr:first-child > * { border-top: 2px solid var(--rule); }
+.exit-table tfoot th, .exit-table tfoot td { font-weight: var(--w-label); }
+.exit-table .exit-best-cell { background: var(--accent-soft); }
+.exit-table .exit-pending { text-align: center; font-weight: var(--w-body); color: var(--muted); }
+.home-blocs-head { margin-top: var(--s-6); }
+.home-blocs-head h2 { margin-bottom: var(--s-1); }
+/* Exit poll bars: a thin tick for the average of the polls; table cells 2+ seats from it
+   are shaded (blue above, amber below) with a key under the table. */
+.exit-table [data-gap="up2"], .exit-heat-key [data-gap="up2"] { background: color-mix(in srgb, var(--link) 16%, var(--surface)); }
+.exit-table [data-gap="up4"], .exit-heat-key [data-gap="up4"] { background: color-mix(in srgb, var(--link) 34%, var(--surface)); }
+.exit-table [data-gap="down2"], .exit-heat-key [data-gap="down2"] { background: color-mix(in srgb, var(--flag-warn) 18%, var(--surface)); }
+.exit-table [data-gap="down4"], .exit-heat-key [data-gap="down4"] { background: color-mix(in srgb, var(--flag-warn) 38%, var(--surface)); }
+.exit-heat-key { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4); }
+.exit-heat-key span { display: inline-flex; align-items: center; gap: 6px; }
+.exit-heat-key i { width: 14px; height: 14px; border-radius: 2px; box-shadow: inset 0 0 0 1px var(--rule); }
+/* Phones scroll the table sideways; the party column stays put. */
+.exit-table tbody th, .exit-table tfoot th, .exit-table thead th:first-child { position: sticky; inset-inline-start: 0; z-index: 1; background: var(--surface-2); }
+.exit-summary { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-5); margin: var(--s-2) 0 var(--s-1); font-size: var(--text-md); line-height: var(--lh-md); color: var(--ink-2); }
+.exit-summary span { display: inline-flex; align-items: center; gap: 8px; }
+.exit-summary strong { color: var(--ink); font-size: var(--text-lg); }
+.exit-summary .swatch { width: 12px; height: 12px; }
+.exit-tab-name { display: grid; line-height: 1.2; }
+.exit-tab-lead { font-size: var(--text-xs); font-weight: var(--w-body); color: var(--muted); }
+.exit-summary-note { margin: 0; }
+/* Exit poll card: the party rows compare the exit poll (solid bar) with the channel's last
+   poll (dashed outline): exit poll · last poll · difference. Blue is up, amber down, as in the
+   side-by-side table. From 1024px the parties take one column and blocs and scores the other. */
+.exit-card-body { display: grid; gap: var(--s-4); margin-top: var(--s-3); }
+.exit-card .seat-strip { margin-top: 0; }
+.exit-bloc-diff { margin-top: var(--s-2); }
+.exit-bloc-diff th, .exit-bloc-diff td { padding: 6px var(--s-2); background: transparent; }
+.exit-bloc-diff thead th { font-size: var(--text-xs); color: var(--muted); font-weight: var(--w-body); }
+.exit-bloc-diff td.num, .exit-bloc-diff th.num { text-align: center; }
+.exit-legend { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4); margin: 0 0 var(--s-2); font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--ink-2); }
+.exit-legend > span { display: inline-flex; align-items: center; gap: 6px; }
+.exit-lg-fill, .exit-lg-ghost { display: inline-block; width: 22px; height: 12px; border-radius: 2px; }
+.exit-lg-fill { background: var(--ink-2); }
+.exit-lg-ghost { border: 2px dashed var(--ink-2); }
+.exit-cols, .exit-bars li {
+  display: grid; align-items: center; gap: var(--s-2);
+  grid-template-columns: minmax(5.5rem, max-content) minmax(3rem, 1fr) 2.75rem 2.25rem 3rem;
+}
+.exit-cols { font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); padding-bottom: 4px; border-bottom: 1px solid var(--rule); }
+.exit-cols span:nth-child(n + 3) { text-align: center; }
+.exit-bars { list-style: none; margin: 4px 0 0; padding: 0; display: grid; }
+.exit-bars li { min-height: 34px; font-size: var(--text-sm); line-height: var(--lh-sm); border-bottom: 1px solid var(--rule); }
+.exit-bars li:last-child { border-bottom: 0; }
+.exit-track { position: relative; height: 16px; background: var(--surface-2); border-radius: 3px; }
+.exit-fill { position: absolute; inset-block: 0; inset-inline-start: 0; border-radius: 3px; }
+.exit-ghost { position: absolute; inset-block: -3px; inset-inline-start: 0; border: 2px dashed var(--ink-2); border-radius: 4px; z-index: 1; }
+.exit-seats { text-align: center; font-size: var(--text-md); color: var(--ink); }
+.exit-before { text-align: center; color: var(--ink-2); }
+.exit-diff { justify-self: center; display: inline-block; min-width: 3.5ch; padding: 1px 6px; border-radius: var(--r-pill); text-align: center; font-size: var(--text-xs); font-weight: var(--w-label); }
+.exit-diff.up { background: color-mix(in srgb, var(--link) 18%, var(--surface)); color: var(--ink); }
+.exit-diff.down { background: color-mix(in srgb, var(--flag-warn) 22%, var(--surface)); color: var(--ink); }
+.exit-diff.same { color: var(--muted); }
+.exit-out .exit-party { color: var(--muted); }
+.exit-scores { display: grid; grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr)); gap: var(--s-2); margin: 0; align-content: start; }
+.exit-score-main { border-inline-start: 3px solid var(--ink); }
+@media (min-width: 1024px) {
+  .exit-card { padding: var(--s-4) var(--s-5); }
+  .exit-card-body { grid-template-columns: 3fr 2fr; grid-template-areas: "parties blocs" "parties scores"; column-gap: var(--s-6); align-items: start; }
+  .exit-parties { grid-area: parties; }
+  .exit-blocs-box { grid-area: blocs; }
+  .exit-scores { grid-area: scores; grid-template-columns: 1fr; }
+}
+/* Statistical flag on an exit poll outside every other channel's range: loud on purpose. */
+.exit-tab-outlier { border-color: var(--flag-warn) !important; border-width: 2px !important; }
+.exit-tab-flag { font-size: var(--text-xs); font-weight: var(--w-label); color: var(--flag-warn); }
+.exit-outlier { margin-top: var(--s-3); padding: var(--s-3) var(--s-4); border: 2px solid var(--flag-warn); border-inline-start-width: 6px; border-radius: var(--r-1); background: color-mix(in srgb, var(--flag-warn) 10%, var(--surface)); }
+.exit-outlier-title { margin: 0; font-size: var(--text-md); line-height: var(--lh-md); font-weight: 700; color: var(--ink); }
+.exit-outlier ul { margin: var(--s-2) 0 0; padding-inline-start: var(--s-5); font-size: var(--text-sm); line-height: var(--lh-sm); }
+.exit-outlier-why { margin: var(--s-2) 0 0; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--ink-2); }
+.exit-th-flag { color: var(--flag-warn); }
+.exit-outlier-line { display: inline-block; margin: var(--s-2) 0 0; padding: var(--s-1) var(--s-3); border: 2px solid var(--flag-warn); border-radius: var(--r-1); background: color-mix(in srgb, var(--flag-warn) 10%, var(--surface)); font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--ink-2); }
+.exit-outlier-line a { font-weight: 700; color: var(--ink); }
+/* Exit poll method: polling stations, a survey (loud, like a flag), or not published. */
+.exit-method { display: inline-block; white-space: nowrap; padding: 0 6px; border-radius: var(--r-pill); font-size: var(--text-xs); line-height: 1.6; font-weight: var(--w-label); }
+.exit-method-station { background: var(--surface-2); color: var(--ink-2); }
+.exit-method-survey { background: var(--flag-warn); color: var(--page); }
+.exit-method-unknown { background: transparent; color: var(--muted); box-shadow: inset 0 0 0 1px var(--rule); }
+.exit-tab-name .exit-method { justify-self: start; margin-top: 2px; }
+.exit-method-line { margin: var(--s-2) 0 0; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--ink-2); }
+.exit-h-note { font-size: var(--text-sm); font-weight: var(--w-label); color: var(--flag-warn); }
+.exit-method-alert { margin: var(--s-3) 0 0; padding: var(--s-3) var(--s-4); border: 2px solid var(--flag-warn); border-inline-start-width: 6px; border-radius: var(--r-1); background: color-mix(in srgb, var(--flag-warn) 12%, var(--surface)); max-width: 60rem; }
+.exit-method-alert p { margin: 0; font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--ink-2); }
+.exit-method-alert p + p { margin-top: var(--s-1); }
+.exit-method-alert .exit-method-alert-title { font-size: var(--text-lg); line-height: var(--lh-md); font-weight: 700; color: var(--ink); }
+.exit-method-alert-title a { color: inherit; }
+.exit-method-alert .exit-method-agree { font-weight: var(--w-label); color: var(--ink); }
+.exit-th-method { display: block; margin: 2px auto 0; width: fit-content; }

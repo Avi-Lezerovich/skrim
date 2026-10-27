@@ -13,6 +13,7 @@ from pathlib import Path
 from ..extract.aliases import parties, pollsters, sponsors
 from ..normalize.db import build_db
 from . import stats
+from .exit_polls import exit_polls
 
 ROOT = Path(__file__).resolve().parents[3]
 POLLS = ROOT / "data" / "extracted" / "polls"
@@ -125,6 +126,7 @@ def main() -> int:
     write("parties.json", {pid: vars(p) for pid, p in party_ref.items()})
     write("pollsters.json", pollsters())
     write("sponsors.json", sponsors())
+    write("exit_polls.json", exit_polls())
     write(
         "meta.json",
         {
