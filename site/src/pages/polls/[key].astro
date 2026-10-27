@@ -1,6 +1,7 @@
 ---
 import { REPO, u } from "../../lib/url";
 import Base from "../../layouts/Base.astro";
+import { partyColor } from "../../lib/partyColors";
 import PollVsAverage from "../../components/charts/PollVsAverage.astro";
 import DisclosureList from "../../components/data/DisclosureList.astro";
 import FlagItem from "../../components/data/FlagItem.astro";
@@ -128,7 +129,7 @@ const pageUrl = (page: number) => `${poll.source_url}#page=${page}`;
                       <th scope="row">
                         {r.party_id && parties[r.party_id] ? (
                           <span class="party-cell">
-                            <i class="swatch" style={`background: ${parties[r.party_id].color}`} />
+                            <i class="swatch" style={`background: ${partyColor(r.party_id)}`} />
                             {partyName(r.party_id)}
                           </span>
                         ) : (

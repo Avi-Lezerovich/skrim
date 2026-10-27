@@ -3,7 +3,8 @@ import { u } from "../lib/url";
 import Base from "../layouts/Base.astro";
 import BlocChart from "../components/charts/BlocChart.astro";
 import Num from "../components/data/Num.astro";
-import { average, fmtDate, latestParties, parties, pollsterName } from "../lib/data";
+import { average, fmtDate, latestParties, pollsterName } from "../lib/data";
+import { partyColor } from "../lib/partyColors";
 import { THRESHOLD_SEATS, channelScores, sparkPoints, trendsPayload } from "../lib/selectors";
 
 const payload = trendsPayload();
@@ -101,7 +102,7 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
             <details class="card party-card" id={`party-${c.id}`} data-id={c.id}>
               <summary class="party-card-head">
                 <span class="party-cell">
-                  <i class="swatch" style={`background: ${parties[c.id]?.color ?? "transparent"}`} />
+                  <i class="swatch" style={`background: ${partyColor(c.id)}`} />
                   <span class="party-card-name">{c.name}</span>
                 </span>
                 <svg class="party-spark" viewBox={`0 0 100 ${SPARK_H}`} preserveAspectRatio="none" aria-hidden="true">
