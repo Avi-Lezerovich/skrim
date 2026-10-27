@@ -1,5 +1,5 @@
 // Interactions (FRONTEND_PLAN §6.3): table filter/sort with the live counter, CSV downloads,
-// pollster highlighting on trends, the chart readout from the keyboard, theme, mobile tab bar.
+// channel and pollster highlighting on trends, the chart readout from the keyboard, theme, mobile tab bar.
 // Tagged @desktop / @mobile; each tag runs in its own project.
 import { readFileSync } from "node:fs";
 import { expect, test } from "@playwright/test";
@@ -70,18 +70,25 @@ test("csv: the filtered download holds exactly the rows shown @desktop", async (
   expect(lines.slice(1).every((l) => l.split(",")[5] === "kantar")).toBe(true);
 });
 
-test("trends: highlighted pollster and range live in the URL @desktop", async ({ page }) => {
+test("trends: shown channel or pollster and range live in the URL @desktop", async ({ page }) => {
   const pollster = okPolls[0].pollster!;
+  const channel = okPolls[0].sponsor!;
+  const focus = page.locator("select[name=focus]");
   await page.goto(`/trends/?pollster=${pollster}`);
   await settle(page);
-  await expect(page.locator("select[name=pollster]")).toHaveValue(pollster);
-  await expect(page.locator("#pollster-msg")).toContainText("מודגשים");
+  await expect(focus).toHaveValue(`p:${pollster}`);
+  await expect(page.locator("#focus-msg")).toContainText("בקו הצבעוני");
+
+  await focus.selectOption(`s:${channel}`);
+  await expect(page).toHaveURL(new RegExp(`channel=${channel}`));
+  await expect(page).not.toHaveURL(/pollster=/);
+  await expect(page.locator("#focus-key")).toBeVisible();
 
   await page.getByText("14 יום").click();
   await expect(page).toHaveURL(/range=14/);
-  await page.locator("select[name=pollster]").selectOption("");
-  await expect(page).not.toHaveURL(/pollster=/);
-  await expect(page.locator("#pollster-msg")).toHaveText("");
+  await focus.selectOption("");
+  await expect(page).not.toHaveURL(/channel=/);
+  await expect(page.locator("#focus-msg")).toHaveText("");
 });
 
 test("chart readout follows the arrow keys @desktop", async ({ page }) => {
