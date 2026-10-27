@@ -680,8 +680,7 @@ math[display="block"] { font-size: 1.3em; }
 .exit-card + .exit-card { margin-top: var(--s-4); }
 .exit-card-head h2 { margin: 0; font-size: var(--text-lg, 1.25rem); }
 .exit-meta { margin: 2px 0 0; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); }
-.exit-party { display: inline-flex; align-items: center; gap: 6px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.exit-seats { text-align: end; font-size: var(--text-md); color: var(--ink); }
+.exit-party { display: inline-flex; align-items: center; gap: 6px; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .exit-key, .exit-note { margin: var(--s-2) 0 0; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); }
 .exit-scores > div { background: var(--surface-2); border-radius: var(--r-1); padding: var(--s-2) var(--s-3); }
 .exit-scores dt { font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); }
@@ -731,12 +730,32 @@ math[display="block"] { font-size: 1.3em; }
 .exit-lg-fill, .exit-lg-ghost { display: inline-block; width: 22px; height: 12px; border-radius: 2px; }
 .exit-lg-fill { background: var(--ink-2); }
 .exit-lg-ghost { border: 2px dashed var(--ink-2); }
+/* Phones: the list's full name and its numbers on one line, the bar across the whole card under
+   them. From 600px: one line per list, the bar between the name and the numbers. */
 .exit-cols, .exit-bars li {
-  display: grid; align-items: center; gap: var(--s-2);
-  grid-template-columns: minmax(5.5rem, max-content) minmax(3rem, 1fr) 2.75rem 2.25rem 3rem;
+  display: grid; align-items: center; column-gap: var(--s-2); row-gap: 4px;
+  grid-template-columns: minmax(0, 1fr) 2.75rem 2.25rem 3rem;
+  grid-template-areas: "party seats before diff" "track track track track";
+}
+.exit-cols { grid-template-areas: "party seats before diff"; }
+.exit-bars li { padding: 6px 0 8px; }
+.ec-party, .exit-party { grid-area: party; }
+.ec-track { display: none; }
+.ec-track, .exit-track { grid-area: track; }
+.ec-seats, .exit-seats { grid-area: seats; }
+.ec-before, .exit-before { grid-area: before; }
+.ec-diff, .exit-bars .exit-diff { grid-area: diff; }
+@media (min-width: 600px) {
+  .exit-cols, .exit-bars li {
+    grid-template-columns: minmax(5.5rem, max-content) minmax(3rem, 1fr) 2.75rem 2.25rem 3rem;
+    grid-template-areas: "party track seats before diff";
+  }
+  .exit-bars li { padding: 0; }
+  .ec-track { display: block; }
+  .exit-party { white-space: nowrap; }
 }
 .exit-cols { font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); padding-bottom: 4px; border-bottom: 1px solid var(--rule); }
-.exit-cols span:nth-child(n + 3) { text-align: center; }
+.ec-seats, .ec-before, .ec-diff { text-align: center; }
 .exit-bars { list-style: none; margin: 4px 0 0; padding: 0; display: grid; }
 .exit-bars li { min-height: 34px; font-size: var(--text-sm); line-height: var(--lh-sm); border-bottom: 1px solid var(--rule); }
 .exit-bars li:last-child { border-bottom: 0; }

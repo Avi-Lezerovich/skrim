@@ -228,12 +228,12 @@ const gap = (seats: number, avg: number) => {
               {c.lastPoll && (
                 <span>
                   <i class="exit-lg-ghost" aria-hidden="true" />
-                  הסקר האחרון של {c.name}: <a href={u(`/polls/${c.lastPoll.key}`)}>{fmtDate(c.lastPoll.field_date)}</a>, {pollsterName(c.lastPoll.pollster, c.lastPoll.pollster_raw)}
+                  הסקר האחרון של {c.name}: <a href={u(`/polls/${c.lastPoll.key}`)}>{fmtDate(c.lastPoll.field_date)}</a> · {pollsterName(c.lastPoll.pollster, c.lastPoll.pollster_raw)}
                 </span>
               )}
             </p>
             <div class="exit-cols" aria-hidden="true">
-              <span>מפלגה</span><span /><span>{noun(c)}</span>{c.lastPoll && <><span>סקר</span><span>הפרש</span></>}
+              <span class="ec-party">מפלגה</span><span class="ec-track" /><span class="ec-seats">{noun(c)}</span>{c.lastPoll && <><span class="ec-before">סקר</span><span class="ec-diff">הפרש</span></>}
             </div>
             <ol class="exit-bars" aria-label={`המנדטים לכל מפלגה ב${noun(c)} ${c.name} ובסקר האחרון של הערוץ`}>
               {c.bars.map((b) => (
