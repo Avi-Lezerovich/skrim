@@ -35,6 +35,17 @@ def test_results_are_empty_or_a_full_house():
     assert res is None or (sum(res["seats"].values()) == 120 and res["source_url"].startswith("https://"))
 
 
+def test_results_read_seats_and_optional_pct(monkeypatch):
+    rows = [
+        {"party_id": "likud", "label_raw": "הליכוד", "seats": "120", "pct": "41.5", "status": "final", "as_of": "2026-11-04", "source_url": "https://example.org"},
+        {"party_id": "shas", "label_raw": "ש\"ס", "seats": "0", "pct": "", "status": "final", "as_of": "2026-11-04", "source_url": "https://example.org"},
+    ]
+    monkeypatch.setattr(ep, "_rows", lambda name: rows)
+    res = ep.results()
+    assert res["status"] == "final" and res["seats"] == {"likud": 120, "shas": 0}
+    assert [r["pct"] for r in res["rows"]] == [41.5, None]
+
+
 def test_every_method_but_unknown_has_a_source():
     for c in ep.exit_polls()["channels"]:
         m = c["method"]

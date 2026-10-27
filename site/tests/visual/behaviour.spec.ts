@@ -3,7 +3,7 @@
 // Tagged @desktop / @mobile; each tag runs in its own project.
 import { readFileSync } from "node:fs";
 import { expect, test } from "@playwright/test";
-import { okPolls, polls, settle } from "./helpers";
+import { okPolls, openFolds, polls, settle } from "./helpers";
 
 const BOM = [0xef, 0xbb, 0xbf];
 const csvLines = (buf: Buffer) => buf.subarray(3).toString("utf8").trim().split("\r\n");
@@ -116,6 +116,7 @@ test("chart readout follows the arrow keys @desktop", async ({ page }) => {
 
 test("chart readout links to the polls behind the day @mobile", async ({ page }) => {
   await page.goto("/");
+  await openFolds(page);
   const link = page.locator("#bloc-chart .ro-src");
   await expect(link).toHaveAttribute("href", /\/polls\?from=\d{4}-\d\d-\d\d&to=\d{4}-\d\d-\d\d&status=ok/);
   await link.click();
@@ -215,6 +216,15 @@ test("polls list on phones: compact rows, paged, filters in a bottom sheet with 
   await expect(page).toHaveURL(/\/polls\/$/);
 });
 
+test("who was right: a row per channel and per pollster's last poll before the ban @desktop", async ({ page }) => {
+  await page.goto("/accuracy/");
+  const exits = JSON.parse(readFileSync(new URL("../../src/data/exit_polls.json", import.meta.url), "utf8"));
+  const pollsters = new Set(okPolls.filter((p) => p.pollster && p.field_date && p.field_date <= "2026-10-23").map((p) => p.pollster));
+  await expect(page.locator(".acc-table tbody tr")).toHaveCount(exits.channels.length + pollsters.size);
+  // Before the CEC results are in, nothing is scored.
+  if (!exits.results) await expect(page.locator(".acc-pending")).toHaveCount(exits.channels.length + pollsters.size);
+});
+
 test("home: exit polls switch channel and line up with the table @desktop", async ({ page }) => {
   await page.goto("/");
   await settle(page);
@@ -243,5 +253,5 @@ test("home: exit polls switch channel and line up with the table @desktop", asyn
 
   // Channels that ran a survey, not an exit poll at polling stations, say so on their row and card.
   await expect(page.locator(".exit-tabs .exit-method-survey")).toHaveCount(2);
-  await expect(page.locator(".exit-card:visible .exit-survey")).toBeVisible();
+  await expect(page.locator(".exit-card:visible .exit-method-line .exit-method-survey")).toBeVisible();
 });

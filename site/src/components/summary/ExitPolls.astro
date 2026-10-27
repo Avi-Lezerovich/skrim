@@ -106,9 +106,9 @@ const gap = (seats: number, avg: number) => {
         ערוץ: השינוי מהסקר האחרון שלו לפני הבחירות, ועד כמה המספרים שלו רחוקים מהסקר הזה ומממוצע הסקרים.{" "}
         {
           results ? (
-            <>ציון הדיוק משווה את המספרים של כל ערוץ ל{results.status === "final" ? "תוצאות האמת" : "תוצאות החלקיות"} של ועדת הבחירות.</>
+            <>ציון הדיוק משווה את המספרים של כל ערוץ ל{results.status === "final" ? "תוצאות האמת" : "תוצאות החלקיות"} של ועדת הבחירות. הדירוג המלא: <a href={u("/accuracy")}>מי צדק</a>.</>
           ) : (
-            <>כשוועדת הבחירות תפרסם את תוצאות האמת, כל ערוץ יקבל ציון דיוק.</>
+            <>כשוועדת הבחירות תפרסם את תוצאות האמת, כל ערוץ יקבל ציון דיוק בדף <a href={u("/accuracy")}>מי צדק</a>.</>
           )
         }
       </p>
@@ -155,26 +155,17 @@ const gap = (seats: number, avg: number) => {
           </p>
         </header>
 
-        {c.method.kind === "survey" ? (
-          <div class="exit-outlier exit-survey" role="note">
-            <p class="exit-outlier-title">⚑ {c.name} לא ערך מדגם בקלפיות: זה סקר</p>
-            <p class="exit-outlier-why">
-              לפי הארץ, {names(station)} שאלו מצביעים ביציאה מקלפיות נבחרות, ואילו {names(survey)} ערכו סקר גדול של משיבים.
-              {c.method.source_url && <> <a href={c.method.source_url} rel="noopener">המקור: הארץ ↗</a></>}
-            </p>
-          </div>
-        ) : (
-          <p class="exit-method-line">
-            <span class={`exit-method exit-method-${c.method.kind}`}>{METHOD_LABEL[c.method.kind]}</span>
-            {c.method.kind === "station" && (
-              <>
-                {" "}מצביעים נשאלו ביציאה מקלפיות נבחרות
-                {c.method.source_url && <> (<a href={c.method.source_url} rel="noopener">הארץ ↗</a>)</>}.
-              </>
-            )}
-            {c.method.kind === "unknown" && <> לא מצאנו פרסום על אופן איסוף המספרים.</>}
-          </p>
-        )}
+        <p class="exit-method-line">
+          <span class={`exit-method exit-method-${c.method.kind}`}>{METHOD_LABEL[c.method.kind]}</span>
+          {c.method.kind === "unknown" ? (
+            <> לא מצאנו פרסום על אופן איסוף המספרים.</>
+          ) : (
+            <>
+              {" "}{c.method.kind === "station" ? "מצביעים נשאלו ביציאה מקלפיות נבחרות" : "סקר גדול של משיבים"}
+              {c.method.source_url && <> (<a href={c.method.source_url} rel="noopener">הארץ ↗</a>)</>}.
+            </>
+          )}
+        </p>
 
         {c.outliers.length > 0 && (
           <div class="exit-outlier" role="note">
@@ -350,7 +341,7 @@ const gap = (seats: number, avg: number) => {
           </tr>
           <tr class="exit-accuracy-row">
             <th scope="row">ציון דיוק מול התוצאות</th>
-            {!results && <td colspan={table.columns.length} class="exit-pending">יחושב כשוועדת הבחירות תפרסם את תוצאות האמת</td>}
+            {!results && <td colspan={table.columns.length} class="exit-pending">יחושב כשוועדת הבחירות תפרסם את תוצאות האמת · <a href={u("/accuracy")}>מי צדק</a></td>}
             {results && table.columns.map((col) => (
               <td class:list={["num", col.kind !== "exit" && "exit-col-ref", col.kind === "exit" && col.distance === best && "exit-best-cell"]}>
                 <Num value={col.kind === "results" ? null : col.distance} digits={1} missing={col.kind === "results" ? "—" : "אחרי פרסום התוצאות"} />
@@ -398,9 +389,14 @@ const gap = (seats: number, avg: number) => {
     };
     fromHash();
     addEventListener("hashchange", fromHash);
+    // On phones the card sits below all the tabs, so a tap brings it into view.
+    const narrow = matchMedia("(max-width: 767px)");
+    const still = matchMedia("(prefers-reduced-motion: reduce)");
     list.addEventListener("click", (e) => {
       const tab = (e.target as HTMLElement).closest<HTMLButtonElement>("[role=tab]");
-      if (tab) select(tab);
+      if (!tab) return;
+      select(tab);
+      if (narrow.matches) document.getElementById(tab.getAttribute("aria-controls")!)!.scrollIntoView({ behavior: still.matches ? "auto" : "smooth" });
     });
     list.addEventListener("keydown", (e) => {
       const i = tabs.indexOf(document.activeElement as HTMLButtonElement);

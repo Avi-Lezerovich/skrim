@@ -15,6 +15,7 @@ const pages = [
   { name: "pollsters", path: "/pollsters/" },
   { name: "methodology", path: "/methodology/" },
   { name: "data", path: "/data/" },
+  { name: "accuracy", path: "/accuracy/" },
 ];
 
 for (const p of pages) {

@@ -4,6 +4,7 @@ import Base from "../layouts/Base.astro";
 import BlocChart from "../components/charts/BlocChart.astro";
 import BlocTile from "../components/summary/BlocTile.astro";
 import ExitPolls from "../components/summary/ExitPolls.astro";
+import Fold from "../components/layout/Fold.astro";
 import PollsCompact from "../components/summary/PollsCompact.astro";
 import SeatBars from "../components/summary/SeatBars.astro";
 import SeatStrip from "../components/summary/SeatStrip.astro";
@@ -71,6 +72,7 @@ const showExit = isFinal() && exitPolls.channels.length > 0;
     <SeatStrip segments={stripSegments()} />
   </section>
 
+  <Fold folded={showExit} summary="הממוצע לפי מפלגה וגרף הגושים לאורך זמן" class="home-more">
   <div class="home-split">
     <section class="card home-parties" aria-labelledby="parties-h">
       <h2 id="parties-h">מנדטים לפי מפלגה</h2>
@@ -103,6 +105,7 @@ const showExit = isFinal() && exitPolls.channels.length > 0;
     </section>
     <BlocChart />
   </div>
+  </Fold>
 
   <section class="recent-polls" aria-labelledby="recent-h">
     <h2 id="recent-h">הסקרים האחרונים</h2>

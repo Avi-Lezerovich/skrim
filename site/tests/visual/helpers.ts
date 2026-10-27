@@ -28,9 +28,15 @@ export const partyDots = (id: string) => okPolls.filter((p) => p.field_date && i
 export const flaggedPoll = okPolls.find((p) => p.flags.length > 0)!.key;
 export const reviewPoll = polls.find((p) => p.status !== "ok")!.key;
 
+/** Open folded sections (the home page folds the average's detail on election night). */
+export async function openFolds(page: Page) {
+  for (const s of await page.locator("details.fold:not([open]) > summary").all()) await s.click();
+}
+
 /** Wait for web fonts and scroll every lazy chart into view until its SVG is drawn. */
 export async function settle(page: Page) {
   await page.evaluate(() => document.fonts.ready);
+  await openFolds(page);
   const bloc = page.locator("#bloc-chart .chart-box");
   if (await bloc.count()) {
     await bloc.scrollIntoViewIfNeeded();

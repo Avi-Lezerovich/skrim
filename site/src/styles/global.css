@@ -660,9 +660,12 @@ math[display="block"] { font-size: 1.3em; }
 /* Election night: exit polls. Tabs (pills like .segmented), one card per channel with the
    bloc strip and party bars, then every exit poll side by side. */
 .exit-polls .page-head { margin-bottom: 0; }
-.exit-tabs { display: grid; gap: var(--s-1); margin: var(--s-3) 0 var(--s-4); }
+/* Channel tabs: two per row on phones, three from 768px; name over the bloc bar. */
+.exit-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-2); margin: var(--s-3) 0 var(--s-4); }
+@media (min-width: 768px) { .exit-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.exit-card { scroll-margin-top: var(--s-6); }
 .exit-tabs [role=tab] {
-  display: grid; grid-template-columns: 7.5rem 1fr; align-items: center; gap: var(--s-3);
+  display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: var(--s-2);
   min-height: 44px; padding: var(--s-1) var(--s-3); border: 1px solid var(--rule); border-radius: var(--r-1);
   background: var(--surface); color: var(--ink); font: inherit; text-align: start; cursor: pointer;
 }
@@ -803,3 +806,21 @@ math[display="block"] { font-size: 1.3em; }
 .exit-method-alert-title a { color: inherit; }
 .exit-method-alert .exit-method-agree { font-weight: var(--w-label); color: var(--ink); }
 .exit-th-method { display: block; margin: 2px auto 0; width: fit-content; }
+
+/* Who was right (/accuracy) */
+.acc-key { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: var(--s-2) var(--s-4); margin: var(--s-4) 0 0; }
+.acc-key dt { font-weight: var(--w-label); color: var(--ink); }
+.acc-key dd { margin: 2px 0 0; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--ink-2); }
+.acc-group { margin-top: var(--s-5); }
+.acc-group h2 { margin: 0 0 var(--s-1); }
+.acc-group .card { margin-top: var(--s-2); }
+.acc-table th[scope=row] a { font-weight: var(--w-label); }
+.acc-sub { display: block; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); font-weight: var(--w-body); }
+.acc-table td.num, .acc-table th.num { text-align: center; }
+.acc-pending { text-align: center; color: var(--muted); }
+
+/* Election night: the average's detail folded under the bloc tiles */
+.home-more { margin-top: var(--s-5); }
+.home-more > summary { font-weight: var(--w-label); color: var(--ink); border-top: var(--border); border-bottom: var(--border); }
+.home-more[open] > summary { margin-bottom: var(--s-3); }
+.home-more .home-split { margin-top: 0; }

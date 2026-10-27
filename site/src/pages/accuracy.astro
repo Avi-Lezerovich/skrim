@@ -1,0 +1,155 @@
+---
+// "Who was right": the accuracy scores fixed in methodology.md before election day. Until
+// results.csv is filled the page lists what will be scored; then it ranks each group.
+import Base from "../layouts/Base.astro";
+import Num from "../components/data/Num.astro";
+import { exitPolls, fmtDate } from "../lib/data";
+import { BAN_START, STALE_DAYS, lastPolls, nightEntries, ranked, signedRows, type EntryKind } from "../lib/accuracy";
+import { u } from "../lib/url";
+
+const results = exitPolls.results;
+const night = nightEntries();
+const polls = lastPolls();
+const groups: { kind: EntryKind; title: string; note: string }[] = [
+  { kind: "station", title: "מדגמים בקלפיות", note: "ערוצים ששאלו מצביעים ביציאה מקלפיות נבחרות (לפי הארץ)." },
+  { kind: "survey", title: "סקרים בליל הבחירות", note: "ערוצים שערכו סקר של משיבים, לא מדגם בקלפיות (לפי הארץ)." },
+  { kind: "unknown", title: "ליל הבחירות, שיטה לא ידועה", note: "לא מצאנו פרסום על אופן איסוף המספרים." },
+  {
+    kind: "poll",
+    title: "הסקר האחרון של כל סוקר",
+    note: `הסקר האחרון שבוצע עד ${fmtDate(BAN_START)}, יום תחילת איסור הפרסום. סקר שבוצע יותר מ-${STALE_DAYS} ימים לפני הבחירות מסומן «מוקדם», כי אינו שקול לסקר מהימים האחרונים.`,
+  },
+];
+const entries = [...night, ...polls];
+const rows = signedRows(entries);
+/** Columns of the signed-error table, best first. */
+const scoredAll = ranked(entries);
+/** Shade a signed-error cell 2+ seats off, as in the exit-poll table. */
+const gap = (d: number) => (Math.abs(d) < 2 ? undefined : `${d > 0 ? "up" : "down"}${Math.abs(d) >= 4 ? 4 : 2}`);
+const host = (url: string) => new URL(url).hostname.replace(/^www\./, "");
+---
+
+<Base title="מי צדק" description="ציון הדיוק של הסקר האחרון של כל סוקר ושל מספרי הערוצים בליל הבחירות, מול תוצאות ועדת הבחירות">
+  <header class="page-head">
+    <h1>מי צדק</h1>
+    <p class="page-note">
+      הסקר האחרון של כל סוקר לפני איסור הפרסום, והמספרים שהערוצים פרסמו בליל הבחירות, מול התוצאות של ועדת הבחירות
+      המרכזית. הנוסחאות נקבעו לפני הבחירות: <a href={u("/methodology#ציון-דיוק")}>ציון דיוק במתודולוגיה</a>.
+    </p>
+    {
+      results ? (
+        <p class="notice">
+          לפי {results.status === "final" ? "תוצאות האמת" : "התוצאות החלקיות"} של ועדת הבחירות, נכון ל-
+          <time datetime={results.as_of}>{fmtDate(results.as_of)}</time> · <a href={results.source_url} rel="noopener">המקור ↗</a>
+          {results.status === "partial" && <> · הדירוג עשוי להשתנות כשיפורסמו התוצאות הסופיות.</>}
+        </p>
+      ) : (
+        <p class="notice">
+          התוצאות הרשמיות עוד לא פורסמו. ועדת הבחירות צפויה לפרסם אותן ב-4.11.2026 (
+          <a href="https://www.maariv.co.il/news/politics/article-1357269" rel="noopener">מעריב ↗</a>). אז כל סקר ומדגם למטה יקבל
+          ציון.
+        </p>
+      )
+    }
+  </header>
+
+  <dl class="card acc-key">
+    <div><dt>ציון ראשי</dt><dd>כמה מנדטים «זזו» למקום הלא נכון: חצי מסכום ההפרשים. 0 הוא פגיעה מלאה; הנמוך יותר מדויק יותר.</dd></div>
+    <div><dt>גוש</dt><dd>ההפרש במנדטים של מפלגות הקואליציה.</dd></div>
+    <div><dt>חסימה</dt><dd>כמה רשימות הוצבו בצד הנכון של אחוז החסימה.</dd></div>
+    <div><dt>RMSE</dt><dd>שגיאה ממוצעת באחוזים, לפני העיגול למנדטים. רק למי שדיווח אחוזים.</dd></div>
+  </dl>
+
+  {
+    groups.map((g) => {
+      const list = ranked(entries.filter((e) => e.kind === g.kind));
+      return (
+        list.length > 0 && (
+          <section class="acc-group" aria-labelledby={`acc-${g.kind}`}>
+            <h2 id={`acc-${g.kind}`}>{g.title}</h2>
+            <p class="page-note">{g.note}</p>
+            <div class="card card-flush table-wrap" tabindex="0" role="region" aria-label={`טבלה: ${g.title}`}>
+              <table class="acc-table">
+                <thead>
+                  <tr>
+                    {results && <th scope="col" class="num">דירוג</th>}
+                    <th scope="col">{g.kind === "poll" ? "סוקר" : "ערוץ"}</th>
+                    <th scope="col" class="num">ציון ראשי</th>
+                    <th scope="col" class="num">גוש</th>
+                    <th scope="col" class="num">חסימה</th>
+                    <th scope="col" class="num">RMSE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {list.map((e) => (
+                    <tr>
+                      {results && <td class="num">{e.rank}</td>}
+                      <th scope="row">
+                        <a href={e.external ? e.href : u(e.href)} rel={e.external ? "noopener" : undefined}>{e.name}</a>
+                        <span class="acc-sub">
+                          {e.kind === "poll" ? fmtDate(e.date) : <>{e.by !== e.name && <>{e.by} · </>}מקור: {host(e.href)}</>}
+                          {e.stale && <> · מוקדם</>}
+                        </span>
+                      </th>
+                      {e.score ? (
+                        <>
+                          <td class="num"><strong><Num value={e.score.main} digits={Number.isInteger(e.score.main) ? 0 : 1} /></strong></td>
+                          <td class="num"><Num value={e.score.bloc} /></td>
+                          <td class="num"><bdi>{e.score.threshold.right}/{e.score.threshold.of}</bdi></td>
+                          <td class="num"><Num kind="pct" value={e.score.rmse} digits={1} missing="לא דווחו אחוזים" /></td>
+                        </>
+                      ) : (
+                        <td colspan="4" class="acc-pending">אחרי פרסום התוצאות</td>
+                      )}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </section>
+        )
+      );
+    })
+  }
+
+  {
+    results && (
+      <section class="acc-group" aria-labelledby="acc-signed">
+        <h2 id="acc-signed">לאן כל אחד טעה</h2>
+        <p class="page-note">
+          לכל רשימה: מנדטים בסקר או במדגם פחות מנדטים בפועל. ערך חיובי פירושו שהרשימה קיבלה יותר מדי מנדטים. טעות
+          עקבית לאותו כיוון אצל סוקר אחד משלימה את <a href={u("/pollsters")}>אפקט הבית</a>.
+        </p>
+        <div class="card card-flush table-wrap" tabindex="0" role="region" aria-label="טבלה: השגיאה לפי רשימה">
+          <table class="exit-table acc-signed">
+            <thead>
+              <tr>
+                <th scope="col">רשימה</th>
+                <th scope="col" class="num exit-col-ref">בפועל</th>
+                {scoredAll.map((e) => <th scope="col" class="num">{e.name}</th>)}
+              </tr>
+            </thead>
+            <tbody>
+              {rows.map((r) => (
+                <tr>
+                  <th scope="row"><span class="party-cell"><i class="swatch" style={`background: ${r.color}`} />{r.name}</span></th>
+                  <td class="num exit-col-ref"><Num value={r.actual} /></td>
+                  {scoredAll.map((e) => {
+                    const d = e.score!.signed[r.id] ?? 0;
+                    return <td class="num" data-gap={gap(d)}><Num kind="signed" value={d} digits={0} /></td>;
+                  })}
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <p class="exit-key exit-heat-key">
+          <span><i data-gap="up2" /> 2–3 מנדטים יותר מדי</span>
+          <span><i data-gap="up4" /> 4 ומעלה יותר מדי</span>
+          <span><i data-gap="down2" /> 2–3 חסרים</span>
+          <span><i data-gap="down4" /> 4 ומעלה חסרים</span>
+        </p>
+      </section>
+    )
+  }
+</Base>
