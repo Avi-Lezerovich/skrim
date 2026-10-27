@@ -72,10 +72,16 @@ const scoredAll = ranked(entries).filter((e) => e.score);
                   <tr>
                     {results && <th scope="col" class="num">דירוג</th>}
                     <th scope="col">{g.kind === "poll" ? "סוקר" : "ערוץ"}</th>
-                    <th scope="col" class="num">ציון ראשי</th>
-                    <th scope="col" class="num">גוש</th>
-                    <th scope="col" class="num">חסימה</th>
-                    <th scope="col" class="num">RMSE</th>
+                    {results ? (
+                      <>
+                        <th scope="col" class="num">ציון ראשי</th>
+                        <th scope="col" class="num">גוש</th>
+                        <th scope="col" class="num">חסימה</th>
+                        <th scope="col" class="num">RMSE</th>
+                      </>
+                    ) : (
+                      <th scope="col" class="num">ציון</th>
+                    )}
                   </tr>
                 </thead>
                 <tbody>
@@ -98,7 +104,7 @@ const scoredAll = ranked(entries).filter((e) => e.score);
                           <td class="num"><Num kind="pct" value={e.score.rmse} digits={1} missing="לא דווחו אחוזים" /></td>
                         </>
                       ) : (
-                        <td colspan="4" class="acc-pending">{e.review ? "לא מדורג: הסקר ממתין לבדיקה ידנית" : "אחרי פרסום התוצאות"}</td>
+                        <td colspan={results ? 4 : 1} class="acc-pending">{e.review ? "לא מדורג: הסקר ממתין לבדיקה ידנית" : "אחרי פרסום התוצאות"}</td>
                       )}
                     </tr>
                   ))}

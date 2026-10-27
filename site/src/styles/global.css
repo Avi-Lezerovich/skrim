@@ -817,7 +817,8 @@ math[display="block"] { font-size: 1.3em; }
 .acc-table th[scope=row] a { font-weight: var(--w-label); }
 .acc-sub { display: block; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); font-weight: var(--w-body); }
 .acc-table td.num, .acc-table th.num { text-align: center; }
-.acc-pending { text-align: center; color: var(--muted); }
+.acc-pending { text-align: center; color: var(--muted); white-space: normal; }
+.acc-table th[scope=row] { white-space: normal; min-width: 9rem; }
 
 /* Election night: the average's detail folded under the bloc tiles */
 .home-more { margin-top: var(--s-5); }
