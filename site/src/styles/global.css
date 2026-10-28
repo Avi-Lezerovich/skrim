@@ -23,6 +23,9 @@ h2 { font-size: var(--text-lg); line-height: var(--lh-lg); margin-top: var(--s-6
 h3 { font-size: var(--text-md); line-height: var(--lh-md); }
 p { margin: 0 0 var(--s-4); text-wrap: pretty; }
 h1, h2, h3, .page-meta, .lead { text-wrap: balance; }
+/* No one-word last lines in notes ("(24–30)." alone on a line). */
+.page-note, .notice { text-wrap: pretty; }
+.nowrap { white-space: nowrap; }
 strong, b { font-weight: var(--w-label); }
 /* No italics in Hebrew text (RESEARCH 5.4): emphasis is weight */
 em, i, cite, dfn, address, var { font-style: normal; }
@@ -190,6 +193,8 @@ main { padding-block: var(--s-4) var(--s-7); }
 .strip-seg { display: flex; align-items: center; justify-content: center; min-width: 0; color: var(--page); font-weight: var(--w-label); font-size: var(--text-sm); }
 .strip-seg + .strip-seg { box-shadow: inset -1px 0 0 var(--surface), inset 1px 0 0 var(--surface); }
 .strip-line { position: absolute; inset-block: -4px; inset-inline-start: 50%; width: 0; border-inline-start: 2px solid var(--ink); }
+/* A number that the majority line crosses sits on its segment's colour, above the line. */
+.strip-num { position: relative; z-index: 1; padding: 0 4px; border-radius: 3px; background: inherit; }
 .strip-legend { list-style: none; margin: var(--s-2) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4); font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--ink-2); }
 .strip-legend li { display: inline-flex; align-items: center; gap: 6px; }
 .strip-legend strong { color: var(--ink); }
@@ -703,10 +708,10 @@ math[display="block"] { font-size: 1.3em; }
 .home-blocs-head h2 { margin-bottom: var(--s-1); }
 /* Exit poll bars: a thin tick for the average of the polls; table cells 2+ seats from it
    are shaded (blue above, amber below) with a key under the table. */
-.exit-table [data-gap="up2"], .exit-heat-key [data-gap="up2"] { background: color-mix(in srgb, var(--link) 16%, var(--surface)); }
-.exit-table [data-gap="up4"], .exit-heat-key [data-gap="up4"] { background: color-mix(in srgb, var(--link) 34%, var(--surface)); }
-.exit-table [data-gap="down2"], .exit-heat-key [data-gap="down2"] { background: color-mix(in srgb, var(--flag-warn) 18%, var(--surface)); }
-.exit-table [data-gap="down4"], .exit-heat-key [data-gap="down4"] { background: color-mix(in srgb, var(--flag-warn) 38%, var(--surface)); }
+.exit-table [data-gap="up2"], .exit-heat-key [data-gap="up2"] { background: color-mix(in srgb, var(--link) 14%, var(--surface)); }
+.exit-table [data-gap="up4"], .exit-heat-key [data-gap="up4"] { background: color-mix(in srgb, var(--link) 44%, var(--surface)); }
+.exit-table [data-gap="down2"], .exit-heat-key [data-gap="down2"] { background: color-mix(in srgb, var(--flag-warn) 16%, var(--surface)); }
+.exit-table [data-gap="down4"], .exit-heat-key [data-gap="down4"] { background: color-mix(in srgb, var(--flag-warn) 50%, var(--surface)); }
 .exit-heat-key { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4); }
 .exit-heat-key span { display: inline-flex; align-items: center; gap: 6px; }
 .exit-heat-key i { width: 14px; height: 14px; border-radius: 2px; box-shadow: inset 0 0 0 1px var(--rule); }
@@ -825,3 +830,4 @@ math[display="block"] { font-size: 1.3em; }
 .home-more > summary { font-weight: var(--w-label); color: var(--ink); border-top: var(--border); border-bottom: var(--border); }
 .home-more[open] > summary { margin-bottom: var(--s-3); }
 .home-more .home-split { margin-top: 0; }
+.exit-printed { display: block; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); font-weight: var(--w-body); }

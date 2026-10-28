@@ -77,7 +77,9 @@ export function partyChart(d: PartyData, v: PartyView, width: number, height: nu
       Plot.dot(on, { ...hidden, x: "x", y: "seats", r: 3.5, fill: c.accent, fillOpacity: c.dotOn, stroke: c.surface, strokeWidth: 1.5 }),
       !d.sparse && last
         ? Plot.text([last], {
-            ...hidden, x: "x", y: "mean", text: (r) => Math.round(r.mean).toString(), textAnchor: "start", dx: 6,
+            // On election night the diamonds sit just after the line's end, so the label goes above it.
+            ...hidden, x: "x", y: "mean", text: (r) => Math.round(r.mean).toString(),
+            ...(exits.length ? { textAnchor: "end", dx: -2, dy: -11 } : { textAnchor: "start", dx: 6 }),
             fill: c.ink, stroke: c.surface, strokeWidth: 3, fontWeight: 700,
           })
         : null,

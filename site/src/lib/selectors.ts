@@ -314,8 +314,8 @@ export function exitTable() {
   ];
   const printed = new Map(cards.flatMap((c) => c.latest.rows.map((r) => [r.party_id, r.label_raw] as const)));
   const rows = ids
-    .map((id) => ({ id, name: printed.get(id) ?? partyName(id), color: partyColor(id), bloc: parties[id]?.bloc as Bloc }))
-    .sort((a, b) => mean[b.id] - mean[a.id] || a.name.localeCompare(b.name, "he"));
+    .map((id) => ({ id, name: printed.get(id) ?? partyName(id), label: partyName(id), color: partyColor(id), bloc: parties[id]?.bloc as Bloc }))
+    .sort((a, b) => mean[b.id] - mean[a.id] || a.label.localeCompare(b.label, "he"));
   const blocRows = (["coalition", "opposition", "arab"] as const).map((b) => ({
     bloc: b,
     name: BLOC_NAMES[b],

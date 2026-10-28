@@ -65,7 +65,7 @@ const gap = (seats: number, avg: number) => gapShade(seats - Math.round(avg));
     </p>
     <p class="page-note exit-summary-note">
       הטווח בין כל {cards.length} הערוצים{ranges.every((r) => r.hi < 61) && <>; אף גוש לא מגיע ל-61 באף ערוץ</>}.
-      {sameLeader && <> {leaders[0].name} המפלגה הגדולה אצל כל הערוצים (<Num kind="range" lo={leaderLo} hi={leaderHi} />).</>}
+      {sameLeader && <> {leaders[0].label} המפלגה הגדולה אצל כל הערוצים (<Num kind="range" lo={leaderLo} hi={leaderHi} />).</>}
     </p>
     {
       survey.length > 0 && (
@@ -119,7 +119,7 @@ const gap = (seats: number, avg: number) => gapShade(seats - Math.round(avg));
           <span class="exit-tab-name">
             {c.name}
             <span class="exit-tab-lead">
-              {c.bars[0].name} {c.bars[0].seats}{c.first && <> · עודכן</>}
+              {c.bars[0].label} {c.bars[0].seats}{c.first && <> · עודכן</>}
             </span>
             <span class={`exit-method exit-method-${c.method.kind}`}>{SHORT_LABEL[c.method.kind]}</span>
             {c.outliers.length > 0 && <span class="exit-tab-flag">⚑ חריג מכל השאר; אולי שיטה שונה</span>}
@@ -227,7 +227,7 @@ const gap = (seats: number, avg: number) => gapShade(seats - Math.round(avg));
                 <li class:list={[b.seats === 0 && "exit-out"]}>
                   <span class="exit-party">
                     <i class="swatch" style={`background: ${b.color}`} />
-                    {b.name}
+                    <span>{b.label}{b.name !== b.label && <small class="exit-printed">כפי שפורסם: {b.name}</small>}</span>
                   </span>
                   <span class="exit-track" aria-hidden="true">
                     {b.before != null && <span class="exit-ghost" style={`width: ${pct(b.before)}`} />}
@@ -302,7 +302,7 @@ const gap = (seats: number, avg: number) => gapShade(seats - Math.round(avg));
           {
             table.rows.map((r) => (
               <tr>
-                <th scope="row"><span class="party-cell"><i class="swatch" style={`background: ${r.color}`} />{r.name}</span></th>
+                <th scope="row"><span class="party-cell"><i class="swatch" style={`background: ${r.color}`} /><span>{r.label}{r.name !== r.label && <small class="exit-printed">כפי שפורסם: {r.name}</small>}</span></span></th>
                 {table.columns.map((col) => (
                   <td class:list={["num", col.kind !== "exit" && "exit-col-ref"]} data-gap={col.kind === "exit" ? gap(col.seats[r.id] ?? 0, pollsCol.seats[r.id] ?? 0) : undefined}>
                     <Num value={col.seats[r.id] ?? 0} digits={col.kind === "average" ? 1 : 0} />
