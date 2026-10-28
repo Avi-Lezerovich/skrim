@@ -1,5 +1,6 @@
 ---
 import { execFileSync } from "node:child_process";
+import { readFileSync } from "node:fs";
 import Base from "../layouts/Base.astro";
 import { Content, getHeadings } from "../../../methodology.md";
 import { average } from "../lib/data";
@@ -28,17 +29,23 @@ const changes = gitLog(["--no-merges", "--date=short", "--format=%h%x09%ad%x09%s
   ([hash, date, subject]) => ({ hash, date, subject }),
 );
 
-// The last change to the accuracy rules: the body of «ציון דיוק», from its first rule to the
-// next section, so an edit to the heading alone does not count. Committer time, so a rebased
-// commit is dated when it landed. Only with full history: a shallow clone blames its boundary
-// commit for every line, which would date the rules to the build.
+// The last change to the accuracy rules: the body of «ציון דיוק», from its first rule to its
+// last non-empty line, so neither an edit to its heading nor a section added after it counts.
+// Committer time, so a rebased commit is dated when it landed. Only with full history: a shallow
+// clone blames its boundary commit for every line, which would date the rules to the build.
+const lines = readFileSync("../methodology.md", "utf8").split("\n");
+const first = lines.findIndex((l) => l.startsWith("**סקר אחרון:**"));
+const next = lines.findIndex((l, i) => i > first && l.startsWith("## "));
+let last = next - 1;
+while (last > first && !lines[last].trim()) last--;
 let shallow = true;
 try {
   shallow = execFileSync("git", ["rev-parse", "--is-shallow-repository"], { encoding: "utf8" }).trim() !== "false";
 } catch {}
-const [rules] = shallow
-  ? []
-  : gitLog(["-1", "-s", "--format=%H%x09%cI", "-L/^\\*\\*סקר אחרון:\\*\\*/,/^## /:../methodology.md"]).map(([hash, time]) => ({ hash, time }));
+const [rules] =
+  shallow || first < 0 || next < 0
+    ? []
+    : gitLog(["-1", "-s", "--format=%H%x09%cI", `-L${first + 1},${last + 1}:../methodology.md`]).map(([hash, time]) => ({ hash, time }));
 if (!shallow && !rules) throw new Error("methodology: no git history for the «ציון דיוק» rules; check the -L range above");
 const rulesBefore = rules && new Date(rules.time) < EMBARGO_END;
 const fmt = (iso: string) => iso.split("-").reverse().map(Number).join(".");

@@ -225,6 +225,12 @@ test("who was right: a row per channel and per pollster's last poll before the b
   if (!exits.results) await expect(page.locator(".acc-pending")).toHaveCount(exits.channels.length + pollsters.size);
 });
 
+test("methodology: the accuracy rules are dated before election day (needs full git history) @desktop", async ({ page }) => {
+  await page.goto("/methodology/");
+  // The body of «ציון דיוק» last changed on 21.10.2026; a section added after it must not move that date.
+  await expect(page.locator(".methodology-body > blockquote")).toContainText("הכללים נקבעו לפני הבחירות");
+});
+
 test("home: exit polls switch channel and line up with the table @desktop", async ({ page }) => {
   await page.goto("/");
   await settle(page);
