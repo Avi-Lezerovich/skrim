@@ -1,4 +1,25 @@
 ﻿key,field_date,pollster_id,pollster,status,party_id,party,label_raw,seats,raw_pct,pdf_page,source_url
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,likud,הליכוד,ליכוד,19,12,1,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,shas,"ש""ס","ש""ס",7,4.1,1,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,rzp,הציונות הדתית,הציונות הדתית,8,6.8,1,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,utj,יהדות התורה,יהדות התורה,8,5.4,1,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,yisrael_beytenu,ישראל ביתנו,ישראל ביתנו,8,6.1,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,amcha,עמך ישראל,עמך ישראל,0,3.3,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,raam,"רע""ם","רע""מ",7,0.3,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,hadash_taal_balad,"חד""ש-תע""ל-בל""ד",הרשימה המשותפת,9,0.1,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,otzma,עוצמה יהודית,עוצמה יהודית,8,5.9,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,democrats,הדמוקרטים,הדמוקרטים,10,7.9,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,beyachad,ביחד,ביחד,14,11.5,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,yashar,ישר!,ישר,22,19.7,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,reservists,המילואימניקים,המילואימניקים והכלכלית,0,2.8,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,haredi_public,הציבור החרדי,הציבור החרדי,0,1.6,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,noam,נעם,"נעם )מתוך ""מפלגה",0,0.3,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,hakahal,הקהל,"הקהל )מתוך ""מפלגה",0,0,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,tzeva_shahor,צבע שחור,"צבע שחור )מתוך ""מפלגה",0,1.4,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,achi,"אח""י",תנועת אחי )מתוך,0,0,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,israel_first,ישראל תחילה,ישראל תחילה )מתוך,0,0,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,other,אחר,מפלגה אחרת – טקסט,0,0.5,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
+knesset_election144,2026-10-22,rosner,שמואל רוזנר,ok,undecided,לא החליטו,עדיין לא החלטתי,,8,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election144/he/Survey_4263.pdf
 knesset_election138,2026-10-22,midgam,מדגם יעוץ ומחקר,ok,yashar,ישר!,ישר! עם איזנקוט בראשות גדי איזנקו ט,23,18,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election138/he/Survey_4257.pdf
 knesset_election138,2026-10-22,midgam,מדגם יעוץ ומחקר,ok,likud,הליכוד,הליכוד בראשות בנימין נתניה ו,21,16.4,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election138/he/Survey_4257.pdf
 knesset_election138,2026-10-22,midgam,מדגם יעוץ ומחקר,ok,beyachad,ביחד,ביחד בראשות נפתלי בנ ט,15,11.8,2,https://www.gov.il/BlobFolder/dynamiccollectorresultitem/knesset_election138/he/Survey_4257.pdf
