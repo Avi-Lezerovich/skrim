@@ -56,7 +56,10 @@ export function lastPolls(): Entry[] {
       last.set(p.pollster, p);
   }
   return [...last.values()].map((p) => {
-    const pct = Object.fromEntries(p.rows.filter((r) => r.party_id && r.pct != null).map((r) => [r.party_id!, r.pct!]));
+    // RMSE needs national shares. A list with seats below 3.25% means the percentages are of a
+    // sub-sample or unweighted (e.g. Rosner's "adult Jews" column), so that poll gets no RMSE.
+    const national = !p.flags.some((f) => f.code === "seats_below_threshold");
+    const pct = national ? Object.fromEntries(p.rows.filter((r) => r.party_id && r.pct != null).map((r) => [r.party_id!, r.pct!])) : {};
     return {
       kind: "poll",
       id: p.key,
