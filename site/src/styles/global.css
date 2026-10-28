@@ -23,6 +23,9 @@ h2 { font-size: var(--text-lg); line-height: var(--lh-lg); margin-top: var(--s-6
 h3 { font-size: var(--text-md); line-height: var(--lh-md); }
 p { margin: 0 0 var(--s-4); text-wrap: pretty; }
 h1, h2, h3, .page-meta, .lead { text-wrap: balance; }
+/* No one-word last lines in notes ("(24–30)." alone on a line). */
+.page-note, .notice { text-wrap: pretty; }
+.nowrap { white-space: nowrap; }
 strong, b { font-weight: var(--w-label); }
 /* No italics in Hebrew text (RESEARCH 5.4): emphasis is weight */
 em, i, cite, dfn, address, var { font-style: normal; }
@@ -190,6 +193,8 @@ main { padding-block: var(--s-4) var(--s-7); }
 .strip-seg { display: flex; align-items: center; justify-content: center; min-width: 0; color: var(--page); font-weight: var(--w-label); font-size: var(--text-sm); }
 .strip-seg + .strip-seg { box-shadow: inset -1px 0 0 var(--surface), inset 1px 0 0 var(--surface); }
 .strip-line { position: absolute; inset-block: -4px; inset-inline-start: 50%; width: 0; border-inline-start: 2px solid var(--ink); }
+/* A number that the majority line crosses sits on its segment's colour, above the line. */
+.strip-num { position: relative; z-index: 1; padding: 0 4px; border-radius: 3px; background: inherit; }
 .strip-legend { list-style: none; margin: var(--s-2) 0 0; padding: 0; display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4); font-size: var(--text-sm); line-height: var(--lh-sm); color: var(--ink-2); }
 .strip-legend li { display: inline-flex; align-items: center; gap: 6px; }
 .strip-legend strong { color: var(--ink); }
@@ -562,7 +567,7 @@ dl.meta dd { margin: 0; }
 .method-summary { margin-bottom: var(--s-5); max-width: var(--prose-max); }
 .method-summary h2 { margin-top: 0; }
 .method-summary ol { margin: 0; padding-inline-start: var(--s-5); display: grid; gap: var(--s-2); }
-.methodology-body > h1:first-child { display: none; } /* the page has its own h1 */
+.methodology-body > h1 { display: none; } /* the page has its own h1 */
 .method-layout { display: grid; gap: var(--s-4); }
 .method-layout > * { min-width: 0; } /* a wide formula scrolls in its box instead of widening the column */
 .method-toc { display: none; }
@@ -660,9 +665,12 @@ math[display="block"] { font-size: 1.3em; }
 /* Election night: exit polls. Tabs (pills like .segmented), one card per channel with the
    bloc strip and party bars, then every exit poll side by side. */
 .exit-polls .page-head { margin-bottom: 0; }
-.exit-tabs { display: grid; gap: var(--s-1); margin: var(--s-3) 0 var(--s-4); }
+/* Channel tabs: two per row on phones, three from 768px; name over the bloc bar. */
+.exit-tabs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--s-2); margin: var(--s-3) 0 var(--s-4); }
+@media (min-width: 768px) { .exit-tabs { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+.exit-card { scroll-margin-top: var(--s-6); }
 .exit-tabs [role=tab] {
-  display: grid; grid-template-columns: 7.5rem 1fr; align-items: center; gap: var(--s-3);
+  display: grid; grid-template-columns: minmax(0, 1fr); align-content: start; gap: var(--s-2);
   min-height: 44px; padding: var(--s-1) var(--s-3); border: 1px solid var(--rule); border-radius: var(--r-1);
   background: var(--surface); color: var(--ink); font: inherit; text-align: start; cursor: pointer;
 }
@@ -680,8 +688,7 @@ math[display="block"] { font-size: 1.3em; }
 .exit-card + .exit-card { margin-top: var(--s-4); }
 .exit-card-head h2 { margin: 0; font-size: var(--text-lg, 1.25rem); }
 .exit-meta { margin: 2px 0 0; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); }
-.exit-party { display: inline-flex; align-items: center; gap: 6px; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-.exit-seats { text-align: end; font-size: var(--text-md); color: var(--ink); }
+.exit-party { display: inline-flex; align-items: center; gap: 6px; min-width: 0; overflow: hidden; text-overflow: ellipsis; }
 .exit-key, .exit-note { margin: var(--s-2) 0 0; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); }
 .exit-scores > div { background: var(--surface-2); border-radius: var(--r-1); padding: var(--s-2) var(--s-3); }
 .exit-scores dt { font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); }
@@ -701,10 +708,10 @@ math[display="block"] { font-size: 1.3em; }
 .home-blocs-head h2 { margin-bottom: var(--s-1); }
 /* Exit poll bars: a thin tick for the average of the polls; table cells 2+ seats from it
    are shaded (blue above, amber below) with a key under the table. */
-.exit-table [data-gap="up2"], .exit-heat-key [data-gap="up2"] { background: color-mix(in srgb, var(--link) 16%, var(--surface)); }
-.exit-table [data-gap="up4"], .exit-heat-key [data-gap="up4"] { background: color-mix(in srgb, var(--link) 34%, var(--surface)); }
-.exit-table [data-gap="down2"], .exit-heat-key [data-gap="down2"] { background: color-mix(in srgb, var(--flag-warn) 18%, var(--surface)); }
-.exit-table [data-gap="down4"], .exit-heat-key [data-gap="down4"] { background: color-mix(in srgb, var(--flag-warn) 38%, var(--surface)); }
+.exit-table [data-gap="up2"], .exit-heat-key [data-gap="up2"] { background: color-mix(in srgb, var(--link) 14%, var(--surface)); }
+.exit-table [data-gap="up4"], .exit-heat-key [data-gap="up4"] { background: color-mix(in srgb, var(--link) 44%, var(--surface)); }
+.exit-table [data-gap="down2"], .exit-heat-key [data-gap="down2"] { background: color-mix(in srgb, var(--flag-warn) 16%, var(--surface)); }
+.exit-table [data-gap="down4"], .exit-heat-key [data-gap="down4"] { background: color-mix(in srgb, var(--flag-warn) 50%, var(--surface)); }
 .exit-heat-key { display: flex; flex-wrap: wrap; gap: var(--s-1) var(--s-4); }
 .exit-heat-key span { display: inline-flex; align-items: center; gap: 6px; }
 .exit-heat-key i { width: 14px; height: 14px; border-radius: 2px; box-shadow: inset 0 0 0 1px var(--rule); }
@@ -731,12 +738,32 @@ math[display="block"] { font-size: 1.3em; }
 .exit-lg-fill, .exit-lg-ghost { display: inline-block; width: 22px; height: 12px; border-radius: 2px; }
 .exit-lg-fill { background: var(--ink-2); }
 .exit-lg-ghost { border: 2px dashed var(--ink-2); }
+/* Phones: the list's full name and its numbers on one line, the bar across the whole card under
+   them. From 600px: one line per list, the bar between the name and the numbers. */
 .exit-cols, .exit-bars li {
-  display: grid; align-items: center; gap: var(--s-2);
-  grid-template-columns: minmax(5.5rem, max-content) minmax(3rem, 1fr) 2.75rem 2.25rem 3rem;
+  display: grid; align-items: center; column-gap: var(--s-2); row-gap: 4px;
+  grid-template-columns: minmax(0, 1fr) 2.75rem 2.25rem 3rem;
+  grid-template-areas: "party seats before diff" "track track track track";
+}
+.exit-cols { grid-template-areas: "party seats before diff"; }
+.exit-bars li { padding: 6px 0 8px; }
+.ec-party, .exit-party { grid-area: party; }
+.ec-track { display: none; }
+.ec-track, .exit-track { grid-area: track; }
+.ec-seats, .exit-seats { grid-area: seats; }
+.ec-before, .exit-before { grid-area: before; }
+.ec-diff, .exit-bars .exit-diff { grid-area: diff; }
+@media (min-width: 600px) {
+  .exit-cols, .exit-bars li {
+    grid-template-columns: minmax(5.5rem, max-content) minmax(3rem, 1fr) 2.75rem 2.25rem 3rem;
+    grid-template-areas: "party track seats before diff";
+  }
+  .exit-bars li { padding: 0; }
+  .ec-track { display: block; }
+  .exit-party { white-space: nowrap; }
 }
 .exit-cols { font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); padding-bottom: 4px; border-bottom: 1px solid var(--rule); }
-.exit-cols span:nth-child(n + 3) { text-align: center; }
+.ec-seats, .ec-before, .ec-diff { text-align: center; }
 .exit-bars { list-style: none; margin: 4px 0 0; padding: 0; display: grid; }
 .exit-bars li { min-height: 34px; font-size: var(--text-sm); line-height: var(--lh-sm); border-bottom: 1px solid var(--rule); }
 .exit-bars li:last-child { border-bottom: 0; }
@@ -784,3 +811,23 @@ math[display="block"] { font-size: 1.3em; }
 .exit-method-alert-title a { color: inherit; }
 .exit-method-alert .exit-method-agree { font-weight: var(--w-label); color: var(--ink); }
 .exit-th-method { display: block; margin: 2px auto 0; width: fit-content; }
+
+/* Who was right (/accuracy) */
+.acc-key { display: grid; grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr)); gap: var(--s-2) var(--s-4); margin: var(--s-4) 0 0; }
+.acc-key dt { font-weight: var(--w-label); color: var(--ink); }
+.acc-key dd { margin: 2px 0 0; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--ink-2); }
+.acc-group { margin-top: var(--s-5); }
+.acc-group h2 { margin: 0 0 var(--s-1); }
+.acc-group .card { margin-top: var(--s-2); }
+.acc-table th[scope=row] a { font-weight: var(--w-label); }
+.acc-sub { display: block; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); font-weight: var(--w-body); }
+.acc-table td.num, .acc-table th.num { text-align: center; }
+.acc-pending { text-align: center; color: var(--muted); white-space: normal; }
+.acc-table th[scope=row] { white-space: normal; min-width: 9rem; }
+
+/* Election night: the average's detail folded under the bloc tiles */
+.home-more { margin-top: var(--s-5); }
+.home-more > summary { font-weight: var(--w-label); color: var(--ink); border-top: var(--border); border-bottom: var(--border); }
+.home-more[open] > summary { margin-bottom: var(--s-3); }
+.home-more .home-split { margin-top: 0; }
+.exit-printed { display: block; font-size: var(--text-xs); line-height: var(--lh-xs); color: var(--muted); font-weight: var(--w-body); }

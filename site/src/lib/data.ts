@@ -104,7 +104,8 @@ export type ExitMethod = { kind: "station" | "survey" | "unknown"; source_url: s
  * from) and the CEC results once published. */
 export const exitPolls = exitJson as unknown as {
   channels: { id: string; name: string; versions: ExitVersion[]; method: ExitMethod }[];
-  results: { status: "partial" | "final"; as_of: string; source_url: string; rows: ExitRow[]; seats: Record<string, number> } | null;
+  /** `pct` is the share of valid votes, when results.csv gives it. */
+  results: { status: "partial" | "final"; as_of: string; source_url: string; rows: (ExitRow & { pct: number | null })[]; seats: Record<string, number> } | null;
 };
 
 // Polls close at 22:00 on election day; before then the site carries a draft banner

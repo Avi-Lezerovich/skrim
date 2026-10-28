@@ -3,7 +3,7 @@
 // Tagged @desktop / @mobile; each tag runs in its own project.
 import { readFileSync } from "node:fs";
 import { expect, test } from "@playwright/test";
-import { okPolls, polls, settle } from "./helpers";
+import { okPolls, openFolds, polls, settle } from "./helpers";
 
 const BOM = [0xef, 0xbb, 0xbf];
 const csvLines = (buf: Buffer) => buf.subarray(3).toString("utf8").trim().split("\r\n");
@@ -58,6 +58,15 @@ test("csv: static files are UTF-8 with BOM and complete @desktop", async ({ requ
 
   const avg = await (await request.get("/data/average.json")).json();
   expect(avg.parties.length).toBeGreaterThan(0);
+
+  // Election night: a row per list in every version of every channel, the same rows as the JSON.
+  const exits = await (await request.get("/data/exit-polls.json")).json();
+  const exitRows = exits.channels.flatMap((c: { versions: { rows: unknown[] }[] }) => c.versions.flatMap((v) => v.rows)).length;
+  const exitCsv = Buffer.from(await (await request.get("/data/exit-polls.csv")).body());
+  expect([...exitCsv.subarray(0, 3)]).toEqual(BOM);
+  const exitLines = csvLines(exitCsv);
+  expect(exitLines).toHaveLength(exitRows + 1);
+  expect(exitLines[0]).toContain("label_raw");
 });
 
 test("csv: the filtered download holds exactly the rows shown @desktop", async ({ page }) => {
@@ -107,6 +116,7 @@ test("chart readout follows the arrow keys @desktop", async ({ page }) => {
 
 test("chart readout links to the polls behind the day @mobile", async ({ page }) => {
   await page.goto("/");
+  await openFolds(page);
   const link = page.locator("#bloc-chart .ro-src");
   await expect(link).toHaveAttribute("href", /\/polls\?from=\d{4}-\d\d-\d\d&to=\d{4}-\d\d-\d\d&status=ok/);
   await link.click();
@@ -206,6 +216,21 @@ test("polls list on phones: compact rows, paged, filters in a bottom sheet with 
   await expect(page).toHaveURL(/\/polls\/$/);
 });
 
+test("who was right: a row per channel and per pollster's last poll before the ban @desktop", async ({ page }) => {
+  await page.goto("/accuracy/");
+  const exits = JSON.parse(readFileSync(new URL("../../src/data/exit_polls.json", import.meta.url), "utf8"));
+  const pollsters = new Set(polls.filter((p) => p.pollster && p.field_date && p.field_date <= "2026-10-23").map((p) => p.pollster));
+  await expect(page.locator(".acc-table tbody tr")).toHaveCount(exits.channels.length + pollsters.size);
+  // Before the CEC results are in, nothing is scored.
+  if (!exits.results) await expect(page.locator(".acc-pending")).toHaveCount(exits.channels.length + pollsters.size);
+});
+
+test("methodology: the accuracy rules are dated before election day (needs full git history) @desktop", async ({ page }) => {
+  await page.goto("/methodology/");
+  // The body of «ציון דיוק» last changed on 21.10.2026; a section added after it must not move that date.
+  await expect(page.locator(".methodology-body > blockquote")).toContainText("הכללים נקבעו לפני הבחירות");
+});
+
 test("home: exit polls switch channel and line up with the table @desktop", async ({ page }) => {
   await page.goto("/");
   await settle(page);
@@ -234,5 +259,5 @@ test("home: exit polls switch channel and line up with the table @desktop", asyn
 
   // Channels that ran a survey, not an exit poll at polling stations, say so on their row and card.
   await expect(page.locator(".exit-tabs .exit-method-survey")).toHaveCount(2);
-  await expect(page.locator(".exit-card:visible .exit-survey")).toBeVisible();
+  await expect(page.locator(".exit-card:visible .exit-method-line .exit-method-survey")).toBeVisible();
 });

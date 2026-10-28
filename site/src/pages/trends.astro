@@ -3,7 +3,8 @@ import { u } from "../lib/url";
 import Base from "../layouts/Base.astro";
 import BlocChart from "../components/charts/BlocChart.astro";
 import Num from "../components/data/Num.astro";
-import { average, fmtDate, latestParties, parties, pollsterName } from "../lib/data";
+import { average, fmtDate, latestParties, pollsterName, sponsors } from "../lib/data";
+import { partyColor } from "../lib/partyColors";
 import { THRESHOLD_SEATS, channelScores, sparkPoints, trendsPayload } from "../lib/selectors";
 
 const payload = trendsPayload();
@@ -16,7 +17,10 @@ const focusOpts = (names: Record<string, string>, key: "p" | "s") =>
   Object.entries(names)
     .map(([id, name]) => ({ id, name, n: payload.polls.filter((p) => p[key] === id).length }))
     .sort((a, b) => a.name.localeCompare(b.name, "he"));
-const channelOpts = focusOpts(payload.sponsorNames, "s");
+// Sponsors: media outlets (channels, papers, sites) apart from independent and other sponsors.
+const sponsorOpts = focusOpts(payload.sponsorNames, "s");
+const channelOpts = sponsorOpts.filter((o) => sponsors[o.id]?.type === "media");
+const otherSponsorOpts = sponsorOpts.filter((o) => sponsors[o.id]?.type !== "media");
 const pollsterOpts = focusOpts(payload.pollsterNames, "p");
 const SPARK_H = 32;
 const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixed(1);
@@ -36,16 +40,21 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
   <section class="trends-parties" aria-labelledby="parties-h">
     <h2 id="parties-h">מפלגות</h2>
     <p class="page-note">
-      כל המפלגות על אותו סולם (<Num kind="range" lo={0} hi={payload.ymax} /> מנדטים) ועל אותו ציר זמן. הקו המקווקו הוא אחוז החסימה ({THRESHOLD_SEATS} מנדטים). הקישו על נקודה כדי לראות את הסקר שמאחוריה. בחרו ערוץ או סוקר כדי לראות את הסקרים שלו כקו נפרד לצד ממוצע כל הסקרים.
+      כל המפלגות על אותו סולם (<Num kind="range" lo={0} hi={payload.ymax} /> מנדטים) ועל אותו ציר זמן. הקו המקווקו הוא אחוז החסימה ({THRESHOLD_SEATS} מנדטים). הקישו על נקודה כדי לראות את הסקר שמאחוריה. בחרו מזמין (ערוץ, עיתון או אתר) או סוקר כדי לראות את הסקרים שלו כקו נפרד לצד ממוצע כל הסקרים.
     </p>
 
     <form class="control-bar" id="trend-controls" aria-label="הגדרות גרפי המפלגות">
-      <label>הצגת ערוץ או סוקר
+      <label>הצגת מזמין או סוקר
         <select name="focus">
           <option value="">ממוצע כל הסקרים בלבד</option>
-          <optgroup label="ערוץ (מזמין הסקר)">
+          <optgroup label="מזמין: ערוץ, עיתון או אתר">
             {channelOpts.map((o) => <option value={`s:${o.id}`}>{o.name} · {o.n} סקרים</option>)}
           </optgroup>
+          {otherSponsorOpts.length > 0 && (
+            <optgroup label="מזמין אחר">
+              {otherSponsorOpts.map((o) => <option value={`s:${o.id}`}>{o.name} · {o.n} סקרים</option>)}
+            </optgroup>
+          )}
           <optgroup label="סוקר">
             {pollsterOpts.map((o) => <option value={`p:${o.id}`}>{o.name} · {o.n} סקרים</option>)}
           </optgroup>
@@ -78,7 +87,7 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
             <svg class="lg" viewBox="0 0 18 10" aria-hidden="true">
               <path d="M9 1 L13 5 L9 9 L5 5 Z" style="fill: var(--surface); stroke: var(--ink-2); stroke-width: 1.5" />
             </svg>
-            מדגמי הערוצים ב-{fmtDate(payload.exitDate)}
+            הערוצים בליל הבחירות, {fmtDate(payload.exitDate)}
           </span>
         )
       }
@@ -101,7 +110,7 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
             <details class="card party-card" id={`party-${c.id}`} data-id={c.id}>
               <summary class="party-card-head">
                 <span class="party-cell">
-                  <i class="swatch" style={`background: ${parties[c.id]?.color ?? "transparent"}`} />
+                  <i class="swatch" style={`background: ${partyColor(c.id)}`} />
                   <span class="party-card-name">{c.name}</span>
                 </span>
                 <svg class="party-spark" viewBox={`0 0 100 ${SPARK_H}`} preserveAspectRatio="none" aria-hidden="true">
@@ -295,9 +304,9 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
       const n = polls.filter((p) => p[f.kind] === f.id && p.x >= v.domain[0] && p.x <= v.domain[1]).length;
       msg.textContent = n
         ? `${f.name}: ${n} סקרים בטווח, מחוברים בקו הצבעוני בכל הגרפים, לצד ממוצע כל הסקרים.${
-            f.kind === "s" && payload.exits.some((e) => e.s === f.id) ? " קו מקווקו מחבר את הסקר האחרון למדגם של הערוץ." : ""
+            f.kind === "s" && payload.exits.some((e) => e.s === f.id) ? " קו מקווקו מחבר את הסקר האחרון למספרים שהערוץ פרסם בליל הבחירות." : ""
           }`
-        : `ל${f.kind === "s" ? "ערוץ" : "סוקר"} שנבחר אין סקרים בטווח הזמן הזה.`;
+        : `ל${f.kind === "s" ? "מזמין" : "סוקר"} שנבחר אין סקרים בטווח הזמן הזה.`;
       document.getElementById("focus-name")!.textContent = `הסקרים של ${f.name}`;
     } else msg.textContent = "";
     focusKey.hidden = !f;
@@ -316,7 +325,7 @@ const thresholdY = (SPARK_H - (SPARK_H * THRESHOLD_SEATS) / payload.ymax).toFixe
       const jump = exit ? exit.seats - p.seats : 0;
       note.textContent = `הסקר האחרון של ${f!.name} (${dateFmt.format(p.x)}): ${p.seats} מנדטים${
         gap == null ? "" : ` · ⁦${sign}⁩ מממוצע כל הסקרים באותו יום`
-      }${exit ? `. במדגם: ${exit.seats} (⁦${jump > 0 ? "+" : jump < 0 ? "−" : ""}${Math.abs(jump)}⁩ מהסקר האחרון)` : ""}`;
+      }${exit ? `. בליל הבחירות: ${exit.seats} (⁦${jump > 0 ? "+" : jump < 0 ? "−" : ""}${Math.abs(jump)}⁩ מהסקר האחרון)` : ""}`;
     }
     const q = new URLSearchParams(location.search);
     f?.kind === "s" ? q.set("channel", f.id) : q.delete("channel");

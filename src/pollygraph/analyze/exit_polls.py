@@ -88,7 +88,10 @@ def _methods() -> dict[str, dict]:
 
 
 def results() -> dict | None:
-    """The CEC results once results.csv has rows: seats per party, with status and date."""
+    """The CEC results once results.csv has rows: seats per party, with status and date.
+
+    `pct` (share of valid votes) is optional; with it the accuracy page also scores the
+    threshold and the error in percent. List every list that ran, with 0 seats below it."""
     rows = _rows("results.csv")
     if not rows:
         return None
@@ -99,6 +102,9 @@ def results() -> dict | None:
         "status": statuses.pop(),
         "as_of": max(r["as_of"] for r in rows),
         "source_url": rows[0]["source_url"],
-        "rows": [{"label_raw": r["label_raw"], "party_id": r["party_id"], "seats": int(r["seats"])} for r in rows],
+        "rows": [
+            {"label_raw": r["label_raw"], "party_id": r["party_id"], "seats": int(r["seats"]), "pct": float(r["pct"]) if r.get("pct") else None}
+            for r in rows
+        ],
         "seats": {r["party_id"]: int(r["seats"]) for r in rows},
     }

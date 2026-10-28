@@ -1,0 +1,21 @@
+---
+// Its content folded behind a summary line when `folded`, shown as is otherwise. On election
+// night the home page folds the average's detail so the exit polls stay near the top.
+interface Props {
+  folded: boolean;
+  summary: string;
+  class?: string;
+}
+const { folded, summary, class: cls } = Astro.props;
+---
+
+{
+  folded ? (
+    <details class:list={["fold", cls]}>
+      <summary>{summary}</summary>
+      <slot />
+    </details>
+  ) : (
+    <slot />
+  )
+}

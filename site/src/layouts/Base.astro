@@ -14,6 +14,7 @@ import SiteHeader from "../components/layout/SiteHeader.astro";
 import SiteFooter from "../components/layout/SiteFooter.astro";
 import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
+import { PARTY_COLOR_CSS } from "../lib/partyColors";
 import { u, unbase } from "../lib/url";
 
 interface Props {
@@ -83,6 +84,7 @@ const ogTitle = title.startsWith("skrim") ? "ממוצע סקרי הבחירות 
       } catch {}
       document.documentElement.classList.add("js");
     </script>
+    <style is:inline set:html={PARTY_COLOR_CSS} />
   </head>
   <body>
     <a class="skip-link" href="#main">דלג לתוכן</a>

@@ -17,6 +17,7 @@ import {
   type ExitVersion,
   type Poll,
 } from "./data";
+import { partyColor } from "./partyColors";
 
 /** Seats a party gets when it just passes the 3.25% threshold. */
 export const THRESHOLD_SEATS = 4;
@@ -138,7 +139,7 @@ export function partyRows() {
     .map(([id, v]) => ({
       id,
       name: partyName(id),
-      color: parties[id]?.color ?? "transparent",
+      color: partyColor(id),
       mean: v.mean,
       lo: Math.max(0, v.mean - v.sd),
       hi: v.mean + v.sd,
@@ -254,7 +255,7 @@ export function exitCards(): ExitCard[] {
           id,
           name: latest.rows.find((r) => r.party_id === id)?.label_raw ?? partyName(id),
           label: partyName(id),
-          color: parties[id]?.color ?? "transparent",
+          color: partyColor(id),
           seats: latest.seats[id] ?? 0,
           before: lastPoll ? (lastPoll.seats[id] ?? 0) : null,
         }))
@@ -279,7 +280,7 @@ export function exitCards(): ExitCard[] {
   return cards;
 }
 
-function blocTotals(seats: Record<string, number>) {
+export function blocTotals(seats: Record<string, number>) {
   const out: Partial<Record<Bloc, number>> = {};
   for (const [id, n] of Object.entries(seats)) {
     const b = parties[id]?.bloc as Bloc | undefined;
@@ -287,6 +288,9 @@ function blocTotals(seats: Record<string, number>) {
   }
   return out;
 }
+
+/** Shade for a seat difference of 2 or more, as data-gap ("up2", "down4"…); none below 2. */
+export const gapShade = (d: number) => (Math.abs(d) < 2 ? undefined : `${d > 0 ? "up" : "down"}${Math.abs(d) >= 4 ? 4 : 2}`);
 
 export type ExitColumn = { id: string; name: string; seats: Record<string, number>; distance: number | null; kind: "exit" | "average" | "results" };
 
@@ -304,14 +308,14 @@ export function exitTable() {
   const dist = (s: Record<string, number>) => (results ? seatDistance(s, results) : null);
   const columns: ExitColumn[] = [
     ...cards.map((c) => ({ id: c.id, name: c.name, seats: c.latest.seats, distance: c.accuracy, kind: "exit" as const })),
-    { id: "mean", name: "ממוצע המדגמים", seats: mean, distance: dist(mean), kind: "average" },
+    { id: "mean", name: "ממוצע הערוצים", seats: mean, distance: dist(mean), kind: "average" },
     { id: "polls", name: "ממוצע הסקרים", seats: avg, distance: dist(avg), kind: "average" },
     ...(results ? [{ id: "results", name: exitPolls.results!.status === "final" ? "תוצאות האמת" : "תוצאות (חלקיות)", seats: results, distance: 0, kind: "results" as const }] : []),
   ];
   const printed = new Map(cards.flatMap((c) => c.latest.rows.map((r) => [r.party_id, r.label_raw] as const)));
   const rows = ids
-    .map((id) => ({ id, name: printed.get(id) ?? partyName(id), color: parties[id]?.color ?? "transparent", bloc: parties[id]?.bloc as Bloc }))
-    .sort((a, b) => mean[b.id] - mean[a.id] || a.name.localeCompare(b.name, "he"));
+    .map((id) => ({ id, name: printed.get(id) ?? partyName(id), label: partyName(id), color: partyColor(id), bloc: parties[id]?.bloc as Bloc }))
+    .sort((a, b) => mean[b.id] - mean[a.id] || a.label.localeCompare(b.label, "he"));
   const blocRows = (["coalition", "opposition", "arab"] as const).map((b) => ({
     bloc: b,
     name: BLOC_NAMES[b],
